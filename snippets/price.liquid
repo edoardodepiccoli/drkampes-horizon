@@ -58,17 +58,38 @@
     assign use_currency = true
   endif
 
-  # Format all prices
+  # ==========================================
+  # CUSTOM VAT CALCULATION (Added Before Formatting)
+  # ==========================================
+  assign vat_rate = 0.22
+  assign vat_amount = price | times: vat_rate
+  
+  if has_volume_pricing
+    assign vat_min = price_min | times: vat_rate
+    assign vat_max = price_max | times: vat_rate
+  endif
+
+  # Format all prices AND VAT amounts
   if use_currency
     assign price = price | money_with_currency
+    assign vat_amount_formatted = vat_amount | money_with_currency
     assign compare_at_price = compare_at_price | money_with_currency
     assign price_min = price_min | money_with_currency
     assign price_max = price_max | money_with_currency
+    if has_volume_pricing
+      assign vat_min_formatted = vat_min | money_with_currency
+      assign vat_max_formatted = vat_max | money_with_currency
+    endif
   else
     assign price = price | money
+    assign vat_amount_formatted = vat_amount | money
     assign compare_at_price = compare_at_price | money
     assign price_min = price_min | money
     assign price_max = price_max | money
+    if has_volume_pricing
+      assign vat_min_formatted = vat_min | money
+      assign vat_max_formatted = vat_max | money
+    endif
   endif
 -%}
 
@@ -83,7 +104,10 @@
     {% endif %}
     <span role="group">
       <span class="visually-hidden">{{ 'content.price_range' | t }}&nbsp;</span>
-      <span class="price">{{ price_min }} - {{ price_max }}</span>
+      <span class="price price-range price--large">
+        {{ price_min }} + <span style="font-size: 0.75em;">{{ vat_min_formatted }} IVA</span> - 
+        {{ price_max }} + <span style="font-size: 0.75em;">{{ vat_max_formatted }} IVA</span>
+      </span>
     </span>
   {% else %}
     {% comment %} Standard pricing display {% endcomment %}
@@ -97,10 +121,10 @@
     {% if show_compare_price %}
       <span role="group">
         <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
-        <span class="price">{{ price | default: '&nbsp;' }}</span>
+        <span class="price">{{ price | default: '&nbsp;' }} + <span style="font-size: 0.75em;">{{ vat_amount_formatted }} IVA</span></span>
       </span>
     {% else %}
-      <span class="price">{{ price | default: '&nbsp;' }}</span>
+      <span class="price">{{ price | default: '&nbsp;' }} + <span style="font-size: 0.75em;">{{ vat_amount_formatted }} IVA</span></span>
     {% endif %}
 
     {% if show_sale_price_first == true and show_compare_price %}
@@ -122,5 +146,5 @@
   {%- endif -%}
 </div>
 {%- if has_volume_pricing -%}
-  <small ref="volumePricingNote" class="volume-pricing-note">{{ 'content.volume_pricing_available' | t }}</small>
+  <small class="volume-pricing-note">{{ 'content.volume_pricing_available' | t }}</small>
 {%- endif -%}

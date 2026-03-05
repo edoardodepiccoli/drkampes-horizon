@@ -65,9 +65,7 @@ export default class VariantPicker extends Component {
     if (!selectedOption) return;
 
     this.updateSelectedOption(event.target);
-    this.dispatchEvent(new VariantSelectedEvent({
-      id: selectedOption.dataset.optionValueId ?? '',
-    }));
+    this.dispatchEvent(new VariantSelectedEvent({ id: selectedOption.dataset.optionValueId ?? '' }));
 
     const isOnProductPage =
       this.dataset.templateProductMatch === 'true' &&
@@ -319,25 +317,23 @@ export default class VariantPicker extends Component {
         const textContent = html.querySelector(`variant-picker script[type="application/json"]`)?.textContent;
         if (!textContent) return;
 
-        let newProduct;
-
         if (morphElementSelector === 'main') {
           this.updateMain(html);
         } else if (morphElementSelector) {
           this.updateElement(html, morphElementSelector);
         } else {
-          newProduct = this.updateVariantPicker(html);
-        }
+          const newProduct = this.updateVariantPicker(html);
 
-        // Dispatch for all paths so product-form-component can reset #variantChangeInProgress
-        if (this.selectedOptionId) {
-          this.dispatchEvent(
-            new VariantUpdateEvent(JSON.parse(textContent), this.selectedOptionId, {
-              html,
-              productId: this.dataset.productId ?? '',
-              newProduct,
-            })
-          );
+          // We grab the variant object from the response and dispatch an event with it.
+          if (this.selectedOptionId) {
+            this.dispatchEvent(
+              new VariantUpdateEvent(JSON.parse(textContent), this.selectedOptionId, {
+                html,
+                productId: this.dataset.productId ?? '',
+                newProduct,
+              })
+            );
+          }
         }
       })
       .catch((error) => {

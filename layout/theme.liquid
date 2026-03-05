@@ -45,8 +45,8 @@
     </div>
 
     <script>
-      // Inline header height and menu style calculations to prevent layout shift
-      // Note: Updates in calculateHeaderGroupHeight(), updateTransparentHeaderOffset() and setHeaderMenuStyle() utilities.js should be kept in sync with this function
+      // Inline header height calculation to prevent layout shift
+      // Note: Updates in calculateHeaderGroupHeight() and updateTransparentHeaderOffset()utilities.js should be kept in sync with this function
       (function setHeaderHeighCustomProperties() {
         /*
          * Header calculation functions for maintaining CSS variables
@@ -58,7 +58,6 @@
 
         if (!header || !headerGroup) return;
 
-        const headerTopRow = header.querySelector('.header__row--top');
         const headerHeight = header.offsetHeight;
 
         // Calculate the total height of the header group
@@ -79,12 +78,6 @@
         document.body.style.setProperty('--header-height', `${headerHeight}px`);
         document.body.style.setProperty('--header-group-height', `${headerGroupHeight}px`);
 
-        if (headerTopRow) {
-          window.requestAnimationFrame(function () {
-            document.body.style.setProperty('--top-row-height', `${headerTopRow.offsetHeight}px`);
-          });
-        }
-
         /**
          * Updates CSS custom properties for transparent header offset calculation
          * Mimic updateTransparentHeaderOffset() in utilities.js
@@ -100,16 +93,6 @@
         const shouldApplyOffset = !hasImmediateSection ? '1' : '0';
         document.body.style.setProperty('--transparent-header-offset-boolean', shouldApplyOffset);
       })();
-
-      (function setHeaderMenuStyle() {
-        const headerComponent = document.querySelector('#header-component');
-        if (headerComponent) {
-          const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
-          const overflowList = headerComponent?.querySelector('overflow-list');
-          const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
-          headerComponent.dataset.menuStyle = isTouchDevice || hasReachedMinimum ? 'drawer' : 'menu';
-        }
-      })();
     </script>
 
     <main
@@ -123,14 +106,36 @@
       {{ content_for_layout }}
     </main>
 
-    <footer>
-      {% sections 'footer-group' %}
-    </footer>
+    {% sections 'footer-group' %}
 
     {% render 'search-modal' %}
 
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    
+    {% comment %} roba custom {% endcomment %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Add the class to trigger the CSS transition
+              entry.target.classList.add('is-visible');
+              // Optional: Stop observing once animated
+              observer.unobserve(entry.target); 
+            }
+          });
+        }, {
+          threshold: 0.1 // Triggers when 10% of the element is visible
+        });
+
+        // Select all elements with your custom class
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        elementsToAnimate.forEach(el => observer.observe(el));
+      });
+    </script>
   </body>
 </html>

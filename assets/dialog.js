@@ -181,6 +181,7 @@ document.addEventListener(
     if (event.target instanceof HTMLDetailsElement) {
       if (event.target.hasAttribute('scroll-lock')) {
         const { open } = event.target;
+
         if (open) {
           document.documentElement.setAttribute('scroll-lock', '');
         } else {

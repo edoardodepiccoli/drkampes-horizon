@@ -1,11 +1,10 @@
 import { yieldToMainThread } from '@theme/utilities';
-import { Component } from '@theme/component';
 
 /**
  * FlyToCart custom element for animating product images to cart
  * This component creates a visual effect of a product "flying" to the cart when added
  */
-class FlyToCart extends Component {
+class FlyToCart extends HTMLElement {
   /** @type {Element} */
   source;
 
@@ -16,7 +15,6 @@ class FlyToCart extends Component {
   destination;
 
   connectedCallback() {
-    super.connectedCallback();
     const intersectionObserver = new IntersectionObserver((entries) => {
       /** @type {DOMRectReadOnly | null} */
       let sourceRect = null;

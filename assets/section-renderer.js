@@ -1,4 +1,4 @@
-import { morph, MORPH_OPTIONS } from '@theme/morph';
+import { morph } from '@theme/morph';
 
 /**
  * A class to re-render sections using the Section Rendering API
@@ -31,12 +31,11 @@ class SectionRenderer {
    * @param {string} sectionId - The section ID
    * @param {Object} [options] - The options
    * @param {boolean} [options.cache] - Whether to use the cache
-   * @param {'hydration'|'full'} [options.mode] - Which parts of the section to morph into the DOM
    * @param {URL} [options.url] - The URL to render the section from
    * @returns {Promise<string>} The rendered section HTML
    */
   async renderSection(sectionId, options) {
-    const { cache = !Shopify.designMode, mode = 'full' } = options ?? {};
+    const { cache = !Shopify.designMode } = options ?? {};
     const { url } = options ?? {};
     this.#abortPendingMorph(sectionId);
 
@@ -48,7 +47,7 @@ class SectionRenderer {
     if (!abortController.signal.aborted) {
       this.#abortControllersBySectionId.delete(sectionId);
 
-      morphSection(sectionId, sectionHTML, mode);
+      morphSection(sectionId, sectionHTML);
     }
 
     return sectionHTML;
@@ -162,9 +161,8 @@ function containsShadowRoot(element) {
  *
  * @param {string} sectionId - The section ID
  * @param {string} html - The new markup the section should morph into
- * @param {'hydration'|'full'} [mode] - Which parts of the section to morph into the DOM. 'hydration' will only morph nodes with `data-hydration-key` attributes.
  */
-export async function morphSection(sectionId, html, mode = 'full') {
+export async function morphSection(sectionId, html) {
   const fragment = new DOMParser().parseFromString(html, 'text/html');
   const existingElement = document.getElementById(buildSectionSelector(sectionId));
   const newElement = fragment.getElementById(buildSectionSelector(sectionId));
@@ -177,10 +175,7 @@ export async function morphSection(sectionId, html, mode = 'full') {
     throw new Error(`Section ${sectionId} not found in the section rendering response`);
   }
 
-  morph(existingElement, newElement, {
-    ...MORPH_OPTIONS,
-    hydrationMode: mode === 'hydration',
-  });
+  morph(existingElement, newElement);
 }
 
 export const sectionRenderer = new SectionRenderer();

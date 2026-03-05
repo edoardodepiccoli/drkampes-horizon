@@ -68,8 +68,7 @@
   assign timeline_scope = ''
 
   for index in (1..slide_count)
-    assign index0 = index | minus: 1
-    assign scope = '--slide-index, ' | replace: 'index', index0
+    assign scope = '--slide-index, ' | replace: 'index', index
     assign timeline_scope = timeline_scope | append: scope
   endfor
 

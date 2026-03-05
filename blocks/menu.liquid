@@ -1,3 +1,5 @@
+
+
 {% liquid
   assign block_settings = block.settings
   assign menu = block_settings.menu
@@ -52,12 +54,7 @@
         </span>
       </summary>
 
-      <nav
-        class="details-content"
-        {% if heading == blank %}
-          aria-label="{{ menu.title | escape }}"
-        {% endif %}
-      >
+      <div class="details-content">
         {% if menu %}
           <ul class="list-unstyled">
             {% for link in menu.links %}
@@ -69,7 +66,7 @@
             {% endfor %}
           </ul>
         {% endif %}
-      </nav>
+      </div>
     </details>
   </accordion-custom>
 {% endif %}

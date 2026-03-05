@@ -1,6 +1,6 @@
 import { Component } from '@theme/component';
 import { QuickAddComponent } from '@theme/quick-add';
-import { isClickedOutside, isMobileBreakpoint, isTouchDevice, mediaQueryLarge } from '@theme/utilities';
+import { isClickedOutside, isMobileBreakpoint, mediaQueryLarge } from '@theme/utilities';
 
 /**
  * A custom element that manages a dialog.
@@ -261,7 +261,9 @@ export class ProductHotspotComponent extends Component {
    */
   handleHotspotClick = (e) => {
     // Check if it's a touch device (tablets) or mobile breakpoint
-    if (isMobileBreakpoint() || isTouchDevice()) {
+    const isTouchDevice = matchMedia('(hover: none)').matches;
+
+    if (isMobileBreakpoint() || isTouchDevice) {
       e.preventDefault();
       e.stopPropagation();
       this.#openQuickAddModal();

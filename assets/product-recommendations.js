@@ -1,6 +1,4 @@
-import { Component } from '@theme/component';
-
-class ProductRecommendations extends Component {
+class ProductRecommendations extends HTMLElement {
   /**
    * The observer for the product recommendations
    * @type {IntersectionObserver}
@@ -56,13 +54,11 @@ class ProductRecommendations extends Component {
   #activeFetch = null;
 
   connectedCallback() {
-    super.connectedCallback();
     this.#intersectionObserver.observe(this);
     this.#mutationObserver.observe(this, { attributes: true });
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
     this.#intersectionObserver.disconnect();
     this.#mutationObserver.disconnect();
   }

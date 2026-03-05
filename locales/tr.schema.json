@@ -525,7 +525,7 @@
       "heading": "Başlık",
       "description": "Açıklama",
       "key": "Özellik adı",
-      "key_info": "Boş bırakılamaz ve her blok için benzersiz olmalıdır. Sepette, ödeme sayfasında ve sipariş bilgilerinde gösterilir.",
+      "key_info": "Her blok için benzersiz olmalıdır. Sepette, ödeme sayfasında ve sipariş ayrıntılarında gösterilir.",
       "placeholder_text": "Yer tutucu metin",
       "default_heading": "Ürününüzü özelleştirin",
       "default_placeholder": "Özel talimatlarınızı girin",
@@ -577,8 +577,7 @@
     "x_position": "Yatay konum",
     "y_position": "Dikey konum",
     "enable_sticky_add_to_cart": "Sabit sepete ekle çubuğu",
-    "sticky_add_to_cart": "Sabit sepete ekle",
-    "actions_display_style": "Menü stili"
+    "sticky_add_to_cart": "Sabit sepete ekle"
   },
   "options": {
     "apple": "Apple",
@@ -852,8 +851,7 @@
     "subtle_zoom": "Yakınlaştırma",
     "with_hints": "İpuçlu",
     "below_media": "Medyanın altında",
-    "full_frame": "Tam çerçeve",
-    "icons": "Simgeler"
+    "full_frame": "Tam çerçeve"
   },
   "content": {
     "background_video": "Arka plan videosu",
@@ -969,8 +967,7 @@
     "popover_position": "Açılır pencere konumu",
     "resource_reference_product_sku": "Ana üründeki SKU'yu görüntüler",
     "content_layout": "İçerik düzeni",
-    "mobile_media_1": "Mobil medya 1",
-    "utilities": "Araçlar"
+    "mobile_media_1": "Mobil medya 1"
   },
   "html_defaults": {
     "share_information_about_your": "<p>Markanızla ilgili bilgileri müşterilerinizle paylaşın. Bir ürünü açıklayın, duyurular yapın veya mağazanıza gelen müşterileri karşılayın.</p>",
@@ -1087,9 +1084,8 @@
     "hover_effects": "Ürün ve koleksiyon kartları için geçerlidir",
     "pills_usage": "Uygulanan filtreler, indirim kodları ve arama önerileri için kullanılır",
     "hide_logo_on_home_page_help": "Yapışkan üstbilgi etkinken logo görünür kalır",
-    "media_type_info": "Özellikler, menü bağlantılarınız kullanılarak oluşturulur",
-    "logo_height": "Yalnızca üstbilgi logosunu etkiler",
-    "actions_display_style": "Mobilde her zaman simgeler kullanılır"
+    "media_type_info": "Özellikler, menü bağlantılarınızdan doldurulur",
+    "logo_height": "Yalnızca üstbilgi logosunu etkiler"
   },
   "categories": {
     "product_list": "Öne çıkan koleksiyon",
