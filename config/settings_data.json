@@ -97,6 +97,11 @@
         "type": "shopify://apps/essential-upsell/blocks/app-embed/50627fd9-24fd-4250-8614-accc12826d80",
         "disabled": false,
         "settings": {}
+      },
+      "12198985164985445843": {
+        "type": "shopify://apps/nova-gdpr-cookie-consent/blocks/app-embed/6667ecbd-70cf-4527-84a9-e6037e6ca706",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
