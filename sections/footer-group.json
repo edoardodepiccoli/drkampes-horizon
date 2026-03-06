@@ -1,1 +1,335 @@
-{"type":"footer","name":"Footer","sections":{"footer_m9NzUG":{"type":"footer","blocks":{"group_H6VpwJ":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":6,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_LWt8Pz":{"type":"text","settings":{"text":"<h2>Unisciti alla famiglia Dr Kampes<\/h2>","width":"100%","max_width":"normal","alignment":"left","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_f9CFLH":{"type":"text","settings":{"text":"<p>Ottieni promozioni esclusive, sconti speciali e nuovi prodotti in anticipo.<\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_LWt8Pz","text_f9CFLH"]},"email_signup_crihX7":{"type":"email-signup","settings":{"width":"fill","custom_width":100,"inherit_color_scheme":true,"color_scheme":"","heading":"","heading_preset":"h3","border_style":"all","border_width":1,"border_radius":0,"input_type_preset":"paragraph","style_class":"button-unstyled","display_type":"arrow","label":"Sign up","integrated_button":true,"button_type_preset":"paragraph","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["group_H6VpwJ","email_signup_crihX7"],"name":"t:names.footer","settings":{"section_width":"page-width","gap":20,"color_scheme":"scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0","padding-block-start":96,"padding-block-end":96}},"section_fUGdjU":{"type":"section","blocks":{"group_mLUrEM":{"type":"group","name":"t:names.group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":64,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":64,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"image_gCpebx":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/logo_white_transparent.png","link":"","image_ratio":"adapt","width":"custom","custom_width":20,"width_mobile":"custom","custom_width_mobile":45,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_8ziJJi":{"type":"text","name":"t:names.text","settings":{"text":"<p><strong>CAMPES S.r.l.<\/strong><br\/>Sede Legale e Amministrativa in Via Noalese 84\/E | 31100 Treviso (TV) ITALY<\/p><p>C.F. e P.IVA 05496370262 – Capitale sociale €4.000 i.v. – C.C.I.A.A. Treviso-Belluno<\/p><p>R.E.A. TV – 448699 – PEC: campessrl@pec.it<br\/><br\/><a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0960\/9527\/3303\/files\/condizioni_di_vendita.pdf?v=1771868041\" target=\"_blank\" title=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0960\/9527\/3303\/files\/condizioni_di_vendita.pdf?v=1771868041\">Condizioni di vendita<\/a> - <a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0960\/9527\/3303\/files\/cookie_policy.pdf?v=1771868133\" target=\"_blank\" title=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0960\/9527\/3303\/files\/cookie_policy.pdf?v=1771868133\">Cookie Policy<\/a><\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":32,"padding-inline-end":32},"blocks":{}}},"block_order":["image_gCpebx","text_8ziJJi"]}},"block_order":["group_mLUrEM"],"name":"t:names.custom_section","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":0,"section_width":"full-width","section_height":"","section_height_custom":50,"color_scheme":"scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"footer_utilities_jLGE8U":{"type":"footer-utilities","blocks":{"footer_copyright_jweRK8":{"type":"footer-copyright","settings":{"show_powered_by":false,"font_size":"0.875rem","case":"none"},"blocks":{}},"social_links_Ew63Kq":{"type":"social-links","settings":{"facebook_url":"https:\/\/www.facebook.com\/drkampes","instagram_url":"https:\/\/www.instagram.com\/drkampes\/","youtube_url":"https:\/\/www.youtube.com\/@DrKampes","tiktok_url":"https:\/\/www.tiktok.com\/@drkampes","twitter_url":"","threads_url":"","linkedin_url":"","bluesky_url":"","snapchat_url":"","pinterest_url":"","tumblr_url":"","vimeo_url":"","custom_url":""},"blocks":{}}},"block_order":["footer_copyright_jweRK8","social_links_Ew63Kq"],"name":"t:names.utilities","settings":{"section_width":"page-width","gap":24,"divider_thickness":0,"color_scheme":"scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0","padding-block-start":20,"padding-block-end":48}}},"order":["footer_m9NzUG","section_fUGdjU","footer_utilities_jLGE8U"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer_m9NzUG": {
+      "type": "footer",
+      "blocks": {
+        "group_H6VpwJ": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 6,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_LWt8Pz": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Unisciti alla famiglia Dr Kampes</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_f9CFLH": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Ottieni promozioni esclusive, sconti speciali e nuovi prodotti in anticipo.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LWt8Pz",
+            "text_f9CFLH"
+          ]
+        },
+        "email_signup_crihX7": {
+          "type": "email-signup",
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "heading": "",
+            "heading_preset": "h3",
+            "border_style": "all",
+            "border_width": 1,
+            "border_radius": 0,
+            "input_type_preset": "paragraph",
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "label": "Sign up",
+            "integrated_button": true,
+            "button_type_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_H6VpwJ",
+        "email_signup_crihX7"
+      ],
+      "disabled": true,
+      "name": "t:names.footer",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 20,
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
+    "section_fUGdjU": {
+      "type": "section",
+      "blocks": {
+        "group_mLUrEM": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 64,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 64,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "image_gCpebx": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/logo_white_transparent.png",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "custom",
+                "custom_width": 20,
+                "width_mobile": "custom",
+                "custom_width_mobile": 45,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_8ziJJi": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>CAMPES S.r.l.</strong><br/>Sede Legale e Amministrativa in Via Noalese 84/E | 31100 Treviso (TV) ITALY</p><p>C.F. e P.IVA 05496370262 – Capitale sociale €4.000 i.v. – C.C.I.A.A. Treviso-Belluno</p><p>R.E.A. TV – 448699 – PEC: campessrl@pec.it<br/><br/><a href=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/condizioni_di_vendita.pdf?v=1771868041\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/condizioni_di_vendita.pdf?v=1771868041\">Condizioni di vendita</a> - <a href=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/cookie_policy.pdf?v=1771868133\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/cookie_policy.pdf?v=1771868133\">Cookie Policy</a></p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 32,
+                "padding-inline-end": 32
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_gCpebx",
+            "text_8ziJJi"
+          ]
+        }
+      },
+      "block_order": [
+        "group_mLUrEM"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "footer_utilities_jLGE8U": {
+      "type": "footer-utilities",
+      "blocks": {
+        "footer_copyright_jweRK8": {
+          "type": "footer-copyright",
+          "settings": {
+            "show_powered_by": false,
+            "font_size": "0.875rem",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "social_links_Ew63Kq": {
+          "type": "social-links",
+          "settings": {
+            "facebook_url": "https://www.facebook.com/drkampes",
+            "instagram_url": "https://www.instagram.com/drkampes/",
+            "youtube_url": "https://www.youtube.com/@DrKampes",
+            "tiktok_url": "https://www.tiktok.com/@drkampes",
+            "twitter_url": "",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "footer_copyright_jweRK8",
+        "social_links_Ew63Kq"
+      ],
+      "name": "t:names.utilities",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 0,
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "padding-block-start": 20,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "footer_m9NzUG",
+    "section_fUGdjU",
+    "footer_utilities_jLGE8U"
+  ]
+}
