@@ -2689,7 +2689,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Sì ma solo se decidi di pagare con PayPal in 3 rate.</p>",
+                    "text": "<p>Sì con Klarna oppure con PayPal in 3 rate.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2730,7 +2730,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Si certamente, scrivici una mail a info@drkampes.com o scrivici su whatsapp al numero 351 6515 219 con i dati per la fattura.</p>",
+                    "text": "<p>Sì. Se desideri fattura, inserisci i dati di fatturazione nel checkout. Per aziende e professionisti consigliamo di compilare anche Ragione sociale, Partita IVA, Codice SDI o PEC. Se hai esigenze particolari, contattaci prima di completare l’ordine.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
