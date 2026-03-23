@@ -14,7 +14,8 @@ Copia il codice HTML qui sotto e incollalo nel campo contenuto della pagina Shop
   .dkc a { color: var(--accent); }
   .dkc .intro { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
   .dkc .cta-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0 2.5rem; }
-  .dkc .btn { display: inline-block; padding: 0.65rem 1.3rem; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border: 1px solid; text-decoration: none; }
+  .dkc .btn { display: inline-block; padding: 0.65rem 1.3rem; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border: 1px solid; text-decoration: none; cursor: pointer; transition: opacity 0.15s, filter 0.15s; }
+  .dkc .btn:hover { opacity: 0.82; }
   .dkc .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .dkc .btn-outline { background: transparent; color: #111; border-color: #111; }
   .dkc .btn-wa { background: #25D366; color: #fff; border-color: #25D366; }
@@ -22,10 +23,16 @@ Copia il codice HTML qui sotto e incollalo nel campo contenuto della pagina Shop
   .dkc .stat { background: #111; padding: 1.25rem 1.5rem; }
   .dkc .stat strong { display: block; color: var(--accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
   .dkc .stat a, .dkc .stat span { color: #fff; font-size: 0.95rem; font-weight: 600; line-height: 1.5; display: block; text-decoration: none; }
+  .dkc .stat a:hover { text-decoration: underline; }
+  .dkc .stat:has(a) { cursor: pointer; transition: background 0.15s; }
+  .dkc .stat:has(a):hover { background: #222; }
   .dkc .contacts { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 1.25rem 0; }
   .dkc .contact-item { background: #fff; padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
   .dkc .contact-item strong { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
   .dkc .contact-item a, .dkc .contact-item span { font-size: 1rem; font-weight: 700; color: #111; text-decoration: none; }
+  .dkc .contact-item a:hover { text-decoration: underline; color: var(--accent); }
+  .dkc .contact-item:has(a) { transition: background 0.15s; }
+  .dkc .contact-item:has(a):hover { background: #f9f9f9; }
   .dkc .hours { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 1.25rem 0; }
   .dkc .hours-row { background: #fff; padding: 0.85rem 1.25rem; display: flex; justify-content: space-between; gap: 1rem; font-size: 0.9rem; }
   .dkc .hours-row span { color: var(--muted); }
@@ -63,7 +70,7 @@ Copia il codice HTML qui sotto e incollalo nel campo contenuto della pagina Shop
     <div class="stat"><strong>Email</strong><a href="mailto:info@drkampes.com">info@drkampes.com</a></div>
     <div class="stat"><strong>Telefono</strong><a href="tel:+393516515219">+39 351 651 5219</a></div>
     <div class="stat"><strong>WhatsApp</strong><a href="https://wa.me/393516515219?text=Ciao%20Dr%20Kampes%2C%20vorrei%20ricevere%20informazioni." target="_blank" rel="noopener noreferrer">Apri la chat</a></div>
-    <div class="stat"><strong>Sede</strong><span>Via Noalese 84/E, Treviso</span></div>
+    <div class="stat"><strong>Sede</strong><a href="https://maps.google.com/?q=Via+Noalese+84/E,+31100+Treviso+TV,+Italia" target="_blank" rel="noopener noreferrer">Via Noalese 84/E, Treviso</a></div>
   </div>
 
   <h2>Contatti diretti</h2>
@@ -72,7 +79,7 @@ Copia il codice HTML qui sotto e incollalo nel campo contenuto della pagina Shop
     <div class="contact-item"><strong>Email</strong><a href="mailto:info@drkampes.com">info@drkampes.com</a></div>
     <div class="contact-item"><strong>Telefono</strong><a href="tel:+393516515219">+39 351 651 5219</a></div>
     <div class="contact-item"><strong>WhatsApp</strong><a href="https://wa.me/393516515219?text=Ciao%20Dr%20Kampes%2C%20vorrei%20ricevere%20informazioni." target="_blank" rel="noopener noreferrer">Apri la chat WhatsApp</a></div>
-    <div class="contact-item"><strong>Indirizzo</strong><span>Via Noalese 84/E, 31100 Treviso (TV), Italia</span></div>
+    <div class="contact-item"><strong>Indirizzo</strong><a href="https://maps.google.com/?q=Via+Noalese+84/E,+31100+Treviso+TV,+Italia" target="_blank" rel="noopener noreferrer">Via Noalese 84/E, 31100 Treviso (TV), Italia</a></div>
   </div>
 
   <p style="font-size:0.88rem; color:#555;">Per richieste relative a garanzia o assistenza tecnica, indica sempre numero ordine, fattura o altri riferimenti utili.</p>
