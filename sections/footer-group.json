@@ -220,8 +220,8 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p><strong>CAMPES S.r.l.</strong><br/>Sede Legale e Amministrativa in Via Noalese 84/E | 31100 Treviso (TV) ITALY</p><p>C.F. e P.IVA 05496370262 – Capitale sociale €4.000 i.v. – C.C.I.A.A. Treviso-Belluno</p><p>R.E.A. TV – 448699 – PEC: campessrl@pec.it<br/><br/><a href=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/condizioni_di_vendita.pdf?v=1771868041\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/condizioni_di_vendita.pdf?v=1771868041\">Condizioni di vendita</a> - <a href=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/cookie_policy.pdf?v=1771868133\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0960/9527/3303/files/cookie_policy.pdf?v=1771868133\">Cookie Policy</a></p>",
-                "width": "fit-content",
+                "text": "<p><strong>CAMPES S.r.l.</strong>  Sede legale e amministrativa: Via Noalese 84/E, 31100 Treviso (TV), Italia<br/>C.F. e P.IVA 05496370262<br/>Iscritta al Registro delle Imprese di Treviso-Belluno -  REA TV-448699<br/>Capitale sociale € 4.000,00 interamente versato<br/><br/>  PEC: <a href=\"mailto:campessrl@pec.it\">campessrl@pec.it</a>   <br/>Email: <a href=\"mailto:info@drkampes.com\">info@drkampes.com</a></p><p><br/>    <a href=\"/pages/informativa-legale\">Informativa legale</a> | <a href=\"/pages/privacy-policy\">Privacy Policy</a> |    <a href=\"/pages/cookie-policy\">Cookie Policy</a> | <a href=\"/pages/condizioni-di-vendita-b2c\">Condizioni di Vendita B2C</a> | <a href=\"/pages/condizioni-di-fornitura-b2b\">Condizioni di Fornitura B2B</a> | <a href=\"/pages/garanzia-3-anni-dr-kampes\">Garanzia 3 Anni</a> |   <a href=\"/pages/contatti\">Contatti</a><br/>  </p>",
+                "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
                 "type_preset": "rte",
@@ -241,11 +241,25 @@
                 "padding-inline-end": 32
               },
               "blocks": {}
+            },
+            "payment_icons_dNqVEa": {
+              "type": "payment-icons",
+              "name": "t:names.payment_icons",
+              "settings": {
+                "horizontal_alignment": "flex-start",
+                "gap": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 21,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "image_gCpebx",
-            "text_8ziJJi"
+            "text_8ziJJi",
+            "payment_icons_dNqVEa"
           ]
         }
       },
