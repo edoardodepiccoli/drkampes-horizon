@@ -223,6 +223,7 @@
   {% endif %}
 
 {%- liquid
+    # -- CUSTOM: IVA calculation for cart total (start) --
     assign vat_rate = 0.22
     assign total_ex_vat = cart.total_price
     assign total_vat = total_ex_vat | times: vat_rate
@@ -235,6 +236,7 @@
       assign total_price = total_inc_vat | money
       assign vat_formatted = total_vat | money
     endif
+    # -- CUSTOM: IVA calculation for cart total (end) --
   -%}
 
   <div class="cart__total-container{% if settings.show_installments %} cart__total-container--has-installments{% endif %}">
@@ -250,7 +252,9 @@
         {% comment %} Used by payment_terms web component {% endcomment %}
         data-cart-subtotal
       >
+        {% comment %} CUSTOM: show total inc. IVA + breakdown {% endcomment %}
         {{ total_price }} <span style="font-size: 0.7em; font-weight: normal; margin-left: 5px;">(di cui {{ vat_formatted }} IVA)</span>
+        {% comment %} END CUSTOM {% endcomment %}
       </text-component>
     </span>
   </div>
