@@ -11,9 +11,7 @@
       <span class="cart__summary-item cart__original-total">
         <span class="cart__original-total-label">{{ 'content.cart_subtotal' | t }}</span>
         <span class="cart__original-total-value cart-secondary-typography">
-          {%- assign orig_vat = cart.original_total_price | times: 0.22 -%}
-          {%- assign orig_inc_vat = cart.original_total_price | plus: orig_vat -%}
-          {{- orig_inc_vat | money -}}
+          {{- cart.original_total_price | money -}}
         </span>
       </span>
       <div class="cart__summary-discounts">
@@ -223,20 +221,11 @@
   {% endif %}
 
 {%- liquid
-    # -- CUSTOM: IVA calculation for cart total (start) --
-    assign vat_rate = 0.22
-    assign total_ex_vat = cart.total_price
-    assign total_vat = total_ex_vat | times: vat_rate
-    assign total_inc_vat = total_ex_vat | plus: total_vat
-
     if settings.currency_code_enabled_cart_total
-      assign total_price = total_inc_vat | money_with_currency
-      assign vat_formatted = total_vat | money_with_currency
+      assign total_price = cart.total_price | money_with_currency
     else
-      assign total_price = total_inc_vat | money
-      assign vat_formatted = total_vat | money
+      assign total_price = cart.total_price | money
     endif
-    # -- CUSTOM: IVA calculation for cart total (end) --
   -%}
 
   <div class="cart__total-container{% if settings.show_installments %} cart__total-container--has-installments{% endif %}">
@@ -252,9 +241,7 @@
         {% comment %} Used by payment_terms web component {% endcomment %}
         data-cart-subtotal
       >
-        {% comment %} CUSTOM: show total inc. IVA + breakdown {% endcomment %}
-        {{ total_price }} <span style="font-size: 0.7em; font-weight: normal; margin-left: 5px;">(di cui {{ vat_formatted }} IVA)</span>
-        {% comment %} END CUSTOM {% endcomment %}
+        {{ total_price }}
       </text-component>
     </span>
   </div>
