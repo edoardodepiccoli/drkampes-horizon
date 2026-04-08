@@ -131,7 +131,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><strong>LA SCARPA DEL  CAMIONISTA N.1 IN ITALIA.</strong></p>",
+                    "text": "<p><strong>LE SCARPE DEL CAMIONISTA</strong></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -157,7 +157,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><strong>100% Made in Italy, sicurezza S3S e un’identità che si riconosce al primo sguardo.</strong></p>",
+                    "text": "<p><strong>Con loro: lavori meglio, perdi meno tempo, stai più comodo, fai meno fatica, resti riconoscibile.</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -274,7 +274,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>🛡️ Garanzia 3 Anni |🔒14 giorni soddisfatti o rimborsati</p>",
+                    "text": "<p>🛡️ Garanzia 3 Anni  🇮🇹 100% Made in Italy🔒Sicurezza S3S</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
