@@ -1482,6 +1482,14 @@
           },
           "blocks": {}
         },
+        "custom_liquid_MGrkjY": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px 20px;display:inline-flex;align-items:center;gap:14px;font-family:Arial,sans-serif;\">\n  <img\n    src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png\"\n    alt=\"Google\"\n    style=\"height:28px;width:auto;\"\n  />\n  <div style=\"display:flex;flex-direction:column;gap:2px;\">\n    <div style=\"display:flex;gap:2px;\">\n      {% for i in (1..5) %}\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"#FBBC04\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z\"/>\n        </svg>\n      {% endfor %}\n    </div>\n    <span style=\"font-size:13px;color:#444;letter-spacing:0.01em;\">5 Stelle su Google</span>\n  </div>\n</div>"
+          },
+          "blocks": {}
+        },
         "custom_liquid_w739mQ": {
           "type": "custom-liquid",
           "name": "t:names.custom_liquid",
@@ -1494,6 +1502,7 @@
       "block_order": [
         "text_ex4KEP",
         "text_njaBdx",
+        "custom_liquid_MGrkjY",
         "custom_liquid_w739mQ"
       ],
       "name": "Recensioni Custom",
