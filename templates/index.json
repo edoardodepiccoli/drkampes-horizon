@@ -221,7 +221,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>100% Made in Italy  | Sicurezza S3S | Garanzia 3 Anni  </p>",
+                    "text": "<p>🇮🇹 100% Made in Italy<br/>🛡️ Sicurezza S3S<br/>🏅 Garanzia 3 Anni  </p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
