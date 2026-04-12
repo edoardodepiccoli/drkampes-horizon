@@ -1848,6 +1848,18 @@
             "animate_delay": 0
           },
           "blocks": {}
+        },
+        "divider_xekHY6": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 1,
+            "corner_radius": "square",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -1861,7 +1873,8 @@
         "text_PtM64Q",
         "divider_9xxwxV",
         "icon_3aqzxU",
-        "text_rLJmNR"
+        "text_rLJmNR",
+        "divider_xekHY6"
       ],
       "name": "t:names.marquee_section",
       "settings": {
