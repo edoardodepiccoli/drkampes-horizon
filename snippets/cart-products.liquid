@@ -139,10 +139,9 @@
                     <a
                       href="{{ item.url }}"
                       class="cart-items__media-container"
-                      style="--ratio:{{ ratio }};"
                     >
                       {%- liquid
-                        echo item.image | image_url: width: 250 | image_tag: class: 'cart-items__media-image border-style', style: border_override
+                        echo item.image | image_url: width: 600 | image_tag: class: 'cart-items__media-image border-style', style: border_override
                       -%}
                     </a>
                   {%- endif %}
@@ -373,15 +372,15 @@
   }
 
   .cart-items__table-row {
-    --cart-item-price-width: 6rem;
-
     display: grid;
-    grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) minmax(var(--cart-item-price-width), auto);
+    grid-template-columns: 1fr;
     grid-template-areas:
-      'media details price'
-      'media quantity price'
-      'media error error';
-    column-gap: var(--gap-md);
+      'media'
+      'details'
+      'quantity'
+      'price'
+      'error';
+    gap: var(--gap-sm);
     align-items: start;
     padding-bottom: var(--cart-items-gap);
     margin-bottom: var(--margin-lg);
@@ -523,7 +522,7 @@
 
   .cart-items__media-container {
     display: flex;
-    aspect-ratio: var(--ratio);
+    aspect-ratio: 1 / 1;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -579,31 +578,8 @@
   }
 
   @container cart-items (min-width: 720px) {
-    .cart-items__table-row {
-      --cart-item-price-width: 6rem;
-
-      grid-template-columns: 7.5rem 1fr 1fr minmax(var(--cart-item-price-width), auto);
-      grid-template-rows: min-content 1fr;
-      grid-template-areas:
-        'media details quantity price'
-        'media details error error';
-    }
-
-    .cart-items__quantity,
-    .cart-items__price {
-      grid-area: initial;
-    }
-
     .cart-items__quantity {
       margin-top: 0;
-    }
-
-    .cart-items__price {
-      min-height: var(--minimum-touch-target);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
     }
   }
 
