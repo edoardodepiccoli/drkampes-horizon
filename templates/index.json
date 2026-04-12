@@ -1775,7 +1775,7 @@
         "text_PtM64Q": {
           "type": "text",
           "settings": {
-            "text": "<p>Recesso entro 14 giorni</p>",
+            "text": "<p>Reso entro 14 giorni</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
