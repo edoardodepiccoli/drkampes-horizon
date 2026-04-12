@@ -1627,7 +1627,7 @@
         "text_ffkNRP": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Scegli la Tua Compagna di Viaggio</strong></p>",
+            "text": "<p><strong>Scegli la Tua Compagna di Viaggio.</strong></p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -1654,6 +1654,7 @@
         "group_Lht9TR": {
           "type": "group",
           "name": "t:names.group",
+          "disabled": true,
           "settings": {
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -2028,7 +2029,6 @@
             "group_EJbDDL": {
               "type": "group",
               "name": "t:names.group",
-              "disabled": true,
               "settings": {
                 "content_direction": "column",
                 "vertical_on_mobile": true,
