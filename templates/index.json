@@ -23,7 +23,7 @@
             "align_baseline": true,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 18,
+            "gap": 32,
             "width": "fill",
             "custom_width": 50,
             "width_mobile": "fill",
@@ -290,7 +290,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>🇮🇹 100% Made in Italy  | 🔨Sicurezza S3S | 🛡️ Garanzia 3 Anni  </p>",
+                    "text": "<p>100% Made in Italy  | Sicurezza S3S | Garanzia 3 Anni  </p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
