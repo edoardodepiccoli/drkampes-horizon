@@ -50,7 +50,7 @@
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
-            "animate_on_scroll": true,
+            "animate_on_scroll": false,
             "animate_delay": 0
           },
           "blocks": {
@@ -96,14 +96,6 @@
                 "animate_delay": 0
               },
               "blocks": {
-                "custom_liquid_jRGpTm": {
-                  "type": "custom-liquid",
-                  "name": "t:names.custom_liquid",
-                  "settings": {
-                    "custom_liquid": ""
-                  },
-                  "blocks": {}
-                },
                 "text_L4DVfY": {
                   "type": "text",
                   "name": "t:names.heading",
@@ -127,7 +119,7 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": false,
+                    "animate_on_scroll": true,
                     "animate_delay": 100
                   },
                   "blocks": {}
@@ -155,14 +147,13 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": false,
-                    "animate_delay": 100
+                    "animate_on_scroll": true,
+                    "animate_delay": 200
                   },
                   "blocks": {}
                 }
               },
               "block_order": [
-                "custom_liquid_jRGpTm",
                 "text_L4DVfY",
                 "text_744Dby"
               ]
@@ -221,7 +212,7 @@
                     "custom_width": 100,
                     "width_mobile": "custom",
                     "custom_width_mobile": 100,
-                    "animate_on_scroll": false,
+                    "animate_on_scroll": true,
                     "animate_delay": 200
                   },
                   "blocks": {}
@@ -249,7 +240,7 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": false,
+                    "animate_on_scroll": true,
                     "animate_delay": 300
                   },
                   "blocks": {}
