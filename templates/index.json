@@ -438,7 +438,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 0
+                "animate_delay": 200
               },
               "blocks": {}
             },
@@ -563,7 +563,7 @@
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
                 "animate_on_scroll": true,
-                "animate_delay": 0
+                "animate_delay": 200
               },
               "blocks": {}
             }
@@ -688,8 +688,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
+                "animate_on_scroll": true,
+                "animate_delay": 200
               },
               "blocks": {}
             }
@@ -760,7 +760,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
+                "animate_on_scroll": true,
                 "animate_delay": 0
               },
               "blocks": {}
@@ -787,8 +787,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
+                "animate_on_scroll": true,
+                "animate_delay": 100
               },
               "blocks": {}
             },
@@ -803,8 +803,8 @@
                 "custom_width": 100,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
-                "animate_on_scroll": false,
-                "animate_delay": 0
+                "animate_on_scroll": true,
+                "animate_delay": 200
               },
               "blocks": {}
             }
