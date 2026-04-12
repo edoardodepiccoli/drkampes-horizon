@@ -382,6 +382,27 @@
       "unit": "px",
       "default": 0
     },
+    {
+      "type": "header",
+      "content": "t:content.animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_on_scroll",
+      "label": "t:settings.animate_on_scroll",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "animate_delay",
+      "label": "t:settings.animate_delay",
+      "min": 0,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "default": 0,
+      "visible_if": "{{ block.settings.animate_on_scroll }}"
+    }
   ],
   "presets": [
     {

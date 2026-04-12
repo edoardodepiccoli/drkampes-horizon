@@ -34,6 +34,7 @@
   "content": {
     "visible_if_collection_has_more_products": "Visible if collection has more products than shown",
     "advanced": "Advanced",
+    "animation": "Animation",
     "appearance": "Appearance",
     "arrows": "Arrows",
     "background": "Background",
@@ -752,6 +753,8 @@
     "alignment_mobile": "Mobile alignment",
     "align_baseline": "Align text baseline",
     "animation": "Animation",
+    "animate_on_scroll": "Appear on scroll",
+    "animate_delay": "Delay",
     "animation_repeat": "Repeat animation",
     "add_discount_code": "Allow discounts in cart",
     "add_to_cart_animation": "Add to cart",

@@ -45,6 +45,9 @@
     if is_rte
       echo ' rte '
     endif
+    if block_settings.animate_on_scroll
+      echo ' animate-on-scroll '
+    endif
   endcapture
 %}
 
@@ -66,6 +69,7 @@
       --text-corner-radius: {{ block_settings.corner_radius }}px;
       --text-padding: max(var(--padding-2xs), calc((var(--text-corner-radius) + var(--padding-xs)) * (1 - cos(45deg))));
     {% endif %}
+    {% if block_settings.animate_on_scroll %}--animate-delay: {{ block_settings.animate_delay | default: 0 }}ms;{% endif %}
   "
 
   {{ block.shopify_attributes }}

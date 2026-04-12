@@ -21,8 +21,9 @@
     size-style
     {{ block_settings.style_class }}
     {{ block_settings.style_class }}--{{ block.id }}
+    {% if block_settings.animate_on_scroll %}animate-on-scroll{% endif %}
   "
-  style="{% render 'size-style', settings: block_settings %}"
+  style="{% render 'size-style', settings: block_settings %}{% if block_settings.animate_on_scroll %}--animate-delay: {{ block_settings.animate_delay | default: 0 }}ms;{% endif %}"
   {%- if block_settings.open_in_new_tab -%}
     target="_blank"
     rel="noopener noreferrer"

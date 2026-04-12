@@ -547,6 +547,8 @@
     "blog": "Blog",
     "post_count": "Conteggio post",
     "animation": "Animazione",
+    "animate_on_scroll": "Appare allo scorrimento",
+    "animate_delay": "Ritardo",
     "top_level_size": "Dimensione livello superiore",
     "empty_cart_button_link": "Link pulsante carrello vuoto",
     "auto_load_products": "Carica automaticamente i prodotti durante lo scorrimento",
@@ -855,6 +857,7 @@
   },
   "content": {
     "advanced": "Avanzate",
+    "animation": "Animazione",
     "background_image": "Immagine di sfondo",
     "background_video": "Video di sfondo",
     "block_size": "Dimensioni del blocco",

@@ -7,7 +7,8 @@
 {% endcapture %}
 
 <div
-  class="card{% if block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}"
+  class="card{% if block_settings.inherit_color_scheme == false %} color-{{ block_settings.color_scheme }}{% endif %}{% if block_settings.animate_on_scroll %} animate-on-scroll{% endif %}"
+  {% if block_settings.animate_on_scroll %}style="--animate-delay: {{ block_settings.animate_delay | default: 0 }}ms;"{% endif %}
   ref="slides[]"
   data-carousel-card
   {{ block.shopify_attributes }}
@@ -522,6 +523,27 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_on_scroll",
+      "label": "t:settings.animate_on_scroll",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "animate_delay",
+      "label": "t:settings.animate_delay",
+      "min": 0,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "default": 0,
+      "visible_if": "{{ block.settings.animate_on_scroll }}"
     }
   ],
   "presets": [
