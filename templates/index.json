@@ -1652,8 +1652,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 24,
-        "padding-block-end": 24,
+        "padding-block-start": 0,
+        "padding-block-end": 0,
         "animate_on_scroll": false,
         "animate_delay": 0
       }
@@ -2162,7 +2162,7 @@
         "limit_details_width": false,
         "gap": 48,
         "color_scheme": "",
-        "padding-block-start": 24,
+        "padding-block-start": 0,
         "padding-block-end": 24
       }
     },
