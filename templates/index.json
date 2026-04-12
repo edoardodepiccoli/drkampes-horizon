@@ -104,35 +104,6 @@
                   },
                   "blocks": {}
                 },
-                "text_WWKmfk": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "disabled": true,
-                  "settings": {
-                    "text": "<p><strong>Dr Kampes: La Scarpa Del Camionista.</strong></p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-accent--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "animate_on_scroll": false,
-                    "animate_delay": 100
-                  },
-                  "blocks": {}
-                },
                 "text_L4DVfY": {
                   "type": "text",
                   "name": "t:names.heading",
@@ -188,43 +159,12 @@
                     "animate_delay": 100
                   },
                   "blocks": {}
-                },
-                "text_gDhgKT": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "disabled": true,
-                  "settings": {
-                    "text": "<ul><li><em>⭐ 5 Stelle Google</em></li><li><em>🇮🇹 100% Made in Italy</em></li><li><em>🛡️ Certificato S3S</em></li><li><em>🛠️ Garanzia 3 Anni</em></li></ul>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 6,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "animate_on_scroll": false,
-                    "animate_delay": 200
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "custom_liquid_jRGpTm",
-                "text_WWKmfk",
                 "text_L4DVfY",
-                "text_744Dby",
-                "text_gDhgKT"
+                "text_744Dby"
               ]
             },
             "group_QVPn78": {
