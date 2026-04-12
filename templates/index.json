@@ -1480,6 +1480,20 @@
         "animate_delay": 0
       }
     },
+    "divider_Kh3i6B": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "section_XLk9Vi": {
       "type": "section",
       "blocks": {
@@ -1617,7 +1631,7 @@
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
-            "type_preset": "h2",
+            "type_preset": "h3",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -1636,10 +1650,66 @@
             "animate_delay": 0
           },
           "blocks": {}
+        },
+        "group_Lht9TR": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 12,
+            "padding-block-end": 12,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {
+            "custom_liquid_qLKNTf": {
+              "type": "custom-liquid",
+              "name": "5 stelle su google",
+              "settings": {
+                "custom_liquid": "<style>\n  .gr-outer { display:inline-flex; align-items:center; }\n  .gr-line { width:80px; height:1px; flex-shrink:0; }\n  .gr-line-left  { background:linear-gradient(to right, transparent, rgba(66,133,244,0.4) 30%, rgba(234,67,53,0.3) 60%, rgba(251,188,4,0.35) 80%, rgba(52,168,83,0.4)); }\n  .gr-line-right { background:linear-gradient(to right, rgba(52,168,83,0.4), rgba(251,188,4,0.35) 20%, rgba(234,67,53,0.3) 50%, rgba(66,133,244,0.4) 70%, transparent); }\n  .gr-stars-row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }\n\n  @media (max-width: 480px) {\n    .gr-line { width: 30px; }\n  }\n</style>\n\n<div class=\"gr-outer\">\n  <div class=\"gr-line gr-line-left\"></div>\n  <a href=\"https://share.google/g2I0D5pWZ1rMlr8U4\" target=\"_blank\" rel=\"noopener\"\n     style=\"display:inline-flex;align-items:center;gap:12px;font-family:Arial,sans-serif;text-decoration:none;background:#fff;border-radius:6px;padding:10px 18px;\">\n    <img src=\"https://www.google.com/favicon.ico\" alt=\"Google\" style=\"height:20px;width:20px;\" />\n    <div style=\"display:flex;flex-direction:column;gap:2px;\">\n      <span style=\"font-size:11px;color:#555;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;\">Google Reviews</span>\n      <div class=\"gr-stars-row\">\n        <div style=\"display:flex;gap:2px;flex-shrink:0;\">\n          {% for i in (1..5) %}\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"#FBBC04\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path d=\"M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z\"/>\n            </svg>\n          {% endfor %}\n        </div>\n        <span style=\"font-size:12px;color:#1a0dab;text-decoration:underline;white-space:nowrap;\">5 Stelle</span>\n      </div>\n    </div>\n  </a>\n  <div class=\"gr-line gr-line-right\"></div>\n</div>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "custom_liquid_qLKNTf"
+          ]
         }
       },
       "block_order": [
-        "text_ffkNRP"
+        "text_ffkNRP",
+        "group_Lht9TR"
       ],
       "name": "t:names.pull_quote",
       "settings": {
@@ -1958,6 +2028,7 @@
             "group_EJbDDL": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -3185,6 +3256,7 @@
     "divider_gkU4y8",
     "section_zdX3Hj",
     "section_TNanYH",
+    "divider_Kh3i6B",
     "section_XLk9Vi",
     "divider_aNQgTq",
     "section_mRAaKP",
