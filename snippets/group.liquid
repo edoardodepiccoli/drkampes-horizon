@@ -20,12 +20,14 @@
     spacing-style
     size-style
     {% if settings.inherit_color_scheme == false %} color-{{ settings.color_scheme }}{% endif %}
+    {% if settings.animate_on_scroll %}animate-on-scroll{% endif %}
     {{ class }}
   "
   style="
     {% render 'border-override', settings: settings %}
     {% render 'spacing-style', settings: settings %}
     {% render 'size-style', settings: settings %}
+    {% if settings.animate_on_scroll %}--animate-delay: {{ settings.animate_delay | default: 0 }}ms;{% endif %}
     {{ style }}
   "
   {{ shopify_attributes }}
