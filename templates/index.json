@@ -152,7 +152,7 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": true,
+                    "animate_on_scroll": false,
                     "animate_delay": 100
                   },
                   "blocks": {}
@@ -180,7 +180,7 @@
                     "padding-block-end": 10,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": true,
+                    "animate_on_scroll": false,
                     "animate_delay": 100
                   },
                   "blocks": {}
@@ -209,7 +209,7 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": true,
+                    "animate_on_scroll": false,
                     "animate_delay": 200
                   },
                   "blocks": {}
@@ -275,7 +275,7 @@
                     "custom_width": 100,
                     "width_mobile": "custom",
                     "custom_width_mobile": 100,
-                    "animate_on_scroll": true,
+                    "animate_on_scroll": false,
                     "animate_delay": 200
                   },
                   "blocks": {}
@@ -284,7 +284,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>🇮🇹 100% Made in Italy 🔨Sicurezza S3S<br/>🛡️ Garanzia 3 Anni  </p>",
+                    "text": "<p>🇮🇹 100% Made in Italy <br/>🔨Sicurezza S3S<br/>🛡️ Garanzia 3 Anni  </p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -303,7 +303,7 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0,
-                    "animate_on_scroll": true,
+                    "animate_on_scroll": false,
                     "animate_delay": 300
                   },
                   "blocks": {}
