@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "cart-section": {
       "type": "main-cart",
@@ -43,6 +44,7 @@
         },
         "cart-page-summary": {
           "type": "_cart-summary",
+          "disabled": true,
           "static": true,
           "settings": {
             "extend_summary": true,
