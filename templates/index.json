@@ -437,7 +437,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
+                "animate_on_scroll": true,
                 "animate_delay": 0
               },
               "blocks": {}
