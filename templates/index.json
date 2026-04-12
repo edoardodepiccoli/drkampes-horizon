@@ -1592,6 +1592,220 @@
         "animate_delay": 0
       }
     },
+    "marquee_T8nWCx": {
+      "type": "marquee",
+      "blocks": {
+        "icon_BYUdQG": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_wyDRec": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pagamenti Sicuri</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        },
+        "divider_7RyRCW": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 1,
+            "corner_radius": "square",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_izBA6p": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "star",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_44rAPC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Servizio Clienti Veloce</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        },
+        "divider_cbGRPX": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 1,
+            "corner_radius": "square",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_yBRnJY": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "return",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_PtM64Q": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Recesso entro 14 giorni</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        },
+        "divider_9xxwxV": {
+          "type": "_divider",
+          "name": "t:names.divider",
+          "settings": {
+            "thickness": 1,
+            "corner_radius": "square",
+            "width_percent": 100,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_3aqzxU": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "truck",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_rLJmNR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Spedizione Rapida</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_BYUdQG",
+        "text_wyDRec",
+        "divider_7RyRCW",
+        "icon_izBA6p",
+        "text_44rAPC",
+        "divider_cbGRPX",
+        "icon_yBRnJY",
+        "text_PtM64Q",
+        "divider_9xxwxV",
+        "icon_3aqzxU",
+        "text_rLJmNR"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "",
+        "padding-block-start": 24,
+        "padding-block-end": 0,
+        "gap_between_elements": 0
+      }
+    },
     "featured_product_information_Ciypzz": {
       "type": "featured-product-information",
       "blocks": {
@@ -1855,220 +2069,6 @@
         "color_scheme": "",
         "padding-block-start": 24,
         "padding-block-end": 24
-      }
-    },
-    "marquee_T8nWCx": {
-      "type": "marquee",
-      "blocks": {
-        "icon_BYUdQG": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "price_tag",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_wyDRec": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Pagamenti Sicuri</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        },
-        "divider_7RyRCW": {
-          "type": "_divider",
-          "name": "t:names.divider",
-          "settings": {
-            "thickness": 1,
-            "corner_radius": "square",
-            "width_percent": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          },
-          "blocks": {}
-        },
-        "icon_izBA6p": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "star",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_44rAPC": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Servizio Clienti Veloce</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        },
-        "divider_cbGRPX": {
-          "type": "_divider",
-          "name": "t:names.divider",
-          "settings": {
-            "thickness": 1,
-            "corner_radius": "square",
-            "width_percent": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          },
-          "blocks": {}
-        },
-        "icon_yBRnJY": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "return",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_PtM64Q": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Recesso entro 14 giorni</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        },
-        "divider_9xxwxV": {
-          "type": "_divider",
-          "name": "t:names.divider",
-          "settings": {
-            "thickness": 1,
-            "corner_radius": "square",
-            "width_percent": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          },
-          "blocks": {}
-        },
-        "icon_3aqzxU": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "truck",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_rLJmNR": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Spedizione Rapida</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "icon_BYUdQG",
-        "text_wyDRec",
-        "divider_7RyRCW",
-        "icon_izBA6p",
-        "text_44rAPC",
-        "divider_cbGRPX",
-        "icon_yBRnJY",
-        "text_PtM64Q",
-        "divider_9xxwxV",
-        "icon_3aqzxU",
-        "text_rLJmNR"
-      ],
-      "name": "t:names.marquee_section",
-      "settings": {
-        "movement_direction": "normal",
-        "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0,
-        "gap_between_elements": 24
       }
     },
     "product_recommendations_df4Yta": {
@@ -3064,8 +3064,8 @@
     "section_TNanYH",
     "section_XLk9Vi",
     "section_mRAaKP",
-    "featured_product_information_Ciypzz",
     "marquee_T8nWCx",
+    "featured_product_information_Ciypzz",
     "product_recommendations_df4Yta",
     "section_DEhdNH",
     "section_Cn9bUQ",
