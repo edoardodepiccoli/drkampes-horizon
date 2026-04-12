@@ -1,8 +1,14 @@
 /* roba custom */
 #header-group {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--layer-sticky);
+}
+
+main#MainContent {
+  padding-top: var(--header-group-height, 0px);
 }
 
 .animate-on-scroll {
