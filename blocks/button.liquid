@@ -1,6 +1,6 @@
 
 {% if block.settings.animate_on_scroll %}
-  <div class="animate-on-scroll" style="display: inline-block; --animate-delay: {{ block.settings.animate_delay | default: 0 }}ms;">
+  <div class="animate-on-scroll size-style" style="{% render 'size-style', settings: block.settings %}--animate-delay: {{ block.settings.animate_delay | default: 0 }}ms;">
     {% render 'button', link: block.settings.link %}
   </div>
 {% else %}
