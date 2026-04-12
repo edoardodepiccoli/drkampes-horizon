@@ -537,6 +537,7 @@
       "block_order": [
         "text_izPzQd"
       ],
+      "disabled": true,
       "name": "t:names.product_recommendations",
       "settings": {
         "product": "{{ closest.product }}",
