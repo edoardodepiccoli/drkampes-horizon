@@ -1,5 +1,11 @@
 
-{% render 'button', link: block.settings.link %}
+{% if block.settings.animate_on_scroll %}
+  <div class="animate-on-scroll" style="display: inline-block; --animate-delay: {{ block.settings.animate_delay | default: 0 }}ms;">
+    {% render 'button', link: block.settings.link %}
+  </div>
+{% else %}
+  {% render 'button', link: block.settings.link %}
+{% endif %}
 
 {% schema %}
 {
