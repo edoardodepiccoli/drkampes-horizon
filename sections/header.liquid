@@ -460,21 +460,18 @@
   }
 
   .header-section {
-    position: relative;
-    z-index: var(--layer-heightened);
+    position: sticky;
+    top: 0;
+    z-index: var(--layer-sticky);
   }
 
   #header-group:has(#header-component[sticky]) {
     display: contents;
   }
 
-  .header-section:has(> #header-component[sticky='always']),
-  .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+  .header-section:has(> #header-component[sticky='scroll-up']:not([data-sticky-state='active'])) {
     position: sticky;
-
-    /* Use -1 instead of 0 so intersection observer can track sticky state */
     top: -1px;
-    z-index: var(--layer-sticky);
   }
 
   .header[data-sticky-state] {
