@@ -1593,6 +1593,20 @@
         "animate_delay": 0
       }
     },
+    "divider_aNQgTq": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "section_mRAaKP": {
       "type": "section",
       "blocks": {
@@ -1652,7 +1666,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
+        "padding-block-start": 100,
         "padding-block-end": 0,
         "animate_on_scroll": false,
         "animate_delay": 0
@@ -2100,7 +2114,7 @@
                 "show_swatches": true,
                 "alignment": "left",
                 "padding-block-start": 0,
-                "padding-block-end": 8,
+                "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
@@ -2163,7 +2177,21 @@
         "gap": 48,
         "color_scheme": "",
         "padding-block-start": 0,
-        "padding-block-end": 24
+        "padding-block-end": 100
+      }
+    },
+    "divider_zwVw64": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_recommendations_df4Yta": {
@@ -2474,7 +2502,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 24,
+        "padding-block-start": 100,
         "padding-block-end": 24,
         "animate_on_scroll": false,
         "animate_delay": 0
@@ -3158,9 +3186,11 @@
     "section_zdX3Hj",
     "section_TNanYH",
     "section_XLk9Vi",
+    "divider_aNQgTq",
     "section_mRAaKP",
     "marquee_T8nWCx",
     "featured_product_information_Ciypzz",
+    "divider_zwVw64",
     "product_recommendations_df4Yta",
     "section_DEhdNH",
     "section_Cn9bUQ",
