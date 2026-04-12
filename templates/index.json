@@ -49,7 +49,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": true,
+            "animate_delay": 0
           },
           "blocks": {
             "group_TxWaTb": {
@@ -89,7 +91,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "custom_liquid_jRGpTm": {
@@ -260,7 +264,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "button_HGt9Kt": {
@@ -414,7 +420,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "image_z6MV9A": {
@@ -493,7 +501,9 @@
             "padding-block-start": 32,
             "padding-block-end": 32,
             "padding-inline-start": 32,
-            "padding-inline-end": 32
+            "padding-inline-end": 32,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "text_hPTQVJ": {
@@ -607,7 +617,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 64,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "divider_gkU4y8": {
@@ -665,7 +677,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "image_U8cgdw": {
@@ -734,7 +748,9 @@
             "padding-block-start": 32,
             "padding-block-end": 32,
             "padding-inline-start": 32,
-            "padding-inline-end": 32
+            "padding-inline-end": 32,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "text_jrBeEm": {
@@ -847,7 +863,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 0,
-        "padding-block-end": 64
+        "padding-block-end": 64,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "section_TNanYH": {
@@ -890,7 +908,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "group_TK3rmh": {
@@ -929,7 +949,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "icon_TwbMWG": {
@@ -992,7 +1014,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {
                     "text_4Cphig": {
@@ -1098,7 +1122,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "icon_xTbGhm": {
@@ -1161,7 +1187,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {
                     "text_ciwzK9": {
@@ -1273,7 +1301,9 @@
             "padding-block-start": 32,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "icon_RpU9k7": {
@@ -1336,7 +1366,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "text_wk4EGr": {
@@ -1456,7 +1488,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 96,
-        "padding-block-end": 96
+        "padding-block-end": 96,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "section_XLk9Vi": {
@@ -1558,7 +1592,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "section_mRAaKP": {
@@ -1621,7 +1657,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 100,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "featured_product_information_Ciypzz": {
@@ -1744,7 +1782,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {
                 "product_title_gfGw3T": {
@@ -2311,7 +2351,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 32,
-            "padding-inline-end": 32
+            "padding-inline-end": 32,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "text_An9Jax": {
@@ -2407,7 +2449,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 64,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "section_Cn9bUQ": {
@@ -2887,7 +2931,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 96,
-        "padding-block-end": 96
+        "padding-block-end": 96,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     },
     "section_UFPrC4": {
@@ -2955,7 +3001,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {
             "text_GWMBPm": {
@@ -3070,7 +3118,9 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 96,
-        "padding-block-end": 96
+        "padding-block-end": 96,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     }
   },
