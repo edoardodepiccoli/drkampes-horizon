@@ -86,13 +86,6 @@
                 {{ 'content.product_information' | t }}
               </th>
               <th
-                id="quantity"
-                scope="col"
-                role="columnheader"
-              >
-                {{ 'content.quantity' | t }}
-              </th>
-              <th
                 id="productTotal"
                 scope="col"
                 role="columnheader"
@@ -256,29 +249,10 @@
                   </div>
                 </td>
                 <td
-                  class="cart-items__quantity"
-                  role="cell"
-                  headers="quantity"
-                >
-                  <button
-                    class="button button--tertiary cart-items__remove"
-                    type="button"
-                    aria-label="{{ 'accessibility.remove_item' | t: title: item.title | escape }}"
-                    on:click="/onLineItemRemove/{{ item.index | plus: 1 }}"
-                    {% assign can_remove = item.instructions.can_remove | default: true, allow_false: true %}
-                    {% if can_remove == false %}
-                      hidden
-                    {% endif %}
-                  >
-                    {{- 'icon-delete.svg' | inline_asset_content -}}
-                    <span class="visually-hidden">{{ 'accessibility.remove' | t }}</span>
-                  </button>
-                </td>
-                <td
                   class="cart-items__error hidden"
                   role="cell"
                   ref="cartItemErrorContainer-{{ item.index | plus: 1 }}"
-                  headers="quantity"
+                  headers="productInformation"
                 >
                   <div
                     class="cart-item__error"
@@ -313,6 +287,19 @@
                       {% render 'unit-price', price: unit_price, measurement: item.unit_price_measurement %}
                     </div>
                   {%- endif -%}
+                  <button
+                    class="button button--tertiary cart-items__remove"
+                    type="button"
+                    aria-label="{{ 'accessibility.remove_item' | t: title: item.title | escape }}"
+                    on:click="/onLineItemRemove/{{ item.index | plus: 1 }}"
+                    {% assign can_remove = item.instructions.can_remove | default: true, allow_false: true %}
+                    {% if can_remove == false %}
+                      hidden
+                    {% endif %}
+                  >
+                    {{- 'icon-delete.svg' | inline_asset_content -}}
+                    <span class="visually-hidden">{{ 'accessibility.remove' | t }}</span>
+                  </button>
                 </td>
               </tr>
             {% endfor %}
@@ -353,7 +340,6 @@
     grid-template-columns: clamp(2.5rem, 15cqi, 7.5rem) minmax(0, 1fr) minmax(var(--cart-item-price-width), auto);
     grid-template-areas:
       'media details price'
-      'media quantity price'
       'media error error';
     column-gap: var(--gap-md);
     align-items: start;
@@ -439,34 +425,6 @@
     display: inline-block;
   }
 
-  .cart-items__quantity {
-    grid-area: quantity;
-    margin-block-start: var(--margin-xs);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--gap-xs);
-    width: fit-content;
-  }
-
-  .cart-items__quantity-controls {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--gap-xs);
-    width: fit-content;
-  }
-
-  .cart-items__quantity-controls > .volume-pricing-info {
-    margin-inline-start: calc(-1 * var(--minimum-touch-target) - var(--gap-xs));
-  }
-
-  .cart-items__quantity .quantity-selector {
-    display: inline-flex;
-    font-size: var(--cart-font-size--sm);
-    height: auto;
-  }
-
   .cart-items__remove {
     background-color: transparent;
     color: var(--color-foreground);
@@ -484,10 +442,12 @@
 
   .cart-items__price {
     grid-area: price;
-    min-height: unset;
+    grid-row: 1 / -1;
     min-width: var(--cart-item-price-width);
-    text-align: end;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
     font-size: var(--cart-font-size--md);
   }
 
@@ -556,28 +516,10 @@
     .cart-items__table-row {
       --cart-item-price-width: 6rem;
 
-      grid-template-columns: 7.5rem 1fr 1fr minmax(var(--cart-item-price-width), auto);
-      grid-template-rows: min-content 1fr;
+      grid-template-columns: 7.5rem 1fr minmax(var(--cart-item-price-width), auto);
       grid-template-areas:
-        'media details quantity price'
-        'media details error error';
-    }
-
-    .cart-items__quantity,
-    .cart-items__price {
-      grid-area: initial;
-    }
-
-    .cart-items__quantity {
-      margin-top: 0;
-    }
-
-    .cart-items__price {
-      min-height: var(--minimum-touch-target);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
+        'media details price'
+        'media details error';
     }
   }
 
