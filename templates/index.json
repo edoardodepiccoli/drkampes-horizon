@@ -123,7 +123,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": true,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 },
@@ -149,7 +151,9 @@
                     "padding-block-start": 12,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 },
@@ -175,7 +179,9 @@
                     "padding-block-start": 14,
                     "padding-block-end": 10,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 },
@@ -202,7 +208,9 @@
                     "padding-block-start": 24,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -266,7 +274,9 @@
                     "width": "custom",
                     "custom_width": 100,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 100,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 },
@@ -292,7 +302,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -424,7 +436,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -504,7 +518,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -529,7 +545,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -543,7 +561,9 @@
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
-                "custom_width_mobile": 100
+                "custom_width_mobile": 100,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             }
@@ -667,7 +687,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             }
@@ -737,7 +759,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -762,7 +786,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -776,7 +802,9 @@
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
-                "custom_width_mobile": 100
+                "custom_width_mobile": 100,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             }
@@ -988,7 +1016,9 @@
                         "padding-block-start": 0,
                         "padding-block-end": 0,
                         "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-end": 0,
+                        "animate_on_scroll": false,
+                        "animate_delay": 0
                       },
                       "blocks": {}
                     },
@@ -1013,7 +1043,9 @@
                         "padding-block-start": 0,
                         "padding-block-end": 0,
                         "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-end": 0,
+                        "animate_on_scroll": false,
+                        "animate_delay": 0
                       },
                       "blocks": {}
                     }
@@ -1153,7 +1185,9 @@
                         "padding-block-start": 0,
                         "padding-block-end": 0,
                         "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-end": 0,
+                        "animate_on_scroll": false,
+                        "animate_delay": 0
                       },
                       "blocks": {}
                     },
@@ -1178,7 +1212,9 @@
                         "padding-block-start": 0,
                         "padding-block-end": 0,
                         "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "padding-inline-end": 0,
+                        "animate_on_scroll": false,
+                        "animate_delay": 0
                       },
                       "blocks": {}
                     }
@@ -1324,7 +1360,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 },
@@ -1349,7 +1387,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -1378,7 +1418,9 @@
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
-            "custom_width_mobile": 100
+            "custom_width_mobile": 100,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         }
@@ -1442,7 +1484,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -1468,7 +1512,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -1539,7 +1585,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         }
@@ -1653,7 +1701,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -1872,7 +1922,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -1920,7 +1972,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -1968,7 +2022,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -2016,7 +2072,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         }
@@ -2069,7 +2127,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -2208,7 +2268,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -2274,7 +2336,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -2300,7 +2364,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             }
@@ -2369,7 +2435,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -2422,7 +2490,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2461,7 +2531,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2502,7 +2574,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2543,7 +2617,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2584,7 +2660,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2625,7 +2703,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2666,7 +2746,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2707,7 +2789,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2748,7 +2832,9 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "animate_on_scroll": false,
+                    "animate_delay": 0
                   },
                   "blocks": {}
                 }
@@ -2826,7 +2912,9 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
           },
           "blocks": {}
         },
@@ -2892,7 +2980,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -2918,7 +3008,9 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             },
@@ -2933,7 +3025,9 @@
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
-                "custom_width_mobile": 100
+                "custom_width_mobile": 100,
+                "animate_on_scroll": false,
+                "animate_delay": 0
               },
               "blocks": {}
             }
