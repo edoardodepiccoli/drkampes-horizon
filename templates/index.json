@@ -1599,7 +1599,7 @@
         "text_ffkNRP": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Scegli la Tua Compagna di Viaggio.</strong></p>",
+            "text": "<p><strong>Scegli la Tua Compagna di Viaggio</strong></p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -1615,7 +1615,7 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 24,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
             "animate_on_scroll": false,
