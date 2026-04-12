@@ -1,4 +1,10 @@
 /* roba custom */
+#header-group {
+  position: sticky;
+  top: 0;
+  z-index: var(--layer-sticky);
+}
+
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
