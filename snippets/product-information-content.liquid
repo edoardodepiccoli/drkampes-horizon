@@ -157,6 +157,12 @@
       grid-column: 2;
     }
 
+    .product-information__grid:not(.product-information--media-none) .product-information__media {
+      position: sticky;
+      top: var(--sticky-header-offset, 0px);
+      align-self: start;
+    }
+
     /* Position when there is no media */
     .product-information__grid.product-information--media-none {
       .product-details {
@@ -305,6 +311,11 @@
 
   /* If the header is sticky, make product details content stick underneath the header */
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
+    --sticky-header-offset: var(--header-height);
+  }
+
+  /* If the header is sticky, offset the sticky media gallery accordingly */
+  body:has(#header-group #header-component[data-sticky-state='active']) .product-information__media {
     --sticky-header-offset: var(--header-height);
   }
 {% endstylesheet %}
