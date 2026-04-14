@@ -1116,7 +1116,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 200
+                "animate_delay": 0
               },
               "blocks": {
                 "image_gWGwUR": {
@@ -1234,7 +1234,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 300
+                "animate_delay": 0
               },
               "blocks": {
                 "image_kqRbmj": {
@@ -1352,7 +1352,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 500
+                "animate_delay": 0
               },
               "blocks": {
                 "image_iaBrem": {
