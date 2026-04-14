@@ -2446,13 +2446,14 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 100,
-        "padding-block-end": 100,
+        "padding-block-end": 56,
         "animate_on_scroll": false,
         "animate_delay": 0
       }
     },
     "divider_aNQgTq": {
       "type": "divider",
+      "disabled": true,
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
@@ -2590,7 +2591,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 100,
+        "padding-block-start": 0,
         "padding-block-end": 0,
         "animate_on_scroll": false,
         "animate_delay": 0
