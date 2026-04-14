@@ -1498,6 +1498,20 @@
         "animate_delay": 0
       }
     },
+    "divider_LmMrtQ": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "carousel_wAdVeX": {
       "type": "carousel",
       "blocks": {
@@ -2090,6 +2104,20 @@
         "padding-block-end": 100
       }
     },
+    "divider_LRUKWG": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "section_DEhdNH": {
       "type": "section",
       "blocks": {
@@ -2409,7 +2437,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 100,
-        "padding-block-end": 56,
+        "padding-block-end": 24,
         "animate_on_scroll": false,
         "animate_delay": 0
       }
@@ -2417,6 +2445,20 @@
     "divider_aNQgTq": {
       "type": "divider",
       "disabled": true,
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "divider_qVYHaf": {
+      "type": "divider",
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
@@ -2554,7 +2596,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
+        "padding-block-start": 24,
         "padding-block-end": 0,
         "animate_on_scroll": false,
         "animate_delay": 0
@@ -3932,12 +3974,15 @@
     "divider_gkU4y8",
     "section_zdX3Hj",
     "section_TNanYH",
+    "divider_LmMrtQ",
     "carousel_wAdVeX",
+    "divider_LRUKWG",
     "section_DEhdNH",
     "custom_liquid_TBQJEa",
     "divider_Kh3i6B",
     "section_XLk9Vi",
     "divider_aNQgTq",
+    "divider_qVYHaf",
     "section_mRAaKP",
     "marquee_T8nWCx",
     "featured_product_information_Ciypzz",
