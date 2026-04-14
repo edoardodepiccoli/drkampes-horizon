@@ -3174,31 +3174,6 @@
     "section_UFPrC4": {
       "type": "section",
       "blocks": {
-        "image_gk4Cek": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "image": "shopify://shop_images/whatsapp_logo.webp",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "custom",
-            "custom_width": 15,
-            "width_mobile": "custom",
-            "custom_width_mobile": 30,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        },
         "group_KcD9hQ": {
           "type": "group",
           "name": "t:names.group",
@@ -3348,7 +3323,6 @@
         }
       },
       "block_order": [
-        "image_gk4Cek",
         "group_KcD9hQ",
         "image_JHJmMr"
       ],
