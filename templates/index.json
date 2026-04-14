@@ -370,6 +370,14 @@
     "section_peM8H3": {
       "type": "section",
       "blocks": {
+        "custom_liquid_HUNHjE": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"intro\"></div>"
+          },
+          "blocks": {}
+        },
         "group_tWGWRT": {
           "type": "group",
           "name": "t:names.group",
@@ -573,6 +581,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_HUNHjE",
         "group_tWGWRT",
         "group_bVgmqy"
       ],
