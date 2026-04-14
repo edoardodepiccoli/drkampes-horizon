@@ -923,7 +923,7 @@
               "type": "text",
               "name": "t:names.header",
               "settings": {
-                "text": "<p>Fatta a mano da artigiani. Non in serie.</p>",
+                "text": "<p>Queste sono Dr Kampes S3S:</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
