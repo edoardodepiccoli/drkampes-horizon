@@ -3759,7 +3759,7 @@
             "link": "",
             "image_ratio": "adapt",
             "width": "custom",
-            "custom_width": 30,
+            "custom_width": 15,
             "width_mobile": "custom",
             "custom_width_mobile": 30,
             "height": "fit",
