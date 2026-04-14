@@ -2249,7 +2249,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "SCOPRI GLI AMBASSADOR",
-                "link": "#ambassador",
+                "link": "#ambassadors",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "width": "fit-content",
