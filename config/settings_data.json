@@ -192,8 +192,8 @@
       "scheme-3": {
         "settings": {
           "background": "#ffffff",
-          "foreground_heading": "#ffffff",
-          "foreground": "#ffffff",
+          "foreground_heading": "#000000cf",
+          "foreground": "#000000cf",
           "primary": "#000000cf",
           "primary_hover": "#000000",
           "border": "#000000cf",
