@@ -923,7 +923,7 @@
               "type": "text",
               "name": "t:names.header",
               "settings": {
-                "text": "<p>Scopri Dr kampes</p>",
+                "text": "<p>Uniche e inimitabili:</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
