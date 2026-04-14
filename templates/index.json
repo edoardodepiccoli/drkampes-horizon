@@ -923,7 +923,7 @@
               "type": "text",
               "name": "t:names.header",
               "settings": {
-                "text": "<p>Uniche e inimitabili:</p>",
+                "text": "<p>Fatta a mano da artigiani. Non in serie.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1461,7 +1461,7 @@
         "color_scheme": "",
         "icons_style": "arrow",
         "icons_shape": "none",
-        "padding-block-start": 48,
+        "padding-block-start": 100,
         "padding-block-end": 100
       }
     },
