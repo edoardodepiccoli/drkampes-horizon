@@ -1058,7 +1058,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>E sì: <strong>fanno la loro bella figura.</strong></p>",
+                    "text": "<p>Qualità e stile: <strong>nessun compromesso</strong>. E sì, <strong>fanno la loro bella figura.</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1148,7 +1148,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Indossale in 1 secondo.</p>",
+                    "text": "<p>Sistema FAST-WEAR: unico al mondo.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1176,7 +1176,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Smetti di perdere tempo a salire e scendere dalla cabina. <strong>Sei sempre pronto e operativo.</strong></p>",
+                    "text": "<p>Smetti di perdere tempo a salire e scendere dalla cabina. Le indossi in 1 secondo, <strong>sei sempre pronto e operativo.</strong></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
