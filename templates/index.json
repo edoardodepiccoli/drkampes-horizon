@@ -1116,7 +1116,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 300
+                "animate_delay": 200
               },
               "blocks": {
                 "image_gWGwUR": {
@@ -1234,7 +1234,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "animate_on_scroll": true,
-                "animate_delay": 0
+                "animate_delay": 300
               },
               "blocks": {
                 "image_kqRbmj": {
@@ -1480,7 +1480,7 @@
             "custom_width": 100,
             "width_mobile": "fit-content",
             "custom_width_mobile": 100,
-            "animate_on_scroll": false,
+            "animate_on_scroll": true,
             "animate_delay": 0
           },
           "blocks": {}
