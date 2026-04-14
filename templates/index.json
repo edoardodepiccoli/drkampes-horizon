@@ -923,7 +923,7 @@
               "type": "text",
               "name": "t:names.header",
               "settings": {
-                "text": "<p>Queste sono Dr Kampes S3S:</p>",
+                "text": "<p>Scopri Dr Kampes</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
