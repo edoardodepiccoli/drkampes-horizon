@@ -373,7 +373,6 @@
         "custom_liquid_HUNHjE": {
           "type": "custom-liquid",
           "name": "t:names.custom_liquid",
-          "disabled": true,
           "settings": {
             "custom_liquid": "<div id=\"intro\"></div>"
           },
