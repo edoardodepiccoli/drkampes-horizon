@@ -2497,6 +2497,14 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "custom_liquid_i4KHii": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "<div id=\"acquista\"></div>"
+              },
+              "blocks": {}
+            },
             "group_cQmywe": {
               "type": "group",
               "name": "t:names.header",
@@ -2660,6 +2668,7 @@
             }
           },
           "block_order": [
+            "custom_liquid_i4KHii",
             "group_cQmywe",
             "review_qLkgVE",
             "variant_picker_ehpeJz",
