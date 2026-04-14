@@ -3884,7 +3884,7 @@
                 "style_class": "button",
                 "width": "custom",
                 "custom_width": 100,
-                "width_mobile": "fit-content",
+                "width_mobile": "custom",
                 "custom_width_mobile": 100,
                 "animate_on_scroll": false,
                 "animate_delay": 0
