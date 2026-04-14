@@ -204,7 +204,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "ACQUISTA ORA",
+                    "label": "SCOPRI DI PIÙ",
                     "link": "shopify://products/dr-kampes-nero",
                     "open_in_new_tab": false,
                     "style_class": "button",
