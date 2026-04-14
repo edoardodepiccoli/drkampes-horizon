@@ -318,7 +318,7 @@
       "block_order": [
         "group_9JJ4mc"
       ],
-      "name": "t:names.hero_bottom_aligned",
+      "name": "hero",
       "settings": {
         "media_type_1": "image",
         "image_1": "shopify://shop_images/hero_image.jpg",
@@ -586,7 +586,7 @@
         "group_bVgmqy"
       ],
       "custom_css": [],
-      "name": "t:names.image_with_text",
+      "name": "intro",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -842,7 +842,7 @@
         "group_QbHJAq"
       ],
       "custom_css": [],
-      "name": "t:names.image_with_text",
+      "name": "fast-wear",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -915,7 +915,7 @@
             "padding-block-end": 16,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
-            "animate_on_scroll": false,
+            "animate_on_scroll": true,
             "animate_delay": 0
           },
           "blocks": {
@@ -997,7 +997,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
+                "animate_on_scroll": true,
                 "animate_delay": 0
               },
               "blocks": {
@@ -1115,8 +1115,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
+                "animate_on_scroll": true,
+                "animate_delay": 300
               },
               "blocks": {
                 "image_gWGwUR": {
@@ -1233,7 +1233,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
+                "animate_on_scroll": true,
                 "animate_delay": 0
               },
               "blocks": {
@@ -1351,8 +1351,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
+                "animate_on_scroll": true,
+                "animate_delay": 500
               },
               "blocks": {
                 "image_iaBrem": {
@@ -1452,7 +1452,7 @@
           ]
         }
       },
-      "name": "t:names.carousel",
+      "name": "carousel",
       "settings": {
         "columns": 3,
         "mobile_columns": "1",
@@ -1462,7 +1462,242 @@
         "icons_style": "arrow",
         "icons_shape": "none",
         "padding-block-start": 100,
-        "padding-block-end": 100
+        "padding-block-end": 0
+      }
+    },
+    "section_PrTiXk": {
+      "type": "section",
+      "blocks": {
+        "button_HriqGt": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Acquista ora",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "button_HriqGt"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 50,
+        "animate_on_scroll": false,
+        "animate_delay": 0
+      }
+    },
+    "section_DEhdNH": {
+      "type": "section",
+      "blocks": {
+        "image_KPVETC": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/claudio-1-optimized.png",
+            "link": "",
+            "image_ratio": "square",
+            "width": "custom",
+            "custom_width": 50,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {}
+        },
+        "group_hghqcD": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 32,
+            "padding-inline-end": 32,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {
+            "text_An9Jax": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Dr Kampes: Dove la Tradizione incontra l’Asfalto.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
+              },
+              "blocks": {}
+            },
+            "text_Bwgec7": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Siamo figli di tre generazioni di calzolai e partner del Calzaturificio La Paganella di Altivole (TV). Abbiamo preso il saper fare del distretto calzaturiero più importante d’Italia e lo abbiamo messo al servizio dei camionisti.</p><ul><li><strong>Esperienza:</strong> Oltre 60 anni di storia nella calzatura tecnica.</li><li><strong>Territorio:</strong> 100% Made in Italy, prodotto nel cuore del distretto di Treviso.</li><li><strong>Missione:</strong> Trasformare la scarpa antinfortunistica da \"male necessario\" a lusso quotidiano.</li></ul><p><strong>Non accettiamo compromessi.</strong> Perché chi guida per ore merita la stessa precisione e qualità di chi scala le vette più alte del mondo.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_An9Jax",
+            "text_Bwgec7"
+          ]
+        }
+      },
+      "block_order": [
+        "image_KPVETC",
+        "group_hghqcD"
+      ],
+      "name": "chi siamo",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
+      }
+    },
+    "custom_liquid_TBQJEa": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "ambassadors",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Sezione Ambassador — incolla questo codice in una sezione \"Custom Liquid\"\n  nell'editor del tema Shopify.\n\n  IMMAGINI: carica i file PNG in Online Store > Themes > Edit code > Assets,\n  rinominandoli esattamente cosi:\n    amb-simone.png, amb-piertutor.png, amb-patryk.png, amb-emanuele.png,\n    amb-janco.png, amb-baffo.png, amb-scostumato.png, amb-presidente.png,\n    amb-marco-vernia.png, amb-vikingo.png, amb-corra.png\n{% endcomment %}\n\n{% liquid\n  assign ig_icon  = '<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z\"/></svg>'\n  assign yt_icon  = '<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z\"/></svg>'\n  assign fb_icon  = '<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z\"/></svg>'\n  assign tt_icon  = '<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z\"/></svg>'\n  assign web_icon = '<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z\"/></svg>'\n%}\n\n<section class=\"amb-section\">\n  <div class=\"amb-inner\">\n\n    <div class=\"amb-header\">\n      <h2 class=\"amb-heading\">I Nostri Ambassador</h2>\n      <p class=\"amb-subheading\">I volti che portano avanti la community Dr. Kampes.</p>\n    </div>\n\n    <div class=\"amb-grid\">\n\n      <!-- 01 SUPER SIMONE -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-simone.png' | asset_url }}\" alt=\"Super Simone\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Super Simone</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/simonesimone76/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@simonesimone370\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/simonesimone76\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@Simoneenjoy\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n            <a href=\"https://www.supersimonev8.com/\" class=\"amb-link amb-web\" target=\"_blank\" rel=\"noopener\" aria-label=\"Sito web\">{{ web_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 02 PIERTUTOR -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-piertutor.png' | asset_url }}\" alt=\"Piertutor\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Piertutor</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/piertutor/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@PierantonioDePiccoli\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/gianni.bugno.1\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@piertutor\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n            <a href=\"https://www.piertutor.com/\" class=\"amb-link amb-web\" target=\"_blank\" rel=\"noopener\" aria-label=\"Sito web\">{{ web_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 03 PATRYK -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-patryk.png' | asset_url }}\" alt=\"Patryk il Camionista Veneto\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Patryk il Camionista Veneto</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/patrykilcamionistaveneto/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@PatrykilcamionistaVeneto\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/profile.php?id=61579327086823\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@patrykilcamionistaveneto\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 04 EMANUELE EL VENETO -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-emanuele.png' | asset_url }}\" alt=\"Emanuele El Veneto\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Emanuele El Veneto</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/emanueleciviero/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@CVX12\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/profile.php?id=61577755739658\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@CVX12\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 05 JANCO -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-janco.png' | asset_url }}\" alt=\"Janco il Camionistagram\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Janco il Camionistagram</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/janco_il_camionistagram/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.facebook.com/gian.bass.376\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@il_camionistagram\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 06 FEDERICO BAFFO -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-baffo.png' | asset_url }}\" alt=\"Federico Baffo\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Federico Baffo</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/federico.baffo/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@FedericoBaffo\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/federico.defulgentiis.1\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@federicobaffo770\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 07 VINCENZO SCOSTUMATO -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-scostumato.png' | asset_url }}\" alt=\"Vincenzo Scostumato\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Vincenzo Scostumato</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/vincenzo_scostumato/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.youtube.com/@vincenzoscostumato\" class=\"amb-link amb-yt\" target=\"_blank\" rel=\"noopener\" aria-label=\"YouTube\">{{ yt_icon }}</a>\n            <a href=\"https://www.facebook.com/vincenzo.digiorgio.94\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n            <a href=\"https://www.tiktok.com/@vincenzo.scostumato\" class=\"amb-link amb-tt\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok\">{{ tt_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 08 IL PRESIDENTE -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-presidente.png' | asset_url }}\" alt=\"Il Presidente\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Il Presidente</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/rubber_duck_84__president/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.facebook.com/profile.php?id=100070254926854\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 09 MARCO VABIS -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-marco-vernia.png' | asset_url }}\" alt=\"Marco Vabis\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Marco Vabis</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/marco_vabis/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 10 IL VIKINGO -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-vikingo.png' | asset_url }}\" alt=\"Il Vikingo\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Il Vikingo</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/francescobriccarello/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n            <a href=\"https://www.facebook.com/francescobriccarello\" class=\"amb-link amb-fb\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook\">{{ fb_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n      <!-- 11 CORRA GIRA MANUBRI -->\n      <div class=\"amb-card\">\n        <div class=\"amb-photo-wrap\">\n          <img class=\"amb-photo\" src=\"{{ 'amb-corra.png' | asset_url }}\" alt=\"Corra Gira Manubri\" loading=\"lazy\">\n        </div>\n        <div class=\"amb-info\">\n          <h3 class=\"amb-name\">Corra Gira Manubri</h3>\n          <div class=\"amb-socials\">\n            <a href=\"https://www.instagram.com/corra_gira_manubri/\" class=\"amb-link amb-ig\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram\">{{ ig_icon }}</a>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</section>\n\n<style>\n  .amb-section {\n    background-color: #0a0a0a;\n    color: #ffffff;\n    padding: 80px 0;\n  }\n\n  .amb-inner {\n    max-width: 1280px;\n    margin: 0 auto;\n    padding: 0 24px;\n  }\n\n  .amb-header {\n    text-align: center;\n    margin-bottom: 56px;\n  }\n\n  .amb-heading {\n    font-size: clamp(1.8rem, 4vw, 2.8rem);\n    font-weight: 800;\n    text-transform: uppercase;\n    letter-spacing: 0.06em;\n    margin: 0 0 12px;\n    color: #ffffff;\n  }\n\n  .amb-subheading {\n    font-size: 1.05rem;\n    opacity: 0.6;\n    margin: 0;\n  }\n\n  .amb-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));\n    gap: 36px 24px;\n  }\n\n  .amb-card {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n    gap: 14px;\n  }\n\n  .amb-photo-wrap {\n    width: 100%;\n    aspect-ratio: 1 / 1;\n    border-radius: 50%;\n    overflow: hidden;\n    border: 3px solid #c8a96e;\n    background: #1a1a1a;\n    transition: box-shadow 0.3s ease, transform 0.3s ease;\n  }\n\n  .amb-card:hover .amb-photo-wrap {\n    box-shadow: 0 0 0 6px rgba(200, 169, 110, 0.25);\n    transform: translateY(-4px);\n  }\n\n  .amb-photo {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    object-position: top center;\n    display: block;\n    transition: transform 0.4s ease;\n  }\n\n  .amb-card:hover .amb-photo {\n    transform: scale(1.05);\n  }\n\n  .amb-info {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 10px;\n  }\n\n  .amb-name {\n    font-size: 0.875rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.07em;\n    margin: 0;\n    color: #ffffff;\n    line-height: 1.3;\n  }\n\n  .amb-socials {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 8px;\n  }\n\n  .amb-link {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 30px;\n    height: 30px;\n    border-radius: 50%;\n    background: rgba(255,255,255,0.08);\n    color: rgba(255,255,255,0.55);\n    text-decoration: none;\n    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;\n  }\n\n  .amb-link svg {\n    width: 14px;\n    height: 14px;\n    fill: currentColor;\n    flex-shrink: 0;\n  }\n\n  .amb-link:hover {\n    color: #ffffff;\n    transform: scale(1.15);\n  }\n\n  .amb-ig:hover  { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }\n  .amb-yt:hover  { background: #ff0000; }\n  .amb-fb:hover  { background: #1877f2; }\n  .amb-tt:hover  { background: #010101; box-shadow: inset 0 0 0 1px #69c9d0; color: #69c9d0; }\n  .amb-web:hover { background: #c8a96e; color: #000000; }\n\n  @media (max-width: 768px) {\n    .amb-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 28px 16px; }\n    .amb-header { margin-bottom: 40px; }\n  }\n\n  @media (max-width: 480px) {\n    .amb-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }\n  }\n</style>",
+        "color_scheme": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_TNanYH": {
@@ -2059,7 +2294,7 @@
         "group_X9mAjw",
         "button_7UPw6B"
       ],
-      "name": "t:names.icons_with_text",
+      "name": "icone",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2186,7 +2421,7 @@
         "custom_liquid_MGrkjY",
         "custom_liquid_w739mQ"
       ],
-      "name": "Recensioni Custom",
+      "name": "recensioni custom",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2331,7 +2566,7 @@
         "text_ffkNRP",
         "group_Lht9TR"
       ],
-      "name": "t:names.pull_quote",
+      "name": "scegli",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2857,7 +3092,7 @@
           ]
         }
       },
-      "name": "t:names.featured_product_information",
+      "name": "scheda prodotto",
       "settings": {
         "product": "dr-kampes-s3s-nero-copia",
         "content_width": "content-center-aligned",
@@ -3028,174 +3263,6 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
-    },
-    "section_DEhdNH": {
-      "type": "section",
-      "blocks": {
-        "image_KPVETC": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "image": "shopify://shop_images/claudio-1-optimized.png",
-            "link": "",
-            "image_ratio": "square",
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
-        },
-        "group_hghqcD": {
-          "type": "group",
-          "name": "t:names.group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 32,
-            "padding-inline-end": 32,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {
-            "text_An9Jax": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Dr Kampes: Dove la Tradizione incontra l’Asfalto.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
-              },
-              "blocks": {}
-            },
-            "text_Bwgec7": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Siamo figli di tre generazioni di calzolai e partner del Calzaturificio La Paganella di Altivole (TV). Abbiamo preso il saper fare del distretto calzaturiero più importante d’Italia e lo abbiamo messo al servizio dei camionisti.</p><ul><li><strong>Esperienza:</strong> Oltre 60 anni di storia nella calzatura tecnica.</li><li><strong>Territorio:</strong> 100% Made in Italy, prodotto nel cuore del distretto di Treviso.</li><li><strong>Missione:</strong> Trasformare la scarpa antinfortunistica da \"male necessario\" a lusso quotidiano.</li></ul><p><strong>Non accettiamo compromessi.</strong> Perché chi guida per ore merita la stessa precisione e qualità di chi scala le vette più alte del mondo.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_An9Jax",
-            "text_Bwgec7"
-          ]
-        }
-      },
-      "block_order": [
-        "image_KPVETC",
-        "group_hghqcD"
-      ],
-      "name": "t:names.custom_section",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "full-width",
-        "section_height": "small",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 100,
-        "padding-block-end": 24,
-        "animate_on_scroll": false,
-        "animate_delay": 0
       }
     },
     "section_Cn9bUQ": {
@@ -3875,6 +3942,9 @@
     "divider_gkU4y8",
     "section_zdX3Hj",
     "carousel_wAdVeX",
+    "section_PrTiXk",
+    "section_DEhdNH",
+    "custom_liquid_TBQJEa",
     "section_TNanYH",
     "divider_Kh3i6B",
     "section_XLk9Vi",
@@ -3884,7 +3954,6 @@
     "featured_product_information_Ciypzz",
     "divider_zwVw64",
     "product_recommendations_df4Yta",
-    "section_DEhdNH",
     "section_Cn9bUQ",
     "section_UFPrC4"
   ]
