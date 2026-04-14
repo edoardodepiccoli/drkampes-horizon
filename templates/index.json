@@ -636,6 +636,14 @@
     "section_zdX3Hj": {
       "type": "section",
       "blocks": {
+        "custom_liquid_pbcQCL": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"fast-wear\"></div>"
+          },
+          "blocks": {}
+        },
         "group_ekCepc": {
           "type": "group",
           "name": "t:names.group",
@@ -829,6 +837,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_pbcQCL",
         "group_ekCepc",
         "group_QbHJAq"
       ],
