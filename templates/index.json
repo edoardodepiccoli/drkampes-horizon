@@ -1642,6 +1642,14 @@
     "section_mRAaKP": {
       "type": "section",
       "blocks": {
+        "custom_liquid_Nwqt4B": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"acquista\"></div>"
+          },
+          "blocks": {}
+        },
         "text_ffkNRP": {
           "type": "text",
           "settings": {
@@ -1727,6 +1735,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_Nwqt4B",
         "text_ffkNRP",
         "group_Lht9TR"
       ],
