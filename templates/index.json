@@ -815,8 +815,8 @@
             "button_TV6aWa": {
               "type": "button",
               "settings": {
-                "label": "SCOPRI LA CERTIFICAZIONE",
-                "link": "shopify://collections/trucker-shoes",
+                "label": "ACQUISTA DR KAMPES",
+                "link": "#acquista",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "width": "custom",
