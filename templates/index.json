@@ -2023,7 +2023,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Sicurezza S3S. Stile da non nascondere.</p>",
+                    "text": "<p>Antinfortunistiche S3S</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2051,7 +2051,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>100% Made-In-Italy, <strong>100% fatte a mano.</strong></p>",
+                    "text": "<p>Qualità e sicurezza 100% Made-In-Italy</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
