@@ -761,7 +761,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>Infila. Scendi. Via. Il Rivoluzionario Sistema FAST WEAR: Pronto in 2 secondi.</strong></p>",
+                "text": "<p><strong>Infila. Scendi. Via. <br/>Il Sistema FAST WEAR: <br/>Sei pronto in 2 secondi.</strong></p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1669,7 +1669,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Fatte a mano. Cucite, non incollate.</p>",
+                    "text": "<p>Fatte a mano a Montebelluna.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1787,7 +1787,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Sistema FAST-WEAR: unico al mondo.</p>",
+                    "text": "<p>Sistema FAST-WEAR ideato per te.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
