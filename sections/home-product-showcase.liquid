@@ -718,12 +718,23 @@
   }
   .hps__gallery {
     flex: 1 1 auto;
+    flex-direction: row;
     height: auto;
     position: sticky;
     top: var(--sticky-header-offset, 0px);
     align-self: flex-start;
   }
-  .hps__main { height: 520px; }
+  .hps__main {
+    flex: 1 1 auto;
+    height: 520px;
+  }
+  .hps__thumbs {
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: 520px;
+    padding: 0 0 0 8px;
+  }
   .hps__details {
     flex: 0 0 380px;
     overflow-y: visible;
