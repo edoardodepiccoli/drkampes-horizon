@@ -18,16 +18,14 @@
           {%- assign vg_files = variant.metafields.custom.variant_gallery.value -%}
           {%- if vg_files != blank -%}
             {%- assign first_hit = true -%}
-            {%- for media in product.media -%}
-              {%- assign matched = false -%}
-              {%- for vg_file in vg_files -%}
-                {%- if vg_file.image.src == media.src -%}{%- assign matched = true -%}{%- endif -%}
+            {%- for vg_file in vg_files -%}
+              {%- for media in product.media -%}
+                {%- if vg_file.image.src == media.src -%}
+                  {%- unless first_hit -%},{%- endunless -%}
+                  {{ media.id }}
+                  {%- assign first_hit = false -%}
+                {%- endif -%}
               {%- endfor -%}
-              {%- if matched -%}
-                {%- unless first_hit -%},{%- endunless -%}
-                {{ media.id }}
-                {%- assign first_hit = false -%}
-              {%- endif -%}
             {%- endfor -%}
           {%- endif -%}
         ]
@@ -102,7 +100,8 @@
                 data-pos="{{ color_pos }}"
                 title="{{ value }}"
                 aria-label="{{ value }}"
-                style="{% case value | handleize %}{% when 'nero' %}background:#1a1a1a{% when 'testa-di-moro' %}background:#3d1a0a{% when 'marrone' %}background:#5c3317{% else %}background:#888{% endcase %};"
+                {%- assign sw = value.swatch -%}
+                style="{% if sw.color %}background:rgb({{ sw.color.rgb }});{% elsif sw.image %}background:url('{{ sw.image | image_url: width: 80 }}') center/cover no-repeat;{% else %}background:#888;{% endif %}"
               ></button>
             {%- endfor -%}
           </div>
@@ -228,35 +227,50 @@
   var initV = allVariants.find(function (v) { return v.available; }) || allVariants[0];
   var selOpts = initV ? initV.options.slice() : [];
 
+  var mainEl   = root.querySelector('.hps__main');
+  var thumbsEl = root.querySelector('.hps__thumbs');
+
   /* ── Gallery helpers ─────────────────────────────────────── */
-  function showSlide(i) {
-    slides.forEach(function (s, j) { s.classList.toggle('hps__slide--active', j === i); });
-    thumbs.forEach(function (t, j) { t.classList.toggle('hps__thumb--active', j === i); });
+  function showByMediaId(mediaId) {
+    slides.forEach(function (s) { s.classList.toggle('hps__slide--active', s.dataset.mediaId === mediaId); });
+    thumbs.forEach(function (t) { t.classList.toggle('hps__thumb--active', t.dataset.mediaId === mediaId); });
   }
 
   function filterGallery(variantId) {
     var ids = vgMap[String(variantId)];
+
     if (!ids || ids.length === 0) {
       slides.forEach(function (s) { s.style.display = ''; });
       thumbs.forEach(function (t) { t.style.display = ''; });
-      showSlide(0);
+      slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
+      thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
+      if (slides.length) showByMediaId(slides[0].dataset.mediaId);
       return;
     }
-    var set = {};
-    ids.forEach(function (id) { set[String(id)] = true; });
-    var first = -1;
-    slides.forEach(function (s, i) {
-      var show = !!set[s.dataset.mediaId];
-      s.style.display = show ? '' : 'none';
-      thumbs[i].style.display = show ? '' : 'none';
-      if (show && first < 0) first = i;
+
+    /* Hide everything first */
+    slides.forEach(function (s) { s.style.display = 'none'; });
+    thumbs.forEach(function (t) { t.style.display = 'none'; });
+
+    /* Reorder DOM nodes + show, in vgMap order */
+    ids.forEach(function (id) {
+      var strId = String(id);
+      var slide = mainEl.querySelector('.hps__slide[data-media-id="' + strId + '"]');
+      var thumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + strId + '"]');
+      if (slide) { slide.style.display = ''; mainEl.appendChild(slide); }
+      if (thumb) { thumb.style.display = ''; thumbsEl.appendChild(thumb); }
     });
-    if (first >= 0) showSlide(first);
+
+    /* Refresh arrays after DOM reorder */
+    slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
+    thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
+
+    if (ids.length) showByMediaId(String(ids[0]));
   }
 
-  /* Thumbnail clicks */
-  thumbs.forEach(function (btn, i) {
-    btn.addEventListener('click', function () { showSlide(i); });
+  /* Thumbnail clicks — use mediaId, survives DOM reorder */
+  thumbs.forEach(function (btn) {
+    btn.addEventListener('click', function () { showByMediaId(btn.dataset.mediaId); });
   });
 
   /* ── Variant sync ────────────────────────────────────────── */
@@ -311,18 +325,20 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var fd = new FormData(form);
-      /* Collect section IDs so the theme can re-render cart count, etc. */
+      /* Collect section IDs so the theme can re-render cart HTML */
+      var cartSectionIds = [];
       document.querySelectorAll('cart-items-component[data-section-id]').forEach(function (el) {
-        fd.append('sections', el.dataset.sectionId);
+        cartSectionIds.push(el.dataset.sectionId);
       });
+      if (cartSectionIds.length) fd.append('sections', cartSectionIds.join(','));
       fetch('/cart/add.js', { method: 'POST', body: fd })
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (data.status) return; /* error — let theme handle it normally */
-          /* Fire the event the cart drawer listens for */
+          if (data.status) return; /* error */
+          /* Fire the event the cart drawer listens for — detail.data.sections is the required path */
           document.dispatchEvent(new CustomEvent('cart:update', {
             bubbles: true,
-            detail: { source: 'hps', sections: data.sections }
+            detail: { source: 'hps', data: { sections: data.sections } }
           }));
         })
         .catch(function () {});
