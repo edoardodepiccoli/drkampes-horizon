@@ -101,7 +101,8 @@
                 title="{{ value }}"
                 aria-label="{{ value }}"
                 {%- assign sw = value.swatch -%}
-                style="{% if sw.color %}background:rgb({{ sw.color.rgb }});{% elsif sw.image %}background:url('{{ sw.image | image_url: width: 80 }}') center/cover no-repeat;{% else %}background:#888;{% endif %}"
+                {%- assign val_h = value | handleize -%}
+                style="{% if sw.color %}background:rgb({{ sw.color.rgb }});{% elsif sw.image %}background:url('{{ sw.image | image_url: width: 80 }}') center/cover no-repeat;{% elsif val_h == 'nero' %}background:#1a1a1a;{% elsif val_h == 'testa-di-moro' or val_h == 'testa-moro' %}background:#3d1a0a;{% elsif val_h == 'marrone' or val_h == 'brown' %}background:#5c3317;{% else %}background:#888;{% endif %}"
               ></button>
             {%- endfor -%}
           </div>
