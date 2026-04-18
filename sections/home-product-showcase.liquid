@@ -1,0 +1,764 @@
+{% assign product = section.settings.product %}
+{% assign first_variant = product.selected_or_first_available_variant %}
+
+{% if product == blank %}
+  <div style="padding:2rem;text-align:center;color:#888;">Nessun prodotto selezionato</div>
+{% else %}
+
+<div class="hps color-{{ section.settings.color_scheme }}" id="hps-{{ section.id }}" data-section-id="{{ section.id }}">
+
+  <script type="application/json" id="hps-variants-{{ section.id }}">
+    {{ product.variants | json }}
+  </script>
+
+  <div class="hps__gallery">
+    <div class="hps__main" id="hps-main-{{ section.id }}">
+      {%- for media in product.media -%}
+        <div class="hps__slide{% if forloop.first %} hps__slide--active{% endif %}" data-index="{{ forloop.index0 }}" data-media-id="{{ media.id }}">
+          {% if forloop.first %}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__slide-img', loading: 'eager', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+          {% else %}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__slide-img', loading: 'lazy', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+          {% endif %}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="hps__thumbs" id="hps-thumbs-{{ section.id }}">
+      {%- for media in product.media -%}
+        <button
+          type="button"
+          class="hps__thumb{% if forloop.first %} hps__thumb--active{% endif %}"
+          data-index="{{ forloop.index0 }}"
+          aria-label="Immagine {{ forloop.index }}"
+        >
+          {{ media | image_url: width: 120 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}
+        </button>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="hps__details">
+
+    <div class="hps__title-block">
+      <h2 class="hps__title">{{ product.title }}</h2>
+      <p class="hps__subtitle">Antinfortunistiche S3S</p>
+    </div>
+
+    <div class="hps__price">
+      <span class="hps__price-val">&euro; {{ product.price | money_without_currency }}</span>
+      <span class="hps__price-tax">IVA INCLUSA</span>
+    </div>
+
+    {%- assign form_id = 'hps-form-' | append: section.id -%}
+    {% form 'product', product, id: form_id, class: 'hps__form' %}
+      <input type="hidden" name="id" id="hps-variant-input-{{ section.id }}" value="{{ first_variant.id }}">
+
+      {%- assign color_option = nil -%}
+      {%- assign color_opt_pos = 0 -%}
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Colore' or option.name == 'Color' -%}
+          {%- assign color_option = option -%}
+          {%- assign color_opt_pos = option.position | minus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if color_option != nil -%}
+        <div class="hps__option">
+          <div class="hps__option-label">Colore: <span id="hps-color-val-{{ section.id }}">{{ color_option.selected_value }}</span></div>
+          <div class="hps__swatches">
+            {%- for value in color_option.values -%}
+              {%- assign val_handle = value | handleize -%}
+              <button
+                type="button"
+                class="hps__swatch{% if color_option.selected_value == value %} hps__swatch--active{% endif %}"
+                data-color-name="{{ value }}"
+                data-option-index="{{ color_opt_pos }}"
+                title="{{ value }}"
+                aria-label="Colore: {{ value }}"
+                style="{% case val_handle %}{% when 'nero' %}background:#1a1a1a{% when 'testa-di-moro' %}background:#3d1a0a{% when 'marrone' %}background:#5c3317{% when 'brown' %}background:#5c3317{% else %}background:#888{% endcase %};"
+              ></button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign size_option = nil -%}
+      {%- assign size_opt_pos = 1 -%}
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Taglia' or option.name == 'Size' -%}
+          {%- assign size_option = option -%}
+          {%- assign size_opt_pos = option.position | minus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if size_option != nil -%}
+        <div class="hps__option">
+          <div class="hps__option-row">
+            <div class="hps__option-label">Taglia: <span id="hps-size-val-{{ section.id }}">{{ size_option.selected_value }}</span></div>
+            <div class="hps__info-btns">
+              <button type="button" class="hps__info-btn" id="hps-btn-tech-{{ section.id }}">Schede tecniche</button>
+              <button type="button" class="hps__info-btn" id="hps-btn-size-{{ section.id }}">Trova la tua Taglia</button>
+            </div>
+          </div>
+          <select
+            class="hps__select"
+            id="hps-size-select-{{ section.id }}"
+            data-option-index="{{ size_opt_pos }}"
+            aria-label="Seleziona Taglia"
+          >
+            {%- for value in size_option.values -%}
+              <option value="{{ value }}"{% if size_option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+
+      <div class="hps__buy-row">
+        <div class="hps__qty">
+          <button type="button" class="hps__qty-btn" data-delta="-1" aria-label="Diminuisci">-</button>
+          <input type="number" name="quantity" value="1" min="1" class="hps__qty-input" id="hps-qty-{{ section.id }}" aria-label="Quantità">
+          <button type="button" class="hps__qty-btn" data-delta="1" aria-label="Aumenta">+</button>
+        </div>
+        <button type="submit" name="add" class="hps__atc-btn">AGGIUNGI AL CARRELLO</button>
+      </div>
+
+      <button type="button" class="hps__buy-now-btn" id="hps-buy-now-{{ section.id }}">ACQUISTA ORA</button>
+
+    {% endform %}
+
+  </div>
+</div>
+
+<div class="hps-popup" id="hps-popup-tech-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-ptlbl-{{ section.id }}" hidden>
+  <div class="hps-popup__backdrop" data-close-popup></div>
+  <div class="hps-popup__panel">
+    <button type="button" class="hps-popup__close" data-close-popup aria-label="Chiudi">&times;</button>
+    <h3 class="hps-popup__title" id="hps-ptlbl-{{ section.id }}">Documentazione Tecnica</h3>
+    <div class="hps-popup__body">
+      <h4><strong>Documentazione Ufficiale Dr Kampes Nere:</strong></h4>
+      <ul>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/NOTA-INFORMATIVA-DRKAMPES.pdf" target="_blank" rel="noopener">Scarica la Nota Informativa</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf" target="_blank" rel="noopener">Scarica la Certificazione DPI S3S</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DR-KAMPES-SCHEDA-TECNICA-20251014.pdf" target="_blank" rel="noopener">Scarica la Scheda Tecnica</a></li>
+      </ul>
+      <h4><strong>Documentazione Ufficiale Dr Kampes Testa Di Moro:</strong></h4>
+      <ul>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/NOTA-INFORMATIVA-DRKAMPES.pdf" target="_blank" rel="noopener">Scarica la Nota Informativa</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf" target="_blank" rel="noopener">Scarica la Certificazione DPI S3S</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DR-KAMPES-SCHEDA-TECNICA-20251014.pdf" target="_blank" rel="noopener">Scarica la Scheda Tecnica</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="hps-popup" id="hps-popup-size-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-pslbl-{{ section.id }}" hidden>
+  <div class="hps-popup__backdrop" data-close-popup></div>
+  <div class="hps-popup__panel">
+    <button type="button" class="hps-popup__close" data-close-popup aria-label="Chiudi">&times;</button>
+    <h3 class="hps-popup__title" id="hps-pslbl-{{ section.id }}">Guida alla Taglia</h3>
+    <div class="hps-popup__body">
+      <p style="font-size:0.875rem;margin:0 0 12px;">Misura la lunghezza interna della soletta e confronta con la tabella.</p>
+      <table class="hps-size-table">
+        <thead>
+          <tr><th>IT</th><th>Cm Soletta Interna</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>37</td><td>24,5 cm</td></tr>
+          <tr><td>38</td><td>25 cm</td></tr>
+          <tr><td>39</td><td>25,5 cm</td></tr>
+          <tr><td>40</td><td>26,5 cm</td></tr>
+          <tr><td>41</td><td>27,5 cm</td></tr>
+          <tr><td>42</td><td>28 cm</td></tr>
+          <tr><td>43</td><td>28,5 cm</td></tr>
+          <tr><td>44</td><td>29 cm</td></tr>
+          <tr><td>45</td><td>30 cm</td></tr>
+          <tr><td>46</td><td>30,5 cm</td></tr>
+          <tr><td>47</td><td>31 cm</td></tr>
+          <tr><td>48</td><td>32 cm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sid = '{{ section.id }}';
+  var root = document.getElementById('hps-' + sid);
+  if (!root) return;
+
+  var variantsRaw = document.getElementById('hps-variants-' + sid);
+  if (!variantsRaw) return;
+  var allVariants = JSON.parse(variantsRaw.textContent);
+
+  var selectedOptions = (allVariants[0] ? allVariants[0].options.slice() : []);
+  var firstAvail = allVariants.find(function(v) { return v.available; });
+  if (firstAvail) selectedOptions = firstAvail.options.slice();
+
+  function findVariant() {
+    return allVariants.find(function(v) {
+      return v.options.every(function(opt, i) { return opt === selectedOptions[i]; });
+    }) || allVariants.find(function(v) { return v.options[0] === selectedOptions[0]; });
+  }
+
+  function syncVariant() {
+    var match = findVariant();
+    if (!match) return;
+    var input = document.getElementById('hps-variant-input-' + sid);
+    if (input) input.value = match.id;
+
+    if (match.featured_media) {
+      var targetId = String(match.featured_media.id);
+      var slides = root.querySelectorAll('.hps__slide');
+      slides.forEach(function(s, i) {
+        if (s.dataset.mediaId === targetId) showSlide(i);
+      });
+    }
+  }
+
+  var slides = root.querySelectorAll('.hps__slide');
+  var thumbs = root.querySelectorAll('.hps__thumb');
+
+  function showSlide(idx) {
+    slides.forEach(function(s, i) { s.classList.toggle('hps__slide--active', i === idx); });
+    thumbs.forEach(function(t, i) { t.classList.toggle('hps__thumb--active', i === idx); });
+  }
+
+  thumbs.forEach(function(btn, i) {
+    btn.addEventListener('click', function() { showSlide(i); });
+  });
+
+  var swatches = root.querySelectorAll('.hps__swatch');
+  var colorValEl = document.getElementById('hps-color-val-' + sid);
+
+  swatches.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var optIdx = parseInt(btn.dataset.optionIndex, 10);
+      selectedOptions[optIdx] = btn.dataset.colorName;
+      swatches.forEach(function(s) { s.classList.remove('hps__swatch--active'); });
+      btn.classList.add('hps__swatch--active');
+      if (colorValEl) colorValEl.textContent = btn.dataset.colorName;
+      syncVariant();
+    });
+  });
+
+  var sizeSelect = document.getElementById('hps-size-select-' + sid);
+  var sizeValEl = document.getElementById('hps-size-val-' + sid);
+
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', function() {
+      var optIdx = parseInt(sizeSelect.dataset.optionIndex, 10);
+      selectedOptions[optIdx] = sizeSelect.value;
+      if (sizeValEl) sizeValEl.textContent = sizeSelect.value;
+      syncVariant();
+    });
+  }
+
+  var qtyInput = document.getElementById('hps-qty-' + sid);
+  root.querySelectorAll('.hps__qty-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var delta = parseInt(btn.dataset.delta, 10);
+      var val = Math.max(1, (parseInt(qtyInput.value, 10) || 1) + delta);
+      qtyInput.value = val;
+    });
+  });
+
+  var buyNowBtn = document.getElementById('hps-buy-now-' + sid);
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener('click', function() {
+      var variantId = parseInt(document.getElementById('hps-variant-input-' + sid).value, 10);
+      var qty = parseInt(qtyInput ? qtyInput.value : '1', 10) || 1;
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: qty })
+      }).then(function() {
+        window.location.href = '/checkout';
+      }).catch(function() {
+        window.location.href = '/checkout';
+      });
+    });
+  }
+
+  function openPopup(id) {
+    var el = document.getElementById(id);
+    if (el) { el.hidden = false; document.body.style.overflow = 'hidden'; }
+  }
+
+  function closePopups() {
+    document.querySelectorAll('.hps-popup').forEach(function(p) { p.hidden = true; });
+    document.body.style.overflow = '';
+  }
+
+  var techBtn = document.getElementById('hps-btn-tech-' + sid);
+  var sizeBtn = document.getElementById('hps-btn-size-' + sid);
+  if (techBtn) techBtn.addEventListener('click', function() { openPopup('hps-popup-tech-' + sid); });
+  if (sizeBtn) sizeBtn.addEventListener('click', function() { openPopup('hps-popup-size-' + sid); });
+
+  document.querySelectorAll('[data-close-popup]').forEach(function(el) {
+    el.addEventListener('click', closePopups);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopups();
+  });
+
+})();
+</script>
+
+{% endif %}
+
+{% stylesheet %}
+  .hps {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--color-background, #fff);
+  }
+
+  .hps__gallery {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .hps__main {
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+    min-height: 0;
+  }
+
+  .hps__slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hps__slide--active {
+    display: block;
+  }
+
+  .hps__slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .hps__thumbs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 8px 16px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-shrink: 0;
+  }
+
+  .hps__thumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hps__thumb {
+    flex: 0 0 52px;
+    height: 52px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .hps__thumb--active {
+    border-color: #111;
+  }
+
+  .hps__thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hps__details {
+    overflow-y: auto;
+    padding: 10px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  .hps__title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .hps__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .hps__subtitle {
+    font-size: 0.78rem;
+    color: #666;
+    margin: 0;
+  }
+
+  .hps__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .hps__price-val {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .hps__price-tax {
+    font-size: 0.68rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .hps__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hps__option {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hps__option-label {
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+
+  .hps__option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hps__swatches {
+    display: flex;
+    gap: 10px;
+  }
+
+  .hps__swatch {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: outline 0.15s;
+  }
+
+  .hps__swatch--active {
+    outline: 2px solid #111;
+    outline-offset: 2px;
+  }
+
+  .hps__info-btns {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .hps__info-btn {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.4;
+    font-family: inherit;
+  }
+
+  .hps__info-btn:hover {
+    background: #e0e0e0;
+  }
+
+  .hps__select {
+    width: 100%;
+    padding: 7px 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .hps__buy-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .hps__qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hps__qty-btn {
+    width: 32px;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px 0;
+    line-height: 1;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hps__qty-btn:hover {
+    background: #f0f0f0;
+  }
+
+  .hps__qty-input {
+    width: 34px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-size: 0.875rem;
+    padding: 6px 0;
+    -moz-appearance: textfield;
+    font-family: inherit;
+  }
+
+  .hps__qty-input::-webkit-inner-spin-button,
+  .hps__qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .hps__atc-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .hps__atc-btn:hover {
+    background: #43a047;
+  }
+
+  .hps__buy-now-btn {
+    width: 100%;
+    padding: 10px;
+    background: #f5c518;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: inherit;
+  }
+
+  .hps__buy-now-btn:hover {
+    background: #e6b800;
+  }
+
+  /* Popups */
+  .hps-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hps-popup[hidden] {
+    display: none;
+  }
+
+  .hps-popup__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  .hps-popup__panel {
+    position: relative;
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    max-height: 72svh;
+    overflow-y: auto;
+    padding: 20px 20px 32px;
+  }
+
+  .hps-popup__close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #333;
+    padding: 2px 6px;
+    line-height: 1;
+    font-family: inherit;
+  }
+
+  .hps-popup__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 14px;
+    padding-right: 28px;
+  }
+
+  .hps-popup__body h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin: 12px 0 4px;
+  }
+
+  .hps-popup__body ul {
+    margin: 0 0 6px;
+    padding-left: 18px;
+    list-style: disc;
+  }
+
+  .hps-popup__body li {
+    margin-bottom: 4px;
+  }
+
+  .hps-popup__body a {
+    color: #0066cc;
+    text-decoration: underline;
+    font-size: 0.82rem;
+  }
+
+  .hps-size-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-top: 4px;
+  }
+
+  .hps-size-table th,
+  .hps-size-table td {
+    border-bottom: 1px solid #eee;
+    padding: 7px 4px;
+    text-align: left;
+  }
+
+  .hps-size-table th {
+    font-weight: 700;
+    color: #333;
+    padding-top: 0;
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 750px) {
+    .hps {
+      grid-template-rows: none;
+      grid-template-columns: 1fr 420px;
+      height: auto;
+      min-height: unset;
+      overflow: visible;
+      gap: 0 40px;
+      padding: 40px max(24px, calc((100% - 1200px) / 2));
+    }
+
+    .hps__gallery {
+      grid-template-rows: 1fr auto;
+      height: 600px;
+      position: sticky;
+      top: var(--sticky-header-offset, 0px);
+      align-self: start;
+    }
+
+    .hps__details {
+      overflow-y: visible;
+      padding: 0;
+      gap: 12px;
+    }
+
+    .hps__title {
+      font-size: 1.2rem;
+    }
+
+    .hps__price-val {
+      font-size: 1.8rem;
+    }
+
+    .hps-popup {
+      align-items: center;
+    }
+
+    .hps-popup__panel {
+      border-radius: 12px;
+      width: 480px;
+      max-height: 80vh;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home Product Showcase",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Prodotto"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Product Showcase"
+    }
+  ]
+}
+{% endschema %}

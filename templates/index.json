@@ -2413,6 +2413,14 @@
         "animate_delay": 0
       }
     },
+    "home_product_showcase": {
+      "type": "home-product-showcase",
+      "name": "Home Product Showcase",
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "color_scheme": "scheme-1"
+      }
+    },
     "featured_product_information_rykgpd": {
       "type": "featured-product-information",
       "blocks": {
@@ -3344,7 +3352,7 @@
     "custom_liquid_TBQJEa",
     "divider_Kh3i6B",
     "section_XLk9Vi",
-    "featured_product_information_rykgpd",
+    "home_product_showcase",
     "section_Cn9bUQ",
     "section_UFPrC4"
   ]
