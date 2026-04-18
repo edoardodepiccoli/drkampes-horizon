@@ -4,7 +4,7 @@
   <div style="padding:2rem;text-align:center;color:#888;">Nessun prodotto selezionato</div>
 {% else %}
 
-<div class="hps" id="hps-{{ section.id }}">
+<div class="hps" id="acquista" data-hps-id="{{ section.id }}">
 
   <script type="application/json" id="hps-variants-{{ section.id }}">
     {{ product.variants | json }}
@@ -214,7 +214,7 @@
 <script>
 (function () {
   var sid = '{{ section.id }}';
-  var root = document.getElementById('hps-' + sid);
+  var root = document.querySelector('[data-hps-id="' + sid + '"]');
   if (!root) return;
 
   var allVariants = JSON.parse(document.getElementById('hps-variants-' + sid).textContent);
