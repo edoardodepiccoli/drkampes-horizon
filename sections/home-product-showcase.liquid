@@ -167,13 +167,32 @@
     <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
     <h3 class="hps-pop__title">Documentazione Tecnica</h3>
     <div class="hps-pop__body">
-      <ul>
-        <li><a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">Certificazione DPI S3S</a></li>
-        <li><a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">Nota informativa</a></li>
-      </ul>
-      <hr>
-      <p><strong>Dr Kampes Nere:</strong> <a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">Scheda Tecnica</a></p>
-      <p><strong>Dr Kampes Testa di Moro:</strong> <a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">Scheda Tecnica</a></p>
+      <div class="hps-doc-section">
+        <p class="hps-doc-section__label">Documenti comuni</p>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Certificazione DPI S3S</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Nota informativa</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+      </div>
+      <div class="hps-doc-section">
+        <p class="hps-doc-section__label">Schede tecniche per modello</p>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Dr Kampes Nere</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Dr Kampes Testa di Moro</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -705,10 +724,57 @@
 }
 
 .hps-pop__body p { font-size: 0.85rem; margin: 0 0 12px; color: #444; }
-.hps-pop__body h4 { font-size: 0.82rem; font-weight: 700; margin: 14px 0 6px; color: #111; }
-.hps-pop__body ul { margin: 0 0 8px; padding-left: 18px; list-style: disc; }
-.hps-pop__body li { margin-bottom: 4px; }
-.hps-pop__body a { color: #0066cc; text-decoration: underline; font-size: 0.82rem; }
+
+.hps-doc-section { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.hps-doc-section:last-child { margin-bottom: 0; }
+
+.hps-doc-section__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin: 0 0 2px;
+}
+
+.hps-doc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
+  transition: background 0.15s;
+}
+.hps-doc-row:hover { background: #eee; color: #111; text-decoration: none; }
+
+.hps-doc-row__icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.hps-doc-row__name {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.hps-doc-row__type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.05em;
+}
 
 .hps-stbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 .hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
