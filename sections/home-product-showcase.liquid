@@ -4,7 +4,7 @@
   <div style="padding:2rem;text-align:center;color:#888;">Nessun prodotto selezionato</div>
 {% else %}
 
-<div class="hps" id="acquista" data-hps-id="{{ section.id }}">
+<div class="hps" id="hps-{{ section.id }}">
 
   <script type="application/json" id="hps-variants-{{ section.id }}">
     {{ product.variants | json }}
@@ -167,13 +167,18 @@
     <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
     <h3 class="hps-pop__title">Documentazione Tecnica</h3>
     <div class="hps-pop__body">
+      <h4>Dr Kampes Nere</h4>
       <ul>
-        <li><a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">Certificazione DPI S3S</a></li>
-        <li><a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">Nota informativa</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/NOTA-INFORMATIVA-DRKAMPES.pdf" target="_blank" rel="noopener">Scarica la Nota Informativa</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf" target="_blank" rel="noopener">Scarica la Certificazione DPI S3S</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DR-KAMPES-SCHEDA-TECNICA-20251014.pdf" target="_blank" rel="noopener">Scarica la Scheda Tecnica</a></li>
       </ul>
-      <hr>
-      <p><strong>Dr Kampes Nere:</strong> <a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">Scheda Tecnica</a></p>
-      <p><strong>Dr Kampes Testa di Moro:</strong> <a href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">Scheda Tecnica</a></p>
+      <h4>Dr Kampes Testa Di Moro</h4>
+      <ul>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/NOTA-INFORMATIVA-DRKAMPES.pdf" target="_blank" rel="noopener">Scarica la Nota Informativa</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf" target="_blank" rel="noopener">Scarica la Certificazione DPI S3S</a></li>
+        <li><a href="https://www.drkampes.com/wp-content/uploads/2025/10/DR-KAMPES-SCHEDA-TECNICA-20251014.pdf" target="_blank" rel="noopener">Scarica la Scheda Tecnica</a></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -209,7 +214,7 @@
 <script>
 (function () {
   var sid = '{{ section.id }}';
-  var root = document.querySelector('[data-hps-id="' + sid + '"]');
+  var root = document.getElementById('hps-' + sid);
   if (!root) return;
 
   var allVariants = JSON.parse(document.getElementById('hps-variants-' + sid).textContent);
@@ -374,26 +379,10 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
-  /* ── Sticky CTA ──────────────────────────────────────────── */
-  var stickyCta = document.querySelector('.hps-cta');
-  if (stickyCta) {
-    stickyCta.addEventListener('click', function (e) {
-      e.preventDefault();
-      var target = document.getElementById('acquista');
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
   /* Init gallery for default variant */
   if (initV) filterGallery(initV.id);
 })();
 </script>
-
-{% if product != blank %}
-  <div class="hps-cta-bar">
-    <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">SÌ, LE VOGLIO.</a>
-  </div>
-{% endif %}
 
 {% endif %}
 
@@ -475,7 +464,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 14px 16px calc(54px + env(safe-area-inset-bottom, 0px) + 16px);
+  padding: 14px 16px 20px;
 }
 
 .hps__head { display: flex; flex-direction: column; gap: 2px; }
@@ -707,55 +696,15 @@
   color: #111;
 }
 
-.hps-pop__body p { font-size: 0.85rem; margin: 0 0 7px; color: #444; line-height: 1.4; }
+.hps-pop__body p { font-size: 0.85rem; margin: 0 0 12px; color: #444; }
 .hps-pop__body h4 { font-size: 0.82rem; font-weight: 700; margin: 14px 0 6px; color: #111; }
-.hps-pop__body ul { margin: 0 0 0; padding-left: 18px; list-style: disc; }
-.hps-pop__body li { margin-bottom: 6px; line-height: 1.4; }
-.hps-pop__body a { color: #0066cc; text-decoration: underline; font-size: 0.85rem; }
-.hps-pop__body hr { border: none; border-top: 1px solid #e5e5e5; margin: 16px 0; }
+.hps-pop__body ul { margin: 0 0 8px; padding-left: 18px; list-style: disc; }
+.hps-pop__body li { margin-bottom: 4px; }
+.hps-pop__body a { color: #0066cc; text-decoration: underline; font-size: 0.82rem; }
 
 .hps-stbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 .hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
 .hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
-
-/* Sticky CTA */
-.hps-cta-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 12px;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-  padding-left: 24px;
-  padding-right: 24px;
-  background: #111;
-}
-
-.hps-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 40px;
-  height: 44px;
-  width: 100%;
-  max-width: 480px;
-  background: #f60;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  font-family: inherit;
-  border-radius: 4px;
-  transition: background 0.15s;
-}
-.hps-cta:hover { background: #e55c00; color: #fff; text-decoration: none; }
-.hps-cta:active { background: #cc5200; }
 
 /* Desktop */
 @media screen and (min-width: 750px) {
@@ -789,7 +738,7 @@
   .hps__details {
     flex: 0 0 380px;
     overflow-y: visible;
-    padding: 0 0 calc(54px + 16px);
+    padding: 0;
     gap: 14px;
     min-height: unset;
   }
