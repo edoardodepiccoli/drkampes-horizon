@@ -115,6 +115,16 @@
     {% endif %}
 
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    
+
+    <script>
+      if (new URLSearchParams(location.search).get('open_cart') === '1') {
+        history.replaceState(null, '', location.pathname);
+        customElements.whenDefined('cart-drawer-component').then(() => {
+          const drawer = document.querySelector('cart-drawer-component');
+          if (drawer) drawer.open();
+        });
+      }
+    </script>
+
   </body>
 </html>
