@@ -384,30 +384,9 @@
   var stickyCta = document.querySelector('.hps-cta');
 
   if (ctaBar && stickyCta) {
-    var pastThreshold = false;
-    var sectionVisible = false;
-
-    function updateCtaBar() {
-      if (pastThreshold && !sectionVisible) {
-        ctaBar.classList.add('hps-cta-bar--visible');
-      } else {
-        ctaBar.classList.remove('hps-cta-bar--visible');
-      }
-    }
-
-    /* Show after 100vh scroll */
-    window.addEventListener('scroll', function () {
-      pastThreshold = window.scrollY >= window.innerHeight;
-      updateCtaBar();
-    }, { passive: true });
-
-    /* Hide when product showcase enters viewport */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        sectionVisible = entries[0].isIntersecting;
-        updateCtaBar();
-      }, { threshold: 0.05 }).observe(root);
-    }
+    setTimeout(function () {
+      ctaBar.classList.add('hps-cta-bar--visible');
+    }, 5000);
 
     stickyCta.addEventListener('click', function (e) {
       e.preventDefault();
