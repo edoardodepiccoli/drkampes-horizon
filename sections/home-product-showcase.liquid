@@ -390,7 +390,9 @@
 </script>
 
 {% if product != blank %}
-  <a class="hps-cta" href="#acquista" aria-label="SI LE VOGLIO.">SI LE VOGLIO.</a>
+  <div class="hps-cta-bar">
+    <a class="hps-cta" href="#acquista" aria-label="SI LE VOGLIO.">SI LE VOGLIO.</a>
+  </div>
 {% endif %}
 
 {% endif %}
@@ -717,7 +719,7 @@
 .hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
 
 /* Sticky CTA */
-.hps-cta {
+.hps-cta-bar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -726,8 +728,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 54px;
+  height: calc(54px + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: 16px;
+  padding-right: 16px;
+  background: #111;
+}
+
+.hps-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  height: 38px;
   background: #f60;
   color: #fff;
   font-size: 0.9rem;
@@ -736,6 +749,7 @@
   letter-spacing: 0.1em;
   text-decoration: none;
   font-family: inherit;
+  border-radius: 4px;
   transition: background 0.15s;
 }
 .hps-cta:hover { background: #e55c00; color: #fff; text-decoration: none; }
