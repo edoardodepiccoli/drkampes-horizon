@@ -380,12 +380,38 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
   /* ── Sticky CTA ──────────────────────────────────────────── */
+  var ctaBar = document.querySelector('.hps-cta-bar');
   var stickyCta = document.querySelector('.hps-cta');
-  if (stickyCta) {
+
+  if (ctaBar && stickyCta) {
+    var pastThreshold = false;
+    var sectionVisible = false;
+
+    function updateCtaBar() {
+      if (pastThreshold && !sectionVisible) {
+        ctaBar.classList.add('hps-cta-bar--visible');
+      } else {
+        ctaBar.classList.remove('hps-cta-bar--visible');
+      }
+    }
+
+    /* Show after 100vh scroll */
+    window.addEventListener('scroll', function () {
+      pastThreshold = window.scrollY >= window.innerHeight;
+      updateCtaBar();
+    }, { passive: true });
+
+    /* Hide when product showcase enters viewport */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        sectionVisible = entries[0].isIntersecting;
+        updateCtaBar();
+      }, { threshold: 0.05 }).observe(root);
+    }
+
     stickyCta.addEventListener('click', function (e) {
       e.preventDefault();
-      var target = document.getElementById('acquista');
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      root.scrollIntoView({ behavior: 'smooth' });
     });
   }
 
@@ -771,34 +797,40 @@
   right: 0;
   z-index: 9000;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(54px + env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  padding-left: 16px;
-  padding-right: 16px;
+  align-items: stretch;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: #111;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.hps-cta-bar--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .hps-cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 32px;
-  height: 38px;
-  background: #f60;
+  width: 100%;
+  height: 50px;
+  background: #FB6E06;
   color: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-decoration: none;
   font-family: inherit;
-  border-radius: 4px;
+  border-radius: 0;
+  border: none;
   transition: background 0.15s;
 }
-.hps-cta:hover { background: #e55c00; color: #fff; text-decoration: none; }
-.hps-cta:active { background: #cc5200; }
+.hps-cta:hover { background: #e06005; color: #fff; text-decoration: none; }
+.hps-cta:active { background: #c95504; }
 
 {% endstylesheet %}
 
