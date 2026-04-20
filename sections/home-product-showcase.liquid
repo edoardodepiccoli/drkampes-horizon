@@ -225,6 +225,10 @@
   </div>
 </div>
 
+<div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
+  <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">SÌ, LE VOGLIO.</a>
+</div>
+
 <script>
 (function () {
   var sid = '{{ section.id }}';
@@ -394,22 +398,40 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
   /* ── Sticky CTA ──────────────────────────────────────────── */
-  var stickyCta = document.querySelector('.hps-cta');
-  if (stickyCta) {
-    stickyCta.addEventListener('click', function (e) {
-      e.preventDefault();
-      root.scrollIntoView({ behavior: 'smooth' });
-    });
+  var ctaBar = document.getElementById('hps-cta-bar-{{ section.id }}');
+  var stickyCta = ctaBar ? ctaBar.querySelector('.hps-cta') : null;
+
+  if (ctaBar) {
+    var sectionVisible = true;
+
+    function updateCta() {
+      var scrolled = window.scrollY > 80;
+      if (scrolled && !sectionVisible) {
+        ctaBar.classList.add('hps-cta-bar--visible');
+      } else {
+        ctaBar.classList.remove('hps-cta-bar--visible');
+      }
+    }
+
+    window.addEventListener('scroll', updateCta, { passive: true });
+
+    new IntersectionObserver(function (entries) {
+      sectionVisible = entries[0].isIntersecting;
+      updateCta();
+    }, { threshold: 0.1 }).observe(root);
+
+    if (stickyCta) {
+      stickyCta.addEventListener('click', function (e) {
+        e.preventDefault();
+        root.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
   }
 
   /* Init gallery for default variant */
   if (initV) filterGallery(initV.id);
 })();
 </script>
-
-<div class="hps-cta-bar">
-  <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">SÌ, LE VOGLIO.</a>
-</div>
 
 {% endif %}
 
@@ -832,6 +854,15 @@
   align-items: stretch;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: #111;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.hps-cta-bar--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .hps-cta {
