@@ -380,14 +380,8 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
   /* ── Sticky CTA ──────────────────────────────────────────── */
-  var ctaBar = document.querySelector('.hps-cta-bar');
   var stickyCta = document.querySelector('.hps-cta');
-
-  if (ctaBar && stickyCta) {
-    setTimeout(function () {
-      ctaBar.classList.add('hps-cta-bar--visible');
-    }, 5000);
-
+  if (stickyCta) {
     stickyCta.addEventListener('click', function (e) {
       e.preventDefault();
       root.scrollIntoView({ behavior: 'smooth' });
@@ -777,15 +771,6 @@
   align-items: stretch;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: #111;
-  opacity: 0;
-  transform: translateY(100%);
-  pointer-events: none;
-  transition: opacity 0.25s, transform 0.25s;
-}
-.hps-cta-bar--visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
 .hps-cta {
