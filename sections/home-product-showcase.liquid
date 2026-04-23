@@ -162,6 +162,7 @@
 </div>
 
 <div class="hps-usp">
+  <p class="hps-usp__hdr">COMPRI PROTETTO</p>
   <div class="hps-usp__grid">
 
     <div class="hps-usp__item">
@@ -954,8 +955,18 @@
 
 /* USP section */
 .hps-usp {
-  background: #f7f7f7;
-  padding: 0 16px;
+  background: #0f0f0f;
+  padding: 32px 16px 36px;
+}
+
+.hps-usp__hdr {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #FB6E06;
+  margin: 0 0 28px;
+  text-transform: uppercase;
 }
 
 .hps-usp__grid {
@@ -968,16 +979,16 @@
 .hps-usp__item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 20px 0;
-  border-bottom: 1px solid #e8e8e8;
+  gap: 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .hps-usp__item:last-child { border-bottom: none; }
 
 .hps-usp__icon-wrap {
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: #FB6E06;
   display: flex;
@@ -987,35 +998,36 @@
 }
 
 .hps-usp__svg {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .hps-usp__body { flex: 1; min-width: 0; }
 
 .hps-usp__ttl {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  color: #111;
-  margin: 0 0 5px;
-  line-height: 1.3;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin: 0 0 6px;
+  line-height: 1.25;
 }
 
 .hps-usp__dsc {
   font-size: 0.82rem;
-  color: #555;
+  color: #999;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 @media screen and (min-width: 750px) {
   .hps-usp {
-    padding: 40px max(24px, calc((100% - 1200px) / 2));
+    padding: 48px max(24px, calc((100% - 1200px) / 2)) 52px;
   }
+  .hps-usp__hdr { margin-bottom: 36px; }
   .hps-usp__grid {
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 40px;
+    column-gap: 48px;
     max-width: none;
   }
   .hps-usp__item:nth-child(4),
