@@ -496,19 +496,19 @@
 
   if (ctaBar) {
     function updateCta() {
-      var rect = root.getBoundingClientRect();
-      var inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (inView) {
-        ctaBar.classList.remove('hps-cta-bar--visible');
-        ctaBar.classList.remove('hps-cta-bar--past');
-      } else if (rect.bottom < 0) {
+      var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
+      if (bnRect && bnRect.bottom < 0) {
         ctaBar.classList.add('hps-cta-bar--visible');
         ctaBar.classList.add('hps-cta-bar--past');
       } else {
-        var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
-        ctaBar.classList.toggle('hps-cta-bar--visible', pastFastWear);
         ctaBar.classList.remove('hps-cta-bar--past');
+        var beforeSection = root.getBoundingClientRect().top > window.innerHeight;
+        if (beforeSection) {
+          var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
+          ctaBar.classList.toggle('hps-cta-bar--visible', pastFastWear);
+        } else {
+          ctaBar.classList.remove('hps-cta-bar--visible');
+        }
       }
     }
 
