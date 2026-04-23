@@ -190,63 +190,73 @@
 
     {% endform %}
 
-    <ol class="hps-usp__list">
+    <div class="hps-usp" id="hps-usp-wrap-{{ section.id }}">
+      <ol class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">I</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
-          <p class="hps-usp__dsc">Aggiungiamo un anno in più ai 2 anni del Codice del Consumo. Se si rompe entro 36 mesi, la riparo o te la sostituisco.</p>
-          <p class="hps-usp__fine">&bull; GARANZIA COMMERCIALE ESTESA &mdash; ART. 128 C.D.C. + 12 MESI</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:0">
+          <span class="hps-usp__num">I</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
+            <p class="hps-usp__dsc">Aggiungiamo un anno in più ai 2 anni del Codice del Consumo. Se si rompe entro 36 mesi, la riparo o te la sostituisco.</p>
+            <p class="hps-usp__fine">&bull; GARANZIA COMMERCIALE ESTESA &mdash; ART. 128 C.D.C. + 12 MESI</p>
+          </div>
+        </li>
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">II</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATUITO A VITA</p>
-          <p class="hps-usp__dsc">Quando la suola sarà consumata, portala in officina: te la risuolo e ricertifico il DPI. La scarpa torna sicura come il primo giorno.</p>
-          <p class="hps-usp__fine">&bull; MANUTENZIONE STRAORDINARIA &bull; CERTIFICAZIONE POST-RIPARAZIONE DPI</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:1">
+          <span class="hps-usp__num">II</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATUITO A VITA</p>
+            <p class="hps-usp__dsc">Quando la suola sarà consumata, portala in officina: te la risuolo e ricertifico il DPI. La scarpa torna sicura come il primo giorno.</p>
+            <p class="hps-usp__fine">&bull; MANUTENZIONE STRAORDINARIA &bull; CERTIFICAZIONE POST-RIPARAZIONE DPI</p>
+          </div>
+        </li>
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">III</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
-          <p class="hps-usp__dsc">Le provi, le cammini, le guidi per 14 giorni. Se non ti convincono, me le rimandi indietro e ti restituisco l'intero importo.</p>
-          <p class="hps-usp__fine">&bull; DIRITTO AL RECESSO ESTESO &mdash; NESSUNA DOMANDA, NESSUN MODULO</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:2">
+          <span class="hps-usp__num">III</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
+            <p class="hps-usp__dsc">Le provi, le cammini, le guidi per 14 giorni. Se non ti convincono, me le rimandi indietro e ti restituisco l'intero importo.</p>
+            <p class="hps-usp__fine">&bull; DIRITTO AL RECESSO ESTESO &mdash; NESSUNA DOMANDA, NESSUN MODULO</p>
+          </div>
+        </li>
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">IV</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">CAMBIO TAGLIA A COSTO ZERO</p>
-          <p class="hps-usp__dsc">Sbagli numero? Non paghi nulla: ti mando il corriere a ritirare la prima e ti spedisco la seconda. A spese mie.</p>
-          <p class="hps-usp__fine">&bull; SPEDIZIONE A/R A NOSTRE SPESE &mdash; NESSUN COSTO NASCOSTO</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:3">
+          <span class="hps-usp__num">IV</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">CAMBIO TAGLIA A COSTO ZERO</p>
+            <p class="hps-usp__dsc">Sbagli numero? Non paghi nulla: ti mando il corriere a ritirare la prima e ti spedisco la seconda. A spese mie.</p>
+            <p class="hps-usp__fine">&bull; SPEDIZIONE A/R A NOSTRE SPESE &mdash; NESSUN COSTO NASCOSTO</p>
+          </div>
+        </li>
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">V</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">IN STRADA IN 48/72 ORE</p>
-          <p class="hps-usp__dsc">Ordini oggi prima delle 18:00, spedisco domani mattina. Al camion in 2-3 giorni lavorativi, corriere tracciato.</p>
-          <p class="hps-usp__fine">&bull; CORRIERE TRACCIATO &mdash; CONFERMA SPEDIZIONE VIA EMAIL E SMS</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:4">
+          <span class="hps-usp__num">V</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">IN STRADA IN 48/72 ORE</p>
+            <p class="hps-usp__dsc">Ordini oggi prima delle 18:00, spedisco domani mattina. Al camion in 2-3 giorni lavorativi, corriere tracciato.</p>
+            <p class="hps-usp__fine">&bull; CORRIERE TRACCIATO &mdash; CONFERMA SPEDIZIONE VIA EMAIL E SMS</p>
+          </div>
+        </li>
 
-      <li class="hps-usp__item">
-        <span class="hps-usp__num">VI</span>
-        <div class="hps-usp__body">
-          <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
-          <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese. Le porti a casa oggi, le finisci di pagare tra 60 giorni.</p>
-          <p class="hps-usp__fine">&bull; KLARNA &bull; PAYPAL &mdash; ZERO INTERESSI, ZERO SORPRESE</p>
-        </div>
-      </li>
+        <li class="hps-usp__item" style="--i:5">
+          <span class="hps-usp__num">VI</span>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
+            <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese. Le porti a casa oggi, le finisci di pagare tra 60 giorni.</p>
+            <p class="hps-usp__fine">&bull; KLARNA &bull; PAYPAL &mdash; ZERO INTERESSI, ZERO SORPRESE</p>
+          </div>
+        </li>
 
-    </ol>
+      </ol>
+      <div class="hps-usp__dots" id="hps-usp-dots-{{ section.id }}">
+        <button class="hps-usp__dot hps-usp__dot--on" data-i="0" aria-label="Beneficio 1"></button>
+        <button class="hps-usp__dot" data-i="1" aria-label="Beneficio 2"></button>
+        <button class="hps-usp__dot" data-i="2" aria-label="Beneficio 3"></button>
+        <button class="hps-usp__dot" data-i="3" aria-label="Beneficio 4"></button>
+        <button class="hps-usp__dot" data-i="4" aria-label="Beneficio 5"></button>
+        <button class="hps-usp__dot" data-i="5" aria-label="Beneficio 6"></button>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -503,6 +513,39 @@
   }
 
   if (initV) filterGallery(initV.id);
+
+  // USP carousel
+  var uspWrap = document.getElementById('hps-usp-wrap-' + sid);
+  var uspList = document.getElementById('hps-usp-list-' + sid);
+  var uspDots = Array.from(document.querySelectorAll('#hps-usp-dots-' + sid + ' .hps-usp__dot'));
+
+  if (uspWrap && uspList) {
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) {
+        uspWrap.classList.add('hps-usp--in');
+        obs.disconnect();
+      }
+    }, { threshold: 0.15 }).observe(uspWrap);
+
+    if (uspDots.length) {
+      function syncDots() {
+        var items = uspList.querySelectorAll('.hps-usp__item');
+        if (!items.length) return;
+        var itemW = items[0].offsetWidth + 12;
+        var idx = Math.min(Math.round(uspList.scrollLeft / itemW), uspDots.length - 1);
+        uspDots.forEach(function (d, i) { d.classList.toggle('hps-usp__dot--on', i === idx); });
+      }
+      uspList.addEventListener('scroll', syncDots, { passive: true });
+      uspDots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+          var items = uspList.querySelectorAll('.hps-usp__item');
+          if (!items.length) return;
+          var itemW = items[0].offsetWidth + 12;
+          uspList.scrollTo({ left: i * itemW, behavior: 'smooth' });
+        });
+      });
+    }
+  }
 })();
 </script>
 
@@ -879,20 +922,47 @@
   line-height: 1.6;
 }
 
-/* USP editorial list */
-.hps-usp__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* USP carousel */
+.hps-usp {
+  margin: 0 -16px;
+  position: relative;
 }
 
-.hps-usp__item {
+.hps-usp__list {
   display: flex;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid #e8e8e8;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 20px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 20px 16px;
+  list-style: none;
+  margin: 0;
 }
-.hps-usp__item:last-child { border-bottom: none; }
+.hps-usp__list::-webkit-scrollbar { display: none; }
+
+.hps-usp__item {
+  flex: 0 0 78%;
+  min-width: 0;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 6px rgba(0,0,0,0.04);
+  border: 1px solid #efefef;
+  padding: 20px 18px 18px;
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 0.06s);
+}
+.hps-usp--in .hps-usp__item {
+  opacity: 1;
+  transform: none;
+}
 
 .hps-usp__num {
   flex-shrink: 0;
@@ -931,6 +1001,30 @@
   text-transform: uppercase;
   margin: 0;
   line-height: 1.5;
+}
+
+.hps-usp__dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  padding: 2px 0 8px;
+}
+
+.hps-usp__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+.hps-usp__dot--on {
+  background: #111;
+  width: 18px;
+  border-radius: 3px;
 }
 
 /* Popups */
@@ -1080,6 +1174,9 @@
   .hps__price-main { font-size: 2rem; }
   .hps-pop { align-items: center; }
   .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
+  .hps-usp { margin: 0; }
+  .hps-usp__list { scroll-padding-left: 16px; padding: 12px 16px 16px; }
+  .hps-usp__item { flex: 0 0 82%; }
 }
 
 /* Sticky CTA bar */
