@@ -1120,34 +1120,32 @@
 /* Desktop */
 @media screen and (min-width: 750px) {
   .hps {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: auto;
     overflow: visible;
     padding: 40px max(24px, calc((100% - 1200px) / 2));
     gap: 48px;
-    align-items: flex-start;
+    align-items: start;
   }
   .hps__gallery {
-    flex: 1 1 0;
     flex-direction: row;
     height: auto;
     position: sticky;
     top: var(--sticky-header-offset, 0px);
-    align-self: flex-start;
   }
   .hps__main {
     flex: 1 1 auto;
-    height: min(680px, 80svh);
+    height: min(760px, 88svh);
   }
   .hps__thumbs {
     flex-direction: column;
     overflow-x: visible;
     overflow-y: auto;
-    max-height: min(680px, 80svh);
+    max-height: min(760px, 88svh);
     padding: 0 0 0 8px;
   }
   .hps__details {
-    flex: 1 1 0;
     overflow-y: visible;
     padding: 0;
     gap: 14px;
