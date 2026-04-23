@@ -504,26 +504,14 @@
       var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
       var newState = bnOffScreen ? 'after' : (beforeSection && pastFastWear ? 'before' : 'hidden');
       if (newState === ctaState) return;
-
-      if ((newState === 'hidden' && ctaState === 'before') || (newState === 'after' && ctaState === 'before')) {
-        ctaBar.style.transition = 'none';
-        ctaBar.classList.remove('hps-cta-bar--visible');
-        ctaBar.classList.toggle('hps-cta-bar--past', newState === 'after');
-        ctaBar.offsetHeight;
-        ctaBar.style.transition = '';
-        if (newState === 'after') ctaBar.classList.add('hps-cta-bar--visible');
-      } else if (newState === 'after') {
-        ctaBar.classList.add('hps-cta-bar--past');
-        ctaBar.classList.add('hps-cta-bar--visible');
-      } else if (newState === 'before') {
-        ctaBar.classList.remove('hps-cta-bar--past');
-        ctaBar.classList.add('hps-cta-bar--visible');
-      } else {
-        ctaBar.classList.remove('hps-cta-bar--past');
-        ctaBar.classList.remove('hps-cta-bar--visible');
-      }
-
       ctaState = newState;
+
+      ctaBar.style.transition = 'none';
+      ctaBar.classList.remove('hps-cta-bar--visible');
+      ctaBar.classList.toggle('hps-cta-bar--past', newState === 'after');
+      ctaBar.offsetHeight;
+      ctaBar.style.transition = '';
+      if (newState !== 'hidden') ctaBar.classList.add('hps-cta-bar--visible');
     }
 
     window.addEventListener('scroll', updateCta, { passive: true });
