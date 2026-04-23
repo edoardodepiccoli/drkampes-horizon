@@ -69,10 +69,33 @@
       <p class="hps__sub">Antinfortunistiche S3S</p>
     </div>
 
-    <p class="hps__price">
-      <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
-      <span class="hps__price-tax">IVA INCLUSA</span>
-    </p>
+    <div class="hps__social">
+      <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="hps__review-lbl">4.9 &bull; <strong>127 clienti soddisfatti</strong></span>
+    </div>
+
+    <div class="hps__price-wrap">
+      <p class="hps__price">
+        <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
+        <span class="hps__price-tax">IVA INCLUSA</span>
+      </p>
+      <p class="hps__installment">o <strong>3&times; &euro;63</strong> con Klarna &bull; zero interessi</p>
+    </div>
+
+    <div class="hps__trust">
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>3 anni di<br>garanzia</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        <span>Cambio taglia<br>gratuito</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Spedizione<br>48/72 ore</span>
+      </div>
+    </div>
 
     {%- assign form_id = 'hps-form-' | append: section.id -%}
     {% form 'product', product, id: form_id, class: 'hps__form' %}
@@ -134,7 +157,7 @@
             <p class="hps__opt-lbl">Taglia: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
             <div class="hps__info-btns">
               <button type="button" class="hps__info-btn" id="hps-tech-{{ section.id }}">Schede tecniche</button>
-              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Trova la tua Taglia</button>
+              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Guida taglie</button>
             </div>
           </div>
           <select class="hps__select" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" aria-label="Taglia">
@@ -145,18 +168,31 @@
         </div>
       {%- endif -%}
 
-      <div class="hps__buy-row">
+      <p class="hps__scarcity">
+        <span class="hps__scarcity-dot" aria-hidden="true"></span>
+        Produzione limitata &mdash; spedizione garantita entro domani
+      </p>
+
+      <div class="hps__qty-row">
+        <span class="hps__qty-lbl">Quantit&agrave;</span>
         <div class="hps__qty">
           <button type="button" class="hps__qty-btn" data-d="-1">&#8722;</button>
           <input type="number" name="quantity" value="1" min="1" id="hps-qty-{{ section.id }}" class="hps__qty-n" aria-label="Quantità">
           <button type="button" class="hps__qty-btn" data-d="1">&#43;</button>
         </div>
-        <button type="submit" name="add" class="hps__atc">AGGIUNGI AL CARRELLO</button>
       </div>
 
-      <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+      <div class="hps__cta-group">
+        <button type="submit" name="add" class="hps__atc">AGGIUNGI AL CARRELLO</button>
+        <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}">ACQUISTA ORA &rsaquo; PAGA TRA 60 GIORNI</button>
+        <p class="hps__micro">&#128274;&nbsp;Acquisto sicuro &bull; 14 giorni per ripensarci &bull; cambio taglia gratuito</p>
+      </div>
 
     {% endform %}
+
+    <div class="hps-usp__intro">
+      <p class="hps-usp__eyebrow">Perch&eacute; scegliere Dr Kampes</p>
+    </div>
 
     <ol class="hps-usp__list">
 
@@ -284,7 +320,7 @@
 </div>
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
-  <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">SÌ, LE VOGLIO.</a>
+  <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">S&Igrave;, LE VOGLIO.</a>
 </div>
 
 <script>
@@ -300,14 +336,12 @@
   var thumbs = Array.from(root.querySelectorAll('.hps__thumb'));
   var vidInput = document.getElementById('hps-vid-' + sid);
 
-  /* Active options, initialised from first available variant */
   var initV = allVariants.find(function (v) { return v.available; }) || allVariants[0];
   var selOpts = initV ? initV.options.slice() : [];
 
   var mainEl   = root.querySelector('.hps__main');
   var thumbsEl = root.querySelector('.hps__thumbs');
 
-  /* ── Gallery helpers ─────────────────────────────────────── */
   function showByMediaId(mediaId) {
     slides.forEach(function (s) { s.classList.toggle('hps__slide--active', s.dataset.mediaId === mediaId); });
     thumbs.forEach(function (t) { t.classList.toggle('hps__thumb--active', t.dataset.mediaId === mediaId); });
@@ -325,11 +359,9 @@
       return;
     }
 
-    /* Hide everything first */
     slides.forEach(function (s) { s.style.display = 'none'; });
     thumbs.forEach(function (t) { t.style.display = 'none'; });
 
-    /* Reorder DOM nodes + show, in vgMap order */
     ids.forEach(function (id) {
       var strId = String(id);
       var slide = mainEl.querySelector('.hps__slide[data-media-id="' + strId + '"]');
@@ -338,19 +370,16 @@
       if (thumb) { thumb.style.display = ''; thumbsEl.appendChild(thumb); }
     });
 
-    /* Refresh arrays after DOM reorder */
     slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
     thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
 
     if (ids.length) showByMediaId(String(ids[0]));
   }
 
-  /* Thumbnail clicks — use mediaId, survives DOM reorder */
   thumbs.forEach(function (btn) {
     btn.addEventListener('click', function () { showByMediaId(btn.dataset.mediaId); });
   });
 
-  /* ── Variant sync ────────────────────────────────────────── */
   function syncVariant() {
     var match = allVariants.find(function (v) {
       return v.options.every(function (o, i) { return o === selOpts[i]; });
@@ -360,7 +389,6 @@
     filterGallery(match.id);
   }
 
-  /* ── Color swatches ──────────────────────────────────────── */
   var swatches  = root.querySelectorAll('.hps__swatch');
   var cValEl    = document.getElementById('hps-cval-' + sid);
 
@@ -375,7 +403,6 @@
     });
   });
 
-  /* ── Size select ─────────────────────────────────────────── */
   var sSel  = document.getElementById('hps-ssel-' + sid);
   var sValEl = document.getElementById('hps-sval-' + sid);
 
@@ -388,7 +415,6 @@
     });
   }
 
-  /* ── Qty stepper ─────────────────────────────────────────── */
   var qtyEl = document.getElementById('hps-qty-' + sid);
   root.querySelectorAll('.hps__qty-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -396,13 +422,11 @@
     });
   });
 
-  /* ── Add to cart (AJAX, no redirect) ────────────────────── */
   var form = document.getElementById('hps-form-' + sid);
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var fd = new FormData(form);
-      /* Collect section IDs so the theme can re-render cart HTML */
       var cartSectionIds = [];
       document.querySelectorAll('cart-items-component[data-section-id]').forEach(function (el) {
         cartSectionIds.push(el.dataset.sectionId);
@@ -411,8 +435,7 @@
       fetch('/cart/add.js', { method: 'POST', body: fd })
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (data.status) return; /* error */
-          /* Fire the event the cart drawer listens for — detail.data.sections is the required path */
+          if (data.status) return;
           document.dispatchEvent(new CustomEvent('cart:update', {
             bubbles: true,
             detail: { source: 'hps', data: { sections: data.sections } }
@@ -422,7 +445,6 @@
     });
   }
 
-  /* ── Buy Now ─────────────────────────────────────────────── */
   var bnBtn = document.getElementById('hps-bn-' + sid);
   if (bnBtn) {
     bnBtn.addEventListener('click', function () {
@@ -435,7 +457,6 @@
     });
   }
 
-  /* ── Popups ──────────────────────────────────────────────── */
   function openPop(id) {
     var el = document.getElementById(id);
     if (el) { el.hidden = false; document.body.style.overflow = 'hidden'; }
@@ -455,7 +476,6 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
-  /* ── Sticky CTA ──────────────────────────────────────────── */
   var ctaBar = document.getElementById('hps-cta-bar-{{ section.id }}');
   var stickyCta = ctaBar ? ctaBar.querySelector('.hps-cta') : null;
 
@@ -486,7 +506,6 @@
     }
   }
 
-  /* Init gallery for default variant */
   if (initV) filterGallery(initV.id);
 })();
 </script>
@@ -570,8 +589,8 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px 20px;
+  gap: 12px;
+  padding: 14px 16px 24px;
 }
 
 .hps__head { display: flex; flex-direction: column; gap: 2px; }
@@ -587,6 +606,35 @@
 .hps__sub {
   font-size: 0.8rem;
   color: #888;
+  margin: 0;
+}
+
+/* Social proof */
+.hps__social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.hps__stars {
+  color: #f5a623;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.hps__review-lbl {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Price block */
+.hps__price-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   margin: 0;
 }
 
@@ -609,6 +657,44 @@
   letter-spacing: 0.07em;
 }
 
+.hps__installment {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+.hps__installment strong { color: #111; }
+
+/* Trust strip */
+.hps__trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.hps__trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.hps__trust-ico {
+  width: 22px;
+  height: 22px;
+  color: #2e7d32;
+  flex-shrink: 0;
+}
+
+/* Form */
 .hps__form { display: flex; flex-direction: column; gap: 10px; }
 
 .hps__opt { display: flex; flex-direction: column; gap: 6px; }
@@ -672,10 +758,42 @@
   appearance: auto;
 }
 
-.hps__buy-row {
+/* Scarcity signal */
+.hps__scarcity {
   display: flex;
-  align-items: stretch;
-  gap: 8px;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #c62828;
+  margin: 0;
+}
+
+.hps__scarcity-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c62828;
+  flex-shrink: 0;
+  animation: hps-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hps-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* Qty row */
+.hps__qty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hps__qty-lbl {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111;
 }
 
 .hps__qty {
@@ -689,7 +807,7 @@
 
 .hps__qty-btn {
   width: 34px;
-  min-height: 42px;
+  min-height: 40px;
   background: none;
   border: none;
   font-size: 1.1rem;
@@ -711,7 +829,7 @@
   border-right: 1px solid #ccc;
   font-size: 0.9rem;
   padding: 0;
-  height: 42px;
+  height: 40px;
   -moz-appearance: textfield;
   font-family: inherit;
   color: #111;
@@ -719,39 +837,125 @@
 .hps__qty-n::-webkit-inner-spin-button,
 .hps__qty-n::-webkit-outer-spin-button { -webkit-appearance: none; }
 
+/* CTA group */
+.hps__cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .hps__atc {
-  flex: 1;
-  height: 42px;
-  padding: 0 10px;
-  background: #4caf50;
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  background: #2e7d32;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
   cursor: pointer;
   text-transform: uppercase;
   font-family: inherit;
-  line-height: 1.2;
+  line-height: 1;
+  transition: background 0.15s;
 }
-.hps__atc:active { background: #43a047; }
+.hps__atc:active { background: #1b5e20; }
 
 .hps__bn {
   width: 100%;
-  height: 42px;
-  background: #f5c518;
-  color: #111;
+  height: 48px;
+  background: #111;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 0.82rem;
+  border-radius: 6px;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   cursor: pointer;
   text-transform: uppercase;
   font-family: inherit;
+  transition: background 0.15s;
 }
-.hps__bn:active { background: #e6b800; }
+.hps__bn:active { background: #333; }
+
+.hps__micro {
+  font-size: 0.62rem;
+  color: #999;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* USP intro label */
+.hps-usp__intro {
+  margin: 4px 0 0;
+}
+
+.hps-usp__eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #bbb;
+  margin: 0;
+}
+
+/* USP editorial list */
+.hps-usp__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid #111;
+}
+
+.hps-usp__item {
+  display: flex;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+.hps-usp__item:last-child { border-bottom: none; }
+
+.hps-usp__num {
+  flex-shrink: 0;
+  width: 22px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #bbb;
+  padding-top: 3px;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.hps-usp__body { flex: 1; min-width: 0; }
+
+.hps-usp__ttl {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 7px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.hps-usp__dsc {
+  font-size: 0.82rem;
+  color: #444;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.hps-usp__fine {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #FB6E06;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.5;
+}
 
 /* Popups */
 .hps-pop {
@@ -902,6 +1106,7 @@
   .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
 }
 
+/* Sticky CTA bar */
 .hps-cta-bar {
   position: fixed;
   bottom: 0;
@@ -943,61 +1148,6 @@
 }
 .hps-cta-bar .hps-cta:hover { background: #e06005; color: #fff !important; text-decoration: none; }
 .hps-cta-bar .hps-cta:active { background: #c95504; }
-
-/* USP editorial list */
-.hps-usp__list {
-  list-style: none;
-  margin: 0;
-  padding: 4px 0 0;
-  border-top: 2px solid #111;
-}
-
-.hps-usp__item {
-  display: flex;
-  gap: 18px;
-  padding: 18px 0;
-  border-bottom: 1px solid #e8e8e8;
-}
-.hps-usp__item:last-child { border-bottom: none; }
-
-.hps-usp__num {
-  flex-shrink: 0;
-  width: 22px;
-  font-size: 0.72rem;
-  font-weight: 400;
-  font-style: italic;
-  color: #bbb;
-  padding-top: 3px;
-  font-family: Georgia, 'Times New Roman', serif;
-}
-
-.hps-usp__body { flex: 1; min-width: 0; }
-
-.hps-usp__ttl {
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: #111;
-  margin: 0 0 7px;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-}
-
-.hps-usp__dsc {
-  font-size: 0.82rem;
-  color: #444;
-  margin: 0 0 10px;
-  line-height: 1.6;
-}
-
-.hps-usp__fine {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #FB6E06;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.5;
-}
 
 {% endstylesheet %}
 
