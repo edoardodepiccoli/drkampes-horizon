@@ -36,6 +36,10 @@
     {% endif %}
 
     {{ content_for_header }}
+
+    {%- unless template == 'index' -%}
+      <style>.app-embed-container-887516 { display: none !important; }</style>
+    {%- endunless -%}
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
