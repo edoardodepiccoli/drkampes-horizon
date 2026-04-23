@@ -768,40 +768,42 @@
 /* USP strip */
 .hps__usp {
   display: flex;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
-  padding: 10px 0;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .hps__usp-item {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 4px 6px;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 4px;
   background: none;
   border: none;
-  border-right: 1px solid #ececec;
+  border-right: 1px solid rgba(255,255,255,0.08);
   cursor: pointer;
   font-family: inherit;
-  color: #111;
   text-align: center;
-  transition: opacity 0.15s;
+  transition: background 0.15s;
 }
 .hps__usp-item:last-child { border-right: none; }
-.hps__usp-item:active { opacity: 0.55; }
+.hps__usp-item:active { background: rgba(255,255,255,0.07); }
 .hps__usp-icon {
   display: block;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  color: #444;
+  color: #FB6E06;
 }
 .hps__usp-label {
-  font-size: 0.58rem;
-  font-weight: 500;
-  color: #555;
-  line-height: 1.25;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* Popups */
