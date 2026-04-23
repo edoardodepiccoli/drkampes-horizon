@@ -39,6 +39,20 @@
 
     {%- unless template == 'index' -%}
       <style>#app-embed-container-887516 { display: none !important; }</style>
+      <script>
+        (function () {
+          var id = 'app-embed-container-887516';
+          function hide() {
+            var el = document.getElementById(id);
+            if (el) el.style.setProperty('display', 'none', 'important');
+          }
+          var mo = new MutationObserver(hide);
+          document.addEventListener('DOMContentLoaded', function () {
+            hide();
+            mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+          });
+        })();
+      </script>
     {%- endunless -%}
   </head>
 
