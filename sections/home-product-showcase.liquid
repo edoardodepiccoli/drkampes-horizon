@@ -1127,27 +1127,36 @@
     gap: 48px;
     align-items: flex-start;
   }
+
+  /* Left half: editorial image grid, sticky */
   .hps__gallery {
-    flex: 1 1 auto;
-    flex-direction: row;
+    flex: 1 1 0;
+    flex-direction: column;
     height: auto;
     position: sticky;
     top: var(--sticky-header-offset, 0px);
     align-self: flex-start;
   }
   .hps__main {
-    flex: 1 1 auto;
-    height: min(680px, 80svh);
+    flex: none;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 220px 220px;
+    gap: 6px;
+    height: auto;
+    overflow: hidden;
   }
-  .hps__thumbs {
-    flex-direction: column;
-    overflow-x: visible;
-    overflow-y: auto;
-    max-height: min(680px, 80svh);
-    padding: 0 0 0 8px;
-  }
+  .hps__slide { display: block !important; overflow: hidden; border-radius: 8px; }
+  .hps__slide:first-child { grid-column: 1; grid-row: 1 / span 2; }
+  .hps__slide:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .hps__slide:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .hps__slide:nth-child(n+4) { display: none !important; }
+  .hps__img { object-fit: cover; }
+  .hps__thumbs { display: none; }
+
+  /* Right half: purchase section */
   .hps__details {
-    flex: 0 0 360px;
+    flex: 1 1 0;
     overflow-y: visible;
     padding: 0;
     gap: 14px;
