@@ -158,16 +158,67 @@
 
     {% endform %}
 
-    <ul class="hps__perks">
-      <li class="hps__perk">3 ANNI DI GARANZIA</li>
-      <li class="hps__perk">"CAMBIO GOMME" GRATIS A VITA</li>
-      <li class="hps__perk">14 GIORNI PER RIPENSARCI</li>
-      <li class="hps__perk">CAMBIO TAGLIA A COSTO ZERO</li>
-      <li class="hps__perk">IN STRADA IN 48/72 ORE</li>
-      <li class="hps__perk">3 RATE DA &euro;63 &bull; ZERO INTERESSI</li>
-    </ul>
-
   </div>
+</div>
+
+<div class="hps-usp">
+  <ol class="hps-usp__list">
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">I</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
+        <p class="hps-usp__dsc">Aggiungiamo un anno in più ai 2 anni del Codice del Consumo. Se si rompe entro 36 mesi, la riparo o te la sostituisco.</p>
+        <p class="hps-usp__fine">&bull; GARANZIA COMMERCIALE ESTESA &mdash; ART. 128 C.D.C. + 12 MESI</p>
+      </div>
+    </li>
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">II</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATUITO A VITA</p>
+        <p class="hps-usp__dsc">Quando la suola sarà consumata, portala in officina: te la risuolo e ricertifico il DPI. La scarpa torna sicura come il primo giorno.</p>
+        <p class="hps-usp__fine">&bull; MANUTENZIONE STRAORDINARIA &bull; CERTIFICAZIONE POST-RIPARAZIONE DPI</p>
+      </div>
+    </li>
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">III</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
+        <p class="hps-usp__dsc">Le provi, le cammini, le guidi per 14 giorni. Se non ti convincono, me le rimandi indietro e ti restituisco l'intero importo.</p>
+        <p class="hps-usp__fine">&bull; DIRITTO AL RECESSO ESTESO &mdash; NESSUNA DOMANDA, NESSUN MODULO</p>
+      </div>
+    </li>
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">IV</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">CAMBIO TAGLIA A COSTO ZERO</p>
+        <p class="hps-usp__dsc">Sbagli numero? Non paghi nulla: ti mando il corriere a ritirare la prima e ti spedisco la seconda. A spese mie.</p>
+        <p class="hps-usp__fine">&bull; SPEDIZIONE A/R A NOSTRE SPESE &mdash; NESSUN COSTO NASCOSTO</p>
+      </div>
+    </li>
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">V</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">IN STRADA IN 48/72 ORE</p>
+        <p class="hps-usp__dsc">Ordini oggi prima delle 18:00, spedisco domani mattina. Al camion in 2-3 giorni lavorativi, corriere tracciato.</p>
+        <p class="hps-usp__fine">&bull; CORRIERE TRACCIATO &mdash; CONFERMA SPEDIZIONE VIA EMAIL E SMS</p>
+      </div>
+    </li>
+
+    <li class="hps-usp__item">
+      <span class="hps-usp__num">VI</span>
+      <div class="hps-usp__body">
+        <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
+        <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese. Le porti a casa oggi, le finisci di pagare tra 60 giorni.</p>
+        <p class="hps-usp__fine">&bull; KLARNA &bull; PAYPAL &mdash; ZERO INTERESSI, ZERO SORPRESE</p>
+      </div>
+    </li>
+
+  </ol>
 </div>
 
 <div class="hps-pop" id="hps-pop-tech-{{ section.id }}" role="dialog" aria-modal="true" hidden>
@@ -895,35 +946,74 @@
 .hps-cta-bar .hps-cta:hover { background: #e06005; color: #fff !important; text-decoration: none; }
 .hps-cta-bar .hps-cta:active { background: #c95504; }
 
-/* Benefit list */
-.hps__perks {
+/* USP editorial list */
+.hps-usp {
+  background: #fff;
+  border-top: 2px solid #111;
+  padding: 0 16px;
+}
+
+.hps-usp__list {
   list-style: none;
   margin: 0;
-  padding: 12px 0 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px 10px;
-  border-top: 1px solid #efefef;
+  padding: 0;
+  max-width: 640px;
 }
 
-.hps__perk {
+.hps-usp__item {
   display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  color: #111;
-  letter-spacing: 0.03em;
-  line-height: 1.35;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+.hps-usp__item:last-child { border-bottom: none; }
+
+.hps-usp__num {
+  flex-shrink: 0;
+  width: 22px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #bbb;
+  padding-top: 3px;
+  font-family: Georgia, 'Times New Roman', serif;
 }
 
-.hps__perk::before {
-  content: '✓';
-  color: #FB6E06;
-  font-size: 0.78rem;
+.hps-usp__body { flex: 1; min-width: 0; }
+
+.hps-usp__ttl {
+  font-size: 0.85rem;
   font-weight: 900;
-  flex-shrink: 0;
+  color: #111;
+  margin: 0 0 7px;
+  letter-spacing: 0.04em;
   line-height: 1.2;
+}
+
+.hps-usp__dsc {
+  font-size: 0.82rem;
+  color: #444;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.hps-usp__fine {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #FB6E06;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 750px) {
+  .hps-usp {
+    padding: 0 max(24px, calc((100% - 1200px) / 2));
+  }
+  .hps-usp__item { padding: 28px 0; }
+  .hps-usp__num { font-size: 0.78rem; width: 26px; }
+  .hps-usp__ttl { font-size: 0.9rem; }
 }
 
 {% endstylesheet %}
