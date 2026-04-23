@@ -2872,6 +2872,7 @@
         "text_AEybKG",
         "accordion_tND6wg"
       ],
+      "disabled": true,
       "name": "t:names.faq_section",
       "settings": {
         "content_direction": "column",
