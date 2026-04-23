@@ -495,21 +495,35 @@
   var fastWear = document.getElementById('fast-wear');
 
   if (ctaBar) {
+    var ctaState = 'hidden';
+
     function updateCta() {
       var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
-      if (bnRect && bnRect.bottom < 0) {
+      var bnOffScreen = bnRect && bnRect.bottom < 0;
+      var beforeSection = root.getBoundingClientRect().top > window.innerHeight;
+      var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
+      var newState = bnOffScreen ? 'after' : (beforeSection && pastFastWear ? 'before' : 'hidden');
+      if (newState === ctaState) return;
+
+      if ((newState === 'hidden' && ctaState === 'before') || (newState === 'after' && ctaState === 'before')) {
+        ctaBar.style.transition = 'none';
+        ctaBar.classList.remove('hps-cta-bar--visible');
+        ctaBar.classList.toggle('hps-cta-bar--past', newState === 'after');
+        ctaBar.offsetHeight;
+        ctaBar.style.transition = '';
+        if (newState === 'after') ctaBar.classList.add('hps-cta-bar--visible');
+      } else if (newState === 'after') {
         ctaBar.classList.add('hps-cta-bar--past');
+        ctaBar.classList.add('hps-cta-bar--visible');
+      } else if (newState === 'before') {
+        ctaBar.classList.remove('hps-cta-bar--past');
         ctaBar.classList.add('hps-cta-bar--visible');
       } else {
         ctaBar.classList.remove('hps-cta-bar--past');
-        var beforeSection = root.getBoundingClientRect().top > window.innerHeight;
-        if (beforeSection) {
-          var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
-          ctaBar.classList.toggle('hps-cta-bar--visible', pastFastWear);
-        } else {
-          ctaBar.classList.remove('hps-cta-bar--visible');
-        }
+        ctaBar.classList.remove('hps-cta-bar--visible');
       }
+
+      ctaState = newState;
     }
 
     window.addEventListener('scroll', updateCta, { passive: true });
