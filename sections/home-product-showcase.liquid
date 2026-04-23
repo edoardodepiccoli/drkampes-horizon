@@ -332,7 +332,8 @@
 </div>
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
-  <a class="hps-cta" href="#acquista" aria-label="SÌ, LE VOGLIO.">S&Igrave;, LE VOGLIO.</a>
+  <a class="hps-cta hps-cta--before" href="#acquista" aria-label="SÌ, LE VOGLIO.">S&Igrave;, LE VOGLIO.</a>
+  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">ACQUISTA ORA</button>
 </div>
 
 <script>
@@ -489,7 +490,8 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
   var ctaBar = document.getElementById('hps-cta-bar-{{ section.id }}');
-  var stickyCta = ctaBar ? ctaBar.querySelector('.hps-cta') : null;
+  var stickyCta = ctaBar ? ctaBar.querySelector('.hps-cta--before') : null;
+  var ctaBnBtn = document.getElementById('hps-cta-bn-{{ section.id }}');
 
   if (ctaBar) {
     var sectionVisible = true;
@@ -498,8 +500,11 @@
       var scrolled = window.scrollY > 80;
       if (scrolled && !sectionVisible) {
         ctaBar.classList.add('hps-cta-bar--visible');
+        var past = root.getBoundingClientRect().bottom < 0;
+        ctaBar.classList.toggle('hps-cta-bar--past', past);
       } else {
         ctaBar.classList.remove('hps-cta-bar--visible');
+        ctaBar.classList.remove('hps-cta-bar--past');
       }
     }
 
@@ -516,6 +521,17 @@
         root.scrollIntoView({ behavior: 'smooth' });
       });
     }
+  }
+
+  if (ctaBnBtn) {
+    ctaBnBtn.addEventListener('click', function () {
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
+      }).then(function () { window.location.href = '/checkout'; })
+        .catch(function () { window.location.href = '/checkout'; });
+    });
   }
 
   if (initV) filterGallery(initV.id);
@@ -1206,19 +1222,35 @@
   justify-content: center;
   width: 100%;
   height: 50px;
-  background: var(--color-primary-button-background);
-  color: var(--color-primary-button-text, #fff) !important;
-  font-size: var(--font-paragraph--size);
-  font-weight: var(--font-accent--weight, 400);
-  text-transform: var(--button-text-case-primary, uppercase);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   text-decoration: none;
-  font-family: var(--button-font-family-primary);
+  font-family: inherit;
   border-radius: 0;
   border: none;
+  cursor: pointer;
   transition: background 0.15s;
 }
-.hps-cta-bar .hps-cta:hover { background: var(--color-primary-button-hover-background); color: var(--color-primary-button-hover-text, #fff) !important; text-decoration: none; }
-.hps-cta-bar .hps-cta:active { background: var(--color-primary-button-hover-background); }
+
+.hps-cta--before {
+  background: var(--color-primary-button-background);
+  color: var(--color-primary-button-text, #fff) !important;
+}
+.hps-cta--before:hover { background: var(--color-primary-button-hover-background); color: var(--color-primary-button-hover-text, #fff) !important; text-decoration: none; }
+.hps-cta--before:active { background: var(--color-primary-button-hover-background); }
+
+.hps-cta--after {
+  background: #F5C200;
+  color: #111 !important;
+  display: none;
+}
+.hps-cta--after:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
+.hps-cta--after:active { background: #d9ac00; }
+
+.hps-cta-bar--past .hps-cta--before { display: none; }
+.hps-cta-bar--past .hps-cta--after { display: flex; }
 
 {% endstylesheet %}
 
