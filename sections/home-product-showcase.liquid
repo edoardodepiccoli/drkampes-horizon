@@ -194,7 +194,6 @@
       <ol class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
 
         <li class="hps-usp__item" style="--i:0">
-          <span class="hps-usp__num">I</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
             <p class="hps-usp__dsc">Aggiungiamo un anno in più ai 2 anni del Codice del Consumo. Se si rompe entro 36 mesi, la riparo o te la sostituisco.</p>
@@ -203,7 +202,6 @@
         </li>
 
         <li class="hps-usp__item" style="--i:1">
-          <span class="hps-usp__num">II</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATUITO A VITA</p>
             <p class="hps-usp__dsc">Quando la suola sarà consumata, portala in officina: te la risuolo e ricertifico il DPI. La scarpa torna sicura come il primo giorno.</p>
@@ -212,7 +210,6 @@
         </li>
 
         <li class="hps-usp__item" style="--i:2">
-          <span class="hps-usp__num">III</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
             <p class="hps-usp__dsc">Le provi, le cammini, le guidi per 14 giorni. Se non ti convincono, me le rimandi indietro e ti restituisco l'intero importo.</p>
@@ -221,7 +218,6 @@
         </li>
 
         <li class="hps-usp__item" style="--i:3">
-          <span class="hps-usp__num">IV</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">CAMBIO TAGLIA A COSTO ZERO</p>
             <p class="hps-usp__dsc">Sbagli numero? Non paghi nulla: ti mando il corriere a ritirare la prima e ti spedisco la seconda. A spese mie.</p>
@@ -230,7 +226,6 @@
         </li>
 
         <li class="hps-usp__item" style="--i:4">
-          <span class="hps-usp__num">V</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">IN STRADA IN 48/72 ORE</p>
             <p class="hps-usp__dsc">Ordini oggi prima delle 18:00, spedisco domani mattina. Al camion in 2-3 giorni lavorativi, corriere tracciato.</p>
@@ -239,7 +234,6 @@
         </li>
 
         <li class="hps-usp__item" style="--i:5">
-          <span class="hps-usp__num">VI</span>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
             <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese. Le porti a casa oggi, le finisci di pagare tra 60 giorni.</p>
@@ -926,6 +920,7 @@
 .hps-usp {
   margin: 0 -16px;
   position: relative;
+  overflow: hidden;
 }
 
 .hps-usp__list {
@@ -951,8 +946,6 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 6px rgba(0,0,0,0.04);
   border: 1px solid #efefef;
   padding: 20px 18px 18px;
-  display: flex;
-  gap: 14px;
   opacity: 0;
   transform: translateX(48px);
   transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
@@ -964,20 +957,10 @@
   transform: none;
 }
 
-.hps-usp__num {
-  flex-shrink: 0;
-  width: 22px;
-  font-size: 0.72rem;
-  font-weight: 400;
-  font-style: italic;
-  color: #bbb;
-  padding-top: 3px;
-  font-family: Georgia, 'Times New Roman', serif;
-}
-
-.hps-usp__body { flex: 1; min-width: 0; }
+.hps-usp__body { width: 100%; min-width: 0; }
 
 .hps-usp__ttl {
+  font-family: var(--font-heading--family, inherit);
   font-size: 0.85rem;
   font-weight: 900;
   color: #111;
@@ -1174,7 +1157,7 @@
   .hps__price-main { font-size: 2rem; }
   .hps-pop { align-items: center; }
   .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
-  .hps-usp { margin: 0; }
+  .hps-usp { margin: 0; overflow: hidden; }
   .hps-usp__list { scroll-padding-left: 16px; padding: 12px 16px 16px; }
   .hps-usp__item { flex: 0 0 82%; }
 }
