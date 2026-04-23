@@ -768,35 +768,39 @@
 /* USP strip */
 .hps__usp {
   display: flex;
-  gap: 6px;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  padding: 10px 0;
 }
 .hps__usp-item {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 8px 4px;
-  background: #f7f7f7;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
+  gap: 4px;
+  padding: 4px 6px;
+  background: none;
+  border: none;
+  border-right: 1px solid #ececec;
   cursor: pointer;
   font-family: inherit;
   color: #111;
   text-align: center;
-  transition: background 0.15s;
+  transition: opacity 0.15s;
 }
-.hps__usp-item:active { background: #eeeeee; }
+.hps__usp-item:last-child { border-right: none; }
+.hps__usp-item:active { opacity: 0.55; }
 .hps__usp-icon {
   display: block;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
+  color: #444;
 }
 .hps__usp-label {
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: #555;
   line-height: 1.25;
 }
 
