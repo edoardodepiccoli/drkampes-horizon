@@ -1121,7 +1121,7 @@
 @media screen and (min-width: 750px) {
   .hps {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55fr 45fr;
     height: auto;
     overflow: visible;
     padding: 40px max(24px, calc((100% - 1200px) / 2));
@@ -1129,21 +1129,21 @@
     align-items: start;
   }
   .hps__gallery {
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
     position: sticky;
     top: var(--sticky-header-offset, 0px);
   }
   .hps__main {
     flex: 1 1 auto;
-    height: min(760px, 88svh);
+    height: min(640px, 74svh);
   }
   .hps__thumbs {
-    flex-direction: column;
-    overflow-x: visible;
-    overflow-y: auto;
-    max-height: min(760px, 88svh);
-    padding: 0 0 0 8px;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: none;
+    padding: 8px 0 0;
   }
   .hps__details {
     overflow-y: visible;
