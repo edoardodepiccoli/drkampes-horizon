@@ -1110,20 +1110,20 @@
   justify-content: center;
   width: 100%;
   height: 50px;
-  background: #FB6E06;
-  color: #fff !important;
+  background: var(--color-primary-button-background);
+  color: var(--color-primary-button-text, #fff) !important;
   font-size: 1rem;
-  font-weight: 900 !important;
-  text-transform: uppercase;
+  font-weight: var(--font-accent--weight, 400);
+  text-transform: var(--button-text-case-primary, uppercase);
   letter-spacing: 0.14em;
   text-decoration: none;
-  font-family: inherit;
+  font-family: var(--button-font-family-primary);
   border-radius: 0;
   border: none;
   transition: background 0.15s;
 }
-.hps-cta-bar .hps-cta:hover { background: #e06005; color: #fff !important; text-decoration: none; }
-.hps-cta-bar .hps-cta:active { background: #c95504; }
+.hps-cta-bar .hps-cta:hover { background: var(--color-primary-button-hover-background); color: var(--color-primary-button-hover-text, #fff) !important; text-decoration: none; }
+.hps-cta-bar .hps-cta:active { background: var(--color-primary-button-hover-background); }
 
 {% endstylesheet %}
 
