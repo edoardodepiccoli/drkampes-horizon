@@ -498,8 +498,8 @@
     function updateCta() {
       var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
       if (bnRect && bnRect.bottom < 0) {
-        ctaBar.classList.add('hps-cta-bar--visible');
         ctaBar.classList.add('hps-cta-bar--past');
+        ctaBar.classList.add('hps-cta-bar--visible');
       } else {
         ctaBar.classList.remove('hps-cta-bar--past');
         var beforeSection = root.getBoundingClientRect().top > window.innerHeight;
