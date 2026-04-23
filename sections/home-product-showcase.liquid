@@ -74,6 +74,25 @@
       <span class="hps__price-tax">IVA INCLUSA</span>
     </p>
 
+    <div class="hps__usp">
+      <button type="button" class="hps__usp-item" id="hps-usp-gar-{{ section.id }}">
+        <svg class="hps__usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="hps__usp-label">3 anni di<br>garanzia</span>
+      </button>
+      <button type="button" class="hps__usp-item" id="hps-usp-ret-{{ section.id }}">
+        <svg class="hps__usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+        <span class="hps__usp-label">14gg reso<br>· taglia</span>
+      </button>
+      <button type="button" class="hps__usp-item" id="hps-usp-ship-{{ section.id }}">
+        <svg class="hps__usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span class="hps__usp-label">Spedizione<br>48-72h</span>
+      </button>
+      <button type="button" class="hps__usp-item" id="hps-usp-pay-{{ section.id }}">
+        <svg class="hps__usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span class="hps__usp-label">Klarna<br>· PayPal</span>
+      </button>
+    </div>
+
     {%- assign form_id = 'hps-form-' | append: section.id -%}
     {% form 'product', product, id: form_id, class: 'hps__form' %}
       <input type="hidden" name="id" id="hps-vid-{{ section.id }}" value="{{ first_variant.id }}">
@@ -221,6 +240,52 @@
           <tr><td>48</td><td>32 cm</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-usp-gar-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Garanzia 3 Anni</h3>
+    <div class="hps-pop__body">
+      <p>Le Dr Kampes sono coperte da <strong>3 anni di garanzia totale</strong>: 2 anni di garanzia legale prevista dal Codice del Consumo, più 1 anno aggiuntivo di Garanzia Commerciale estesa offerta da Dr Kampes.</p>
+      <p>Incluso gratis il servizio <strong>"Cambio Gomme"</strong> (risuolatura straordinaria): la scarpa viene risuolata e riesamina con emissione della <strong>Certificazione di Conformità DPI post-riparazione</strong>, garantendo che mantenga intatti i requisiti di sicurezza S3S originali.</p>
+    </div>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-usp-ret-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Reso e Cambio Taglia</h3>
+    <div class="hps-pop__body">
+      <p><strong>14 giorni soddisfatti o rimborsati</strong> dalla data di ricezione. Se il prodotto non ti convince, restituiscilo nelle stesse condizioni e rimborsiamo il 100% dell'importo pagato.</p>
+      <p><strong>Cambio taglia gratuito</strong>: spedizione di ritorno e nuova spedizione a carico nostro, senza costi aggiuntivi. Acquista online senza la barriera della taglia.</p>
+    </div>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-usp-ship-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Spedizioni Rapide</h3>
+    <div class="hps-pop__body">
+      <p>Consegna in <strong>48-72 ore lavorative</strong> dalla conferma d'ordine, in tutta Italia. Tracking incluso: ricevi un link per seguire la spedizione in tempo reale.</p>
+    </div>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-usp-pay-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Pagamento Rateale</h3>
+    <div class="hps-pop__body">
+      <p>Paga in comode rate con <strong>Klarna</strong> o <strong>PayPal</strong>. Nessun interesse aggiuntivo. Selezionabile direttamente al checkout, senza burocrazia.</p>
     </div>
   </div>
 </div>
@@ -391,6 +456,11 @@
   var sizeBtn = document.getElementById('hps-size-' + sid);
   if (techBtn) techBtn.addEventListener('click', function () { openPop('hps-pop-tech-' + sid); });
   if (sizeBtn) sizeBtn.addEventListener('click', function () { openPop('hps-pop-size-' + sid); });
+
+  ['gar', 'ret', 'ship', 'pay'].forEach(function (key) {
+    var btn = document.getElementById('hps-usp-' + key + '-' + sid);
+    if (btn) btn.addEventListener('click', function () { openPop('hps-pop-usp-' + key + '-' + sid); });
+  });
 
   document.querySelectorAll('[data-pop-close]').forEach(function (el) {
     el.addEventListener('click', closePops);
@@ -694,6 +764,41 @@
   font-family: inherit;
 }
 .hps__bn:active { background: #e6b800; }
+
+/* USP strip */
+.hps__usp {
+  display: flex;
+  gap: 6px;
+}
+.hps__usp-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 4px;
+  background: #f7f7f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  color: #111;
+  text-align: center;
+  transition: background 0.15s;
+}
+.hps__usp-item:active { background: #eeeeee; }
+.hps__usp-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.hps__usp-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.25;
+}
 
 /* Popups */
 .hps-pop {
