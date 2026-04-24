@@ -345,6 +345,11 @@
         </table>
       </div>
     </form>
+    <div class="cart-items__checkout-action">
+      <a href="{{ routes.checkout_url }}" class="button cart-items__checkout-cta">
+        Acquista ora
+      </a>
+    </div>
   {%- endif -%}
 </div>
 
@@ -774,5 +779,33 @@
   .cart-items__properties dt,
   .cart-items__properties dd {
     display: inline;
+  }
+
+  @container cart-items (min-width: 500px) {
+    .cart-items__table-row {
+      grid-template-columns: var(--cart-item-media-width-max) 1fr auto auto;
+      grid-template-areas: 'media details quantity price' '. error error error';
+      align-items: center;
+    }
+  }
+
+  .cart-items__checkout-action {
+    margin-top: var(--margin-xl);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cart-items__checkout-cta {
+    width: 100%;
+    padding-block: var(--padding-lg);
+    padding-inline: var(--padding-4xl);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .cart-items__checkout-cta {
+      width: auto;
+      min-width: 260px;
+    }
   }
 {% endstylesheet %}

@@ -80,6 +80,14 @@
   </div>
 </div>
 
+{% if request.page_type == 'cart' %}
+  {% style %}
+    #shopify-section-{{ section.id }} .quick-add__button {
+      display: none;
+    }
+  {% endstyle %}
+{% endif %}
+
 {% schema %}
 {
   "name": "t:names.product_list",
