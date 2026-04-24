@@ -34,28 +34,6 @@
             {% # theme-check-disable UniqueStaticBlockId %}
               {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
             {% # theme-check-enable UniqueStaticBlockId %}
-            {% if request.page_type == 'cart' and product != blank %}
-              {%- assign reco_variant = product.selected_or_first_available_variant -%}
-              {%- assign reco_form_id = 'CartReco-' | append: product.id | append: '-' | append: section.id -%}
-              <product-form-component
-                data-section-id="{{ section.id }}"
-                data-product-id="{{ product.id }}"
-                data-product-url="{{ product.url }}"
-                on:submit="/handleSubmit"
-                class="cart-recommended-form"
-              >
-                {%- form 'product', product, id: reco_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                  <input type="hidden" name="id" ref="variantId" value="{{ reco_variant.id }}">
-                  <input type="hidden" name="quantity" value="1">
-                  {% render 'add-to-cart-button',
-                    add_to_cart_text: 'Aggiungi al carrello',
-                    class: 'button cart-recommended-atc',
-                    can_add_to_cart: reco_variant.available,
-                    product: product
-                  %}
-                {%- endform -%}
-              </product-form-component>
-            {% endif %}
           </div>
 
           {% unless forloop.last %}
@@ -105,23 +83,45 @@
 {% if request.page_type == 'cart' %}
   {% style %}
     #shopify-section-{{ section.id }} .quick-add__button {
-      display: none;
-    }
-    #shopify-section-{{ section.id }} .resource-list__item {
-      display: flex;
-      flex-direction: column;
-    }
-    #shopify-section-{{ section.id }} .resource-list__item > product-card-link,
-    #shopify-section-{{ section.id }} .resource-list__item > product-card {
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-    #shopify-section-{{ section.id }} .cart-recommended-form {
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-    #shopify-section-{{ section.id }} .cart-recommended-atc {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
       width: 100%;
+      height: var(--button-size);
+      opacity: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0;
+      border: none;
+      background: var(--color-primary-button-background);
+      color: var(--color-primary-button-text);
+      backdrop-filter: none;
+    }
+    #shopify-section-{{ section.id }} .quick-add__button .add-to-cart-text {
+      background: transparent;
+      justify-content: center;
+      border-radius: 0;
+    }
+    #shopify-section-{{ section.id }} .quick-add__button .add-to-cart-text__content {
+      grid-template-columns: 1fr;
+    }
+    #shopify-section-{{ section.id }} .quick-add__button .add-to-cart-text__content span span {
+      opacity: 1;
+      translate: 0 0;
+      filter: blur(0);
+    }
+    #shopify-section-{{ section.id }} .quick-add__button .is-visually-hidden-mobile {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+    }
+    #shopify-section-{{ section.id }} .add-to-cart-icon {
+      display: none;
     }
   {% endstyle %}
 {% endif %}
