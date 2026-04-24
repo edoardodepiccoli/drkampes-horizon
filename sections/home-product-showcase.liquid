@@ -179,7 +179,7 @@
 
       <div class="hps__cta-group">
         <button type="submit" name="add" class="hps__atc">AGGIUNGI AL CARRELLO</button>
-        <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+        <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}" data-route-cloned-button>ACQUISTA ORA</button>
       </div>
 
     {% endform %}
@@ -333,7 +333,7 @@
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
   <a class="hps-cta hps-cta--before" href="#acquista" aria-label="SÌ, LE VOGLIO.">S&Igrave;, LE VOGLIO.</a>
-  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">ACQUISTA ORA</button>
+  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}" data-route-cloned-button>ACQUISTA ORA</button>
 </div>
 
 <script>
@@ -486,8 +486,7 @@
             detail: { source: 'hps', data: { sections: data.sections } }
           }));
         }
-        var drawer = document.querySelector('cart-drawer-component');
-        if (drawer) { drawer.open(); } else { goCheckout(); }
+        goCheckout();
       })
       .catch(goCheckout);
   }
