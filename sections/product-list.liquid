@@ -36,6 +36,7 @@
             {% # theme-check-enable UniqueStaticBlockId %}
             {% if request.page_type == 'cart' and product != blank %}
               {%- assign reco_variant = product.selected_or_first_available_variant -%}
+              {%- assign reco_form_id = 'CartReco-' | append: product.id | append: '-' | append: section.id -%}
               <product-form-component
                 data-section-id="{{ section.id }}"
                 data-product-id="{{ product.id }}"
@@ -43,11 +44,7 @@
                 on:submit="/handleSubmit"
                 class="cart-recommended-form"
               >
-                {%- form 'product', product,
-                  id: 'CartReco-' | append: product.id | append: '-' | append: section.id,
-                  novalidate: 'novalidate',
-                  data-type: 'add-to-cart-form'
-                -%}
+                {%- form 'product', product, id: reco_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                   <input type="hidden" name="id" ref="variantId" value="{{ reco_variant.id }}">
                   <input type="hidden" name="quantity" value="1">
                   {% render 'add-to-cart-button',
