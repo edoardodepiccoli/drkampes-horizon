@@ -179,7 +179,7 @@
 
       <div class="hps__cta-group">
         <button type="submit" name="add" class="hps__atc">AGGIUNGI AL CARRELLO</button>
-        <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}" data-route-cloned-button>ACQUISTA ORA</button>
+        <button type="button" class="hps__bn" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
       </div>
 
     {% endform %}
@@ -333,7 +333,7 @@
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
   <a class="hps-cta hps-cta--before" href="#acquista" aria-label="SÌ, LE VOGLIO.">S&Igrave;, LE VOGLIO.</a>
-  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}" data-route-cloned-button>ACQUISTA ORA</button>
+  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">ACQUISTA ORA</button>
 </div>
 
 <script>
@@ -458,42 +458,16 @@
     });
   }
 
-  function goCheckout() {
-    var btn = document.querySelector('#checkout');
-    if (btn) { btn.click(); } else { window.location.href = '/checkout'; }
-  }
-
-  function buyNow() {
-    var cartSectionIds = [];
-    document.querySelectorAll('cart-items-component[data-section-id]').forEach(function (el) {
-      cartSectionIds.push(el.dataset.sectionId);
-    });
-    var body = {
-      id: parseInt(vidInput.value, 10),
-      quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1
-    };
-    if (cartSectionIds.length) body.sections = cartSectionIds.join(',');
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (data.sections) {
-          document.dispatchEvent(new CustomEvent('cart:update', {
-            bubbles: true,
-            detail: { source: 'hps', data: { sections: data.sections } }
-          }));
-        }
-        goCheckout();
-      })
-      .catch(goCheckout);
-  }
-
   var bnBtn = document.getElementById('hps-bn-' + sid);
   if (bnBtn) {
-    bnBtn.addEventListener('click', buyNow);
+    bnBtn.addEventListener('click', function () {
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
+      }).then(function () { window.location.href = '/checkout'; })
+        .catch(function () { window.location.href = '/checkout'; });
+    });
   }
 
   function openPop(id) {
@@ -551,7 +525,14 @@
   }
 
   if (ctaBnBtn) {
-    ctaBnBtn.addEventListener('click', buyNow);
+    ctaBnBtn.addEventListener('click', function () {
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
+      }).then(function () { window.location.href = '/checkout'; })
+        .catch(function () { window.location.href = '/checkout'; });
+    });
   }
 
   if (initV) filterGallery(initV.id);
