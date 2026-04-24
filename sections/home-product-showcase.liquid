@@ -486,7 +486,8 @@
             detail: { source: 'hps', data: { sections: data.sections } }
           }));
         }
-        goCheckout();
+        var drawer = document.querySelector('cart-drawer-component');
+        if (drawer) { drawer.open(); } else { goCheckout(); }
       })
       .catch(goCheckout);
   }
