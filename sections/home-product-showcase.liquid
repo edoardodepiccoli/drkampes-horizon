@@ -458,6 +458,11 @@
     });
   }
 
+  function goCheckout() {
+    var btn = document.querySelector('#checkout');
+    if (btn) { btn.click(); } else { window.location.href = '/checkout'; }
+  }
+
   var bnBtn = document.getElementById('hps-bn-' + sid);
   if (bnBtn) {
     bnBtn.addEventListener('click', function () {
@@ -465,8 +470,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
-      }).then(function () { window.location.href = '/checkout'; })
-        .catch(function () { window.location.href = '/checkout'; });
+      }).then(goCheckout).catch(goCheckout);
     });
   }
 
@@ -530,8 +534,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
-      }).then(function () { window.location.href = '/checkout'; })
-        .catch(function () { window.location.href = '/checkout'; });
+      }).then(goCheckout).catch(goCheckout);
     });
   }
 
