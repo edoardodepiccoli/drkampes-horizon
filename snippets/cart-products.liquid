@@ -345,11 +345,13 @@
         </table>
       </div>
     </form>
-    <div class="cart-items__checkout-action">
-      <a href="{{ routes.checkout_url }}" class="button cart-items__checkout-cta">
-        Acquista ora
-      </a>
-    </div>
+    {% unless drawer_context == 'drawer' %}
+      <div class="cart-items__checkout-action">
+        <a href="{{ routes.checkout_url }}" class="button cart-items__checkout-cta">
+          Acquista ora
+        </a>
+      </div>
+    {% endunless %}
   {%- endif -%}
 </div>
 
