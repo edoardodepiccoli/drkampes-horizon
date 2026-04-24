@@ -107,8 +107,17 @@
     #shopify-section-{{ section.id }} .quick-add__button {
       display: none;
     }
+    #shopify-section-{{ section.id }} .resource-list__item {
+      display: flex;
+      flex-direction: column;
+    }
+    #shopify-section-{{ section.id }} .resource-list__item > product-card-link,
+    #shopify-section-{{ section.id }} .resource-list__item > product-card {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
     #shopify-section-{{ section.id }} .cart-recommended-form {
-      display: block;
+      flex-shrink: 0;
       margin-top: 8px;
     }
     #shopify-section-{{ section.id }} .cart-recommended-atc {
