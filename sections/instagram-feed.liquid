@@ -12,9 +12,11 @@
   }
 
   #shopify-section-{{ section.id }} .instagram-feed__item .instagram-media {
-    margin: 0 auto !important;
+    margin: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
+    /* Override embed.js inline height — forces taller frame so video isn't squashed */
+    height: 900px !important;
   }
 
   #shopify-section-{{ section.id }} .instagram-feed__footer {
