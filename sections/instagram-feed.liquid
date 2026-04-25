@@ -1,53 +1,26 @@
 <style>
-  #shopify-section-{{ section.id }} .instagram-feed__item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.5s ease var(--animate-delay, 0s),
-      transform 0.5s ease var(--animate-delay, 0s);
-  }
-
-  #shopify-section-{{ section.id }} .instagram-feed__item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   #shopify-section-{{ section.id }} .instagram-feed__grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 12px;
-    padding-bottom: 4px;
-  }
-
-  #shopify-section-{{ section.id }} .instagram-feed__grid::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    justify-items: center;
   }
 
   #shopify-section-{{ section.id }} .instagram-feed__item {
-    flex: 0 0 58vw;
-    scroll-snap-align: start;
-    aspect-ratio: 9 / 16;
-    overflow: hidden;
-    border-radius: var(--style-border-radius-card, 8px);
-    position: relative;
-    background-color: rgba(var(--color-foreground-rgb, 0 0 0), 0.05);
+    width: 100%;
+    max-width: 540px;
   }
 
-  #shopify-section-{{ section.id }} .instagram-feed__item iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    pointer-events: auto;
+  #shopify-section-{{ section.id }} .instagram-feed__item .instagram-media {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   #shopify-section-{{ section.id }} .instagram-feed__footer {
     display: flex;
     justify-content: center;
-    margin-top: 32px;
+    margin-top: 40px;
   }
 
   #shopify-section-{{ section.id }} .instagram-feed__cta {
@@ -62,26 +35,14 @@
     flex-shrink: 0;
   }
 
-  @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .instagram-feed__item {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-
   @media screen and (min-width: 750px) {
     #shopify-section-{{ section.id }} .instagram-feed__grid {
-      display: grid;
       grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
-      overflow-x: visible;
-      scroll-snap-type: unset;
-      gap: 16px;
-      padding-bottom: 0;
+      justify-items: stretch;
     }
 
     #shopify-section-{{ section.id }} .instagram-feed__item {
-      flex: none;
+      max-width: 100%;
     }
   }
 </style>
@@ -94,26 +55,21 @@
   {%- if section.blocks.size > 0 -%}
     <div class="instagram-feed__grid">
       {%- for block in section.blocks -%}
-        {%- assign reel_id = block.settings.url | split: '/reel/' | last | split: '/' | first | split: '?' | first -%}
-        {%- if reel_id != blank -%}
-          <div
-            class="instagram-feed__item animate-on-scroll"
-            style="--animate-delay: {{ forloop.index0 | times: 0.07 }}s"
-            {{ block.shopify_attributes }}
-          >
-            <iframe
-              src="https://www.instagram.com/reel/{{ reel_id }}/embed/"
-              loading="lazy"
-              frameborder="0"
-              scrolling="no"
-              allowtransparency="true"
-              allowfullscreen="true"
-              title="Instagram Reel {{ forloop.index }}"
-            ></iframe>
+        {%- assign reel_url = block.settings.url -%}
+        {%- if reel_url != blank -%}
+          <div class="instagram-feed__item" {{ block.shopify_attributes }}>
+            <blockquote
+              class="instagram-media"
+              data-instgrm-permalink="{{ reel_url }}"
+              data-instgrm-version="14"
+              style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:100%; min-width:326px; padding:0; width:100%;"
+            ></blockquote>
           </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
+
+    <script async defer src="//www.instagram.com/embed.js"></script>
   {%- endif -%}
 
   {%- if section.settings.instagram_url != blank -%}
@@ -152,8 +108,8 @@
       "type": "range",
       "id": "columns",
       "label": "Columns (desktop)",
-      "min": 3,
-      "max": 5,
+      "min": 2,
+      "max": 4,
       "step": 1,
       "default": 3
     },
