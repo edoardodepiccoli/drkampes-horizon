@@ -188,50 +188,62 @@
       <ul class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
 
         <li class="hps-usp__item" style="--i:0">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
             <p class="hps-usp__dsc">Aggiungiamo un anno in pi&ugrave; ai 2 anni previsti dalla legge. Valutazione, riparazione o sostituzione gratis.</p>
-            <p class="hps-usp__fine">&bull; GARANZIA COMMERCIALE ESTESA &mdash; ART. 128 C.D.C. + 12 MESI</p>
           </div>
         </li>
 
         <li class="hps-usp__item" style="--i:1">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATIS</p>
             <p class="hps-usp__dsc">Hai la suola consumata? Possiamo sostituirla mantenendo il DPI. Valutazione e manutenzione gratis.</p>
-            <p class="hps-usp__fine">&bull; CERTIFICAZIONE POST-RIPARAZIONE DPI</p>
           </div>
         </li>
 
         <li class="hps-usp__item" style="--i:2">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">CAMBIO TAGLIA GRATIS</p>
             <p class="hps-usp__dsc">Sbagli numero? Nessun problema: ti mando il corriere a ritirare la prima e ti spedisco la seconda, gratis.</p>
-            <p class="hps-usp__fine">&bull; SPEDIZIONE PER CAMBIO TAGLIA GRATIS</p>
           </div>
         </li>
 
         <li class="hps-usp__item" style="--i:3">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
             <p class="hps-usp__dsc">Le provi, le cammini per 14 giorni. Non ti convincono? Rimandamele e ti restituisco tutto.</p>
-            <p class="hps-usp__fine">&bull; DIRITTO AL RECESSO &mdash; NESSUN MODULO, NESSUNA DOMANDA</p>
           </div>
         </li>
 
         <li class="hps-usp__item" style="--i:4">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">SPEDIZIONE 48/72 ORE</p>
             <p class="hps-usp__dsc">Ordini prima delle 18:00, spedisco il giorno dopo. Corriere tracciato con conferma via SMS.</p>
-            <p class="hps-usp__fine">&bull; CORRIERE TRACCIATO &mdash; CONFERMA VIA EMAIL E SMS</p>
           </div>
         </li>
 
         <li class="hps-usp__item" style="--i:5">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
           <div class="hps-usp__body">
             <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
             <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese.</p>
-            <p class="hps-usp__fine">&bull; KLARNA &bull; PAYPAL &mdash; ZERO INTERESSI</p>
           </div>
         </li>
 
@@ -887,7 +899,10 @@
 }
 
 .hps-usp__item {
-  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 18px;
   border-bottom: 1px solid #e0e0e0;
   opacity: 0;
   transform: translateY(10px);
@@ -901,34 +916,40 @@
   transform: none;
 }
 
-.hps-usp__body { width: 100%; }
+.hps-usp__icon-wrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.hps-usp__icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: #2e7d32;
+}
+
+.hps-usp__body { flex: 1; min-width: 0; }
 
 .hps-usp__ttl {
   font-family: var(--font-heading--family, inherit);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 900;
   color: #111;
-  margin: 0 0 5px;
+  margin: 0 0 4px;
   letter-spacing: 0.04em;
   line-height: 1.2;
 }
 
 .hps-usp__dsc {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 8px;
-  line-height: 1.55;
-}
-
-.hps-usp__fine {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #c45a00;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #555;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.55;
 }
 
 /* Popups */
