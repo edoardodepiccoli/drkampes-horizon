@@ -1440,30 +1440,11 @@
             "icon_yHze9L",
             "group_EMfcdP"
           ]
-        },
-        "button_7UPw6B": {
-          "type": "button",
-          "name": "t:names.button",
-          "disabled": true,
-          "settings": {
-            "label": "SCOPRI LA COLLEZIONE",
-            "link": "shopify://collections/trucker-shoes",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100,
-            "animate_on_scroll": false,
-            "animate_delay": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "group_UjAMHr",
-        "group_X9mAjw",
-        "button_7UPw6B"
+        "group_X9mAjw"
       ],
       "name": "icone",
       "settings": {
