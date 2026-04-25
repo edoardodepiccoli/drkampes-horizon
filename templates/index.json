@@ -1433,12 +1433,36 @@
                 "text_wk4EGr",
                 "text_qHRxpH"
               ]
+            },
+            "video_Rmice6": {
+              "type": "video",
+              "name": "t:names.video",
+              "settings": {
+                "source": "uploaded",
+                "video": "shopify://files/videos/scania e pioggia.mp4",
+                "video_autoplay": true,
+                "video_loop": true,
+                "alt": "",
+                "custom_width": 50,
+                "custom_width_mobile": 100,
+                "aspect_ratio": "auto",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "icon_RpU9k7",
             "icon_yHze9L",
-            "group_EMfcdP"
+            "group_EMfcdP",
+            "video_Rmice6"
           ]
         }
       },
