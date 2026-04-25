@@ -1318,7 +1318,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
@@ -1470,133 +1470,6 @@
                 "group_8XJhmm"
               ]
             },
-            "icon_RpU9k7": {
-              "type": "icon",
-              "name": "t:names.icon",
-              "disabled": true,
-              "settings": {
-                "icon": "price_tag",
-                "image_upload": "shopify://shop_images/shield-svgrepo-com.svg",
-                "width": 64,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "icon_yHze9L": {
-              "type": "icon",
-              "disabled": true,
-              "settings": {
-                "icon": "heart",
-                "image_upload": "shopify://shop_images/s3s-icon.avif",
-                "width": 128,
-                "link": "",
-                "open_in_new_tab": false
-              },
-              "blocks": {}
-            },
-            "group_EMfcdP": {
-              "type": "group",
-              "disabled": true,
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "custom",
-                "custom_width": 50,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "animate_on_scroll": false,
-                "animate_delay": 0
-              },
-              "blocks": {
-                "text_wk4EGr": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p><strong>Certificazione S3S Totale</strong></p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground-heading)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "animate_on_scroll": false,
-                    "animate_delay": 0
-                  },
-                  "blocks": {}
-                },
-                "text_qHRxpH": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Puntale in composito (leggero), lamina anti-perforazione, impermeabilità totale e suola anti-scivolo SRC. <strong>La tua sicurezza non è un optional, è il nostro standard minimo. </strong>Conformi alla EN ISO 20345:2022+A1:2024, le Dr Kampes rispettano il massimo standard di protezione oggi disponibile. Mentre altri si adeguano, tu sei già in regola e protetto ai livelli più alti d'Europa. Senza compromessi.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0,
-                    "animate_on_scroll": false,
-                    "animate_delay": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_wk4EGr",
-                "text_qHRxpH"
-              ]
-            },
             "video_Rmice6": {
               "type": "video",
               "name": "t:names.video",
@@ -1606,7 +1479,7 @@
                 "video_autoplay": true,
                 "video_loop": true,
                 "alt": "",
-                "custom_width": 50,
+                "custom_width": 30,
                 "custom_width_mobile": 100,
                 "aspect_ratio": "auto",
                 "border": "none",
@@ -1623,9 +1496,6 @@
           },
           "block_order": [
             "group_4ATfr3",
-            "icon_RpU9k7",
-            "icon_yHze9L",
-            "group_EMfcdP",
             "video_Rmice6"
           ]
         }
