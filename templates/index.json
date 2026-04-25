@@ -3062,7 +3062,7 @@
         "overlay_color": "#67bc7c26",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 100,
+        "padding-block-start": 32,
         "padding-block-end": 100,
         "animate_on_scroll": false,
         "animate_delay": 0
