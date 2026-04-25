@@ -689,6 +689,7 @@
             "image_U8cgdw": {
               "type": "image",
               "name": "t:names.image",
+              "disabled": true,
               "settings": {
                 "image": "shopify://shop_images/fast-wear.jpg",
                 "link": "",
@@ -710,10 +711,34 @@
                 "animate_delay": 200
               },
               "blocks": {}
+            },
+            "video_8YVYym": {
+              "type": "video",
+              "name": "t:names.video",
+              "settings": {
+                "source": "uploaded",
+                "video": "shopify://files/videos/sistema fast wear.mp4",
+                "video_autoplay": false,
+                "video_loop": true,
+                "alt": "",
+                "custom_width": 100,
+                "custom_width_mobile": 100,
+                "aspect_ratio": "auto",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_U8cgdw"
+            "image_U8cgdw",
+            "video_8YVYym"
           ]
         },
         "group_QbHJAq": {
