@@ -1,0 +1,233 @@
+<style>
+  #shopify-section-{{ section.id }} .instagram-feed__item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s ease var(--animate-delay, 0s),
+      transform 0.5s ease var(--animate-delay, 0s);
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding-bottom: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__item {
+    flex: 0 0 58vw;
+    scroll-snap-align: start;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: var(--style-border-radius-card, 8px);
+    position: relative;
+    background-color: rgba(var(--color-foreground-rgb, 0 0 0), 0.05);
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__item iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    pointer-events: auto;
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .instagram-feed__cta svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .instagram-feed__item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .instagram-feed__grid {
+      display: grid;
+      grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+      overflow-x: visible;
+      scroll-snap-type: unset;
+      gap: 16px;
+      padding-bottom: 0;
+    }
+
+    #shopify-section-{{ section.id }} .instagram-feed__item {
+      flex: none;
+    }
+  }
+</style>
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {%- if section.blocks.size > 0 -%}
+    <div class="instagram-feed__grid">
+      {%- for block in section.blocks -%}
+        {%- assign reel_id = block.settings.url | split: '/reel/' | last | split: '/' | first | split: '?' | first -%}
+        {%- if reel_id != blank -%}
+          <div
+            class="instagram-feed__item animate-on-scroll"
+            style="--animate-delay: {{ forloop.index0 | times: 0.07 }}s"
+            {{ block.shopify_attributes }}
+          >
+            <iframe
+              src="https://www.instagram.com/reel/{{ reel_id }}/embed/"
+              loading="lazy"
+              frameborder="0"
+              scrolling="no"
+              allowtransparency="true"
+              allowfullscreen="true"
+              title="Instagram Reel {{ forloop.index }}"
+            ></iframe>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.instagram_url != blank -%}
+    <div class="instagram-feed__footer">
+      <a
+        href="{{ section.settings.instagram_url }}"
+        class="button button--secondary instagram-feed__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Seguici su Instagram
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Instagram Reels",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram profile URL"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Reel",
+      "settings": [
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Reel URL",
+          "info": "Paste the full Instagram reel URL (e.g. https://www.instagram.com/reel/ABC123/)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Reels",
+      "category": "Social",
+      "blocks": [
+        { "type": "reel" },
+        { "type": "reel" },
+        { "type": "reel" }
+      ]
+    }
+  ]
+}
+{% endschema %}
