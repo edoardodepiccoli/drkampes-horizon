@@ -3090,6 +3090,43 @@
         "animate_on_scroll": false,
         "animate_delay": 0
       }
+    },
+    "instagram_feed_BTtzw3": {
+      "type": "instagram-feed",
+      "blocks": {
+        "reel_ibWMVz": {
+          "type": "reel",
+          "settings": {
+            "url": "https://www.instagram.com/reel/DXXA04TFFKf/"
+          }
+        },
+        "reel_wE9EW3": {
+          "type": "reel",
+          "settings": {
+            "url": ""
+          }
+        },
+        "reel_FNUzr3": {
+          "type": "reel",
+          "settings": {
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "reel_ibWMVz",
+        "reel_wE9EW3",
+        "reel_FNUzr3"
+      ],
+      "name": "Instagram Reels",
+      "settings": {
+        "instagram_url": "https://www.instagram.com/drkampes/",
+        "columns": 3,
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
     }
   },
   "order": [
@@ -3108,6 +3145,7 @@
     "section_XLk9Vi",
     "home_product_showcase",
     "section_Cn9bUQ",
-    "section_UFPrC4"
+    "section_UFPrC4",
+    "instagram_feed_BTtzw3"
   ]
 }
