@@ -35,6 +35,17 @@
     {% endif %}
 
     {{ content_for_header }}
+    <style>shopify-forms-embed { display: none !important; }</style>
+    <script>
+      (function () {
+        function removeAll() {
+          document.querySelectorAll('shopify-forms-embed').forEach(function (el) { el.remove(); });
+        }
+        var mo = new MutationObserver(removeAll);
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+        window.addEventListener('load', removeAll);
+      })();
+    </script>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
