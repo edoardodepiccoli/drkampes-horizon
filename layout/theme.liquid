@@ -51,6 +51,7 @@
             hide();
             mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
           });
+          window.addEventListener('load', hide);
         })();
       </script>
     {%- endunless -%}

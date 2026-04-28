@@ -94,6 +94,9 @@
     <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
       <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
       <span class="hps-offer-banner__text">{{ offer_headline }}</span>
+      {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
+        {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
+      {%- endif -%}
     </div>
 
     <div class="hps__trust">
@@ -755,6 +758,17 @@
   line-height: 1.3;
 }
 
+.hps-offer-banner__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  margin-left: auto;
+  border: 1.5px solid #F5C200;
+}
+
 /* Trust strip */
 .hps__trust {
   display: grid;
@@ -1111,12 +1125,12 @@
 .hps-tshirt-img-wrap {
   margin: 0 -20px 14px;
   overflow: hidden;
-  max-height: 200px;
+  aspect-ratio: 1 / 1;
 }
 
 .hps-tshirt-img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -1242,8 +1256,8 @@
   .hps-pop { align-items: center; }
   .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
   .hps-usp { margin: 0; }
-  .hps-tshirt-img-wrap { max-height: 240px; }
-  .hps-tshirt-img { height: 240px; }
+  .hps-tshirt-img-wrap { aspect-ratio: 1 / 1; }
+  .hps-tshirt-img { height: 100%; }
 }
 
 /* Sticky CTA bar */
