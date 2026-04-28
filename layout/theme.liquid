@@ -38,20 +38,20 @@
     {{ content_for_header }}
 
     {%- unless template == 'index' -%}
-      <style>#app-embed-container-887516 { display: none !important; }</style>
+      <style>[id^="app-embed-container"] { display: none !important; }</style>
       <script>
         (function () {
-          var id = 'app-embed-container-887516';
-          function hide() {
-            var el = document.getElementById(id);
-            if (el) el.style.setProperty('display', 'none', 'important');
+          function hideAll() {
+            document.querySelectorAll('[id^="app-embed-container"]').forEach(function (el) {
+              el.style.setProperty('display', 'none', 'important');
+            });
           }
-          var mo = new MutationObserver(hide);
+          var mo = new MutationObserver(hideAll);
           document.addEventListener('DOMContentLoaded', function () {
-            hide();
-            mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+            hideAll();
+            mo.observe(document.body, { childList: true, subtree: true, attributes: true });
           });
-          window.addEventListener('load', hide);
+          window.addEventListener('load', hideAll);
         })();
       </script>
     {%- endunless -%}
