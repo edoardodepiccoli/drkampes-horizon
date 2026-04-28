@@ -486,9 +486,8 @@
     function updateCta() {
       var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
       var bnOffScreen = bnRect && bnRect.bottom < 0;
-      var beforeSection = root.getBoundingClientRect().top > window.innerHeight;
-      var pastFastWear = fastWear ? fastWear.getBoundingClientRect().bottom < 0 : window.scrollY > 80;
-      var newState = bnOffScreen ? 'after' : (beforeSection && pastFastWear ? 'before' : 'hidden');
+      var bnVisible = bnRect && bnRect.top < window.innerHeight && bnRect.bottom > 0;
+      var newState = bnOffScreen ? 'after' : (bnVisible ? 'hidden' : (window.scrollY > 80 ? 'before' : 'hidden'));
       if (newState === ctaState) return;
       ctaState = newState;
 
