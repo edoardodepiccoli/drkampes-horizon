@@ -12,7 +12,13 @@
   "sections": {
     "main": {
       "type": "hps-offerta",
-      "settings": {}
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "tshirt_product": "t-shirt-dr-kampes",
+        "discount_code": "SPEDIZIONEGRATIS",
+        "offer_headline": "T-shirt OMAGGIO + Spedizione GRATIS",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
