@@ -41,17 +41,14 @@
       <style>shopify-forms-embed { display: none !important; }</style>
       <script>
         (function () {
-          function hideAll() {
+          function removeAll() {
             document.querySelectorAll('shopify-forms-embed').forEach(function (el) {
-              el.style.setProperty('display', 'none', 'important');
+              el.remove();
             });
           }
-          var mo = new MutationObserver(hideAll);
-          document.addEventListener('DOMContentLoaded', function () {
-            hideAll();
-            mo.observe(document.body, { childList: true, subtree: true, attributes: true });
-          });
-          window.addEventListener('load', hideAll);
+          var mo = new MutationObserver(removeAll);
+          mo.observe(document.documentElement, { childList: true, subtree: true });
+          window.addEventListener('load', removeAll);
         })();
       </script>
     {%- endunless -%}
