@@ -38,11 +38,11 @@
     {{ content_for_header }}
 
     {%- unless template == 'index' -%}
-      <style>[id^="app-embed-container"] { display: none !important; }</style>
+      <style>shopify-forms-embed { display: none !important; }</style>
       <script>
         (function () {
           function hideAll() {
-            document.querySelectorAll('[id^="app-embed-container"]').forEach(function (el) {
+            document.querySelectorAll('shopify-forms-embed').forEach(function (el) {
               el.style.setProperty('display', 'none', 'important');
             });
           }
