@@ -1,0 +1,1348 @@
+{% assign product = section.settings.product %}
+{% assign tshirt_product = section.settings.tshirt_product %}
+{% assign discount_code = section.settings.discount_code %}
+{% assign offer_headline = section.settings.offer_headline %}
+{% assign first_variant = product.selected_or_first_available_variant %}
+{% if product == blank %}
+  <div style="padding:2rem;text-align:center;color:#888;">Nessun prodotto selezionato</div>
+{% else %}
+
+<div class="hps" id="acquista" data-hps-id="{{ section.id }}">
+
+  <script type="application/json" id="hps-variants-{{ section.id }}">
+    {{ product.variants | json }}
+  </script>
+
+  <script type="application/json" id="hps-vg-{{ section.id }}">
+    {
+      {%- for variant in product.variants -%}
+        {%- unless forloop.first -%},{%- endunless -%}
+        "{{ variant.id }}": [
+          {%- assign vg_files = variant.metafields.custom.variant_gallery.value -%}
+          {%- if vg_files != blank -%}
+            {%- assign first_hit = true -%}
+            {%- for vg_file in vg_files -%}
+              {%- for media in product.media -%}
+                {%- if vg_file.image.src == media.src -%}
+                  {%- unless first_hit -%},{%- endunless -%}
+                  {{ media.id }}
+                  {%- assign first_hit = false -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endif -%}
+        ]
+      {%- endfor -%}
+    }
+  </script>
+
+  {%- if tshirt_product != blank -%}
+    <script type="application/json" id="hps-tshirt-variants-{{ section.id }}">
+      {{ tshirt_product.variants | json }}
+    </script>
+  {%- endif -%}
+
+  <div class="hps__gallery">
+    <div class="hps__main">
+      {%- for media in product.media -%}
+        <div
+          class="hps__slide{% if forloop.first %} hps__slide--active{% endif %}"
+          data-media-id="{{ media.id }}"
+        >
+          {%- if forloop.first -%}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'eager', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+          {%- else -%}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'lazy', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="hps__thumbs">
+      {%- for media in product.media -%}
+        <button
+          type="button"
+          class="hps__thumb{% if forloop.first %} hps__thumb--active{% endif %}"
+          data-index="{{ forloop.index0 }}"
+          data-media-id="{{ media.id }}"
+          aria-label="Immagine {{ forloop.index }}"
+        >{{ media | image_url: width: 120 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}</button>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="hps__details">
+
+    <div class="hps__head">
+      <h2 class="hps__title">{{ product.title }}</h2>
+      <p class="hps__sub">Antinfortunistiche S3S</p>
+    </div>
+
+    <div class="hps__social">
+      <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="hps__review-lbl">4.9 &bull; <strong>127 clienti soddisfatti</strong></span>
+    </div>
+
+    <div class="hps__price-wrap">
+      <p class="hps__price">
+        <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
+        <span class="hps__price-tax">IVA INCLUSA</span>
+      </p>
+      <p class="hps__installment">oppure <strong>&euro;63&times;3</strong> a Rate con Klarna e PayPal</p>
+    </div>
+
+    <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
+      <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
+      <span class="hps-offer-banner__text">{{ offer_headline }}</span>
+    </div>
+
+    <div class="hps__trust">
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>3 anni di<br>garanzia</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        <span>Reso e Cambio<br>taglia Gratis</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Spedizione<br>48/72 ore</span>
+      </div>
+    </div>
+
+    {%- assign form_id = 'hps-form-' | append: section.id -%}
+    {% form 'product', product, id: form_id, class: 'hps__form' %}
+      <input type="hidden" name="id" id="hps-vid-{{ section.id }}" value="{{ first_variant.id }}">
+
+      {%- assign color_option = nil -%}
+      {%- assign color_pos = 0 -%}
+      {%- for option in product.options_with_values -%}
+        {%- assign n = option.name | downcase -%}
+        {%- if n == 'colore' or n == 'color' or n == 'colour' -%}
+          {%- assign color_option = option -%}
+          {%- assign color_pos = option.position | minus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if color_option != nil -%}
+        <div class="hps__opt">
+          <p class="hps__opt-lbl">Colore: <span id="hps-cval-{{ section.id }}">{{ color_option.selected_value }}</span></p>
+          <div class="hps__swatches">
+            {%- for value in color_option.values -%}
+              <button
+                type="button"
+                class="hps__swatch{% if color_option.selected_value == value %} hps__swatch--on{% endif %}"
+                data-color="{{ value }}"
+                data-pos="{{ color_pos }}"
+                title="{{ value }}"
+                aria-label="{{ value }}"
+                {%- assign sw = value.swatch -%}
+                {%- assign val_h = value | handleize -%}
+                style="{% if sw.color %}background:rgb({{ sw.color.rgb }});{% elsif sw.image %}background:url('{{ sw.image | image_url: width: 80 }}') center/cover no-repeat;{% elsif val_h == 'nero' %}background:#1a1a1a;{% elsif val_h == 'testa-di-moro' or val_h == 'testa-moro' %}background:#3d1a0a;{% elsif val_h == 'marrone' or val_h == 'brown' %}background:#5c3317;{% else %}background:#888;{% endif %}"
+              ></button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign size_option = nil -%}
+      {%- assign size_pos = 1 -%}
+      {%- for option in product.options_with_values -%}
+        {%- assign n = option.name | downcase -%}
+        {%- if n == 'taglia' or n == 'size' or n == 'misura' -%}
+          {%- assign size_option = option -%}
+          {%- assign size_pos = option.position | minus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if size_option == nil -%}
+        {%- for option in product.options_with_values -%}
+          {%- if option.position != color_option.position -%}
+            {%- assign size_option = option -%}
+            {%- assign size_pos = option.position | minus: 1 -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- if size_option != nil -%}
+        <div class="hps__opt">
+          <div class="hps__size-row">
+            <p class="hps__opt-lbl">Taglia: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
+            <div class="hps__info-btns">
+              <button type="button" class="hps__info-btn" id="hps-tech-{{ section.id }}">Schede tecniche</button>
+              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Guida taglie</button>
+            </div>
+          </div>
+          <select class="hps__select" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" aria-label="Taglia">
+            {%- for value in size_option.values -%}
+              <option value="{{ value }}"{% if size_option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+
+<div class="hps__qty-row">
+        <span class="hps__qty-lbl">Quantit&agrave;</span>
+        <div class="hps__qty">
+          <button type="button" class="hps__qty-btn" data-d="-1">&#8722;</button>
+          <input type="number" name="quantity" value="1" min="1" id="hps-qty-{{ section.id }}" class="hps__qty-n" aria-label="Quantità">
+          <button type="button" class="hps__qty-btn" data-d="1">&#43;</button>
+        </div>
+      </div>
+
+      <div class="hps__cta-group">
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+        <p class="hps__offer-micro">Ricevi la t-shirt omaggio e la spedizione gratuita</p>
+      </div>
+
+    {% endform %}
+
+    <div class="hps-usp" id="hps-usp-wrap-{{ section.id }}">
+      <ul class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
+
+        <li class="hps-usp__item" style="--i:0">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
+            <p class="hps-usp__dsc">Aggiungiamo un anno in pi&ugrave; ai 2 anni previsti dalla legge. Valutazione, riparazione o sostituzione gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:1">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATIS</p>
+            <p class="hps-usp__dsc">Hai la suola consumata? Possiamo sostituirla mantenendo il DPI. Valutazione e manutenzione gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:2">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">CAMBIO TAGLIA GRATIS</p>
+            <p class="hps-usp__dsc">Sbagli numero? Nessun problema: ti mando il corriere a ritirare la prima e ti spedisco la seconda, gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:3">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
+            <p class="hps-usp__dsc">Le provi, le cammini per 14 giorni. Non ti convincono? Rimandamele e ti restituisco tutto.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:4">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">SPEDIZIONE 48/72 ORE</p>
+            <p class="hps-usp__dsc">Ordini prima delle 18:00, spedisco il giorno dopo. Corriere tracciato con conferma via SMS.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:5">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
+            <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-tshirt-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-tshirt-title-{{ section.id }}" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box hps-pop__box--offer">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <div class="hps-offer-badge">
+      <span aria-hidden="true">🎁</span> T-shirt OMAGGIO
+    </div>
+    <h3 class="hps-pop__title" id="hps-tshirt-title-{{ section.id }}">Scegli la taglia della tua T-shirt</h3>
+    {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
+      <div class="hps-tshirt-img-wrap">
+        {{ tshirt_product.featured_image | image_url: width: 480 | image_tag: class: 'hps-tshirt-img', loading: 'lazy', alt: tshirt_product.title }}
+      </div>
+    {%- endif -%}
+    <div class="hps-pop__body">
+      {%- if tshirt_product != blank -%}
+        <p class="hps-tshirt-product-name">{{ tshirt_product.title }}</p>
+        <select id="hps-tshirt-sel-{{ section.id }}" class="hps__select hps-tshirt-sel" aria-label="Taglia T-shirt">
+          {%- for variant in tshirt_product.variants -%}
+            <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>
+              {{ variant.title }}{% unless variant.available %} — Esaurito{% endunless %}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        <p style="color:#888;font-size:0.85rem;">Nessuna t-shirt configurata.</p>
+      {%- endif -%}
+    </div>
+    <button type="button" id="hps-confirm-{{ section.id }}" class="hps__atc hps__atc--confirm">
+      Conferma e Vai al Checkout
+    </button>
+    <p class="hps__micro hps-tshirt-disclaimer">
+      Entrambi i prodotti vengono aggiunti al carrello. Il codice spedizione gratuita viene applicato automaticamente al checkout.
+    </p>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-tech-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Documentazione Tecnica</h3>
+    <div class="hps-pop__body">
+      <div class="hps-doc-section">
+        <p class="hps-doc-section__label">Documenti comuni</p>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DPI-DRKAMPES-CERTIFICAZIONE-S3S.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Certificazione DPI S3S</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/NOTA-INFORMATIVA-DRKAMPES.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Nota informativa</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+      </div>
+      <div class="hps-doc-section">
+        <p class="hps-doc-section__label">Schede tecniche per modello</p>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Dr Kampes Nere</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+        <a class="hps-doc-row" href="https://cdn.shopify.com/s/files/1/0960/9527/3303/files/DR_KAMPES_-_SCHEDA_TECNICA-20260420-BLACK.pdf?v=1776677825" target="_blank" rel="noopener">
+          <span class="hps-doc-row__icon">&#8595;</span>
+          <span class="hps-doc-row__name">Dr Kampes Testa di Moro</span>
+          <span class="hps-doc-row__type">PDF</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hps-pop" id="hps-pop-size-{{ section.id }}" role="dialog" aria-modal="true" hidden>
+  <div class="hps-pop__bg" data-pop-close></div>
+  <div class="hps-pop__box">
+    <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
+    <h3 class="hps-pop__title">Guida alla Taglia</h3>
+    <div class="hps-pop__body">
+      <p>Misura la lunghezza interna della soletta e confronta con la tabella.</p>
+      <table class="hps-stbl">
+        <thead><tr><th>IT</th><th>Cm Soletta Interna</th></tr></thead>
+        <tbody>
+          <tr><td>37</td><td>24,5 cm</td></tr>
+          <tr><td>38</td><td>25 cm</td></tr>
+          <tr><td>39</td><td>25,5 cm</td></tr>
+          <tr><td>40</td><td>26,5 cm</td></tr>
+          <tr><td>41</td><td>27,5 cm</td></tr>
+          <tr><td>42</td><td>28 cm</td></tr>
+          <tr><td>43</td><td>28,5 cm</td></tr>
+          <tr><td>44</td><td>29 cm</td></tr>
+          <tr><td>45</td><td>30 cm</td></tr>
+          <tr><td>46</td><td>30,5 cm</td></tr>
+          <tr><td>47</td><td>31 cm</td></tr>
+          <tr><td>48</td><td>32 cm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
+  <a class="hps-cta hps-cta--before" href="#acquista">SCOPRI L'OFFERTA</a>
+  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">ACQUISTA ORA</button>
+</div>
+
+<script>
+(function () {
+  var sid = '{{ section.id }}';
+  var discountCode = {{ section.settings.discount_code | json }};
+  var root = document.querySelector('[data-hps-id="' + sid + '"]');
+  if (!root) return;
+
+  var allVariants = JSON.parse(document.getElementById('hps-variants-' + sid).textContent);
+  var vgMap       = JSON.parse(document.getElementById('hps-vg-' + sid).textContent);
+
+  var slides = Array.from(root.querySelectorAll('.hps__slide'));
+  var thumbs = Array.from(root.querySelectorAll('.hps__thumb'));
+  var vidInput = document.getElementById('hps-vid-' + sid);
+
+  var initV = allVariants.find(function (v) { return v.available; }) || allVariants[0];
+  var selOpts = initV ? initV.options.slice() : [];
+
+  var mainEl   = root.querySelector('.hps__main');
+  var thumbsEl = root.querySelector('.hps__thumbs');
+
+  function showByMediaId(mediaId) {
+    slides.forEach(function (s) { s.classList.toggle('hps__slide--active', s.dataset.mediaId === mediaId); });
+    thumbs.forEach(function (t) { t.classList.toggle('hps__thumb--active', t.dataset.mediaId === mediaId); });
+  }
+
+  function filterGallery(variantId) {
+    var ids = vgMap[String(variantId)];
+
+    if (!ids || ids.length === 0) {
+      slides.forEach(function (s) { s.style.display = ''; });
+      thumbs.forEach(function (t) { t.style.display = ''; });
+      slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
+      thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
+      if (slides.length) showByMediaId(slides[0].dataset.mediaId);
+      return;
+    }
+
+    slides.forEach(function (s) { s.style.display = 'none'; });
+    thumbs.forEach(function (t) { t.style.display = 'none'; });
+
+    ids.forEach(function (id) {
+      var strId = String(id);
+      var slide = mainEl.querySelector('.hps__slide[data-media-id="' + strId + '"]');
+      var thumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + strId + '"]');
+      if (slide) { slide.style.display = ''; mainEl.appendChild(slide); }
+      if (thumb) { thumb.style.display = ''; thumbsEl.appendChild(thumb); }
+    });
+
+    slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
+    thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
+
+    if (ids.length) showByMediaId(String(ids[0]));
+  }
+
+  thumbs.forEach(function (btn) {
+    btn.addEventListener('click', function () { showByMediaId(btn.dataset.mediaId); });
+  });
+
+  function syncVariant() {
+    var match = allVariants.find(function (v) {
+      return v.options.every(function (o, i) { return o === selOpts[i]; });
+    }) || allVariants.find(function (v) { return v.options[0] === selOpts[0]; });
+    if (!match) return;
+    vidInput.value = match.id;
+    filterGallery(match.id);
+  }
+
+  var swatches  = root.querySelectorAll('.hps__swatch');
+  var cValEl    = document.getElementById('hps-cval-' + sid);
+
+  swatches.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pos = parseInt(btn.dataset.pos, 10);
+      selOpts[pos] = btn.dataset.color;
+      swatches.forEach(function (s) { s.classList.remove('hps__swatch--on'); });
+      btn.classList.add('hps__swatch--on');
+      if (cValEl) cValEl.textContent = btn.dataset.color;
+      syncVariant();
+    });
+  });
+
+  var sSel  = document.getElementById('hps-ssel-' + sid);
+  var sValEl = document.getElementById('hps-sval-' + sid);
+
+  if (sSel) {
+    sSel.addEventListener('change', function () {
+      var pos = parseInt(sSel.dataset.pos, 10);
+      selOpts[pos] = sSel.value;
+      if (sValEl) sValEl.textContent = sSel.value;
+      syncVariant();
+    });
+  }
+
+  var qtyEl = document.getElementById('hps-qty-' + sid);
+  root.querySelectorAll('.hps__qty-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      qtyEl.value = Math.max(1, (parseInt(qtyEl.value, 10) || 1) + parseInt(btn.dataset.d, 10));
+    });
+  });
+
+  var bnBtn = document.getElementById('hps-bn-' + sid);
+  if (bnBtn) {
+    bnBtn.addEventListener('click', function () { openPop('hps-pop-tshirt-' + sid); });
+  }
+
+  function openPop(id) {
+    var el = document.getElementById(id);
+    if (el) { el.hidden = false; document.body.style.overflow = 'hidden'; }
+  }
+  function closePops() {
+    document.querySelectorAll('.hps-pop:not([hidden])').forEach(function (p) { p.hidden = true; });
+    document.body.style.overflow = '';
+  }
+
+  var techBtn = document.getElementById('hps-tech-' + sid);
+  var sizeBtn = document.getElementById('hps-size-' + sid);
+  if (techBtn) techBtn.addEventListener('click', function () { openPop('hps-pop-tech-' + sid); });
+  if (sizeBtn) sizeBtn.addEventListener('click', function () { openPop('hps-pop-size-' + sid); });
+
+  document.querySelectorAll('[data-pop-close]').forEach(function (el) {
+    el.addEventListener('click', closePops);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
+
+  var tshirtSel  = document.getElementById('hps-tshirt-sel-' + sid);
+  var confirmBtn = document.getElementById('hps-confirm-' + sid);
+
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', function () {
+      var shoeId   = parseInt(vidInput.value, 10);
+      var tshirtId = parseInt(tshirtSel ? tshirtSel.value : '0', 10);
+      var qty      = parseInt(qtyEl ? qtyEl.value : '1', 10) || 1;
+
+      if (!shoeId || !tshirtId) {
+        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+        return;
+      }
+
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Aggiunta in corso...';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [
+            { id: shoeId,   quantity: qty },
+            { id: tshirtId, quantity: 1   }
+          ]
+        })
+      }).then(function () {
+        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+      }).catch(function () {
+        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+      });
+    });
+  }
+
+  var ctaBar = document.getElementById('hps-cta-bar-{{ section.id }}');
+  var stickyCta = ctaBar ? ctaBar.querySelector('.hps-cta--before') : null;
+  var ctaBnBtn = document.getElementById('hps-cta-bn-{{ section.id }}');
+
+  if (ctaBar) {
+    var ctaState = 'hidden';
+
+    function updateCta() {
+      var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
+      var bnOffScreen = bnRect && bnRect.bottom < 0;
+      var bnVisible = bnRect && bnRect.top < window.innerHeight && bnRect.bottom > 0;
+      var newState = bnOffScreen ? 'after' : (bnVisible ? 'hidden' : (window.scrollY > 80 ? 'before' : 'hidden'));
+      if (newState === ctaState) return;
+      ctaState = newState;
+
+      ctaBar.style.transition = 'none';
+      ctaBar.classList.remove('hps-cta-bar--visible');
+      ctaBar.classList.toggle('hps-cta-bar--past', newState === 'after');
+      ctaBar.offsetHeight;
+      ctaBar.style.transition = '';
+      if (newState !== 'hidden') ctaBar.classList.add('hps-cta-bar--visible');
+    }
+
+    window.addEventListener('scroll', updateCta, { passive: true });
+
+    if (stickyCta) {
+      stickyCta.addEventListener('click', function (e) {
+        e.preventDefault();
+        root.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+
+  if (ctaBnBtn) {
+    ctaBnBtn.addEventListener('click', function () { openPop('hps-pop-tshirt-' + sid); });
+  }
+
+  if (initV) filterGallery(initV.id);
+
+  var uspWrap = document.getElementById('hps-usp-wrap-' + sid);
+  if (uspWrap) {
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) {
+        uspWrap.classList.add('hps-usp--in');
+        obs.disconnect();
+      }
+    }, { threshold: 0.15 }).observe(uspWrap);
+  }
+})();
+</script>
+
+{% endif %}
+
+{% stylesheet %}
+
+.hps {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Gallery */
+.hps__gallery {
+  flex: 0 0 50svh;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.hps__main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hps__slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.hps__slide--active { display: block; }
+
+.hps__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.hps__thumbs {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.hps__thumbs::-webkit-scrollbar { display: none; }
+
+.hps__thumb {
+  flex: 0 0 56px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.hps__thumb--active { border-color: #111; }
+
+.hps__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Details */
+.hps__details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 24px;
+}
+
+.hps__head { display: flex; flex-direction: column; gap: 2px; }
+
+.hps__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  color: #111;
+}
+
+.hps__sub {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+/* Social proof */
+.hps__social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -10px 0 0;
+}
+
+.hps__stars {
+  color: #f5a623;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.hps__review-lbl {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Price block */
+.hps__price-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+}
+
+.hps__price {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.hps__price-main {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1;
+}
+.hps__price-tax {
+  font-size: 0.68rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.hps__installment {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+.hps__installment strong { color: #111; }
+
+/* Offer banner */
+.hps-offer-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8e1;
+  border: 1.5px solid #F5C200;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.hps-offer-banner__icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.hps-offer-banner__text {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #7a5800;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* Trust strip */
+.hps__trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.hps__trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.hps__trust-ico {
+  width: 22px;
+  height: 22px;
+  color: #2e7d32;
+  flex-shrink: 0;
+}
+
+/* Form */
+.hps__form { display: flex; flex-direction: column; gap: 10px; }
+
+.hps__opt { display: flex; flex-direction: column; gap: 6px; }
+
+.hps__opt-lbl {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111;
+  margin: 0;
+}
+
+.hps__swatches { display: flex; gap: 10px; }
+
+.hps__swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.15s;
+}
+.hps__swatch--on { outline-color: #111; }
+
+.hps__size-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.hps__info-btns { display: flex; gap: 6px; flex-shrink: 0; }
+
+.hps__info-btn {
+  font-size: 0.68rem;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: 1.3;
+}
+.hps__info-btn:active { background: #e0e0e0; }
+
+.hps__select {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  color: #111;
+  appearance: auto;
+}
+
+/* Qty row */
+.hps__qty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hps__qty-lbl {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.hps__qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hps__qty-btn {
+  width: 34px;
+  min-height: 40px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hps__qty-btn:active { background: #f0f0f0; }
+
+.hps__qty-n {
+  width: 38px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  font-size: 0.9rem;
+  padding: 0;
+  height: 40px;
+  -moz-appearance: textfield;
+  font-family: inherit;
+  color: #111;
+}
+.hps__qty-n::-webkit-inner-spin-button,
+.hps__qty-n::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+/* CTA group */
+.hps__cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hps__atc {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: inherit;
+  line-height: 1;
+  transition: background 0.15s;
+}
+.hps__atc:active { background: #1b5e20; }
+
+.hps__bn {
+  width: 100%;
+  height: 52px;
+  background: #F5C200;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.hps__bn:active { background: #d9ac00; }
+
+/* Primary single CTA variant */
+.hps__bn--primary {
+  height: 56px;
+  font-size: 0.9rem;
+}
+
+.hps__offer-micro {
+  font-size: 0.72rem;
+  color: #555;
+  margin: -2px 0 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.hps__micro {
+  font-size: 0.75rem;
+  color: #333;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* USP list */
+.hps-usp {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hps-usp__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hps-usp__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e0e0e0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 0.07s);
+}
+.hps-usp__item:last-child { border-bottom: none; }
+.hps-usp--in .hps-usp__item {
+  opacity: 1;
+  transform: none;
+}
+
+.hps-usp__icon-wrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.hps-usp__icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: #2e7d32;
+}
+
+.hps-usp__body { flex: 1; min-width: 0; }
+
+.hps-usp__ttl {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 0.84rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 4px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.hps-usp__dsc {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Popups */
+.hps-pop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hps-pop[hidden] { display: none; }
+
+.hps-pop__bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  cursor: pointer;
+}
+
+.hps-pop__box {
+  position: relative;
+  background: #fff;
+  border-radius: 14px 14px 0 0;
+  width: 100%;
+  max-height: 74svh;
+  overflow-y: auto;
+  padding: 22px 20px 36px;
+}
+
+.hps-pop__x {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  padding: 0 4px;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.hps-pop__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+  padding-right: 28px;
+  color: #111;
+}
+
+.hps-pop__body p { font-size: 0.85rem; margin: 0 0 12px; color: #444; }
+
+/* Offer badge inside popup */
+.hps-offer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff8e1;
+  border: 1.5px solid #F5C200;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #7a5800;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+/* T-shirt popup specifics */
+.hps-pop__box--offer { padding-bottom: 44px; }
+
+.hps-tshirt-img-wrap {
+  margin: 0 -20px 14px;
+  overflow: hidden;
+  max-height: 200px;
+}
+
+.hps-tshirt-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.hps-tshirt-product-name {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+.hps-tshirt-sel { margin-bottom: 16px; }
+
+.hps__atc--confirm {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.hps__atc--confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hps-tshirt-disclaimer {
+  font-size: 0.7rem;
+  color: #888;
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.hps-doc-section { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.hps-doc-section:last-child { margin-bottom: 0; }
+
+.hps-doc-section__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin: 0 0 2px;
+}
+
+.hps-doc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
+  transition: background 0.15s;
+}
+.hps-doc-row:hover { background: #eee; color: #111; text-decoration: none; }
+
+.hps-doc-row__icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.hps-doc-row__name {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.hps-doc-row__type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+.hps-stbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
+.hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
+
+/* Desktop */
+@media screen and (min-width: 750px) {
+  .hps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    overflow: visible;
+    padding: 40px max(24px, calc((100% - 1200px) / 2));
+    gap: 48px;
+    align-items: start;
+  }
+  .hps__gallery {
+    flex-direction: column;
+    height: auto;
+    position: sticky;
+    top: var(--sticky-header-offset, 0px);
+    min-width: 0;
+  }
+  .hps__main {
+    flex: 1 1 auto;
+    height: min(640px, 74svh);
+  }
+  .hps__thumbs {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: none;
+    padding: 8px 0 0;
+  }
+  .hps__details {
+    overflow-y: visible;
+    padding: 0;
+    gap: 14px;
+    min-height: unset;
+    min-width: 0;
+  }
+  .hps__title { font-size: 1.2rem; }
+  .hps__price-main { font-size: 2rem; }
+  .hps-pop { align-items: center; }
+  .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
+  .hps-usp { margin: 0; }
+  .hps-tshirt-img-wrap { max-height: 240px; }
+  .hps-tshirt-img { height: 240px; }
+}
+
+/* Sticky CTA bar */
+.hps-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: stretch;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: #111;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.hps-cta-bar--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.hps-cta-bar .hps-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  text-decoration: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hps-cta-bar .hps-cta--before {
+  background: var(--color-primary-button-background);
+  color: var(--color-primary-button-text, #fff) !important;
+  font-size: var(--font-paragraph--size);
+  font-weight: var(--font-accent--weight, 400);
+  text-transform: var(--button-text-case-primary, uppercase);
+  font-family: var(--button-font-family-primary);
+}
+.hps-cta-bar .hps-cta--before:hover { background: var(--color-primary-button-hover-background); color: var(--color-primary-button-hover-text, #fff) !important; text-decoration: none; }
+.hps-cta-bar .hps-cta--before:active { background: var(--color-primary-button-hover-background); }
+
+.hps-cta-bar .hps-cta--after {
+  display: none;
+  background: #F5C200;
+  color: #111 !important;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+.hps-cta-bar .hps-cta--after:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
+.hps-cta-bar .hps-cta--after:active { background: #d9ac00; }
+
+.hps-cta-bar--past .hps-cta--before { display: none; }
+.hps-cta-bar--past .hps-cta--after { display: flex; }
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "hps-offerta",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Prodotto principale (Scarpa)"
+    },
+    {
+      "type": "product",
+      "id": "tshirt_product",
+      "label": "Prodotto omaggio (T-shirt)"
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Codice sconto spedizione gratuita",
+      "default": "SPEDIZIONEGRATUITA"
+    },
+    {
+      "type": "text",
+      "id": "offer_headline",
+      "label": "Titolo offerta",
+      "default": "T-shirt OMAGGIO + Spedizione GRATIS"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [{ "name": "Offerta Landing" }]
+}
+{% endschema %}

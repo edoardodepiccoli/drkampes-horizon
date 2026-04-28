@@ -11,27 +11,11 @@
   "layout": "lp",
   "sections": {
     "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "home_product_showcase_NJrpNf": {
-      "type": "home-product-showcase",
-      "name": "Home Product Showcase",
-      "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
-        "color_scheme": ""
-      }
+      "type": "hps-offerta",
+      "settings": {}
     }
   },
   "order": [
-    "main",
-    "home_product_showcase_NJrpNf"
+    "main"
   ]
 }
