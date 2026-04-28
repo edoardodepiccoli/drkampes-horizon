@@ -379,6 +379,15 @@
 (function () {
   var sid = '{{ section.id }}';
   var discountCode = {{ section.settings.discount_code | json }};
+  var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
+
+  function buildCheckoutUrl() {
+    var base = '/checkout?discount=' + encodeURIComponent(discountCode);
+    if (bundleDiscountCode) {
+      return '/discount/' + encodeURIComponent(bundleDiscountCode) + '?redirect=' + encodeURIComponent(base);
+    }
+    return base;
+  }
   var root = document.querySelector('[data-hps-id="' + sid + '"]');
   if (!root) return;
 
@@ -509,7 +518,7 @@
       var qty      = parseInt(qtyEl ? qtyEl.value : '1', 10) || 1;
 
       if (!shoeId || !tshirtId) {
-        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+        window.location.href = buildCheckoutUrl();
         return;
       }
 
@@ -526,9 +535,9 @@
           ]
         })
       }).then(function () {
-        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+        window.location.href = buildCheckoutUrl();
       }).catch(function () {
-        window.location.href = '/checkout?discount=' + encodeURIComponent(discountCode);
+        window.location.href = buildCheckoutUrl();
       });
     });
   }
@@ -1343,6 +1352,12 @@
       "id": "discount_code",
       "label": "Codice sconto spedizione gratuita",
       "default": "SPEDIZIONEGRATUITA"
+    },
+    {
+      "type": "text",
+      "id": "bundle_discount_code",
+      "label": "Codice sconto T-shirt omaggio",
+      "default": "BUNDLETSHIRT"
     },
     {
       "type": "text",
