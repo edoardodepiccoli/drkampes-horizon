@@ -1394,14 +1394,13 @@
 
 /* Size pills */
 .hps__pills {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
   gap: 8px;
 }
 
 .hps__pill {
-  flex: 1 1 0;
-  min-width: 44px;
+  min-width: 0;
   height: 40px;
   padding: 0 4px;
   border: 1.5px solid #ccc;
@@ -1514,7 +1513,6 @@
   }
   .hps__title { font-size: 1.2rem; }
   .hps__price-main { font-size: 2rem; }
-  .hps__pill { flex: 0 1 auto; padding: 0 12px; }
   .hps-pop { align-items: center; }
   .hps-pop__box { border-radius: 12px; width: 480px; max-height: calc(100vh - 40px); }
   .hps-usp { margin: 0; }
