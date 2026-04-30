@@ -49,6 +49,11 @@
           <img src="{{ section.settings.custom_first_image_url }}" class="hps__img" loading="eager" alt="{{ product.title }}">
         </div>
       {%- endif -%}
+      {%- if section.settings.custom_first_image_url_2 != blank -%}
+        <div class="hps__slide" data-media-id="__custom2__" style="display:none">
+          <img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__img" loading="eager" alt="{{ product.title }}">
+        </div>
+      {%- endif -%}
       {%- for media in product.media -%}
         <div
           class="hps__slide{% if forloop.first %} hps__slide--active{% endif %}"
@@ -72,6 +77,15 @@
           aria-label="Immagine principale"
           style="display:none"
         ><img src="{{ section.settings.custom_first_image_url }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
+      {%- endif -%}
+      {%- if section.settings.custom_first_image_url_2 != blank -%}
+        <button
+          type="button"
+          class="hps__thumb"
+          data-media-id="__custom2__"
+          aria-label="Immagine principale"
+          style="display:none"
+        ><img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
       {%- endif -%}
       {%- for media in product.media -%}
         <button
@@ -394,8 +408,10 @@
   var sid = '{{ section.id }}';
   var discountCode = {{ section.settings.discount_code | json }};
   var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
-  var customHeroUrl = {{ section.settings.custom_first_image_url | json }};
-  var customHeroColorKey = {{ section.settings.custom_first_image_color | handleize | json }};
+  var customHeroSlots = [
+    { id: '__custom__',  url: {{ section.settings.custom_first_image_url | json }},   colorKey: {{ section.settings.custom_first_image_color | handleize | json }} },
+    { id: '__custom2__', url: {{ section.settings.custom_first_image_url_2 | json }}, colorKey: {{ section.settings.custom_first_image_color_2 | handleize | json }} }
+  ].filter(function (s) { return s.url && s.colorKey; });
 
   function buildCheckoutUrl() {
     var base = '/checkout?discount=' + encodeURIComponent(discountCode);
@@ -426,15 +442,17 @@
   }
 
   function filterGallery(variantId) {
-    var CUSTOM = '__custom__';
+    var slotIds = customHeroSlots.map(function (s) { return s.id; });
+    function isCustom(el) { return slotIds.indexOf(el.dataset.mediaId) !== -1; }
+
     var ids = vgMap[String(variantId)];
 
     if (!ids || ids.length === 0) {
-      slides.forEach(function (s) { if (s.dataset.mediaId !== CUSTOM) s.style.display = ''; });
-      thumbs.forEach(function (t) { if (t.dataset.mediaId !== CUSTOM) t.style.display = ''; });
+      slides.forEach(function (s) { if (!isCustom(s)) s.style.display = ''; });
+      thumbs.forEach(function (t) { if (!isCustom(t)) t.style.display = ''; });
     } else {
-      slides.forEach(function (s) { if (s.dataset.mediaId !== CUSTOM) s.style.display = 'none'; });
-      thumbs.forEach(function (t) { if (t.dataset.mediaId !== CUSTOM) t.style.display = 'none'; });
+      slides.forEach(function (s) { if (!isCustom(s)) s.style.display = 'none'; });
+      thumbs.forEach(function (t) { if (!isCustom(t)) t.style.display = 'none'; });
 
       ids.forEach(function (id) {
         var strId = String(id);
@@ -445,19 +463,20 @@
       });
     }
 
-    var customSlide = mainEl.querySelector('.hps__slide[data-media-id="' + CUSTOM + '"]');
-    var customThumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + CUSTOM + '"]');
-    var showCustom = false;
-    if (customSlide && customHeroUrl && customHeroColorKey) {
-      var v = allVariants.find(function (fv) { return fv.id === variantId; });
-      if (v && swatches.length) {
-        var cp = parseInt(swatches[0].dataset.pos, 10);
-        var vc = (v.options[cp] || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        showCustom = vc === customHeroColorKey;
-      }
+    var v = allVariants.find(function (fv) { return fv.id === variantId; });
+    var vc = '';
+    if (v && swatches.length) {
+      var cp = parseInt(swatches[0].dataset.pos, 10);
+      vc = (v.options[cp] || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
-    if (customSlide) {
-      if (showCustom) {
+
+    var activeSlot = null;
+    customHeroSlots.forEach(function (slot) {
+      var customSlide = mainEl.querySelector('.hps__slide[data-media-id="' + slot.id + '"]');
+      var customThumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + slot.id + '"]');
+      if (!customSlide) return;
+      if (vc && vc === slot.colorKey) {
+        activeSlot = slot;
         customSlide.style.display = '';
         mainEl.insertBefore(customSlide, mainEl.firstChild);
         if (customThumb) { customThumb.style.display = ''; thumbsEl.insertBefore(customThumb, thumbsEl.firstChild); }
@@ -465,13 +484,13 @@
         customSlide.style.display = 'none';
         if (customThumb) customThumb.style.display = 'none';
       }
-    }
+    });
 
     slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
     thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
 
-    if (showCustom) {
-      showByMediaId(CUSTOM);
+    if (activeSlot) {
+      showByMediaId(activeSlot.id);
     } else if (ids && ids.length) {
       showByMediaId(String(ids[0]));
     } else {
@@ -1419,6 +1438,18 @@
       "id": "custom_first_image_color",
       "label": "Colore prima immagine (es. Nero)",
       "default": "Nero"
+    },
+    {
+      "type": "text",
+      "id": "custom_first_image_url_2",
+      "label": "URL prima immagine — colore 2",
+      "default": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/immagine_offerta_bundletshirt_testa_di_moro.png?v=1777548922"
+    },
+    {
+      "type": "text",
+      "id": "custom_first_image_color_2",
+      "label": "Colore prima immagine 2 (es. Testa di Moro)",
+      "default": "Testa di Moro"
     },
     {
       "type": "color_scheme",
