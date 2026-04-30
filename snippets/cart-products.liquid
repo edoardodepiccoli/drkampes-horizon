@@ -347,9 +347,15 @@
     </form>
     {% unless drawer_context == 'drawer' %}
       <div class="cart-items__checkout-action">
-        <a href="{{ routes.checkout_url }}" class="button cart-items__checkout-cta">
+        <button
+          type="submit"
+          name="checkout"
+          form="cart-form"
+          class="button cart-items__checkout-cta"
+          {% if cart == empty %}disabled{% endif %}
+        >
           Acquista ora
-        </a>
+        </button>
       </div>
     {% endunless %}
   {%- endif -%}
