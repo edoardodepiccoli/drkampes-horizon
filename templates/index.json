@@ -872,6 +872,14 @@
         "animate_delay": 0
       }
     },
+    "home_product_showcase": {
+      "type": "home-product-showcase",
+      "name": "Home Product Showcase",
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "color_scheme": "scheme-1"
+      }
+    },
     "section_TNanYH": {
       "type": "section",
       "blocks": {
@@ -1539,6 +1547,7 @@
     },
     "divider_LmMrtQ": {
       "type": "divider",
+      "disabled": true,
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
@@ -2130,6 +2139,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "carousel",
       "settings": {
         "columns": 3,
@@ -2366,14 +2376,6 @@
         "alignment_horizontal": "center",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
-    },
-    "home_product_showcase": {
-      "type": "home-product-showcase",
-      "name": "Home Product Showcase",
-      "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
-        "color_scheme": "scheme-1"
       }
     },
     "section_XLk9Vi": {
@@ -3136,6 +3138,7 @@
     "section_peM8H3",
     "divider_gkU4y8",
     "section_zdX3Hj",
+    "home_product_showcase",
     "section_TNanYH",
     "divider_LmMrtQ",
     "carousel_wAdVeX",
@@ -3143,7 +3146,6 @@
     "section_DEhdNH",
     "custom_liquid_TBQJEa",
     "divider_Kh3i6B",
-    "home_product_showcase",
     "section_XLk9Vi",
     "section_Cn9bUQ",
     "section_UFPrC4"
