@@ -230,14 +230,10 @@
 
 <div class="hps__cta-group">
         <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
-        <div class="hps__offer-micro">
-          <span>&#10003; T-shirt <strong>in omaggio</strong> — sceglierai la taglia al prossimo step</span>
-          <span>&#10003; Spedizione <strong>gratuita</strong> in 48/72h</span>
-        </div>
       </div>
       <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
         <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
-        <span class="hps-offer-banner__text">{{ offer_headline | replace: 'Spedizione', 'Spedizione Rapida' }}</span>
+        <span class="hps-offer-banner__text">{{ offer_headline | replace: 'OMAGGIO + Spedizione', '+ Spedizione Rapida' }}</span>
         {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
           {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
         {%- endif -%}
