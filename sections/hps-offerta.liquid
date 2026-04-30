@@ -44,6 +44,11 @@
 
   <div class="hps__gallery">
     <div class="hps__main">
+      {%- if section.settings.custom_first_image_url != blank -%}
+        <div class="hps__slide" data-media-id="__custom__" style="display:none">
+          <img src="{{ section.settings.custom_first_image_url }}" class="hps__img" loading="eager" alt="{{ product.title }}">
+        </div>
+      {%- endif -%}
       {%- for media in product.media -%}
         <div
           class="hps__slide{% if forloop.first %} hps__slide--active{% endif %}"
@@ -59,6 +64,15 @@
     </div>
 
     <div class="hps__thumbs">
+      {%- if section.settings.custom_first_image_url != blank -%}
+        <button
+          type="button"
+          class="hps__thumb"
+          data-media-id="__custom__"
+          aria-label="Immagine principale"
+          style="display:none"
+        ><img src="{{ section.settings.custom_first_image_url }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
+      {%- endif -%}
       {%- for media in product.media -%}
         <button
           type="button"
@@ -380,6 +394,8 @@
   var sid = '{{ section.id }}';
   var discountCode = {{ section.settings.discount_code | json }};
   var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
+  var customHeroUrl = {{ section.settings.custom_first_image_url | json }};
+  var customHeroColorKey = {{ section.settings.custom_first_image_color | handleize | json }};
 
   function buildCheckoutUrl() {
     var base = '/checkout?discount=' + encodeURIComponent(discountCode);
@@ -410,36 +426,63 @@
   }
 
   function filterGallery(variantId) {
+    var CUSTOM = '__custom__';
     var ids = vgMap[String(variantId)];
 
     if (!ids || ids.length === 0) {
-      slides.forEach(function (s) { s.style.display = ''; });
-      thumbs.forEach(function (t) { t.style.display = ''; });
-      slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
-      thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
-      if (slides.length) showByMediaId(slides[0].dataset.mediaId);
-      return;
+      slides.forEach(function (s) { if (s.dataset.mediaId !== CUSTOM) s.style.display = ''; });
+      thumbs.forEach(function (t) { if (t.dataset.mediaId !== CUSTOM) t.style.display = ''; });
+    } else {
+      slides.forEach(function (s) { if (s.dataset.mediaId !== CUSTOM) s.style.display = 'none'; });
+      thumbs.forEach(function (t) { if (t.dataset.mediaId !== CUSTOM) t.style.display = 'none'; });
+
+      ids.forEach(function (id) {
+        var strId = String(id);
+        var slide = mainEl.querySelector('.hps__slide[data-media-id="' + strId + '"]');
+        var thumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + strId + '"]');
+        if (slide) { slide.style.display = ''; mainEl.appendChild(slide); }
+        if (thumb) { thumb.style.display = ''; thumbsEl.appendChild(thumb); }
+      });
     }
 
-    slides.forEach(function (s) { s.style.display = 'none'; });
-    thumbs.forEach(function (t) { t.style.display = 'none'; });
-
-    ids.forEach(function (id) {
-      var strId = String(id);
-      var slide = mainEl.querySelector('.hps__slide[data-media-id="' + strId + '"]');
-      var thumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + strId + '"]');
-      if (slide) { slide.style.display = ''; mainEl.appendChild(slide); }
-      if (thumb) { thumb.style.display = ''; thumbsEl.appendChild(thumb); }
-    });
+    var customSlide = mainEl.querySelector('.hps__slide[data-media-id="' + CUSTOM + '"]');
+    var customThumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + CUSTOM + '"]');
+    var showCustom = false;
+    if (customSlide && customHeroUrl && customHeroColorKey) {
+      var v = allVariants.find(function (fv) { return fv.id === variantId; });
+      if (v && swatches.length) {
+        var cp = parseInt(swatches[0].dataset.pos, 10);
+        var vc = (v.options[cp] || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        showCustom = vc === customHeroColorKey;
+      }
+    }
+    if (customSlide) {
+      if (showCustom) {
+        customSlide.style.display = '';
+        mainEl.insertBefore(customSlide, mainEl.firstChild);
+        if (customThumb) { customThumb.style.display = ''; thumbsEl.insertBefore(customThumb, thumbsEl.firstChild); }
+      } else {
+        customSlide.style.display = 'none';
+        if (customThumb) customThumb.style.display = 'none';
+      }
+    }
 
     slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
     thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
 
-    if (ids.length) showByMediaId(String(ids[0]));
+    if (showCustom) {
+      showByMediaId(CUSTOM);
+    } else if (ids && ids.length) {
+      showByMediaId(String(ids[0]));
+    } else {
+      var first = slides.find(function (s) { return s.style.display !== 'none'; });
+      if (first) showByMediaId(first.dataset.mediaId);
+    }
   }
 
-  thumbs.forEach(function (btn) {
-    btn.addEventListener('click', function () { showByMediaId(btn.dataset.mediaId); });
+  thumbsEl.addEventListener('click', function (e) {
+    var btn = e.target.closest('.hps__thumb');
+    if (btn) showByMediaId(btn.dataset.mediaId);
   });
 
   function syncVariant() {
@@ -1364,6 +1407,18 @@
       "id": "offer_headline",
       "label": "Titolo offerta",
       "default": "T-shirt OMAGGIO + Spedizione GRATIS"
+    },
+    {
+      "type": "text",
+      "id": "custom_first_image_url",
+      "label": "URL prima immagine (colore specifico)",
+      "default": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/immagine_offerta_bundletshirt.png?v=1777548666"
+    },
+    {
+      "type": "text",
+      "id": "custom_first_image_color",
+      "label": "Colore prima immagine (es. Nero)",
+      "default": "Nero"
     },
     {
       "type": "color_scheme",
