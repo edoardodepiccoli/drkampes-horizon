@@ -692,6 +692,7 @@
               "settings": {
                 "source": "uploaded",
                 "video": "shopify://files/videos/sistema fast wear.mp4",
+                "video_url": "",
                 "video_autoplay": true,
                 "video_loop": true,
                 "alt": "",
@@ -1476,6 +1477,7 @@
               "settings": {
                 "source": "uploaded",
                 "video": "shopify://files/videos/scania e pioggia.mp4",
+                "video_url": "",
                 "video_autoplay": true,
                 "video_loop": true,
                 "alt": "",
@@ -1488,8 +1490,8 @@
                 "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 32,
-                "padding-inline-end": 32
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             }
@@ -2366,6 +2368,14 @@
         "padding-block-end": 0
       }
     },
+    "home_product_showcase": {
+      "type": "home-product-showcase",
+      "name": "Home Product Showcase",
+      "settings": {
+        "product": "dr-kampes-s3s-nero-copia",
+        "color_scheme": "scheme-1"
+      }
+    },
     "section_XLk9Vi": {
       "type": "section",
       "blocks": {
@@ -2448,14 +2458,6 @@
         "padding-block-end": 0,
         "animate_on_scroll": false,
         "animate_delay": 0
-      }
-    },
-    "home_product_showcase": {
-      "type": "home-product-showcase",
-      "name": "Home Product Showcase",
-      "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
-        "color_scheme": "scheme-1"
       }
     },
     "section_Cn9bUQ": {
@@ -2950,6 +2952,7 @@
           "settings": {
             "source": "uploaded",
             "video": "shopify://files/videos/prezzo.mp4",
+            "video_url": "",
             "video_autoplay": true,
             "video_loop": true,
             "alt": "",
@@ -3140,8 +3143,8 @@
     "section_DEhdNH",
     "custom_liquid_TBQJEa",
     "divider_Kh3i6B",
-    "section_XLk9Vi",
     "home_product_showcase",
+    "section_XLk9Vi",
     "section_Cn9bUQ",
     "section_UFPrC4"
   ]
