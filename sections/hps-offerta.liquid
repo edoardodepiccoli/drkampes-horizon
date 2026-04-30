@@ -103,20 +103,30 @@
 
     <div class="hps__head">
       <h2 class="hps__title">{{ product.title }}</h2>
-      <p class="hps__sub">Antinfortunistiche S3S</p>
+      <p class="hps__sub">{{ section.settings.product_subtitle | default: 'Antinfortunistiche S3S' }}</p>
     </div>
 
     <div class="hps__social">
       <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       <span class="hps__review-lbl">4.9 &bull; <strong>127 clienti soddisfatti</strong></span>
     </div>
+    {%- if section.settings.review_quote != blank -%}
+      <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
+    {%- endif -%}
 
+    {%- assign hps_savings = 21900 | minus: product.price | divided_by: 100 -%}
     <div class="hps__price-wrap">
-      <p class="hps__price">
-        <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
-        <span class="hps__price-tax">IVA INCLUSA</span>
-      </p>
-      <p class="hps__installment">oppure <strong>&euro;63&times;3</strong> a Rate con Klarna e PayPal</p>
+      <div class="hps__price-row">
+        <p class="hps__price">
+          <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
+          <span class="hps__price-compare">&euro;219</span>
+          <span class="hps__price-tax">IVA INCLUSA</span>
+        </p>
+        {%- if hps_savings > 0 -%}
+          <span class="hps__savings">Risparmi &euro;{{ hps_savings }}</span>
+        {%- endif -%}
+      </div>
+      <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna e PayPal</p>
     </div>
 
     <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
@@ -205,11 +215,24 @@
               <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Guida taglie</button>
             </div>
           </div>
-          <select class="hps__select" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" aria-label="Taglia">
+          <div class="hps__pills" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
             {%- for value in size_option.values -%}
-              <option value="{{ value }}"{% if size_option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+              {%- assign pill_avail = false -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.options[size_pos] == value and variant.available -%}
+                  {%- assign pill_avail = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+              <button
+                type="button"
+                class="hps__pill{% if size_option.selected_value == value %} hps__pill--on{% endif %}{% unless pill_avail %} hps__pill--unavail{% endunless %}"
+                data-value="{{ value }}"
+                data-pos="{{ size_pos }}"
+                {% unless pill_avail %}aria-disabled="true"{% endunless %}
+              >{{ value }}</button>
             {%- endfor -%}
-          </select>
+          </div>
+          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>&#9889; Meno di {{ section.settings.low_stock_number | default: 7 }} paia rimaste</p>
         </div>
       {%- endif -%}
 
@@ -222,8 +245,9 @@
         </div>
       </div>
 
+      <p class="hps__viewers" id="hps-viewers-{{ section.id }}" hidden>&#128065; <span class="hps-viewers-n">0</span> persone stanno guardando questo prodotto</p>
       <div class="hps__cta-group">
-        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">{{ section.settings.cta_label | default: 'ACQUISTA ORA' }}</button>
         <p class="hps__offer-micro">Ricevi la t-shirt omaggio e la spedizione gratuita</p>
       </div>
 
@@ -400,7 +424,10 @@
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
   <a class="hps-cta hps-cta--before" href="#acquista">SCOPRI L'OFFERTA</a>
-  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">ACQUISTA ORA</button>
+  <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">
+    <span class="hps-cta-bar__price" id="hps-cta-price-{{ section.id }}">&euro;{{ product.price | money_without_currency }}</span>
+    <span class="hps-cta-bar__label">{{ section.settings.cta_label | default: 'ACQUISTA ORA' }}</span>
+  </button>
 </div>
 
 <script>
@@ -408,6 +435,8 @@
   var sid = '{{ section.id }}';
   var discountCode = {{ section.settings.discount_code | json }};
   var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
+  var viewerMin = {{ section.settings.viewer_min | default: 12 }};
+  var viewerMax = {{ section.settings.viewer_max | default: 37 }};
   var customHeroSlots = [
     { id: '__custom__',  url: {{ section.settings.custom_first_image_url | json }},   colorKey: {{ section.settings.custom_first_image_color | handleize | json }} },
     { id: '__custom2__', url: {{ section.settings.custom_first_image_url_2 | json }}, colorKey: {{ section.settings.custom_first_image_color_2 | handleize | json }} }
@@ -428,7 +457,15 @@
 
   var slides = Array.from(root.querySelectorAll('.hps__slide'));
   var thumbs = Array.from(root.querySelectorAll('.hps__thumb'));
-  var vidInput = document.getElementById('hps-vid-' + sid);
+  var vidInput   = document.getElementById('hps-vid-' + sid);
+  var stockEl    = document.getElementById('hps-stock-' + sid);
+  var ctaPriceEl = document.getElementById('hps-cta-price-' + sid);
+  var viewersEl  = document.getElementById('hps-viewers-' + sid);
+
+  function formatPrice(cents) {
+    var n = cents / 100;
+    return Number.isInteger(n) ? String(n) : n.toFixed(2).replace('.', ',');
+  }
 
   var initV = allVariants.find(function (v) { return v.available; }) || allVariants[0];
   var selOpts = initV ? initV.options.slice() : [];
@@ -504,12 +541,55 @@
     if (btn) showByMediaId(btn.dataset.mediaId);
   });
 
+  var swipeStartX = 0;
+  var swipeStartY = 0;
+  var swipeLock   = null;
+  mainEl.addEventListener('pointerdown', function (e) {
+    swipeStartX = e.clientX;
+    swipeStartY = e.clientY;
+    swipeLock   = null;
+  });
+  mainEl.addEventListener('pointermove', function (e) {
+    if (swipeLock === null) {
+      var dx = Math.abs(e.clientX - swipeStartX);
+      var dy = Math.abs(e.clientY - swipeStartY);
+      if (dx > 5 || dy > 5) swipeLock = dx > dy ? 'h' : 'v';
+    }
+    if (swipeLock === 'h') e.preventDefault();
+  }, { passive: false });
+  mainEl.addEventListener('pointerup', function (e) {
+    if (swipeLock !== 'h') return;
+    var delta = e.clientX - swipeStartX;
+    if (Math.abs(delta) < 40) return;
+    var visible = slides.filter(function (s) { return s.style.display !== 'none'; });
+    var activeIdx = visible.findIndex(function (s) { return s.classList.contains('hps__slide--active'); });
+    if (activeIdx < 0) return;
+    var nextIdx = delta < 0
+      ? Math.min(activeIdx + 1, visible.length - 1)
+      : Math.max(activeIdx - 1, 0);
+    if (nextIdx !== activeIdx) showByMediaId(visible[nextIdx].dataset.mediaId);
+  });
+
   function syncVariant() {
     var match = allVariants.find(function (v) {
       return v.options.every(function (o, i) { return o === selOpts[i]; });
     }) || allVariants.find(function (v) { return v.options[0] === selOpts[0]; });
     if (!match) return;
     vidInput.value = match.id;
+    if (ctaPriceEl) ctaPriceEl.textContent = '€' + formatPrice(match.price);
+    if (sSel) {
+      sSel.querySelectorAll('.hps__pill').forEach(function (pill) {
+        var sizeVal = pill.dataset.value;
+        var sPos    = parseInt(pill.dataset.pos, 10);
+        var avail   = allVariants.some(function (v) {
+          return v.options[sPos] === sizeVal &&
+                 selOpts.every(function (opt, i) { return i === sPos || v.options[i] === opt; }) &&
+                 v.available;
+        });
+        pill.classList.toggle('hps__pill--unavail', !avail);
+        pill.setAttribute('aria-disabled', avail ? 'false' : 'true');
+      });
+    }
     filterGallery(match.id);
   }
 
@@ -527,14 +607,19 @@
     });
   });
 
-  var sSel  = document.getElementById('hps-ssel-' + sid);
+  var sSel   = document.getElementById('hps-ssel-' + sid);
   var sValEl = document.getElementById('hps-sval-' + sid);
 
   if (sSel) {
-    sSel.addEventListener('change', function () {
-      var pos = parseInt(sSel.dataset.pos, 10);
-      selOpts[pos] = sSel.value;
-      if (sValEl) sValEl.textContent = sSel.value;
+    sSel.addEventListener('click', function (e) {
+      var btn = e.target.closest('.hps__pill');
+      if (!btn || btn.getAttribute('aria-disabled') === 'true') return;
+      var pos = parseInt(btn.dataset.pos, 10);
+      selOpts[pos] = btn.dataset.value;
+      sSel.querySelectorAll('.hps__pill').forEach(function (p) { p.classList.remove('hps__pill--on'); });
+      btn.classList.add('hps__pill--on');
+      if (sValEl) sValEl.textContent = btn.dataset.value;
+      if (stockEl) stockEl.hidden = false;
       syncVariant();
     });
   }
@@ -651,6 +736,21 @@
         obs.disconnect();
       }
     }, { threshold: 0.15 }).observe(uspWrap);
+  }
+
+  if (viewersEl && viewerMin > 0 && viewerMax >= viewerMin) {
+    var viewerCount = viewerMin + Math.floor(Math.random() * (viewerMax - viewerMin + 1));
+    var viewerNumEl = viewersEl.querySelector('.hps-viewers-n');
+    function updateViewers() {
+      var drift = Math.floor(Math.random() * 5) - 2;
+      viewerCount = Math.max(viewerMin, Math.min(viewerMax, viewerCount + drift));
+      if (viewerNumEl) viewerNumEl.textContent = viewerCount;
+    }
+    setTimeout(function () {
+      if (viewerNumEl) viewerNumEl.textContent = viewerCount;
+      viewersEl.hidden = false;
+      setInterval(updateViewers, 45000 + Math.random() * 45000);
+    }, 1500);
   }
 })();
 </script>
@@ -805,6 +905,15 @@
 .hps__installment strong { color: #111; }
 
 /* Offer banner */
+@keyframes hps-pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 194, 0, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(245, 194, 0, 0.3); }
+}
+@keyframes hps-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40%           { transform: translateY(-4px); }
+}
+
 .hps-offer-banner {
   display: flex;
   align-items: center;
@@ -813,12 +922,15 @@
   border: 1.5px solid #F5C200;
   border-radius: 8px;
   padding: 10px 14px;
+  animation: hps-pulse-border 3s ease-in-out infinite;
 }
 
 .hps-offer-banner__icon {
   font-size: 1.25rem;
   flex-shrink: 0;
   line-height: 1;
+  display: inline-block;
+  animation: hps-bounce 3s ease-in-out infinite;
 }
 
 .hps-offer-banner__text {
@@ -1286,6 +1398,117 @@
 .hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
 .hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
 
+/* Compare price + savings */
+.hps__price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hps__price-compare {
+  font-size: 1rem;
+  color: #aaa;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.hps__savings {
+  display: inline-flex;
+  align-items: center;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* Review quote */
+.hps__review-quote {
+  font-size: 0.78rem;
+  color: #555;
+  font-style: italic;
+  margin: -4px 0 0;
+  padding: 8px 12px;
+  border-left: 3px solid #F5C200;
+  background: #fffde7;
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+}
+
+/* Size pills */
+.hps__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hps__pill {
+  min-width: 44px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hps__pill--on {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+.hps__pill--unavail {
+  color: #bbb;
+  border-color: #e0e0e0;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.hps__pill:not(.hps__pill--unavail):hover { border-color: #111; }
+
+/* Stock badge */
+.hps__stock {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b71c1c;
+  margin: 4px 0 0;
+  letter-spacing: 0.02em;
+}
+
+/* Viewer count */
+.hps__viewers {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}
+
+/* Sticky bar price */
+.hps-cta-bar__price {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.hps-cta-bar__label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1;
+}
+
 /* Desktop */
 @media screen and (min-width: 750px) {
   .hps {
@@ -1379,12 +1602,10 @@
 
 .hps-cta-bar .hps-cta--after {
   display: none;
+  flex-direction: column;
+  gap: 2px;
   background: #F5C200;
   color: #111 !important;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
   font-family: inherit;
 }
 .hps-cta-bar .hps-cta--after:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
@@ -1450,6 +1671,41 @@
       "id": "custom_first_image_color_2",
       "label": "Colore prima immagine 2 (es. Testa di Moro)",
       "default": "Testa di Moro"
+    },
+    {
+      "type": "text",
+      "id": "product_subtitle",
+      "label": "Sottotitolo prodotto",
+      "default": "Antinfortunistiche S3S"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo CTA principale",
+      "default": "ACQUISTA ORA — T-shirt OMAGGIO"
+    },
+    {
+      "type": "number",
+      "id": "low_stock_number",
+      "label": "Numero paia rimaste (scorta psicologica)",
+      "default": 7
+    },
+    {
+      "type": "number",
+      "id": "viewer_min",
+      "label": "Visitatori min (social proof)",
+      "default": 12
+    },
+    {
+      "type": "number",
+      "id": "viewer_max",
+      "label": "Visitatori max (social proof)",
+      "default": 37
+    },
+    {
+      "type": "textarea",
+      "id": "review_quote",
+      "label": "Citazione recensione (vuoto = nascosta)"
     },
     {
       "type": "color_scheme",
