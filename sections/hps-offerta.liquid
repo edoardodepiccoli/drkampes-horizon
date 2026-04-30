@@ -129,14 +129,6 @@
       <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna e PayPal</p>
     </div>
 
-    <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
-      <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
-      <span class="hps-offer-banner__text">{{ offer_headline }}</span>
-      {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
-        {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
-      {%- endif -%}
-    </div>
-
     <div class="hps__trust">
       <div class="hps__trust-item">
         <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -239,7 +231,7 @@
 <div class="hps__cta-group">
         <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
         <div class="hps__offer-micro">
-          <span>&#10003; T-shirt <strong>in omaggio</strong> nella tua taglia</span>
+          <span>&#10003; T-shirt <strong>in omaggio</strong> — sceglierai la taglia al prossimo step</span>
           <span>&#10003; Spedizione <strong>gratuita</strong> in 48/72h</span>
         </div>
       </div>
@@ -1217,9 +1209,9 @@
   background: #fff;
   border-radius: 14px 14px 0 0;
   width: 100%;
-  max-height: 74svh;
+  max-height: calc(100svh - 40px);
   overflow-y: auto;
-  padding: 22px 20px 36px;
+  padding: 16px 20px 24px;
 }
 
 .hps-pop__x {
@@ -1239,7 +1231,7 @@
 .hps-pop__title {
   font-size: 1rem;
   font-weight: 700;
-  margin: 0 0 16px;
+  margin: 0 0 10px;
   padding-right: 28px;
   color: #111;
 }
@@ -1254,27 +1246,28 @@
   background: #fff8e1;
   border: 1.5px solid #F5C200;
   border-radius: 20px;
-  padding: 5px 12px;
+  padding: 4px 10px;
   font-size: 0.78rem;
   font-weight: 800;
   color: #7a5800;
   letter-spacing: 0.04em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 /* T-shirt popup specifics */
-.hps-pop__box--offer { padding-bottom: 44px; }
+.hps-pop__box--offer { padding-bottom: 28px; }
 
 .hps-tshirt-img-wrap {
-  margin: 0 -20px 14px;
+  margin: 0 -20px 12px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  height: 130px;
 }
 
 .hps-tshirt-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -1521,9 +1514,9 @@
   .hps__title { font-size: 1.2rem; }
   .hps__price-main { font-size: 2rem; }
   .hps-pop { align-items: center; }
-  .hps-pop__box { border-radius: 12px; width: 480px; max-height: 80vh; }
+  .hps-pop__box { border-radius: 12px; width: 480px; max-height: calc(100vh - 40px); }
   .hps-usp { margin: 0; }
-  .hps-tshirt-img-wrap { aspect-ratio: 1 / 1; }
+  .hps-tshirt-img-wrap { height: 160px; aspect-ratio: unset; }
   .hps-tshirt-img { height: 100%; }
 }
 
