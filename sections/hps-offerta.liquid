@@ -232,23 +232,23 @@
               >{{ value }}</button>
             {%- endfor -%}
           </div>
-          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>&#9889; Meno di {{ section.settings.low_stock_number | default: 7 }} paia rimaste</p>
+          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>&#9889; Meno di <span class="hps-stock-n">{{ section.settings.low_stock_number | default: 7 }}</span> paia rimaste</p>
         </div>
       {%- endif -%}
 
-<div class="hps__qty-row">
-        <span class="hps__qty-lbl">Quantit&agrave;</span>
-        <div class="hps__qty">
-          <button type="button" class="hps__qty-btn" data-d="-1">&#8722;</button>
-          <input type="number" name="quantity" value="1" min="1" id="hps-qty-{{ section.id }}" class="hps__qty-n" aria-label="Quantità">
-          <button type="button" class="hps__qty-btn" data-d="1">&#43;</button>
+<div class="hps__cta-group">
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+        <div class="hps__offer-micro">
+          <span>&#10003; T-shirt <strong>in omaggio</strong> nella tua taglia</span>
+          <span>&#10003; Spedizione <strong>gratuita</strong> in 48/72h</span>
         </div>
       </div>
-
-      <p class="hps__viewers" id="hps-viewers-{{ section.id }}" hidden>&#128065; <span class="hps-viewers-n">0</span> persone stanno guardando questo prodotto</p>
-      <div class="hps__cta-group">
-        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">{{ section.settings.cta_label | default: 'ACQUISTA ORA' }}</button>
-        <p class="hps__offer-micro">Ricevi la t-shirt omaggio e la spedizione gratuita</p>
+      <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
+        <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
+        <span class="hps-offer-banner__text">{{ offer_headline | replace: 'Spedizione', 'Spedizione Rapida' }}</span>
+        {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
+          {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
+        {%- endif -%}
       </div>
 
     {% endform %}
@@ -321,6 +321,8 @@
 
   </div>
 </div>
+
+<div class="hps__viewer-toast" id="hps-viewers-{{ section.id }}">&#128065; <span class="hps-viewers-n">0</span> persone stanno guardando</div>
 
 <div class="hps-pop" id="hps-pop-tshirt-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-tshirt-title-{{ section.id }}" hidden>
   <div class="hps-pop__bg" data-pop-close></div>
@@ -607,8 +609,15 @@
     });
   });
 
-  var sSel   = document.getElementById('hps-ssel-' + sid);
-  var sValEl = document.getElementById('hps-sval-' + sid);
+  var sSel       = document.getElementById('hps-ssel-' + sid);
+  var sValEl     = document.getElementById('hps-sval-' + sid);
+  var stockNumEl = stockEl ? stockEl.querySelector('.hps-stock-n') : null;
+  var stockMap   = {};
+  if (sSel) {
+    sSel.querySelectorAll('.hps__pill').forEach(function (pill) {
+      stockMap[pill.dataset.value] = 3 + Math.floor(Math.random() * 7);
+    });
+  }
 
   if (sSel) {
     sSel.addEventListener('click', function (e) {
@@ -619,17 +628,15 @@
       sSel.querySelectorAll('.hps__pill').forEach(function (p) { p.classList.remove('hps__pill--on'); });
       btn.classList.add('hps__pill--on');
       if (sValEl) sValEl.textContent = btn.dataset.value;
-      if (stockEl) stockEl.hidden = false;
+      if (stockEl) {
+        if (stockNumEl) stockNumEl.textContent = stockMap[btn.dataset.value] || 7;
+        stockEl.hidden = false;
+      }
       syncVariant();
     });
   }
 
   var qtyEl = document.getElementById('hps-qty-' + sid);
-  root.querySelectorAll('.hps__qty-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      qtyEl.value = Math.max(1, (parseInt(qtyEl.value, 10) || 1) + parseInt(btn.dataset.d, 10));
-    });
-  });
 
   var bnBtn = document.getElementById('hps-bn-' + sid);
   if (bnBtn) {
@@ -748,8 +755,10 @@
     }
     setTimeout(function () {
       if (viewerNumEl) viewerNumEl.textContent = viewerCount;
-      viewersEl.hidden = false;
-      setInterval(updateViewers, 45000 + Math.random() * 45000);
+      viewersEl.classList.add('hps__viewer-toast--visible');
+      (function scheduleUpdate() {
+        setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
+      })();
     }, 1500);
   }
 })();
@@ -1046,59 +1055,6 @@
   appearance: auto;
 }
 
-/* Qty row */
-.hps__qty-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hps__qty-lbl {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #111;
-}
-
-.hps__qty {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.hps__qty-btn {
-  width: 34px;
-  min-height: 40px;
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-  color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hps__qty-btn:active { background: #f0f0f0; }
-
-.hps__qty-n {
-  width: 38px;
-  text-align: center;
-  border: none;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  font-size: 0.9rem;
-  padding: 0;
-  height: 40px;
-  -moz-appearance: textfield;
-  font-family: inherit;
-  color: #111;
-}
-.hps__qty-n::-webkit-inner-spin-button,
-.hps__qty-n::-webkit-outer-spin-button { -webkit-appearance: none; }
 
 /* CTA group */
 .hps__cta-group {
@@ -1150,12 +1106,16 @@
 }
 
 .hps__offer-micro {
-  font-size: 0.72rem;
-  color: #555;
-  margin: -2px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #333;
+  margin: 0;
   text-align: center;
   line-height: 1.5;
 }
+.hps__offer-micro strong { color: #111; }
 
 .hps__micro {
   font-size: 0.75rem;
@@ -1485,12 +1445,25 @@
   letter-spacing: 0.02em;
 }
 
-/* Viewer count */
-.hps__viewers {
-  font-size: 0.74rem;
-  color: #666;
-  margin: 0;
-  text-align: center;
+/* Viewer count toast */
+.hps__viewer-toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(-100% - 20px));
+  background: rgba(17, 17, 17, 0.92);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 8500;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hps__viewer-toast--visible {
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Sticky bar price */
