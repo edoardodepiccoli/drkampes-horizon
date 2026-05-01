@@ -37,7 +37,7 @@
       "block_order": [
         "logo_JwQaGg"
       ],
-      "name": "t:names.custom_section",
+      "name": "nav",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
