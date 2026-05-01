@@ -205,7 +205,9 @@
       ],
       "settings": {
         "eyebrow": "Dr Kampes Trucker Shoes",
-        "heading": "Quattro vantaggi che cambiano il tuo modo di lavorare."
+        "heading": "Quattro vantaggi che cambiano il tuo modo di lavorare.",
+        "image_1": "shopify://shop_images/hero_image.jpg",
+        "image_2": "shopify://shop_images/dsc01813-migliorato-nr-1769702375-697b83e7ab8e3.jpg"
       }
     },
     "lp_video": {
