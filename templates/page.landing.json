@@ -37,6 +37,7 @@
       "block_order": [
         "logo_JwQaGg"
       ],
+      "disabled": true,
       "name": "nav",
       "settings": {
         "content_direction": "column",
