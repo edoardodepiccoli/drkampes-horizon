@@ -229,7 +229,10 @@
       {%- endif -%}
 
 <div class="hps__cta-group">
-        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">Sì, le voglio</button>
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">
+          <span class="hps__bn-price" id="hps-bn-price-{{ section.id }}">&euro;{{ product.price | money_without_currency }}</span>
+          <span class="hps__bn-label">{{ section.settings.cta_label | default: 'ACQUISTA ORA: T-SHIRT + SPEDIZIONE GRATIS' }}</span>
+        </button>
       </div>
       <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
         <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
@@ -450,6 +453,7 @@
   var vidInput   = document.getElementById('hps-vid-' + sid);
   var stockEl    = document.getElementById('hps-stock-' + sid);
   var ctaPriceEl = document.getElementById('hps-cta-price-' + sid);
+  var bnPriceEl  = document.getElementById('hps-bn-price-' + sid);
   var viewersEl  = document.getElementById('hps-viewers-' + sid);
 
   function formatPrice(cents) {
@@ -567,6 +571,7 @@
     if (!match) return;
     vidInput.value = match.id;
     if (ctaPriceEl) ctaPriceEl.textContent = '€' + formatPrice(match.price);
+    if (bnPriceEl)  bnPriceEl.textContent  = '€' + formatPrice(match.price);
     if (sSel) {
       sSel.querySelectorAll('.hps__pill').forEach(function (pill) {
         var sizeVal = pill.dataset.value;
@@ -718,7 +723,9 @@
   }
 
   if (ctaBnBtn) {
-    ctaBnBtn.addEventListener('click', function () { openPop('hps-pop-tshirt-' + sid); });
+    ctaBnBtn.addEventListener('click', function () {
+      root.scrollIntoView({ behavior: 'smooth' });
+    });
   }
 
   if (initV) filterGallery(initV.id);
@@ -742,28 +749,31 @@
       if (viewerNumEl) viewerNumEl.textContent = viewerCount;
     }
     var viewerTriggered = false;
+    function updateViewerToast() {
+      if (!viewerTriggered) return;
+      var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
+      var show = bnRect ? (bnRect.top < window.innerHeight && bnRect.bottom > 0) : false;
+      viewersEl.classList.toggle('hps__viewer-toast--visible', show);
+    }
     function startViewers() {
       if (viewerTriggered) return;
       viewerTriggered = true;
       if (viewerNumEl) viewerNumEl.textContent = viewerCount;
-      viewersEl.classList.add('hps__viewer-toast--visible');
+      updateViewerToast();
       (function scheduleUpdate() {
         setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
       })();
     }
-    var viewerTarget = sSel || root.querySelector('.hps__details');
-    if (viewerTarget) {
+    var priceWrap = root.querySelector('.hps__price-wrap');
+    var triggerEl = priceWrap || sSel || root.querySelector('.hps__details');
+    if (triggerEl) {
       new IntersectionObserver(function (entries, obs) {
         if (entries[0].isIntersecting) { startViewers(); obs.disconnect(); }
-      }, { threshold: 0.5 }).observe(viewerTarget);
+      }, { threshold: 0.7 }).observe(triggerEl);
     } else {
       setTimeout(startViewers, 1500);
     }
-
-    new IntersectionObserver(function (entries) {
-      if (!viewerTriggered) return;
-      viewersEl.classList.toggle('hps__viewer-toast--visible', entries[0].isIntersecting);
-    }, { threshold: 0 }).observe(root);
+    window.addEventListener('scroll', updateViewerToast, { passive: true });
   }
 })();
 </script>
@@ -1105,8 +1115,29 @@
 }
 .hps__bn:active { background: #d9ac00; }
 
-/* Primary single CTA variant — same as base */
-.hps__bn--primary {}
+/* Primary single CTA variant — two-line */
+.hps__bn--primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.hps__bn-price {
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.hps__bn-label {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1;
+}
 
 .hps__offer-micro {
   display: flex;
