@@ -741,13 +741,24 @@
       viewerCount = Math.max(viewerMin, Math.min(viewerMax, viewerCount + drift));
       if (viewerNumEl) viewerNumEl.textContent = viewerCount;
     }
-    setTimeout(function () {
+    var viewerTriggered = false;
+    function startViewers() {
+      if (viewerTriggered) return;
+      viewerTriggered = true;
       if (viewerNumEl) viewerNumEl.textContent = viewerCount;
       viewersEl.classList.add('hps__viewer-toast--visible');
       (function scheduleUpdate() {
         setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
       })();
-    }, 1500);
+    }
+    var viewerTarget = sSel || root.querySelector('.hps__details');
+    if (viewerTarget) {
+      new IntersectionObserver(function (entries, obs) {
+        if (entries[0].isIntersecting) { startViewers(); obs.disconnect(); }
+      }, { threshold: 0.5 }).observe(viewerTarget);
+    } else {
+      setTimeout(startViewers, 1500);
+    }
   }
 })();
 </script>
