@@ -23,18 +23,6 @@
       {{ section.settings.cta_label | default: 'Acquista Ora' }}
     </a>
 
-    {%- if section.blocks.size > 0 -%}
-      <div class="lp-final-cta__payment-row">
-        {%- for block in section.blocks -%}
-          <div class="lp-pay-badge" {{ block.shopify_attributes }}>{{ block.settings.label }}</div>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-
-    {%- if section.settings.installment_text != blank -%}
-      <div class="lp-final-cta__installment">{{ section.settings.installment_text }}</div>
-    {%- endif -%}
-
     <div class="lp-final-cta__ssl">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -49,7 +37,7 @@
 
 .lp-final-cta {
   padding: 56px 22px;
-  background: #0d0d0d;
+  background: #000;
   text-align: center;
 }
 
@@ -105,33 +93,6 @@
   transition: background 0.15s;
 }
 .lp-final-cta__btn:hover { background: #d9ac00; text-decoration: none; }
-
-.lp-final-cta__payment-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.lp-pay-badge {
-  background: rgba(255,255,255,0.09);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 6px;
-  padding: 6px 13px;
-  font-size: 0.73rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.75);
-}
-
-.lp-final-cta__installment {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.5);
-  margin: 0 0 14px;
-  line-height: 1.6;
-}
-
-.lp-final-cta__installment strong { color: rgba(255,255,255,0.8); }
 
 .lp-final-cta__ssl {
   display: flex;

@@ -229,7 +229,7 @@
       {%- endif -%}
 
 <div class="hps__cta-group">
-        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">ACQUISTA ORA</button>
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">Sì, le voglio</button>
       </div>
       <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
         <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
@@ -759,6 +759,11 @@
     } else {
       setTimeout(startViewers, 1500);
     }
+
+    new IntersectionObserver(function (entries) {
+      if (!viewerTriggered) return;
+      viewersEl.classList.toggle('hps__viewer-toast--visible', entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(root);
   }
 })();
 </script>
@@ -1064,14 +1069,14 @@
 
 .hps__atc {
   width: 100%;
-  height: 52px;
-  padding: 0 16px;
+  padding: 17px 24px;
+  height: auto;
   background: #2e7d32;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 0.82rem;
-  font-weight: 800;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 900;
   letter-spacing: 0.07em;
   cursor: pointer;
   text-transform: uppercase;
@@ -1083,26 +1088,25 @@
 
 .hps__bn {
   width: 100%;
-  height: 52px;
+  padding: 17px 24px;
+  height: auto;
   background: #F5C200;
   color: #111;
   border: none;
-  border-radius: 6px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
   cursor: pointer;
   text-transform: uppercase;
   font-family: inherit;
+  line-height: 1;
   transition: background 0.15s;
 }
 .hps__bn:active { background: #d9ac00; }
 
-/* Primary single CTA variant */
-.hps__bn--primary {
-  height: 56px;
-  font-size: 0.9rem;
-}
+/* Primary single CTA variant — same as base */
+.hps__bn--primary {}
 
 .hps__offer-micro {
   display: flex;
@@ -1562,15 +1566,16 @@
 }
 
 .hps-cta-bar .hps-cta--before {
-  background: var(--color-primary-button-background);
-  color: var(--color-primary-button-text, #fff) !important;
-  font-size: var(--font-paragraph--size);
-  font-weight: var(--font-accent--weight, 400);
-  text-transform: var(--button-text-case-primary, uppercase);
-  font-family: var(--button-font-family-primary);
+  background: #F5C200;
+  color: #111 !important;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-family: inherit;
 }
-.hps-cta-bar .hps-cta--before:hover { background: var(--color-primary-button-hover-background); color: var(--color-primary-button-hover-text, #fff) !important; text-decoration: none; }
-.hps-cta-bar .hps-cta--before:active { background: var(--color-primary-button-hover-background); }
+.hps-cta-bar .hps-cta--before:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
+.hps-cta-bar .hps-cta--before:active { background: #d9ac00; }
 
 .hps-cta-bar .hps-cta--after {
   display: none;
