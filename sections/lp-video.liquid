@@ -1,0 +1,269 @@
+{%- assign support_img = section.settings.support_image -%}
+
+<section class="lp-video">
+  {%- if section.settings.eyebrow != blank -%}
+    <div class="lp-sec__eyebrow lp-video__eyebrow">{{ section.settings.eyebrow }}</div>
+  {%- endif -%}
+
+  <h2 class="lp-sec__h2 lp-video__h2">{{ section.settings.heading }}</h2>
+
+  <div class="lp-video__wrap">
+
+    <div class="lp-video__media">
+      {%- if section.settings.video != blank -%}
+        {{
+          section.settings.video
+          | video_tag:
+            autoplay: false,
+            loop: false,
+            controls: true,
+            muted: false,
+            class: 'lp-video__player',
+            preload: 'metadata'
+        }}
+      {%- elsif section.settings.video_url != blank -%}
+        {%- assign video_url = section.settings.video_url -%}
+        {%- if video_url.type == 'youtube' -%}
+          <div class="lp-video__embed-wrap">
+            <iframe
+              class="lp-video__embed"
+              src="https://www.youtube.com/embed/{{ video_url.id }}?rel=0"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              title="{{ section.settings.heading }}"
+            ></iframe>
+          </div>
+        {%- elsif video_url.type == 'vimeo' -%}
+          <div class="lp-video__embed-wrap">
+            <iframe
+              class="lp-video__embed"
+              src="https://player.vimeo.com/video/{{ video_url.id }}"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              title="{{ section.settings.heading }}"
+            ></iframe>
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="lp-video__placeholder">
+          <div class="lp-video__ph-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="lp-video__ph-lbl">Carica un video nelle impostazioni</p>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="lp-video__side">
+      {%- if section.settings.copy != blank -%}
+        <div class="lp-video__copy">{{ section.settings.copy }}</div>
+      {%- endif -%}
+
+      {%- if support_img != blank -%}
+        <div class="lp-video__support-img-wrap">
+          {{ support_img | image_url: width: 800 | image_tag: class: 'lp-video__support-img', loading: 'lazy', widths: '400,600,800', sizes: '(min-width:750px) 380px, 90vw', alt: support_img.alt }}
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+
+.lp-video {
+  padding: 56px 22px;
+  background: #fff;
+  text-align: center;
+}
+
+.lp-video__eyebrow {
+  color: #2e7d32;
+  display: block;
+}
+
+.lp-video__h2 {
+  margin-bottom: 28px;
+}
+
+.lp-video__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.lp-video__media {
+  width: 100%;
+  max-width: 300px;
+}
+
+.lp-video__player {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9/16;
+  border-radius: 16px;
+  display: block;
+  background: #111;
+}
+
+.lp-video__embed-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.lp-video__embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.lp-video__placeholder {
+  width: 100%;
+  aspect-ratio: 9/16;
+  background: #1a1a1a;
+  border: 2px dashed #3a3a3a;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.lp-video__ph-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(245,194,0,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp-video__ph-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: #F5C200;
+}
+
+.lp-video__ph-lbl {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555;
+  text-align: center;
+  padding: 0 20px;
+  margin: 0;
+}
+
+.lp-video__side {
+  text-align: left;
+  max-width: 380px;
+  width: 100%;
+}
+
+.lp-video__copy {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+.lp-video__copy p { margin: 0 0 14px; }
+.lp-video__copy p:last-child { margin-bottom: 0; }
+.lp-video__copy strong { color: #111; }
+
+.lp-video__support-img-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lp-video__support-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
+@media (min-width: 750px) {
+  .lp-video {
+    padding: 80px 60px;
+  }
+
+  .lp-video__wrap {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .lp-video__media {
+    max-width: 260px;
+    flex-shrink: 0;
+  }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Guarda come funziona"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo sezione",
+      "default": "FASTWEAR® in azione. 1 secondo. Sul serio."
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (caricato su Shopify)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Oppure URL video (YouTube / Vimeo)",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "header",
+      "content": "Colonna testo"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Testo descrittivo",
+      "default": "<p><strong>Guarda come funziona il sistema FASTWEAR®</strong> — piede dentro, piede fuori, in meno di un secondo. Niente lacci, niente piegature, niente perdite di tempo. Ogni singola discesa dal camion.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "support_image",
+      "label": "Immagine di supporto (sotto il testo)"
+    }
+  ],
+  "presets": [{ "name": "LP — Video" }]
+}
+{% endschema %}

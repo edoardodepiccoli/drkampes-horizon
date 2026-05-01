@@ -1,0 +1,315 @@
+{%- assign img = section.settings.image -%}
+
+<section class="lp-hero">
+  <div class="lp-hero__img-wrap">
+    {%- if img != blank -%}
+      {{ img | image_url: width: 1400 | image_tag: class: 'lp-hero__img', loading: 'eager', fetchpriority: 'high', widths: '600,800,1000,1200,1400', sizes: '(min-width:750px) 48vw, 100vw', alt: img.alt }}
+    {%- endif -%}
+  </div>
+
+  <div class="lp-hero__content">
+    {%- if section.settings.pre_badge != blank -%}
+      <div class="lp-hero__pre">{{ section.settings.pre_badge }}</div>
+    {%- endif -%}
+
+    <h1 class="lp-hero__h1">
+      {%- if section.settings.heading_line1 != blank -%}
+        {{ section.settings.heading_line1 }}
+        {%- if section.settings.heading_highlight != blank -%}
+          <em>{{ section.settings.heading_highlight }}</em>
+        {%- endif -%}
+        <br>
+      {%- endif -%}
+      {%- if section.settings.heading_line2 != blank -%}{{ section.settings.heading_line2 }}<br>{%- endif -%}
+      {%- if section.settings.heading_line3 != blank -%}{{ section.settings.heading_line3 }}{%- endif -%}
+    </h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
+    {%- endif -%}
+
+    <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
+      {{ section.settings.cta_label | default: "Scopri l'Offerta" }}
+    </a>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="lp-hero__trust">
+        {%- for block in section.blocks -%}
+          <div class="lp-hero__trust-item" {{ block.shopify_attributes }}>
+            {%- case block.settings.icon -%}
+              {%- when 'payment' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              {%- when 'delivery' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              {%- when 'shield' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            {%- endcase -%}
+            <span>{{ block.settings.text }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+
+.lp-hero {
+  min-height: 100svh;
+  background: #0d0d0d;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.lp-hero__img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.lp-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lp-hero__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+.lp-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 22px 44px;
+}
+
+.lp-hero__pre {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #F5C200;
+  border: 1px solid rgba(245,194,0,0.35);
+  border-radius: 20px;
+  padding: 5px 14px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.lp-hero__h1 {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 1.95rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.13;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
+
+.lp-hero__h1 em {
+  color: #F5C200;
+  font-style: normal;
+}
+
+.lp-hero__sub {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.65;
+  margin: 0 0 28px;
+}
+
+.lp-hero__sub p { margin: 0; }
+.lp-hero__sub strong { color: #fff; }
+
+.lp-hero__cta {
+  display: block;
+  padding: 17px 24px;
+  background: #F5C200;
+  color: #0d0d0d;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.lp-hero__cta:hover { background: #d9ac00; text-decoration: none; }
+
+.lp-hero__trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lp-hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.73rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.lp-hero__trust-item svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  stroke: #F5C200;
+}
+
+/* ── Shared LP base styles (loaded first via hero) ── */
+.lp-sec__eyebrow {
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.lp-sec__h2 {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #111;
+  margin: 0 0 18px;
+}
+
+@media (min-width: 750px) {
+  .lp-hero {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: unset;
+  }
+
+  .lp-hero__img-wrap {
+    position: relative;
+    flex: 0 0 48%;
+    inset: auto;
+    order: 2;
+  }
+
+  .lp-hero__img-wrap::after {
+    background: linear-gradient(to left, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+  }
+
+  .lp-hero__content {
+    flex: 1;
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 56px 56px;
+  }
+
+  .lp-hero__h1 { font-size: 2.5rem; }
+  .lp-hero__cta { max-width: 320px; }
+  .lp-hero__trust { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Foto prodotto (background)"
+    },
+    {
+      "type": "text",
+      "id": "pre_badge",
+      "label": "Badge pre-headline",
+      "default": "Accesso Esclusivo: Solo per Camionisti, Padroncini e Professionisti dell'Asfalto che rifiutano di scendere a compromessi."
+    },
+    {
+      "type": "header",
+      "content": "Headline (H1)"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Prima riga (prima del testo evidenziato)",
+      "default": "Scendi dalla cabina in"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Testo evidenziato (giallo)",
+      "default": "1 secondo netto."
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Seconda riga",
+      "default": "Senza piegarti per allacciare le scarpe."
+    },
+    {
+      "type": "text",
+      "id": "heading_line3",
+      "label": "Terza riga",
+      "default": "Senza distruggerti i piedi e la schiena."
+    },
+    {
+      "type": "header",
+      "content": "Sottotitolo e CTA"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Sottotitolo",
+      "default": "<p>Scopri le uniche calzature antinfortunistiche <strong>100% Made in Italy</strong> dotate del rivoluzionario sistema <strong>FASTWEAR®</strong> e blindate da una <strong>Garanzia Ufficiale di 3 Anni</strong>.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo bottone CTA",
+      "default": "Scopri l'Offerta"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL CTA (es. #acquista)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "payment", "label": "Pagamento" },
+            { "value": "delivery", "label": "Spedizione" },
+            { "value": "shield", "label": "Garanzia" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testo"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "LP — Hero" }]
+}
+{% endschema %}

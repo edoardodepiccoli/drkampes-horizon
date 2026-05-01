@@ -1,0 +1,218 @@
+<section class="lp-reviews">
+  <div class="lp-reviews__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="lp-sec__eyebrow lp-reviews__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h2 class="lp-sec__h2 lp-reviews__h2">{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="lp-reviews__marquee" id="lp-reviews-{{ section.id }}"></div>
+</section>
+
+<script type="application/json" id="lp-reviews-data-{{ section.id }}">
+  [
+    {%- for block in section.blocks -%}
+      {%- unless forloop.first -%},{%- endunless -%}
+      { "name": {{ block.settings.name | json }}, "text": {{ block.settings.text | json }} }
+    {%- endfor -%}
+  ]
+</script>
+
+<script>
+(function () {
+  var container = document.getElementById('lp-reviews-{{ section.id }}');
+  var dataEl    = document.getElementById('lp-reviews-data-{{ section.id }}');
+  if (!container || !dataEl) return;
+
+  var reviews = JSON.parse(dataEl.textContent);
+  if (!reviews.length) return;
+
+  var mobile = window.innerWidth < 750;
+  var rows   = mobile ? 3 : 2;
+  var chunk  = Math.ceil(reviews.length / rows);
+
+  function makeChunk(arr) {
+    return '<div class="lp-gr-chunk">' + arr.map(function (r) {
+      return '<div class="lp-gr-card">'
+        + '<div class="lp-gr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'
+        + '<div class="lp-gr-name">' + r.name + '</div>'
+        + '<div class="lp-gr-text">' + r.text + '</div>'
+        + '</div>';
+    }).join('') + '</div>';
+  }
+
+  for (var i = 0; i < rows; i++) {
+    var slice = reviews.slice(i * chunk, (i + 1) * chunk);
+    if (!slice.length) slice = reviews.slice(0, chunk);
+    var track = document.createElement('div');
+    track.className = 'lp-gr-track ' + (i % 2 ? 'lp-gr-track--right' : 'lp-gr-track--left');
+    var single = makeChunk(slice);
+    track.innerHTML = single + single + single + single;
+    container.appendChild(track);
+  }
+})();
+</script>
+
+{% stylesheet %}
+
+.lp-reviews {
+  padding: 56px 0 48px;
+  background: #f8f8f6;
+}
+
+.lp-reviews__header {
+  padding: 0 22px 22px;
+}
+
+.lp-reviews__eyebrow {
+  color: #2e7d32;
+}
+
+.lp-reviews__marquee {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  contain: paint;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.lp-gr-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.lp-gr-track--left  { animation: lp-mleft  110s linear infinite; }
+.lp-gr-track--right { animation: lp-mright 110s linear infinite; }
+
+.lp-gr-chunk {
+  display: flex;
+  gap: 14px;
+  padding-right: 14px;
+  flex-shrink: 0;
+}
+
+.lp-gr-card {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  white-space: normal;
+}
+
+.lp-gr-stars {
+  color: #fbbc04;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.lp-gr-name {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #202124;
+}
+
+.lp-gr-text {
+  font-size: 0.8rem;
+  color: #4d5156;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes lp-mleft  { 0% { transform: translateX(0); }    100% { transform: translateX(-25%); } }
+@keyframes lp-mright { 0% { transform: translateX(-25%); } 100% { transform: translateX(0); } }
+
+@media (min-width: 750px) {
+  .lp-reviews {
+    padding-bottom: 60px;
+  }
+
+  .lp-reviews__header {
+    padding: 0 60px 22px;
+  }
+
+  .lp-gr-card {
+    width: 280px;
+  }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Recensioni",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Migliaia di colleghi già convinti"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo sezione",
+      "default": "Non credere alle mie parole. Ascolta i tuoi colleghi."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Recensione",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome cliente"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testo recensione"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Recensioni",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Marco P.", "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita." } },
+        { "type": "review", "settings": { "name": "Giorgio B.", "text": "Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere." } },
+        { "type": "review", "settings": { "name": "Vincenzo D. M.", "text": "Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Le ho da dicembre e le sto usando nel fango e nell'acqua ovunque." } },
+        { "type": "review", "settings": { "name": "Igor R.", "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità." } },
+        { "type": "review", "settings": { "name": "Marco O.", "text": "Ho fatto il miglior acquisto per quanto riguarda scarpe da camionista: ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta." } },
+        { "type": "review", "settings": { "name": "Natalia G.", "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa." } },
+        { "type": "review", "settings": { "name": "Danilo L. F.", "text": "Voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto." } },
+        { "type": "review", "settings": { "name": "Maikol M.", "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro antinfortunistica." } },
+        { "type": "review", "settings": { "name": "Ivano D.", "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato subito dopo l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene." } },
+        { "type": "review", "settings": { "name": "Damiano M.", "text": "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene." } },
+        { "type": "review", "settings": { "name": "Paolo F.", "text": "Miglior scarpa da lavoro mai avuta." } },
+        { "type": "review", "settings": { "name": "Luca C.", "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare." } },
+        { "type": "review", "settings": { "name": "Gianluca M.", "text": "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire." } },
+        { "type": "review", "settings": { "name": "Giuseppe S.", "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto." } },
+        { "type": "review", "settings": { "name": "Pierantonio D. P.", "text": "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e le operazioni di carico e scarico." } },
+        { "type": "review", "settings": { "name": "Denis S.", "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille." } },
+        { "type": "review", "settings": { "name": "Corrado C.", "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato." } },
+        { "type": "review", "settings": { "name": "Enrico V.", "text": "Un anno fa ho scoperto Dr Kampes e credo veramente che le altre scarpe anti infortunistiche siano un lontano ricordo. Comodità, praticità: voto 100 su 10." } },
+        { "type": "review", "settings": { "name": "Thierry N.", "text": "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!" } },
+        { "type": "review", "settings": { "name": "Maria del Carmen S.", "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
