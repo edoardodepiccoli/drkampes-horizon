@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr Kampes — Trucker Shoes | Calzature Antinfortunistiche Made in Italy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F5C200;
+      --yellow-dark: #d9ac00;
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --dark: #0d0d0d;
+      --text: #111;
+      --text-mid: #444;
+      --border: #e0e0e0;
+      --bg-off: #f8f8f6;
+      --offer-bg: #fff8e1;
+      --star: #fbbc04;
+      --red: #b71c1c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Placeholders ── */
+    .ph {
+      background: #1c1c1c;
+      border: 2px dashed #3a3a3a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      text-align: center;
+      color: #666;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .ph--light { background: #f0f0f0; border-color: #ccc; color: #888; }
+    .ph--16x9  { aspect-ratio: 16/9; }
+    .ph--4x5   { aspect-ratio: 4/5; }
+    .ph--9x16  { aspect-ratio: 9/16; }
+    .ph--3x4   { aspect-ratio: 3/4; }
+    .ph--3x2   { aspect-ratio: 3/2; }
+    .ph--1x1   { aspect-ratio: 1/1; }
+
+    /* ── Header ── */
+    .lp-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .lp-header--solid {
+      background: var(--dark);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+    .lp-header__logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .lp-header__badge {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--yellow);
+      border: 1px solid rgba(245,194,0,0.5);
+      border-radius: 4px;
+      padding: 3px 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      background: var(--dark);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero__img-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      text-align: center;
+      padding: 20px;
+    }
+    /* dark gradient so text reads on any photo */
+    .hero__img-ph::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.2) 100%);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 22px 44px;
+    }
+
+    .hero__pre {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--yellow);
+      border: 1px solid rgba(245,194,0,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 18px;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .hero__h1 {
+      font-size: 1.95rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.13;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .hero__h1 em { color: var(--yellow); font-style: normal; }
+
+    .hero__sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .hero__sub strong { color: #fff; }
+
+    .hero__cta {
+      display: block;
+      padding: 17px 24px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: background 0.15s;
+    }
+    .hero__cta:hover { background: var(--yellow-dark); }
+
+    .hero__trust {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hero__trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .hero__trust-item svg { width: 14px; height: 14px; flex-shrink: 0; stroke: var(--yellow); }
+
+    /* ── Sections ── */
+    .sec { padding: 56px 22px; }
+    .sec--dark  { background: var(--dark); color: #fff; }
+    .sec--gray  { background: var(--bg-off); }
+    .sec--white { background: #fff; }
+
+    .sec__eyebrow {
+      font-size: 0.67rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .sec--dark .sec__eyebrow { color: var(--yellow); }
+
+    .sec__h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    /* ── Problem ── */
+    .problem__copy {
+      font-size: 0.97rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .problem__lead {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .pains { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+    .pain {
+      background: #fff5f5;
+      border-left: 4px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+    }
+    .pain__title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    .pain__text { font-size: 0.82rem; color: #555; line-height: 1.5; }
+
+    /* ── Founder ── */
+    .founder { display: flex; flex-direction: column; gap: 24px; }
+
+    .founder__quote {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+      border-left: 3px solid var(--yellow);
+      padding-left: 16px;
+      margin: 16px 0;
+    }
+
+    .montebelluna {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--offer-bg);
+      border: 1.5px solid var(--yellow);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #7a5800;
+      margin-top: 16px;
+    }
+
+    /* ── Benefits ── */
+    .benefits { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+    .benefit {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+    }
+    .benefit__icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border-radius: 9px;
+      background: rgba(245,194,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+    }
+    .benefit__title {
+      font-size: 0.88rem; font-weight: 800; color: #fff;
+      letter-spacing: 0.03em; margin-bottom: 4px; text-transform: uppercase;
+    }
+    .benefit__text { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.55; }
+
+    .shoe-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* ── Video ── */
+    .video-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+    .video-ph {
+      width: 100%; max-width: 300px;
+      aspect-ratio: 9/16;
+      background: #1a1a1a;
+      border: 2px dashed #3a3a3a;
+      border-radius: 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+    }
+    .video-ph__icon {
+      width: 52px; height: 52px;
+      background: rgba(245,194,0,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-ph__icon svg { width: 22px; height: 22px; fill: var(--yellow); }
+    .video-ph__lbl {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #555; text-align: center; padding: 0 20px;
+    }
+
+    /* ── Reviews marquee ── */
+    .gr-marquee-wrapper {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      contain: paint;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    .gr-track {
+      display: flex; width: max-content; will-change: transform;
+    }
+    .gr-track.slide-left  { animation: mleft  110s linear infinite; }
+    .gr-track.slide-right { animation: mright 110s linear infinite; }
+    .gr-chunk { display: flex; gap: 14px; padding-right: 14px; flex-shrink: 0; }
+    .gr-card {
+      width: 240px; flex-shrink: 0;
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 10px; padding: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; gap: 6px; white-space: normal;
+    }
+    .gr-stars { color: var(--star); font-size: 14px; letter-spacing: 2px; }
+    .gr-name  { font-weight: 700; font-size: 0.8rem; color: #202124; }
+    .gr-text  {
+      font-size: 0.8rem; color: #4d5156; line-height: 1.45;
+      display: -webkit-box; -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    @keyframes mleft  { 0% { transform: translateX(0); }    100% { transform: translateX(-25%); } }
+    @keyframes mright { 0% { transform: translateX(-25%); } 100% { transform: translateX(0); } }
+
+    /* ── HPS mockup ── */
+    .hps-mock-wrap {
+      border: 3px dashed #bbb;
+      border-radius: 14px;
+      padding: 22px 18px;
+      background: #fff;
+    }
+    .hps-mock-label {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #999;
+      text-align: center; margin-bottom: 18px;
+    }
+    .hps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .hps-right { display: flex; flex-direction: column; justify-content: center; }
+    .hps-stars { font-size: 0.68rem; color: var(--star); margin-bottom: 4px; }
+    .hps-stars span { color: #666; font-size: 0.65rem; }
+    .hps-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 2px; }
+    .hps-subtitle { font-size: 0.72rem; color: #888; margin-bottom: 10px; }
+    .hps-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+    .hps-price { font-size: 1.7rem; font-weight: 900; }
+    .hps-compare { font-size: 0.9rem; color: #bbb; text-decoration: line-through; }
+    .hps-savings {
+      display: inline-flex; align-items: center;
+      background: var(--green-light); color: var(--green);
+      font-size: 0.7rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 20px; margin-bottom: 14px;
+    }
+    .hps-swatches { display: flex; gap: 8px; margin-bottom: 10px; }
+    .hps-swatch {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.12);
+    }
+    .hps-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .hps-pill {
+      height: 38px; min-width: 42px; padding: 0 8px;
+      border: 1.5px solid #ccc; border-radius: 6px;
+      background: #fff; font-size: 0.83rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hps-pill--on { border-color: #111; background: #111; color: #fff; }
+    .hps-pill--na { color: #ccc; border-color: #eee; text-decoration: line-through; }
+    .hps-btn {
+      display: block; width: 100%; padding: 16px;
+      background: var(--yellow); color: var(--dark);
+      font-size: 0.92rem; font-weight: 900;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 8px; text-align: center;
+      margin-bottom: 10px; border: none; cursor: pointer;
+    }
+    .hps-banner {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--offer-bg); border: 1.5px solid var(--yellow);
+      border-radius: 8px; padding: 10px 13px; margin-bottom: 14px;
+    }
+    .hps-banner span { font-size: 0.82rem; font-weight: 800; color: #7a5800; }
+    .hps-trust {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 4px; padding: 12px 0;
+      border-top: 1px solid #eee;
+      text-align: center; font-size: 0.58rem; font-weight: 600; color: #555;
+      line-height: 1.4;
+    }
+
+    /* ── Guarantee ── */
+    .guarantee-badge {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--green-light); border: 2px solid var(--green);
+      border-radius: 12px; padding: 16px 18px; margin-bottom: 22px;
+    }
+    .guarantee-badge__icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      background: var(--green); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .guarantee-badge__icon svg { width: 24px; height: 24px; stroke: #fff; }
+    .guarantee-badge__title {
+      font-size: 0.85rem; font-weight: 900; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.3;
+    }
+    .guarantee-badge__sub { font-size: 0.73rem; color: var(--green); opacity: 0.8; margin-top: 2px; }
+
+    .math-table {
+      width: 100%; border-collapse: collapse;
+      margin-bottom: 18px; font-size: 0.86rem;
+    }
+    .math-table th {
+      background: var(--dark); color: #fff;
+      padding: 9px 11px; font-size: 0.68rem;
+      font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; text-align: left;
+    }
+    .math-table th:first-child { border-radius: 6px 0 0 0; }
+    .math-table th:last-child  { border-radius: 0 6px 0 0; }
+    .math-table td { padding: 10px 11px; border-bottom: 1px solid var(--border); }
+    .math-table tr:last-child td { border-bottom: none; }
+    .win  { font-weight: 800; color: var(--green); }
+    .lose { color: #bbb; text-decoration: line-through; }
+
+    .math-callout {
+      background: var(--green-light); border-radius: 10px;
+      padding: 15px 17px; font-size: 0.88rem; color: var(--text); line-height: 1.65;
+    }
+    .math-callout strong { color: var(--green); font-weight: 900; }
+
+    /* ── Final CTA ── */
+    .payment-row {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      margin-bottom: 22px;
+    }
+    .pay-badge {
+      background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px; padding: 6px 13px;
+      font-size: 0.73rem; font-weight: 600; color: rgba(255,255,255,0.75);
+    }
+    .security-note {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 14px;
+    }
+    .security-note svg { width: 12px; height: 12px; stroke: currentColor; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #080808; padding: 26px 22px;
+      text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer__logo { font-size: 1rem; font-weight: 900; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .footer__tagline { font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+    .footer__links {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      margin-top: 14px; font-size: 0.7rem; color: rgba(255,255,255,0.28);
+    }
+
+    /* ── Desktop ── */
+    @media (min-width: 750px) {
+      .hero {
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 100svh;
+        justify-content: unset;
+      }
+      .hero__img-ph {
+        position: relative;
+        flex: 0 0 48%;
+        inset: auto;
+        border-radius: 0;
+        order: 2;
+        font-size: 0.72rem;
+      }
+      .hero__img-ph::after { background: linear-gradient(to left, rgba(0,0,0,0.3), rgba(0,0,0,0.1)); }
+      .hero__content {
+        flex: 1; order: 1;
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 120px 56px 56px;
+      }
+      .hero__h1 { font-size: 2.5rem; }
+      .hero__cta { max-width: 320px; }
+      .hero__trust { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+
+      .sec { padding: 80px 60px; }
+
+      .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+      .founder { flex-direction: row; gap: 48px; align-items: flex-start; }
+      .founder__photo { flex: 0 0 260px; }
+      .founder__copy  { flex: 1; }
+
+      .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+      .video-wrap { flex-direction: row; justify-content: center; gap: 48px; align-items: center; }
+      .video-ph { max-width: 260px; }
+
+      .gr-card { width: 280px; }
+
+      .hps-mock-wrap { max-width: 800px; margin: 0 auto; }
+
+      .guarantee-inner { max-width: 680px; }
+
+      .final-inner { max-width: 540px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="lp-header" id="lp-header">
+  <div class="lp-header__logo">Dr Kampes</div>
+  <div class="lp-header__badge">Made in Italy</div>
+</header>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+
+  <div class="hero__img-ph">
+    [ASSET: Foto scarpa — sfondo dark cinematico<br>variante Nero o Testa di Moro<br>sfondo intero su mobile · colonna destra su desktop]
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__pre">
+      Accesso Esclusivo: Solo per Camionisti, Padroncini e Professionisti dell'Asfalto che rifiutano di scendere a compromessi.
+    </div>
+
+    <h1 class="hero__h1">
+      Scendi dalla cabina in <em>1 secondo netto.</em><br>
+      Senza piegarti per allacciare le scarpe.<br>
+      Senza distruggerti i piedi e la schiena.
+    </h1>
+
+    <p class="hero__sub">
+      Scopri le uniche calzature antinfortunistiche <strong>100% Made in Italy</strong> dotate del rivoluzionario sistema <strong>FASTWEAR®</strong> e blindate da una <strong>Garanzia Ufficiale di 3 Anni</strong>.
+    </p>
+
+    <a href="#acquista" class="hero__cta">Scopri l'Offerta</a>
+
+    <div class="hero__trust">
+      <div class="hero__trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+        Pagamento sicuro &amp; criptato
+      </div>
+      <div class="hero__trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        Spedizione Express GRATIS in tutta Italia
+      </div>
+      <div class="hero__trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+        Garanzia Ufficiale e Scritta 3 Anni
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PROBLEMA
+══════════════════════════════════════ -->
+<section class="sec sec--white">
+  <div class="sec__eyebrow">La verità che nessuno ti dice</div>
+  <h2 class="sec__h2">So esattamente come funziona la tua giornata.</h2>
+
+  <div class="problem-grid">
+    <div>
+      <p class="problem__copy">
+        Sveglia nel cuore della notte, un caffè amaro mandato giù in fretta, e via sul camion. Poi inizia la partita: guidi per ore, scendi, agganci il rimorchio, sganci, controlli il carico sotto l'acqua o sotto il sole cocente e poi saldi di nuovo.
+      </p>
+      <p class="problem__copy">
+        E ogni singola volta che metti il piede a terra, ti ritrovi con i piedi incastrati in blocchi di cemento che il tuo capo ha il coraggio di chiamare "scarpe antinfortunistiche".
+      </p>
+      <p class="problem__copy">
+        Ti hanno abituato a credere che è un <strong>"male necessario"</strong>.
+      </p>
+      <p class="problem__lead">
+        Ma se il tuo capo e l'intera industria delle scarpe ti stessero prendendo in giro? Pensaci.
+      </p>
+
+      <div class="pains">
+        <div class="pain">
+          <div class="pain__title">Il problema dei lacci</div>
+          <div class="pain__text">Scendi dalla cabina 30, 40, 50 volte al giorno. Ogni volta ti pieghi. La schiena lo ricorda ogni sera.</div>
+        </div>
+        <div class="pain">
+          <div class="pain__title">Blocchi di cemento</div>
+          <div class="pain__text">Scarpe "antinfortunistiche" che pesano come mattoni, sudano, puzzano e durano 6 mesi. Poi ricomincia tutto da capo.</div>
+        </div>
+        <div class="pain">
+          <div class="pain__title">€540 buttati ogni 3 anni</div>
+          <div class="pain__text">€90 ogni 6 mesi. In 3 anni sono €540 volatilizzati. Zero qualità. Zero garanzia.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ph ph--light ph--4x5">
+      [ASSET: Foto o Reel — ambientazione<br>cabina camion, asfalto, autogrill, cantiere<br>mostra il contesto di lavoro del target]
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOUNDER / PARADIGM SHIFT
+══════════════════════════════════════ -->
+<section class="sec sec--gray">
+  <div class="sec__eyebrow">La svolta</div>
+  <h2 class="sec__h2">Un giorno, stanco di queste bugie, ho deciso di cambiare le regole del gioco.</h2>
+
+  <div class="founder">
+    <div class="founder__photo">
+      <div class="ph ph--light ph--3x4">
+        [ASSET: Foto founder<br>ritratto professionale o naturale<br>possibilmente con le scarpe o in contesto artigianale]
+      </div>
+    </div>
+
+    <div class="founder__copy">
+      <p class="problem__copy">
+        Ho preso i <strong>100 anni di esperienza artigianale</strong> del prestigioso distretto calzaturiero di Montebelluna e l'ho letteralmente fuso con l'asfalto, il gasolio e la vita in cabina.
+      </p>
+
+      <blockquote class="founder__quote">
+        "Volevo creare la scarpa che ogni camionista merita. Non una scarpa 'da lavoro'. Una scarpa fatta con rispetto."
+      </blockquote>
+
+      <p class="problem__copy">
+        Il risultato? <strong>Dr Kampes — Trucker Shoes</strong>. La calzatura che sta riscrivendo le regole del gioco.
+      </p>
+
+      <div class="montebelluna">
+        🇮🇹 &nbsp; 100% Made in Italy · Distretto di Montebelluna · Artigianato d'eccellenza
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PRODUCT + BENEFITS
+══════════════════════════════════════ -->
+<section class="sec sec--dark">
+  <div class="sec__eyebrow">Dr Kampes Trucker Shoes</div>
+  <h2 class="sec__h2" style="color:#fff;">Quattro vantaggi che cambiano il tuo modo di lavorare.</h2>
+
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit__icon">⚡</div>
+      <div>
+        <div class="benefit__title">Sistema FASTWEAR®</div>
+        <div class="benefit__text">Dimentica i lacci. Il tuo piede entra ed esce in 1 secondo esatto. Sei sempre operativo, senza mai piegarti.</div>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">☁️</div>
+      <div>
+        <div class="benefit__title">Cammina sulle nuvole</div>
+        <div class="benefit__text">Una scarpa che si adatta al tuo piede con un plantare progettato per assorbire le micro-vibrazioni del lavoro quotidiano.</div>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">🛡️</div>
+      <div>
+        <div class="benefit__title">Sicurezza S3S Massima</div>
+        <div class="benefit__text">Protetto ai massimi livelli previsti dalle nuove, rigidissime normative europee. Certificazione DPI S3S inclusa.</div>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit__icon">✨</div>
+      <div>
+        <div class="benefit__title">Eleganza da professionista</div>
+        <div class="benefit__text">Disponibili nei colori Nero e nell'esclusivo Testa di Moro. In autogrill, dal cliente o in dogana: fai la figura che meriti.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shoe-photos">
+    <div class="ph ph--4x5">[ASSET: Foto scarpa<br>sfondo dark cinematico<br>variante Nero]</div>
+    <div class="ph ph--4x5">[ASSET: Foto scarpa<br>sfondo dark cinematico<br>variante Testa di Moro]</div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     VIDEO / REEL
+══════════════════════════════════════ -->
+<section class="sec sec--white" style="text-align:center;">
+  <div class="sec__eyebrow" style="justify-content:center;display:block;">Guarda come funziona</div>
+  <h2 class="sec__h2" style="margin-bottom:28px;">FASTWEAR® in azione.<br>1 secondo. Sul serio.</h2>
+
+  <div class="video-wrap">
+    <div class="video-ph">
+      <div class="video-ph__icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-ph__lbl">
+        [ASSET: Instagram Reel 9:16<br>scarica da IG e inserisci qui<br>mostra FASTWEAR® in azione]
+      </div>
+    </div>
+
+    <div style="text-align:left;max-width:380px;">
+      <p style="font-size:0.97rem;line-height:1.75;color:#444;margin-bottom:18px;">
+        <strong style="color:#111;">Guarda come funziona il sistema FASTWEAR®</strong> — piede dentro, piede fuori, in meno di un secondo. Niente lacci, niente piegature, niente perdite di tempo. Ogni singola discesa dal camion.
+      </p>
+      <div class="ph ph--light ph--3x2">
+        [ASSET: Foto scarpe — sfondo film-like/ambientato<br>foto "autentiche" da usare come supporto visivo]
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     REVIEWS
+══════════════════════════════════════ -->
+<section class="sec sec--gray" style="padding-left:0;padding-right:0;padding-bottom:48px;">
+  <div style="padding:0 22px 22px;">
+    <div class="sec__eyebrow">Migliaia di colleghi già convinti</div>
+    <h2 class="sec__h2">Non credere alle mie parole.<br>Ascolta i tuoi colleghi.</h2>
+  </div>
+  <div class="gr-marquee-wrapper" id="gr-reviews"></div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HPS OFFERTA SECTION
+     ← Questo blocco è già costruito in Shopify →
+══════════════════════════════════════ -->
+<section class="sec sec--white" id="acquista">
+  <div class="sec__eyebrow">L'offerta</div>
+  <h2 class="sec__h2" style="margin-bottom:24px;">Solo fino a esaurimento scorte, sblocca l'offerta a te dedicata.</h2>
+
+  <!--
+  ╔═══════════════════════════════════════════════════════════════╗
+  ║  QUI VA sections/hps-offerta.liquid                           ║
+  ║  Questa sezione Shopify gestisce già:                         ║
+  ║  → galleria foto prodotto (white bg)                          ║
+  ║  → titolo, sottotitolo, stelle, recensione blockquote         ║
+  ║  → prezzo (€189 + compare €219 + badge risparmio)             ║
+  ║  → Klarna 3 rate                                              ║
+  ║  → trust strip (garanzia, reso, spedizione)                   ║
+  ║  → selettore colore (swatches)                                ║
+  ║  → selettore taglia (pills) + guida taglie + schede tecniche  ║
+  ║  → CTA "ACQUISTA ORA"                                         ║
+  ║  → banner offerta T-shirt + Spedizione GRATIS                 ║
+  ║  → USP list (6 items espansi)                                 ║
+  ║  → sticky bottom CTA bar                                      ║
+  ║  → popup: taglia t-shirt, schede tecniche, guida taglie       ║
+  ║  → viewer count toast                                         ║
+  ╚═══════════════════════════════════════════════════════════════╝
+  Il blocco qui sotto è solo un mockup visivo per questa preview.
+  -->
+
+  <div class="hps-mock-wrap">
+    <div class="hps-mock-label">↕ sections/hps-offerta.liquid — renderizzata da Shopify ↕</div>
+
+    <div class="hps-grid">
+      <div class="ph ph--light ph--4x5">
+        [ASSET: Galleria foto prodotto<br>sfondo bianco<br>miniature sotto]
+      </div>
+      <div class="hps-right">
+        <div class="hps-stars">★★★★★ <span>4.9 · 127 clienti soddisfatti</span></div>
+        <div class="hps-title">Dr Kampes Trucker Shoes</div>
+        <div class="hps-subtitle">Antinfortunistiche S3S</div>
+        <div class="hps-price-row">
+          <span class="hps-price">€189</span>
+          <span class="hps-compare">€219</span>
+        </div>
+        <div class="hps-savings">Risparmi €30 &nbsp;·&nbsp; IVA inclusa</div>
+        <div style="font-size:0.73rem;color:#666;margin-bottom:14px;">oppure <strong style="color:#111;">3 rate da €63</strong> con Klarna e PayPal</div>
+
+        <div style="font-size:0.8rem;font-weight:500;color:#111;margin-bottom:6px;">Colore: <strong>Nero</strong></div>
+        <div class="hps-swatches">
+          <div class="hps-swatch" style="background:#1a1a1a;" title="Nero"></div>
+          <div class="hps-swatch" style="background:#3d1a0a;" title="Testa di Moro"></div>
+        </div>
+
+        <div style="font-size:0.8rem;font-weight:500;color:#111;margin-bottom:6px;">Taglia: <strong>42</strong></div>
+        <div class="hps-pills">
+          <div class="hps-pill">39</div>
+          <div class="hps-pill">40</div>
+          <div class="hps-pill">41</div>
+          <div class="hps-pill hps-pill--on">42</div>
+          <div class="hps-pill">43</div>
+          <div class="hps-pill">44</div>
+          <div class="hps-pill">45</div>
+          <div class="hps-pill hps-pill--na">46</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hps-banner">
+      <span style="font-size:1.2rem;flex-shrink:0;">🎁</span>
+      <span>T-shirt + Spedizione Rapida GRATIS</span>
+    </div>
+
+    <div class="hps-btn">ACQUISTA ORA</div>
+
+    <div class="hps-trust">
+      <div>🛡️<br>3 anni di<br>garanzia</div>
+      <div>🔄<br>Reso e cambio<br>taglia gratis</div>
+      <div>🚚<br>Spedizione<br>48/72 ore</div>
+    </div>
+
+    <p style="font-size:0.68rem;color:#aaa;text-align:center;margin-top:10px;">
+      [USP list espansa · popup t-shirt · guida taglie · schede tecniche · sticky bar — gestiti da hps-offerta.liquid]
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     RISK REVERSAL / GARANZIA
+══════════════════════════════════════ -->
+<section class="sec sec--white">
+  <div class="guarantee-inner">
+    <div class="sec__eyebrow">Garanzia</div>
+    <h2 class="sec__h2">Il tuo cervello razionale ha ragione a chiedersi: quasi 200 euro per scarpe da lavoro?</h2>
+
+    <p style="font-size:0.97rem;color:#444;line-height:1.8;margin-bottom:22px;">
+      Noi pensiamo che il tuo denaro debba essere ben speso. Le Dr Kampes sono costruite per durare <strong>3 volte di più</strong>. È per questo che ci mettiamo la faccia e il portafoglio offrendoti una Garanzia Ufficiale e Scritta.
+    </p>
+
+    <div class="guarantee-badge">
+      <div class="guarantee-badge__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="guarantee-badge__title">Garanzia Ufficiale e Scritta di 3 Anni</div>
+        <div class="guarantee-badge__sub">Valutazione, riparazione o sostituzione gratis. Zero asterischi.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:0.97rem;font-weight:800;margin-bottom:12px;">Fai la matematica.</h3>
+
+    <table class="math-table">
+      <thead>
+        <tr>
+          <th>Prodotto</th>
+          <th>Costo</th>
+          <th>Durata</th>
+          <th>In 3 anni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Scarpe generiche</td>
+          <td class="lose">€90</td>
+          <td>~6 mesi</td>
+          <td class="lose">€540 sprecati</td>
+        </tr>
+        <tr>
+          <td><strong>Dr Kampes</strong></td>
+          <td class="win">€189</td>
+          <td>3+ anni</td>
+          <td class="win">€189 — punto.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="math-callout">
+      Con le Dr Kampes risparmi <strong>€351</strong> in 3 anni rispetto alle scarpe che stai usando adesso. E cammini, guidi e lavori meglio ogni giorno.
+    </div>
+
+    <div class="ph ph--light ph--3x2" style="margin-top:24px;">
+      [ASSET: Foto qualità artigianale — dettaglio suola, cucitura, materiale<br>oppure certificato garanzia fisico]
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════ -->
+<section class="sec sec--dark" style="text-align:center;">
+  <div class="final-inner">
+    <div class="sec__eyebrow">Pronto a smettere di soffrire?</div>
+    <h2 class="sec__h2" style="color:#fff;margin-bottom:10px;">
+      Dr Kampes Trucker Shoes.<br>T-shirt Esclusiva GRATIS.<br>Spedizione Express GRATIS.
+    </h2>
+
+    <p style="font-size:1.9rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;">€189,00</p>
+    <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:6px;">
+      <s>Valore totale offerta €223,90</s>
+    </p>
+    <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:28px;">IVA inclusa</p>
+
+    <a href="#acquista" class="hero__cta" style="max-width:380px;margin:0 auto 24px;display:block;">
+      Acquista Ora — T-shirt GRATIS
+    </a>
+
+    <div class="payment-row">
+      <div class="pay-badge">Klarna</div>
+      <div class="pay-badge">PayPal</div>
+      <div class="pay-badge">Apple Pay</div>
+      <div class="pay-badge">Google Pay</div>
+      <div class="pay-badge">Carta di Credito</div>
+    </div>
+
+    <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:6px;line-height:1.6;">
+      Oppure paga in <strong style="color:rgba(255,255,255,0.8);">3 comode rate da €63 a tasso zero</strong><br>con Klarna e PayPal.
+    </p>
+
+    <div class="security-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Transazione crittografata al 100% · SSL
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__logo">Dr Kampes</div>
+  <div class="footer__tagline">Trucker Shoes · 100% Made in Italy · Distretto di Montebelluna</div>
+  <div class="footer__links">
+    <a href="https://drkampes.com">drkampes.com</a>
+    <span>·</span>
+    <span>P.IVA [da inserire]</span>
+    <span>·</span>
+    <a href="https://drkampes.com/policies/privacy-policy">Privacy</a>
+    <span>·</span>
+    <a href="https://drkampes.com/policies/terms-of-service">Termini</a>
+  </div>
+</footer>
+
+
+<script>
+  // Solid header on scroll
+  (function () {
+    var h = document.getElementById('lp-header');
+    window.addEventListener('scroll', function () {
+      h.classList.toggle('lp-header--solid', window.scrollY > 60);
+    }, { passive: true });
+  })();
+
+  // Reviews marquee
+  var reviews = [
+    { name: "Marco P.",            text: "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita." },
+    { name: "Giorgio B.",          text: "Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere." },
+    { name: "Vincenzo D. M.",      text: "Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Le ho da dicembre e le sto usando nel fango e nell'acqua ovunque." },
+    { name: "Igor R.",             text: "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità." },
+    { name: "Marco O.",            text: "Ho fatto il miglior acquisto per quanto riguarda scarpe da camionista: ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta." },
+    { name: "Natalia G.",          text: "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa." },
+    { name: "Danilo L. F.",        text: "Voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto." },
+    { name: "Maikol M.",           text: "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro antinfortunistica." },
+    { name: "Ivano D.",            text: "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato subito dopo l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene." },
+    { name: "Damiano M.",          text: "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene." },
+    { name: "Paolo F.",            text: "Miglior scarpa da lavoro mai avuta." },
+    { name: "Luca C.",             text: "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare." },
+    { name: "Gianluca M.",         text: "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire." },
+    { name: "Giuseppe s.",         text: "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto." },
+    { name: "Pierantonio D. P.",   text: "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e le operazioni di carico e scarico." },
+    { name: "Denis s.",            text: "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille." },
+    { name: "Corrado C.",          text: "Scarpe top, mai provato un prodotto simile. Straconsigliato." },
+    { name: "enrico v.",           text: "Un anno fa ho scoperto Dr Kampes e credo veramente che le altre scarpe anti infortunistiche siano un lontano ricordo. Comodità, praticità: voto 100 su 10." },
+    { name: "Thierry N.",          text: "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!" },
+    { name: "Maria del carmen s.", text: "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile." }
+  ];
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var container = document.getElementById('gr-reviews');
+    var mobile    = window.innerWidth < 750;
+    var rows      = mobile ? 3 : 2;
+    var chunk     = Math.ceil(reviews.length / rows);
+
+    function makeChunk(arr) {
+      return '<div class="gr-chunk">' + arr.map(function (r) {
+        return '<div class="gr-card"><div class="gr-stars">★★★★★</div>'
+          + '<div class="gr-name">' + r.name + '</div>'
+          + '<div class="gr-text">' + r.text + '</div></div>';
+      }).join('') + '</div>';
+    }
+
+    for (var i = 0; i < rows; i++) {
+      var data  = reviews.slice(i * chunk, (i + 1) * chunk);
+      var track = document.createElement('div');
+      track.className = 'gr-track ' + (i % 2 ? 'slide-right' : 'slide-left');
+      var single = makeChunk(data);
+      track.innerHTML = single + single + single + single;
+      container.appendChild(track);
+    }
+  });
+</script>
+
+</body>
+</html>
