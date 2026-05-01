@@ -93,7 +93,11 @@
           }
         }
       },
-      "block_order": ["trust_payment", "trust_delivery", "trust_shield"],
+      "block_order": [
+        "trust_payment",
+        "trust_delivery",
+        "trust_shield"
+      ],
       "settings": {
         "pre_badge": "Accesso Esclusivo: Solo per Camionisti, Padroncini e Professionisti dell'Asfalto che rifiutano di scendere a compromessi.",
         "heading_line1": "Scendi dalla cabina in",
@@ -130,7 +134,11 @@
           }
         }
       },
-      "block_order": ["pain_lacci", "pain_cemento", "pain_soldi"],
+      "block_order": [
+        "pain_lacci",
+        "pain_cemento",
+        "pain_soldi"
+      ],
       "settings": {
         "eyebrow": "La verità che nessuno ti dice",
         "heading": "So esattamente come funziona la tua giornata.",
@@ -187,7 +195,12 @@
           }
         }
       },
-      "block_order": ["benefit_fastwear", "benefit_comfort", "benefit_sicurezza", "benefit_eleganza"],
+      "block_order": [
+        "benefit_fastwear",
+        "benefit_comfort",
+        "benefit_sicurezza",
+        "benefit_eleganza"
+      ],
       "settings": {
         "eyebrow": "Dr Kampes Trucker Shoes",
         "heading": "Quattro vantaggi che cambiano il tuo modo di lavorare."
@@ -198,38 +211,175 @@
       "settings": {
         "eyebrow": "Guarda come funziona",
         "heading": "FASTWEAR® in azione. 1 secondo. Sul serio.",
+        "video_url": "",
         "copy": "<p><strong>Guarda come funziona il sistema FASTWEAR®</strong> — piede dentro, piede fuori, in meno di un secondo. Niente lacci, niente piegature, niente perdite di tempo. Ogni singola discesa dal camion.</p>"
       }
     },
     "lp_reviews": {
       "type": "lp-reviews",
       "blocks": {
-        "review_01": { "type": "review", "settings": { "name": "Marco P.", "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita." } },
-        "review_02": { "type": "review", "settings": { "name": "Giorgio B.", "text": "Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere." } },
-        "review_03": { "type": "review", "settings": { "name": "Vincenzo D. M.", "text": "Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Le ho da dicembre e le sto usando nel fango e nell'acqua ovunque." } },
-        "review_04": { "type": "review", "settings": { "name": "Igor R.", "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità." } },
-        "review_05": { "type": "review", "settings": { "name": "Marco O.", "text": "Ho fatto il miglior acquisto per quanto riguarda scarpe da camionista: ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta." } },
-        "review_06": { "type": "review", "settings": { "name": "Natalia G.", "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa." } },
-        "review_07": { "type": "review", "settings": { "name": "Danilo L. F.", "text": "Voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto." } },
-        "review_08": { "type": "review", "settings": { "name": "Maikol M.", "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro antinfortunistica." } },
-        "review_09": { "type": "review", "settings": { "name": "Ivano D.", "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato subito dopo l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene." } },
-        "review_10": { "type": "review", "settings": { "name": "Damiano M.", "text": "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene." } },
-        "review_11": { "type": "review", "settings": { "name": "Paolo F.", "text": "Miglior scarpa da lavoro mai avuta." } },
-        "review_12": { "type": "review", "settings": { "name": "Luca C.", "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare." } },
-        "review_13": { "type": "review", "settings": { "name": "Gianluca M.", "text": "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire." } },
-        "review_14": { "type": "review", "settings": { "name": "Giuseppe S.", "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto." } },
-        "review_15": { "type": "review", "settings": { "name": "Pierantonio D. P.", "text": "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e le operazioni di carico e scarico." } },
-        "review_16": { "type": "review", "settings": { "name": "Denis S.", "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille." } },
-        "review_17": { "type": "review", "settings": { "name": "Corrado C.", "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato." } },
-        "review_18": { "type": "review", "settings": { "name": "Enrico V.", "text": "Un anno fa ho scoperto Dr Kampes e credo veramente che le altre scarpe anti infortunistiche siano un lontano ricordo. Comodità, praticità: voto 100 su 10." } },
-        "review_19": { "type": "review", "settings": { "name": "Thierry N.", "text": "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!" } },
-        "review_20": { "type": "review", "settings": { "name": "Maria del Carmen S.", "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile." } }
+        "review_01": {
+          "type": "review",
+          "settings": {
+            "name": "Marco P.",
+            "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita."
+          }
+        },
+        "review_02": {
+          "type": "review",
+          "settings": {
+            "name": "Giorgio B.",
+            "text": "Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere."
+          }
+        },
+        "review_03": {
+          "type": "review",
+          "settings": {
+            "name": "Vincenzo D. M.",
+            "text": "Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Le ho da dicembre e le sto usando nel fango e nell'acqua ovunque."
+          }
+        },
+        "review_04": {
+          "type": "review",
+          "settings": {
+            "name": "Igor R.",
+            "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità."
+          }
+        },
+        "review_05": {
+          "type": "review",
+          "settings": {
+            "name": "Marco O.",
+            "text": "Ho fatto il miglior acquisto per quanto riguarda scarpe da camionista: ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta."
+          }
+        },
+        "review_06": {
+          "type": "review",
+          "settings": {
+            "name": "Natalia G.",
+            "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa."
+          }
+        },
+        "review_07": {
+          "type": "review",
+          "settings": {
+            "name": "Danilo L. F.",
+            "text": "Voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto."
+          }
+        },
+        "review_08": {
+          "type": "review",
+          "settings": {
+            "name": "Maikol M.",
+            "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro antinfortunistica."
+          }
+        },
+        "review_09": {
+          "type": "review",
+          "settings": {
+            "name": "Ivano D.",
+            "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato subito dopo l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene."
+          }
+        },
+        "review_10": {
+          "type": "review",
+          "settings": {
+            "name": "Damiano M.",
+            "text": "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene."
+          }
+        },
+        "review_11": {
+          "type": "review",
+          "settings": {
+            "name": "Paolo F.",
+            "text": "Miglior scarpa da lavoro mai avuta."
+          }
+        },
+        "review_12": {
+          "type": "review",
+          "settings": {
+            "name": "Luca C.",
+            "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare."
+          }
+        },
+        "review_13": {
+          "type": "review",
+          "settings": {
+            "name": "Gianluca M.",
+            "text": "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire."
+          }
+        },
+        "review_14": {
+          "type": "review",
+          "settings": {
+            "name": "Giuseppe S.",
+            "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto."
+          }
+        },
+        "review_15": {
+          "type": "review",
+          "settings": {
+            "name": "Pierantonio D. P.",
+            "text": "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e le operazioni di carico e scarico."
+          }
+        },
+        "review_16": {
+          "type": "review",
+          "settings": {
+            "name": "Denis S.",
+            "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille."
+          }
+        },
+        "review_17": {
+          "type": "review",
+          "settings": {
+            "name": "Corrado C.",
+            "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato."
+          }
+        },
+        "review_18": {
+          "type": "review",
+          "settings": {
+            "name": "Enrico V.",
+            "text": "Un anno fa ho scoperto Dr Kampes e credo veramente che le altre scarpe anti infortunistiche siano un lontano ricordo. Comodità, praticità: voto 100 su 10."
+          }
+        },
+        "review_19": {
+          "type": "review",
+          "settings": {
+            "name": "Thierry N.",
+            "text": "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!"
+          }
+        },
+        "review_20": {
+          "type": "review",
+          "settings": {
+            "name": "Maria del Carmen S.",
+            "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile."
+          }
+        }
       },
       "block_order": [
-        "review_01", "review_02", "review_03", "review_04", "review_05",
-        "review_06", "review_07", "review_08", "review_09", "review_10",
-        "review_11", "review_12", "review_13", "review_14", "review_15",
-        "review_16", "review_17", "review_18", "review_19", "review_20"
+        "review_01",
+        "review_02",
+        "review_03",
+        "review_04",
+        "review_05",
+        "review_06",
+        "review_07",
+        "review_08",
+        "review_09",
+        "review_10",
+        "review_11",
+        "review_12",
+        "review_13",
+        "review_14",
+        "review_15",
+        "review_16",
+        "review_17",
+        "review_18",
+        "review_19",
+        "review_20"
       ],
       "settings": {
         "eyebrow": "Migliaia di colleghi già convinti",
@@ -280,13 +430,44 @@
     "lp_final_cta": {
       "type": "lp-final-cta",
       "blocks": {
-        "pay_klarna":  { "type": "payment_badge", "settings": { "label": "Klarna" } },
-        "pay_paypal":  { "type": "payment_badge", "settings": { "label": "PayPal" } },
-        "pay_apple":   { "type": "payment_badge", "settings": { "label": "Apple Pay" } },
-        "pay_google":  { "type": "payment_badge", "settings": { "label": "Google Pay" } },
-        "pay_carta":   { "type": "payment_badge", "settings": { "label": "Carta di Credito" } }
+        "pay_klarna": {
+          "type": "payment_badge",
+          "settings": {
+            "label": "Klarna"
+          }
+        },
+        "pay_paypal": {
+          "type": "payment_badge",
+          "settings": {
+            "label": "PayPal"
+          }
+        },
+        "pay_apple": {
+          "type": "payment_badge",
+          "settings": {
+            "label": "Apple Pay"
+          }
+        },
+        "pay_google": {
+          "type": "payment_badge",
+          "settings": {
+            "label": "Google Pay"
+          }
+        },
+        "pay_carta": {
+          "type": "payment_badge",
+          "settings": {
+            "label": "Carta di Credito"
+          }
+        }
       },
-      "block_order": ["pay_klarna", "pay_paypal", "pay_apple", "pay_google", "pay_carta"],
+      "block_order": [
+        "pay_klarna",
+        "pay_paypal",
+        "pay_apple",
+        "pay_google",
+        "pay_carta"
+      ],
       "settings": {
         "eyebrow": "Pronto a smettere di soffrire?",
         "heading": "Dr Kampes Trucker Shoes.\nT-shirt Esclusiva GRATIS.\nSpedizione Express GRATIS.",
@@ -297,6 +478,159 @@
         "cta_url": "",
         "installment_text": "<p>Oppure paga in <strong>3 comode rate da €63 a tasso zero</strong> con Klarna e PayPal.</p>",
         "ssl_note": "Transazione crittografata al 100% · SSL"
+      }
+    },
+    "section_eGTGaW": {
+      "type": "section",
+      "blocks": {
+        "group_4xVKJx": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "animate_on_scroll": false,
+            "animate_delay": 0
+          },
+          "blocks": {
+            "image_b7iAc4": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/logo_white_transparent.png",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "custom",
+                "custom_width": 20,
+                "width_mobile": "custom",
+                "custom_width_mobile": 20,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 32,
+                "padding-block-end": 32,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
+              },
+              "blocks": {}
+            },
+            "text_3NADBx": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>CAMPES S.r.l.</strong>  Sede legale e amministrativa: Via Noalese 84/E, 31100 Treviso (TV), Italia<br/>C.F. e P.IVA 05496370262<br/>Iscritta al Registro delle Imprese di Treviso-Belluno -  REA TV-448699<br/>Capitale sociale € 4.000,00 interamente versato<br/><br/>  PEC: <a href=\"mailto:campessrl@pec.it\">campessrl@pec.it</a>   <br/>Email: <a href=\"mailto:info@drkampes.com\">info@drkampes.com</a></p><p><a href=\"/policies/legal-notice\" title=\"Legal Notice\">Informativa legale</a><br/><a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">Privacy Policy</a><br/><a href=\"/pages/cookie-policy\" title=\"Cookie Policy\">Cookie Policy</a><br/><a href=\"/policies/refund-policy\" title=\"Refund Policy\">Resi e rimborsi</a><br/><a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">Spedizioni</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Vendita B2C</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\" title=\"Garanzia 3 Anni\">Condizioni di Fornitura B2B</a><br/><a href=\"/pages/garanzia-3-anni-dr-kampes\">Garanzia 3 Anni</a><br/><a href=\"/pages/contatti\">Contatti</a><br/>  </p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "animate_on_scroll": false,
+                "animate_delay": 0
+              },
+              "blocks": {}
+            },
+            "payment_icons_tpk6pm": {
+              "type": "payment-icons",
+              "name": "t:names.payment_icons",
+              "settings": {
+                "horizontal_alignment": "center",
+                "gap": 10,
+                "padding-block-start": 32,
+                "padding-block-end": 32,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_b7iAc4",
+            "text_3NADBx",
+            "payment_icons_tpk6pm"
+          ]
+        }
+      },
+      "block_order": [
+        "group_4xVKJx"
+      ],
+      "name": "footer",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-c125909f-c735-4f9a-bb79-0e34bd1c7db0",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "animate_on_scroll": false,
+        "animate_delay": 0
       }
     }
   },
@@ -310,6 +644,7 @@
     "lp_reviews",
     "main",
     "lp_guarantee",
-    "lp_final_cta"
+    "lp_final_cta",
+    "section_eGTGaW"
   ]
 }
