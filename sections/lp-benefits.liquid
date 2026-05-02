@@ -1,121 +1,131 @@
 <section class="lp-benefits">
-  {%- if section.settings.eyebrow != blank -%}
-    <div class="lp-sec__eyebrow lp-benefits__eyebrow">{{ section.settings.eyebrow }}</div>
-  {%- endif -%}
+  <div class="lp-benefits__inner">
 
-  <h2 class="lp-sec__h2 lp-benefits__h2">{{ section.settings.heading }}</h2>
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="lp-sec__eyebrow lp-benefits__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
 
-  {%- if section.blocks.size > 0 -%}
-    <div class="lp-benefits__grid">
-      {%- for block in section.blocks -%}
-        <div class="lp-benefit" {{ block.shopify_attributes }}>
-          <div class="lp-benefit__icon" aria-hidden="true">
-            {%- assign icon_key = block.settings.icon | downcase | strip -%}
-            {%- case icon_key -%}
-              {%- when '⚡', 'fastwear', 'zap', 'lightning' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              {%- when '☁️', 'comfort', 'cloud', 'soft' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              {%- when '🛡️', 'sicurezza', 'safety', 'shield', 'garanzia', 'warranty' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              {%- when '💧', 'idrorepellenti', 'water', 'drop', 'waterproof' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-              {%- when '✅', 'check', 's3s', 'certified' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              {%- when '✨', 'eleganza', 'elegance', 'star' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              {%- else -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            {%- endcase -%}
-          </div>
-          <div>
-            <div class="lp-benefit__title">{{ block.settings.title }}</div>
-            <div class="lp-benefit__text">{{ block.settings.text }}</div>
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
+    <h2 class="lp-sec__h2 lp-benefits__h2">{{ section.settings.heading }}</h2>
+
+    {%- if section.settings.uvp != blank -%}
+      <p class="lp-benefits__uvp">{{ section.settings.uvp }}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-benefits__list">
+        {%- for block in section.blocks -%}
+          <li class="lp-benefit" {{ block.shopify_attributes }}>
+            <svg class="lp-benefit__check" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="lp-benefit__body">
+              <strong class="lp-benefit__title">{{ block.settings.title }}</strong>
+              {%- if block.settings.text != blank -%}
+                <span class="lp-benefit__sep" aria-hidden="true"> — </span>
+                <span class="lp-benefit__text">{{ block.settings.text }}</span>
+              {%- endif -%}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+  </div>
 </section>
 
 {% stylesheet %}
 
 .lp-benefits {
-  padding: 56px 22px;
+  padding: 32px 16px 36px;
   background: #000;
   color: #fff;
 }
 
+.lp-benefits__inner {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
 .lp-benefits .lp-sec__eyebrow {
   color: #F5C200;
+  margin-bottom: 8px;
 }
 
 .lp-benefits .lp-sec__h2 {
   color: #fff;
+  font-size: 1.4rem;
+  margin: 0 0 8px;
 }
 
-.lp-benefits__grid {
+.lp-benefits__uvp {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.45;
+  margin: 0 0 18px;
+  max-width: 540px;
+}
+
+.lp-benefits__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 10px;
 }
 
 .lp-benefit {
   display: flex;
-  gap: 16px;
   align-items: flex-start;
-  padding: 18px 16px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-left: 3px solid #F5C200;
-  border-radius: 0;
-  background: rgba(255,255,255,0.03);
+  gap: 10px;
+  padding: 0;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
 }
 
-.lp-benefit__icon {
-  width: 40px;
-  height: 40px;
+.lp-benefit__check {
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
-  border-radius: 0;
-  background: rgba(245,194,0,0.1);
-  border: 1px solid rgba(245,194,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #F5C200;
+  stroke: #F5C200;
+  margin-top: 2px;
 }
 
-.lp-benefit__icon svg {
-  width: 20px;
-  height: 20px;
-  stroke: #F5C200;
+.lp-benefit__body {
+  display: inline;
 }
 
 .lp-benefit__title {
-  font-size: 0.88rem;
-  font-weight: 800;
   color: #fff;
-  letter-spacing: 0.03em;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  font-family: var(--font-heading--family, inherit);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.lp-benefit__sep {
+  color: rgba(255,255,255,0.4);
 }
 
 .lp-benefit__text {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.55;
+  color: rgba(255,255,255,0.65);
 }
 
 @media (min-width: 750px) {
   .lp-benefits {
-    padding: 80px 60px;
+    padding: 56px 40px 64px;
   }
-
-  .lp-benefits__grid {
+  .lp-benefits__inner {
+    max-width: 1100px;
+  }
+  .lp-benefits .lp-sec__h2 {
+    font-size: 1.8rem;
+  }
+  .lp-benefits__uvp {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .lp-benefits__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
   }
 }
 
@@ -135,21 +145,21 @@
       "type": "text",
       "id": "heading",
       "label": "Titolo sezione",
-      "default": "5 motivi per sceglierle"
+      "default": "Le scarpe per chi guida un mezzo, sul serio."
+    },
+    {
+      "type": "textarea",
+      "id": "uvp",
+      "label": "UVP (frase di valore breve)",
+      "default": "L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy."
     }
   ],
   "blocks": [
     {
       "type": "benefit",
       "name": "Benefit",
-      "limit": 6,
+      "limit": 8,
       "settings": [
-        {
-          "type": "text",
-          "id": "icon",
-          "label": "Emoji icona",
-          "default": "⚡"
-        },
         {
           "type": "text",
           "id": "title",
@@ -158,7 +168,12 @@
         {
           "type": "textarea",
           "id": "text",
-          "label": "Descrizione benefit"
+          "label": "Descrizione breve (1 riga ideale)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "(deprecato — non più usato)"
         }
       ]
     }
@@ -167,11 +182,12 @@
     {
       "name": "LP — Benefits",
       "blocks": [
-        { "type": "benefit", "settings": { "icon": "⚡",  "title": "FASTWEAR®",          "text": "On e off in 1 secondo. Senza lacci, senza piegarti." } },
-        { "type": "benefit", "settings": { "icon": "🛡️", "title": "3 anni di garanzia", "text": "Riparazione o sostituzione gratis. Coperti 1.095 giorni di lavoro." } },
-        { "type": "benefit", "settings": { "icon": "💧", "title": "Idrorepellenti",     "text": "Piede asciutto sotto pioggia, fango, sale stradale. Davvero." } },
-        { "type": "benefit", "settings": { "icon": "☁️", "title": "Comodissime",        "text": "Plantare anti-vibrazione. Cammini, guidi, lavori senza dolore." } },
-        { "type": "benefit", "settings": { "icon": "✅", "title": "Sicurezza S3S",      "text": "Massimo livello DPI delle nuove normative europee." } }
+        { "type": "benefit", "settings": { "title": "FASTWEAR®",                 "text": "on/off in 1 secondo, senza lacci" } },
+        { "type": "benefit", "settings": { "title": "3 anni di garanzia scritta", "text": "1.095 giorni coperti, €0,17 al giorno" } },
+        { "type": "benefit", "settings": { "title": "100% Made in Italy",         "text": "Montebelluna, Treviso" } },
+        { "type": "benefit", "settings": { "title": "Idrorepellenti certificate", "text": "pioggia, fango, sale stradale" } },
+        { "type": "benefit", "settings": { "title": "Plantare anti-vibrazione",   "text": "10h di guida senza dolore" } },
+        { "type": "benefit", "settings": { "title": "S3S grado massimo UE",       "text": "antiscivolo gasolio, lamiera, ghiaccio" } }
       ]
     }
   ]

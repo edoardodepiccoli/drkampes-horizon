@@ -101,7 +101,7 @@
       ],
       "settings": {
         "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
-        "image_badge": "-17%",
+        "image_badge": "-14%",
         "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
         "headline": "Le migliori scarpe per camionisti al mondo.",
         "rating_value": "4.9",
@@ -109,8 +109,8 @@
         "verified_label": "Recensioni verificate",
         "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
         "price": "€189",
-        "savings_label": "-17% · RISPARMI €40",
-        "compare_price": "€229",
+        "savings_label": "-14% · RISPARMI €30",
+        "compare_price": "€219",
         "tax_note": "IVA inclusa",
         "installments_note": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>",
         "coupon_text": "Spedizione GRATIS + T-shirt OMAGGIO inclusi",
@@ -124,54 +124,58 @@
         "benefit_fastwear": {
           "type": "benefit",
           "settings": {
-            "icon": "⚡",
             "title": "FASTWEAR®",
-            "text": "On/off in 1 secondo. Senza lacci, senza piegarti dopo 10 ore di guida."
+            "text": "on/off in 1 secondo, senza lacci"
           }
         },
         "benefit_garanzia": {
           "type": "benefit",
           "settings": {
-            "icon": "🛡️",
-            "title": "3 anni di garanzia",
-            "text": "1.095 giorni coperti. Si rompono? Le ripariamo o sostituiamo gratis."
+            "title": "3 anni di garanzia scritta",
+            "text": "1.095 giorni coperti, €0,17 al giorno"
+          }
+        },
+        "benefit_made": {
+          "type": "benefit",
+          "settings": {
+            "title": "100% Made in Italy",
+            "text": "Montebelluna, Treviso"
           }
         },
         "benefit_idro": {
           "type": "benefit",
           "settings": {
-            "icon": "💧",
-            "title": "Idrorepellenti",
-            "text": "Pioggia, fango, sale stradale. Piede asciutto a fine turno."
+            "title": "Idrorepellenti certificate",
+            "text": "pioggia, fango, sale stradale"
           }
         },
         "benefit_comfort": {
           "type": "benefit",
           "settings": {
-            "icon": "☁️",
-            "title": "Comodissime",
-            "text": "Plantare anti-vibrazione. Schiena e ginocchia ringraziano."
+            "title": "Plantare anti-vibrazione",
+            "text": "10h di guida senza dolore"
           }
         },
         "benefit_sicurezza": {
           "type": "benefit",
           "settings": {
-            "icon": "✅",
-            "title": "Sicurezza S3S",
-            "text": "Massimo grado DPI europeo. Antiscivolo su gasolio, lamiera, ghiaccio."
+            "title": "S3S grado massimo UE",
+            "text": "antiscivolo gasolio, lamiera, ghiaccio"
           }
         }
       },
       "block_order": [
         "benefit_fastwear",
         "benefit_garanzia",
+        "benefit_made",
         "benefit_idro",
         "benefit_comfort",
         "benefit_sicurezza"
       ],
       "settings": {
-        "eyebrow": "Perché sceglierle",
-        "heading": "5 motivi per metterle ai piedi domani"
+        "eyebrow": "Perché Dr Kampes",
+        "heading": "Le scarpe per chi guida un mezzo, sul serio.",
+        "uvp": "L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy."
       }
     },
     "lp_video": {
@@ -182,6 +186,42 @@
         "heading": "1 secondo. On e off. Sul serio.",
         "video_url": "",
         "copy": "<p>FASTWEAR® è il sistema che abbiamo brevettato per gli autisti: niente lacci, niente velcri ingombranti. Le infili appoggiando il tallone e parti. Le sfili con un gesto, anche con i guanti. Pensate per chi sale e scende dalla cabina cento volte al giorno.</p>"
+      }
+    },
+    "lp_reviews": {
+      "type": "lp-reviews",
+      "blocks": {
+        "rev_1":  { "type": "review", "settings": { "name": "Marco P.",        "time_ago": "1 settimana fa",  "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita." } },
+        "rev_2":  { "type": "review", "settings": { "name": "Giorgio B.",      "time_ago": "2 settimane fa", "text": "Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere. Gioielli d'artigianato ITALIANO!" } },
+        "rev_3":  { "type": "review", "settings": { "name": "Vincenzo D. M.",  "time_ago": "3 settimane fa", "text": "Claudio è un genio: scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear. Le uso nel fango e nell'acqua ovunque." } },
+        "rev_4":  { "type": "review", "settings": { "name": "Igor R.",         "time_ago": "1 mese fa",      "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti." } },
+        "rev_5":  { "type": "review", "settings": { "name": "Marco O.",        "time_ago": "1 mese fa",      "text": "Ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta." } },
+        "rev_6":  { "type": "review", "settings": { "name": "Natalia G.",      "time_ago": "2 mesi fa",      "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Comode, facili da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa." } },
+        "rev_7":  { "type": "review", "settings": { "name": "Danilo L. F.",    "time_ago": "2 mesi fa",      "text": "Scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto." } },
+        "rev_8":  { "type": "review", "settings": { "name": "Maikol M.",       "time_ago": "3 mesi fa",      "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. L'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro." } },
+        "rev_9":  { "type": "review", "settings": { "name": "Ivano D.",        "time_ago": "3 mesi fa",      "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato dopo l'ordine per sapere se mi fossi trovato bene." } },
+        "rev_10": { "type": "review", "settings": { "name": "Damiano M.",      "time_ago": "4 mesi fa",      "text": "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene." } },
+        "rev_11": { "type": "review", "settings": { "name": "Paolo F.",        "time_ago": "4 mesi fa",      "text": "Miglior scarpa da lavoro mai avuta." } },
+        "rev_12": { "type": "review", "settings": { "name": "Luca C.",         "time_ago": "5 mesi fa",      "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare." } },
+        "rev_13": { "type": "review", "settings": { "name": "Gianluca M.",     "time_ago": "5 mesi fa",      "text": "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire." } },
+        "rev_14": { "type": "review", "settings": { "name": "Giuseppe S.",     "time_ago": "6 mesi fa",      "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto." } },
+        "rev_15": { "type": "review", "settings": { "name": "Pierantonio D. P.", "time_ago": "6 mesi fa",    "text": "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e operazioni di carico/scarico." } },
+        "rev_16": { "type": "review", "settings": { "name": "Denis S.",        "time_ago": "7 mesi fa",      "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro." } },
+        "rev_17": { "type": "review", "settings": { "name": "Corrado C.",      "time_ago": "8 mesi fa",      "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato." } },
+        "rev_18": { "type": "review", "settings": { "name": "Enrico V.",       "time_ago": "9 mesi fa",      "text": "Un anno fa ho scoperto Dr Kampes e le altre antinfortunistiche sono un lontano ricordo. Comodità, praticità: voto 100 su 10." } },
+        "rev_19": { "type": "review", "settings": { "name": "Thierry N.",      "time_ago": "10 mesi fa",     "text": "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!" } },
+        "rev_20": { "type": "review", "settings": { "name": "Maria del Carmen S.", "time_ago": "1 anno fa",  "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile." } }
+      },
+      "block_order": ["rev_1","rev_2","rev_3","rev_4","rev_5","rev_6","rev_7","rev_8","rev_9","rev_10","rev_11","rev_12","rev_13","rev_14","rev_15","rev_16","rev_17","rev_18","rev_19","rev_20"],
+      "settings": {
+        "eyebrow": "Recensioni Google",
+        "heading": "Cosa dicono i clienti",
+        "average_rating": "4.9",
+        "review_count_label": "127 recensioni Google",
+        "google_url": "https://www.google.com/search?q=Dr+Kampes+Italian+Trucker+Shoes+Recensioni",
+        "initial_count": 6,
+        "review_chips": "Comodissime|38,Made in Italy|24,FASTWEAR top|19,Idrorepellenti|15,Antiscivolo|12",
+        "google_reviews_json_url": ""
       }
     },
     "main": {
@@ -197,16 +237,10 @@
         "custom_first_image_url_2": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/new_immagine_offerta_bundletshirt_testa_di_moro.png?v=1777568900",
         "custom_first_image_color_2": "Testa di Moro",
         "product_subtitle": "Antinfortunistiche S3S",
-        "cta_label": "SÌ, LE VOGLIO",
+        "cta_label": "ACQUISTA ORA",
         "low_stock_number": 7,
-        "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
-        "compare_price_cents": 22900,
-        "social_proof_text": "Oltre 1.500 autisti italiani le indossano già",
-        "review_count_total": 127,
-        "review_photo_count": 4,
-        "review_chips": "Comodissime|38,Spedizione veloce|24,Piede asciutto|19,Vere 3 anni|12,FASTWEAR top|9",
-        "faq_items": "",
-        "specs_items": "",
+        "viewer_min": 12,
+        "viewer_max": 37,
         "review_quote": "",
         "color_scheme": ""
       }
@@ -370,6 +404,7 @@
     "lp_hero",
     "lp_benefits",
     "lp_video",
+    "lp_reviews",
     "main",
     "section_eGTGaW"
   ]
