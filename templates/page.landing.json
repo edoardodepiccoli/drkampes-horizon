@@ -102,11 +102,11 @@
       "settings": {
         "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
         "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
-        "headline": "Le migliori scarpe per camionisti al mondo",
-        "subheading": "<p>Le uniche calzature antinfortunistiche <strong>100% Made in Italy</strong> con sistema FASTWEAR® e garanzia ufficiale 3 anni.</p>",
+        "headline": "Le migliori scarpe per camionisti al mondo.",
+        "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
         "price": "€189",
-        "compare_price": "€210",
-        "price_note": "Spedizione GRATIS inclusa",
+        "compare_price": "€229",
+        "price_note": "o 3 rate da €63 con Klarna · Spedizione GRATIS + T-shirt OMAGGIO inclusi",
         "cta_label": "SCOPRI L'OFFERTA SUBITO",
         "cta_url": "#acquista"
       }
@@ -119,7 +119,7 @@
           "settings": {
             "icon": "⚡",
             "title": "FASTWEAR®",
-            "text": "On e off in 1 secondo. Senza lacci, senza piegarti."
+            "text": "On/off in 1 secondo. Senza lacci, senza piegarti dopo 10 ore di guida."
           }
         },
         "benefit_garanzia": {
@@ -127,7 +127,7 @@
           "settings": {
             "icon": "🛡️",
             "title": "3 anni di garanzia",
-            "text": "Riparazione o sostituzione gratis. Coperti 1.095 giorni di lavoro."
+            "text": "1.095 giorni coperti. Si rompono? Le ripariamo o sostituiamo gratis."
           }
         },
         "benefit_idro": {
@@ -135,7 +135,7 @@
           "settings": {
             "icon": "💧",
             "title": "Idrorepellenti",
-            "text": "Piede asciutto sotto pioggia, fango, sale stradale. Davvero."
+            "text": "Pioggia, fango, sale stradale. Piede asciutto a fine turno."
           }
         },
         "benefit_comfort": {
@@ -143,7 +143,7 @@
           "settings": {
             "icon": "☁️",
             "title": "Comodissime",
-            "text": "Plantare anti-vibrazione. Cammini, guidi, lavori senza dolore."
+            "text": "Plantare anti-vibrazione. Schiena e ginocchia ringraziano."
           }
         },
         "benefit_sicurezza": {
@@ -151,7 +151,7 @@
           "settings": {
             "icon": "✅",
             "title": "Sicurezza S3S",
-            "text": "Massimo livello DPI delle nuove normative europee."
+            "text": "Massimo grado DPI europeo. Antiscivolo su gasolio, lamiera, ghiaccio."
           }
         }
       },
@@ -163,8 +163,8 @@
         "benefit_sicurezza"
       ],
       "settings": {
-        "eyebrow": "Perché Dr Kampes",
-        "heading": "5 motivi per sceglierle"
+        "eyebrow": "Perché sceglierle",
+        "heading": "5 motivi per metterle ai piedi domani"
       }
     },
     "main": {
