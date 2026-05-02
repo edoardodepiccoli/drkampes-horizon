@@ -230,220 +230,527 @@
         "rev_1": {
           "type": "review",
           "settings": {
-            "name": "Marco P.",
-            "time_ago": "1 settimana fa",
-            "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post vendita."
+            "name": "Stefano Lucarini",
+            "time_ago": "1 mese fa",
+            "text": "Azienda seria e di qualità, proprietario gentilissimo e alla mano!"
           }
         },
         "rev_2": {
           "type": "review",
           "settings": {
-            "name": "Giorgio B.",
-            "time_ago": "2 settimane fa",
-            "text": "Indosso tutti i giorni con orgoglio una scarpa che rende ad ogni passo una sensazione di benessere. Gioielli d'artigianato ITALIANO!"
+            "name": "Giovanni Panzeri",
+            "time_ago": "1 mese fa",
+            "text": "Ottimo prodotto ho acquistato queste scarpe da lavoro per una questione di praticità e qualità, dopo un mese di utilizzo ne sono soddisfatto al cento per cento."
           }
         },
         "rev_3": {
           "type": "review",
           "settings": {
-            "name": "Vincenzo D. M.",
-            "time_ago": "3 settimane fa",
-            "text": "Claudio è un genio: scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear. Le uso nel fango e nell'acqua ovunque."
+            "name": "Alex Villa",
+            "time_ago": "2 mesi fa",
+            "text": "Ho acquistato le scarpe di Dr kampes all'incirca un mese fa, esperienza positiva, comode e di ottima manifattura Made in italy. Praticamente le indosso tutti i giorni, compreso il week end, anche se non sono sopra il camion…"
           }
         },
         "rev_4": {
           "type": "review",
           "settings": {
-            "name": "Igor R.",
-            "time_ago": "1 mese fa",
-            "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita. Calzano in maniera perfetta, non puzzano, son morbide nella camminata ma allo stesso tempo resistenti."
+            "name": "Paolo Galardini",
+            "time_ago": "4 mesi fa",
+            "text": "Ottime scarpe. Le uso da una settimana e sono molto comode e soprattutto tengono molto caldo. Si vede che sono fatte veramente bene. Sul bagnato ancora non ho avuto occasione di provarle. Comunque super consigliate"
           }
         },
         "rev_5": {
           "type": "review",
           "settings": {
-            "name": "Marco O.",
-            "time_ago": "1 mese fa",
-            "text": "Ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega per salire e scendere dalla scaletta."
+            "name": "Valerio Oneda",
+            "time_ago": "4 mesi fa",
+            "text": "Buongiorno, sono veramente soddisfatto dell'acquisto delle DrKampes, i primi giorni un po' dure sul collo del piede ma ci sta visto che sono fatte di pelle, ora dopo una settimana che le uso, posso dire di aver fatto un ottimo acquisto! Grazie mille, scarpe fantastiche e leggere! Tutto un altro camminare! Super soddisfatto! 💪💪"
           }
         },
         "rev_6": {
           "type": "review",
           "settings": {
-            "name": "Natalia G.",
-            "time_ago": "2 mesi fa",
-            "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Comode, facili da indossare. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa."
+            "name": "Natalia Gotca",
+            "time_ago": "4 mesi fa",
+            "text": "Migliore scarpa antinfortunistica! Darei più di 5 stelle. Hanno superato le mie aspettative! Comode, facilmente da indossare, valorizza. Io sono una donna camionista. Dr Kampes hanno creato una vera scarpa…"
           }
         },
         "rev_7": {
           "type": "review",
           "settings": {
-            "name": "Danilo L. F.",
-            "time_ago": "2 mesi fa",
-            "text": "Scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto."
+            "name": "Davide Leone",
+            "time_ago": "4 mesi fa",
+            "text": "Scarpe veramente top, come estetica, comodità, qualità e leggerezza... Costeranno un po' di più rispetto ad altre calzature ma ne vale veramente la pena... Sono veramente soddisfatto"
           }
         },
         "rev_8": {
           "type": "review",
           "settings": {
-            "name": "Maikol M.",
-            "time_ago": "3 mesi fa",
-            "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. L'eccellenza di un prodotto made in Italy per la sicurezza sul lavoro."
+            "name": "franco",
+            "time_ago": "4 mesi fa",
+            "text": "Scarpe ben fatte, confortevoli, il materiale usato è di qualità. Penso che ne acquisto un'altra paio."
           }
         },
         "rev_9": {
           "type": "review",
           "settings": {
-            "name": "Ivano D.",
-            "time_ago": "3 mesi fa",
-            "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Mi hanno contattato dopo l'ordine per sapere se mi fossi trovato bene."
+            "name": "Paolo Montaldo",
+            "time_ago": "4 mesi fa",
+            "text": "Scarpe comode, robuste, facili da pulire, e allo stesso tempo si fanno notare. Soddisfatto alla grande."
           }
         },
         "rev_10": {
           "type": "review",
           "settings": {
-            "name": "Damiano M.",
+            "name": "Letizia Birolo",
             "time_ago": "4 mesi fa",
-            "text": "Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette. Made in Italy, comode e fatte bene."
+            "text": "Il prodotto è molto valido. Comode e veritiere come descrizione."
           }
         },
         "rev_11": {
           "type": "review",
           "settings": {
-            "name": "Paolo F.",
-            "time_ago": "4 mesi fa",
-            "text": "Miglior scarpa da lavoro mai avuta."
+            "name": "Gianluca Manera",
+            "time_ago": "5 mesi fa",
+            "text": "Scarpa ottima, comodissima. Usata sia con la linguetta su che giù funziona bene. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire. Perfetta per ogni movimento."
           }
         },
         "rev_12": {
           "type": "review",
           "settings": {
-            "name": "Luca C.",
+            "name": "Davide Bernardi",
             "time_ago": "5 mesi fa",
-            "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare."
+            "text": "Ottimo prodotto, proprietario molto cordiale e sempre disponibile."
           }
         },
         "rev_13": {
           "type": "review",
           "settings": {
-            "name": "Gianluca M.",
-            "time_ago": "5 mesi fa",
-            "text": "Scarpa ottima, comodissima. Impermeabile e ottima per guidare. Tanto antiscivolo, facile da pulire."
+            "name": "Denys Orsini",
+            "time_ago": "6 mesi fa",
+            "text": "Diverse scarpe prese, molto valide. Super contento."
           }
         },
         "rev_14": {
           "type": "review",
           "settings": {
-            "name": "Giuseppe S.",
-            "time_ago": "6 mesi fa",
-            "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Sotto il diluvio e nelle pozzanghere il piede è rimasto completamente asciutto."
+            "name": "Andrei Oprea",
+            "time_ago": "7 mesi fa",
+            "text": "L'unico difetto forse, il prezzo un po' troppo alto. Per il resto mi sono innamorato. Non sudano i piedi, impermeabili e stracomode quando le indossi. Vediamo ora se durano 3 anni!"
           }
         },
         "rev_15": {
           "type": "review",
           "settings": {
-            "name": "Pierantonio D. P.",
-            "time_ago": "6 mesi fa",
-            "text": "Da un anno utilizzo queste scarpe durante le mie giornate da camionista, affrontando ogni condizione meteo: pioggia, fango, polvere e operazioni di carico/scarico."
+            "name": "Riccardo Zavatta",
+            "time_ago": "7 mesi fa",
+            "text": "Scuso il ritardo di quasi un mese, le ho provate ieri per la prima volta, le ho tenute tutto il giorno. Si sono subito ammorbidite, plantare comodissimo. Mi trovo veramente bene oltre che comode anche molto molto belle, per me sì."
           }
         },
         "rev_16": {
           "type": "review",
           "settings": {
-            "name": "Denis S.",
+            "name": "Klaus Kofler",
             "time_ago": "7 mesi fa",
-            "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro."
+            "text": "Sono contento dell'acquisto che ho fatto."
           }
         },
         "rev_17": {
           "type": "review",
           "settings": {
-            "name": "Corrado C.",
-            "time_ago": "8 mesi fa",
-            "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato."
+            "name": "Marco Annigoni",
+            "time_ago": "7 mesi fa",
+            "text": "Molto comode, semplici da indossare. Le consiglio, sono il top 👍👍👍👍"
           }
         },
         "rev_18": {
           "type": "review",
           "settings": {
-            "name": "Enrico V.",
-            "time_ago": "9 mesi fa",
-            "text": "Un anno fa ho scoperto Dr Kampes e le altre antinfortunistiche sono un lontano ricordo. Comodità, praticità: voto 100 su 10."
+            "name": "Maria del Carmen Soto",
+            "time_ago": "7 mesi fa",
+            "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile."
           }
         },
         "rev_19": {
           "type": "review",
           "settings": {
-            "name": "Thierry N.",
-            "time_ago": "10 mesi fa",
-            "text": "Scarpe di altissima qualità! Consiglio vivamente! Sono dei professionisti!"
+            "name": "Michele Bello",
+            "time_ago": "8 mesi fa",
+            "text": "Prodotto di eccellente qualità e di eccellente fattura, molto comode e versatili e facilissime da pulire."
           }
         },
         "rev_20": {
           "type": "review",
           "settings": {
-            "name": "Maria del Carmen S.",
-            "time_ago": "1 anno fa",
-            "text": "Ho provato altri prodotti e la verità è che il vostro è migliore per comodità, materiale, ecc. Ve li consiglio al 100%, sono fantastici e il venditore è imbattibile."
+            "name": "Denis Sanna",
+            "time_ago": "8 mesi fa",
+            "text": "Felice e soddisfattissimo delle mie Dr Kampes, comode, pratiche, non le cambierei con nulla altro. Grazie mille."
           }
         },
-        "rev_21": { "type": "review", "settings": { "name": "Stefano L.",   "time_ago": "1 anno fa", "text": "Le ho prese su consiglio di un collega. FASTWEAR cambia la vita quando devi salire e scendere venti volte al giorno." } },
-        "rev_22": { "type": "review", "settings": { "name": "Antonio P.",   "time_ago": "1 anno fa", "text": "Comode dal primo giorno, niente bolle. Ho il piede largo e queste vanno benissimo." } },
-        "rev_23": { "type": "review", "settings": { "name": "Roberto M.",   "time_ago": "1 anno fa", "text": "Spedizione velocissima, arrivata in 2 giorni. La qualità si vede subito appena le apri." } },
-        "rev_24": { "type": "review", "settings": { "name": "Francesco G.", "time_ago": "1 anno fa", "text": "Padroncino da 30 anni, mai trovato scarpe così leggere ma resistenti. Bravo Claudio." } },
-        "rev_25": { "type": "review", "settings": { "name": "Massimo F.",   "time_ago": "1 anno fa", "text": "Fango, neve, asfalto bollente. Hanno retto tutto. Investimento vero, non spesa." } },
-        "rev_26": { "type": "review", "settings": { "name": "Davide R.",    "time_ago": "1 anno fa", "text": "Le indosso 12 ore al giorno. Tornato a casa il piede è fresco e non puzza." } },
-        "rev_27": { "type": "review", "settings": { "name": "Carlo B.",     "time_ago": "1 anno fa", "text": "Antinfortunistiche vere, non quei sandali plasticosi che danno in azienda. La differenza si sente." } },
-        "rev_28": { "type": "review", "settings": { "name": "Sergio T.",    "time_ago": "1 anno fa", "text": "Ho contattato Claudio su WhatsApp per dubbi taglia, mi ha risposto in 10 minuti. Servizio top." } },
-        "rev_29": { "type": "review", "settings": { "name": "Mauro C.",     "time_ago": "1 anno fa", "text": "Lavoro per multinazionale logistica, mi hanno lasciato libertà di scarpe DPI e ho scelto Dr Kampes. Scelta giusta." } },
-        "rev_30": { "type": "review", "settings": { "name": "Fabio S.",     "time_ago": "1 anno fa", "text": "Le ho regalate a mio figlio che fa l'autista come me. Ora me ne sono prese un secondo paio." } },
-        "rev_31": { "type": "review", "settings": { "name": "Alessandro N.", "time_ago": "1 anno fa", "text": "Plantare anti-vibrazione dopo 8 ore di volante fa la differenza. Niente più male alla schiena." } },
-        "rev_32": { "type": "review", "settings": { "name": "Daniele V.",   "time_ago": "1 anno fa", "text": "Calzano perfette, taglia 44 corretta come da tabella. Cambio taglia gratis non l'ho dovuto usare." } },
-        "rev_33": { "type": "review", "settings": { "name": "Riccardo P.",  "time_ago": "1 anno fa", "text": "Sopra il piede c'è meno pressione rispetto alle vecchie. Camminate lunghe senza problemi." } },
-        "rev_34": { "type": "review", "settings": { "name": "Simone B.",    "time_ago": "1 anno fa", "text": "Le ho usate sotto un temporale di 3 ore e dentro era asciutto. Magia." } },
-        "rev_35": { "type": "review", "settings": { "name": "Emanuele D.",  "time_ago": "1 anno fa", "text": "Made in Italy vero, si nota. Cuciture pulite, pelle morbida ma robusta." } },
-        "rev_36": { "type": "review", "settings": { "name": "Gianni R.",    "time_ago": "1 anno fa", "text": "Ho un cane che mi mordicchia le scarpe. La pelle è dura, non si segna. Promosse." } },
-        "rev_37": { "type": "review", "settings": { "name": "Salvatore A.", "time_ago": "1 anno fa", "text": "La mia compagna mi prende in giro perché parlo solo di queste scarpe. Le merita." } },
-        "rev_38": { "type": "review", "settings": { "name": "Vincenzo M.",  "time_ago": "1 anno fa", "text": "Sotto la doccia il piede non si bagna (le mie vecchie sì). FASTWEAR poi, geniale." } },
-        "rev_39": { "type": "review", "settings": { "name": "Claudio E.",   "time_ago": "1 anno fa", "text": "Omonimo del fondatore. Scarpe top, assistenza migliore. Consiglio a tutti i camionisti." } },
-        "rev_40": { "type": "review", "settings": { "name": "Alberto C.",   "time_ago": "1 anno fa", "text": "5 stelle senza pensarci. Non vado oltre perché Google ne dà solo 5." } },
-        "rev_41": { "type": "review", "settings": { "name": "Bruno F.",     "time_ago": "1 anno fa", "text": "Sostituite le mie vecchie senza pensarci. La qualità è un altro pianeta." } },
-        "rev_42": { "type": "review", "settings": { "name": "Giovanni L.",  "time_ago": "1 anno fa", "text": "Le ho prese a Natale, le porto da gennaio tutti i giorni. Sembrano nuove." } },
-        "rev_43": { "type": "review", "settings": { "name": "Pietro O.",    "time_ago": "1 anno fa", "text": "Compagno di lavoro mi ha detto 'che belle scarpe' il primo giorno. Eleganti pure." } },
-        "rev_44": { "type": "review", "settings": { "name": "Cesare T.",    "time_ago": "1 anno fa", "text": "Pago a rate con Klarna, comodissimo. Zero interessi, zero rotture di scatole." } },
-        "rev_45": { "type": "review", "settings": { "name": "Cristiano G.", "time_ago": "1 anno fa", "text": "Il fondatore mi ha mandato un video tutorial su come pulirle. Servizio personale." } },
-        "rev_46": { "type": "review", "settings": { "name": "Diego B.",     "time_ago": "1 anno fa", "text": "Antiscivolo testato sul ghiaccio della cabina. Non sono caduto, prima sì." } },
-        "rev_47": { "type": "review", "settings": { "name": "Edoardo M.",   "time_ago": "1 anno fa", "text": "La t-shirt regalo è bella. Non me l'aspettavo. Bel pensiero." } },
-        "rev_48": { "type": "review", "settings": { "name": "Federico Z.",  "time_ago": "1 anno fa", "text": "Padroncino, 6 mesi e zero problemi. Le porterò ancora a lungo." } },
-        "rev_49": { "type": "review", "settings": { "name": "Filippo S.",   "time_ago": "1 anno fa", "text": "Antibatterico nel plantare si sente, niente odore a fine giornata." } },
-        "rev_50": { "type": "review", "settings": { "name": "Giorgio P.",   "time_ago": "1 anno fa", "text": "Compro tutto online, queste sono tra le poche che non ho restituito." } },
-        "rev_51": { "type": "review", "settings": { "name": "Giulio R.",    "time_ago": "2 anni fa",  "text": "Quando me le hanno regalate non ci credevo. Ora le compro io ai colleghi." } },
-        "rev_52": { "type": "review", "settings": { "name": "Lorenzo F.",   "time_ago": "2 anni fa",  "text": "Le mie vecchie da €40 duravano 4 mesi. Queste vanno avanti da 18 mesi." } },
-        "rev_53": { "type": "review", "settings": { "name": "Marcello D.",  "time_ago": "2 anni fa",  "text": "Ho un'azienda di trasporti, ho ordinato per tutti i miei autisti. Soddisfattissimo." } },
-        "rev_54": { "type": "review", "settings": { "name": "Michele L.",   "time_ago": "2 anni fa",  "text": "Calzano larghe come piace a me. Niente costrizioni dopo 10 ore di guida." } },
-        "rev_55": { "type": "review", "settings": { "name": "Nicola V.",    "time_ago": "2 anni fa",  "text": "Sicurezza S3S è certificata, lo dice il cartellino dentro. Tranquillo per i controlli." } },
-        "rev_56": { "type": "review", "settings": { "name": "Renato P.",    "time_ago": "2 anni fa",  "text": "Le cuciture sono pazzesche, sembrano fatte a mano. Penso lo siano davvero." } },
-        "rev_57": { "type": "review", "settings": { "name": "Sandro M.",    "time_ago": "2 anni fa",  "text": "Garanzia 3 anni scritta, l'ho fatta valere quando si è scucito un anello. Riparate subito." } },
-        "rev_58": { "type": "review", "settings": { "name": "Tommaso B.",   "time_ago": "2 anni fa",  "text": "Camminare leggero dopo 12 ore di camion è un altro mondo. Provatele." } },
-        "rev_59": { "type": "review", "settings": { "name": "Valerio G.",   "time_ago": "2 anni fa",  "text": "Antinfortunistiche eleganti, anche per l'ufficio quando arrivo dal viaggio." } },
-        "rev_60": { "type": "review", "settings": { "name": "Walter F.",    "time_ago": "2 anni fa",  "text": "Servizio clienti italiano, parlano italiano, capiscono il lavoro dell'autista." } },
-        "rev_61": { "type": "review", "settings": { "name": "Aldo C.",      "time_ago": "2 anni fa",  "text": "Le pulisco con uno straccio umido, ritornano nuove. Pelle di qualità." } },
-        "rev_62": { "type": "review", "settings": { "name": "Angelo S.",    "time_ago": "2 anni fa",  "text": "Camminare in cantiere con queste è sicuro. Suola larga, antiscivolo vero." } },
-        "rev_63": { "type": "review", "settings": { "name": "Arturo D.",    "time_ago": "2 anni fa",  "text": "Acquisto consapevole. Sapevo cosa stavo prendendo, e l'ho avuto." } },
-        "rev_64": { "type": "review", "settings": { "name": "Gabriele R.",  "time_ago": "2 anni fa",  "text": "Provate sul plyform bagnato, antiscivolo certificato. Confermo." } },
-        "rev_65": { "type": "review", "settings": { "name": "Maurizio T.",  "time_ago": "2 anni fa",  "text": "Le ho rotte? No. In 2 anni di uso quotidiano. Mai successo prima." } },
-        "rev_66": { "type": "review", "settings": { "name": "Matteo P.",    "time_ago": "2 anni fa",  "text": "La differenza con le antinfortunistiche da supermercato è abissale. Pagate per la qualità." } },
-        "rev_67": { "type": "review", "settings": { "name": "Mirko L.",     "time_ago": "2 anni fa",  "text": "La cosa che mi ha colpito è il fattore Made in Italy. Si vede che è vero." } },
-        "rev_68": { "type": "review", "settings": { "name": "Tiziano V.",   "time_ago": "2 anni fa",  "text": "5 stelle. Tornerò sicuramente al prossimo cambio." } }
+        "rev_21": {
+          "type": "review",
+          "settings": {
+            "name": "Elia Miggiano",
+            "time_ago": "8 mesi fa",
+            "text": "Ottime scarpe, comodissime."
+          }
+        },
+        "rev_22": {
+          "type": "review",
+          "settings": {
+            "name": "Manuel Pegoretti",
+            "time_ago": "9 mesi fa",
+            "text": "Le ho acquistate 1 mese fa circa e devo dire che mi trovo molto molto bene, a fine giornata non sento il peso di averle addosso, anzi hanno una soletta interna veramente morbida."
+          }
+        },
+        "rev_23": {
+          "type": "review",
+          "settings": {
+            "name": "Lorenzo Delussu",
+            "time_ago": "10 mesi fa",
+            "text": "Primo giorno di utilizzo delle scarpe. Posso solo dire che confermo AMPIAMENTE tutte le recensioni più che positive lasciate dagli altri utenti; io uso la motrice e scendo e salgo dal mezzo…"
+          }
+        },
+        "rev_24": {
+          "type": "review",
+          "settings": {
+            "name": "Paolo Fioriti",
+            "time_ago": "10 mesi fa",
+            "text": "Miglior scarpa da lavoro mai avuta."
+          }
+        },
+        "rev_25": {
+          "type": "review",
+          "settings": {
+            "name": "Giuseppe Sciotti",
+            "time_ago": "un anno fa",
+            "text": "Perfette, le uso tutti i giorni anche quando sono a casa. Questi giorni di pioggia mi hanno veramente sorpreso: sotto il diluvio e nelle pozzanghere il piede è rimasto asciutto, e a fine giornata una pulita veloce per…"
+          }
+        },
+        "rev_26": {
+          "type": "review",
+          "settings": {
+            "name": "Giorgio Bubba",
+            "time_ago": "un anno fa",
+            "text": "Credo sia necessario ringraziare tutto il team che ha contribuito alla creazione di questi gioielli d'artigianato ITALIANO! Indosso tutti i giorni con orgoglio e fierezza una scarpa che rende ad ogni passo una sensazione di benessere. S-U-P-E-R"
+          }
+        },
+        "rev_27": {
+          "type": "review",
+          "settings": {
+            "name": "Enrico Valpiani",
+            "time_ago": "un anno fa",
+            "text": "Un anno fa circa ho scoperto Dr Kampes e credo veramente che le altre scarpe antinfortunistiche siano un lontano ricordo… infatti ne ho acquistate ben 2 paia 😁 comodità, praticità voto 100 su 10. Il piede sia in inverno che in estate non…"
+          }
+        },
+        "rev_28": {
+          "type": "review",
+          "settings": {
+            "name": "Mauro Varriale",
+            "time_ago": "un anno fa",
+            "text": "Ho appena ricevuto le scarpe e ringrazio DR KAMPES per come mi ha assistito telefonicamente per la compera. Da domani iniziamo ad usarle, vi farò sapere."
+          }
+        },
+        "rev_29": {
+          "type": "review",
+          "settings": {
+            "name": "Pierantonio De Piccoli",
+            "time_ago": "un anno fa",
+            "text": "Da un anno utilizzo queste scarpe durante le mie giornate lavorative da camionista, affrontando ogni condizione meteo e terreno: pioggia, fango, polvere e, naturalmente, le operazioni di carico e scarico, che mettono a dura prova le nostre…"
+          }
+        },
+        "rev_30": {
+          "type": "review",
+          "settings": {
+            "name": "Vincenzo Di Marco",
+            "time_ago": "un anno fa",
+            "text": "Claudio è un genio odierno! È riuscito a creare delle scarpe non solo comode ma anche eleganti, sicure, antinfortunistiche, idrorepellenti e fastwear! Che dire io le ho da dicembre e le sto usando nel fango nell'acqua un po' dappertutto…"
+          }
+        },
+        "rev_31": {
+          "type": "review",
+          "settings": {
+            "name": "Diego Cantore",
+            "time_ago": "un anno fa",
+            "text": "Ciao a tutti, è circa un anno che utilizzo le scarpe del Dr.Kampes e devo dire che mi trovo benissimo. L'unico mio errore è stato prenderle di un numero troppo grosse ma per il resto…"
+          }
+        },
+        "rev_32": {
+          "type": "review",
+          "settings": {
+            "name": "Liviu Ciornei",
+            "time_ago": "un anno fa",
+            "text": "Ottime scarpe antinfortunistiche, morbide dentro, in pelle liscia non assorbono l'acqua, comode ed eleganti. Comprate da un po' di mesi, ne ho diverse ma queste sono le mie preferite in assoluto. All'acquisto diversi regalini nel pacco! Un prodotto che le 5 stelle se le merita."
+          }
+        },
+        "rev_33": {
+          "type": "review",
+          "settings": {
+            "name": "Lisa Battistella",
+            "time_ago": "un anno fa",
+            "text": "Il prodotto che ho acquistato per mio cognato si è rivelato fantastico, infatti è super contento! Ha apprezzato il fatto che fossero anche anti pioggia e super comode per tutto il giorno…"
+          }
+        },
+        "rev_34": {
+          "type": "review",
+          "settings": {
+            "name": "Diego Peregalli",
+            "time_ago": "un anno fa",
+            "text": "Scarpe fatte bene con materiale di ottima scelta, comode e calzata molto sicura. Ideale per noi camionisti che le togliamo per lasciarle sui scalini. Ottimo acquisto."
+          }
+        },
+        "rev_35": {
+          "type": "review",
+          "settings": {
+            "name": "Marco Priotto",
+            "time_ago": "un anno fa",
+            "text": "5 stelle non bastano, ce ne vorrebbero 10! La qualità del prodotto ma SOPRATTUTTO la cortesia e l'assistenza nel post…"
+          }
+        },
+        "rev_36": {
+          "type": "review",
+          "settings": {
+            "name": "Rudy Boscolo",
+            "time_ago": "un anno fa",
+            "text": "Le uso da una settimana, il sistema fastwear è veramente comodo e si sente poco sul tallone, ovviamente all'inizio sono dure sia da mettere che da usare ma nel giro di poco si sistema tutto. Approvate 🤙"
+          }
+        },
+        "rev_37": {
+          "type": "review",
+          "settings": {
+            "name": "Nicolò Guglielmina",
+            "time_ago": "un anno fa",
+            "text": "Comprate da poco, le Dr Kampes sono sicuramente molto comode grazie alla possibilità di calzarle tipo ciabatta. Sono perfette in caso di fango/pioggia perché tengono i piedi all'asciutto e sono facilissime da pulire! Ottimo prodotto."
+          }
+        },
+        "rev_38": {
+          "type": "review",
+          "settings": {
+            "name": "Ivano Dettori",
+            "time_ago": "un anno fa",
+            "text": "Scarpe bellissime, comode e pratiche per il nostro lavoro da autista. Personale cordiale, mi hanno contattato subito dopo aver effettuato l'ordine e anche una volta arrivate le scarpe per sapere se mi fossi trovato bene."
+          }
+        },
+        "rev_39": {
+          "type": "review",
+          "settings": {
+            "name": "Fulvio",
+            "time_ago": "un anno fa",
+            "text": "Tutto perfetto come da promozione. Una cosa solo da segnalare, ma forse è solo un mio problema. Ci vorrebbe una soletta più morbida perché io le sento dure in pianta, ripeto che probabilmente è un mio problema. Per il resto ottimo prodotto."
+          }
+        },
+        "rev_40": {
+          "type": "review",
+          "settings": {
+            "name": "Maikol Maik",
+            "time_ago": "un anno fa",
+            "text": "Sono scarpe di qualità fatte su misura per noi camionisti ma non solo. Qui trovi l'eccellenza di un prodotto Made in Italy per la sicurezza sul lavoro antinfortunistica."
+          }
+        },
+        "rev_41": {
+          "type": "review",
+          "settings": {
+            "name": "Thierry Nardo",
+            "time_ago": "un anno fa",
+            "text": "Scarpe di altissima qualità!! Consiglio vivamente!! Sono dei professionisti!!"
+          }
+        },
+        "rev_42": {
+          "type": "review",
+          "settings": {
+            "name": "Danilo La Ferla",
+            "time_ago": "un anno fa",
+            "text": "Salve, voglio condividere con tutti i miei colleghi camionisti la mia esperienza positiva con Dr Kampes: scarpe di altissimo livello sulla comodità e prestazioni, provate sulla neve, fango, pioggia. Piede sempre asciutto anche a mollo, facile…"
+          }
+        },
+        "rev_43": {
+          "type": "review",
+          "settings": {
+            "name": "Damiano Montresor",
+            "time_ago": "un anno fa",
+            "text": "Ho preso le Dr Kampes per vedere come sono e devo dire che mi trovo molto bene. Comode, fatte bene, Made in Italy. Prima ogni 6 mesi cambiavo scarpe, ora sono 6 mesi che le uso e sono ancora perfette."
+          }
+        },
+        "rev_44": {
+          "type": "review",
+          "settings": {
+            "name": "Marco Olga",
+            "time_ago": "un anno fa",
+            "text": "Le ho comprate vedendo video e pubblicità sui social, devo dire che ho fatto il miglior acquisto per quanto riguarda scarpe da camionista. Ottima qualità, resistenti, antiscivolo e la cosa più bella, senza lacci con il tallone che si piega così da rendere più semplice lasciarle sulla scaletta… che dire, semplicemente perfette!"
+          }
+        },
+        "rev_45": {
+          "type": "review",
+          "settings": {
+            "name": "Valerio Iafrate",
+            "time_ago": "un anno fa",
+            "text": "Ringraziando Claudio per la sua disponibilità e gentilezza. Che dire, è una scarpa veramente comoda e pratica e soprattutto resistente."
+          }
+        },
+        "rev_46": {
+          "type": "review",
+          "settings": {
+            "name": "Igor Rossi",
+            "time_ago": "un anno fa",
+            "text": "Per quanto riguarda le scarpe credo di aver fatto la scelta della vita: calzano in maniera perfetta, non puzzano, sono morbide nella camminata ma allo stesso tempo resistenti, la pelle è di vera qualità. Le sto usando in qualsiasi condizione e per adesso non mostrano nessun segno d'usura. Sono veramente soddisfatto 👍🏻😀"
+          }
+        },
+        "rev_47": {
+          "type": "review",
+          "settings": {
+            "name": "Claudio Horacio Fidalgo",
+            "time_ago": "un anno fa",
+            "text": "Volevo condividere con voi la mia esperienza con queste scarpe per noi autisti. Ero stufo di usare le solite scarpe; cercando ho trovato le Dr Kampes e devo dire che le uso anche per andare in giro: sono molto comode e soprattutto di ottima qualità, come solo l'Italia sa fare le scarpe. Vi consiglio."
+          }
+        },
+        "rev_48": {
+          "type": "review",
+          "settings": {
+            "name": "Loris Pizzini",
+            "time_ago": "un anno fa",
+            "text": "Sono 7 mesi che indosso le scarpe del Dr Kampes, sono veramente comode e fatte bene. Soldi spesi bene, grazie mille."
+          }
+        },
+        "rev_49": {
+          "type": "review",
+          "settings": {
+            "name": "Stefano Diodà",
+            "time_ago": "un anno fa",
+            "text": "Scarpe perfette e molto comode anche per salire e scendere velocemente. Ottimo prodotto e persone molto corrette e cordiali. Consigliatissime."
+          }
+        },
+        "rev_50": {
+          "type": "review",
+          "settings": {
+            "name": "Luca Caibugatti",
+            "time_ago": "un anno fa",
+            "text": "Scarpa molto comoda e molto resistente! Avendo a che fare tutti i giorni con prodotti petroliferi non c'è il rischio di scivolare!"
+          }
+        },
+        "rev_51": {
+          "type": "review",
+          "settings": {
+            "name": "Franco Vitelli",
+            "time_ago": "un anno fa",
+            "text": "Scarpe fantastiche, ottime per qualsiasi tipo di lavoro. Io faccio rottami."
+          }
+        },
+        "rev_52": {
+          "type": "review",
+          "settings": {
+            "name": "Emanuele Galassi",
+            "time_ago": "un anno fa",
+            "text": "Scarpa veramente comoda che si adatta a tante situazioni e resistente. Direi un super acquisto!"
+          }
+        },
+        "rev_53": {
+          "type": "review",
+          "settings": {
+            "name": "Corrado Crespi",
+            "time_ago": "un anno fa",
+            "text": "Scarpe top, mai provato un prodotto simile. Straconsigliato."
+          }
+        },
+        "rev_54": {
+          "type": "review",
+          "settings": {
+            "name": "Alessandro Margoni",
+            "time_ago": "un anno fa",
+            "text": "Comode, sempre i piedi asciutti nonostante fango e pioggia. Si lavano e diventano nuove."
+          }
+        },
+        "rev_55": {
+          "type": "review",
+          "settings": {
+            "name": "Federico Baffo",
+            "time_ago": "un anno fa",
+            "text": "Prodotto di qualità e resistenza. Straconsigliato 💪🏻"
+          }
+        },
+        "rev_56": {
+          "type": "review",
+          "settings": {
+            "name": "Giovanni Maggioni",
+            "time_ago": "un anno fa",
+            "text": "Scarpe fantastiche. Comodissime."
+          }
+        },
+        "rev_57": {
+          "type": "review",
+          "settings": {
+            "name": "Domenico Boscolo",
+            "time_ago": "un anno fa",
+            "text": "Ottimo prodotto."
+          }
+        },
+        "rev_58": {
+          "type": "review",
+          "settings": {
+            "name": "Hamza Chagdani",
+            "time_ago": "un anno fa",
+            "text": "Ottime scarpe."
+          }
+        }
       },
       "block_order": [
-        "rev_1","rev_2","rev_3","rev_4","rev_5","rev_6","rev_7","rev_8","rev_9","rev_10",
-        "rev_11","rev_12","rev_13","rev_14","rev_15","rev_16","rev_17","rev_18","rev_19","rev_20",
-        "rev_21","rev_22","rev_23","rev_24","rev_25","rev_26","rev_27","rev_28","rev_29","rev_30",
-        "rev_31","rev_32","rev_33","rev_34","rev_35","rev_36","rev_37","rev_38","rev_39","rev_40",
-        "rev_41","rev_42","rev_43","rev_44","rev_45","rev_46","rev_47","rev_48","rev_49","rev_50",
-        "rev_51","rev_52","rev_53","rev_54","rev_55","rev_56","rev_57","rev_58","rev_59","rev_60",
-        "rev_61","rev_62","rev_63","rev_64","rev_65","rev_66","rev_67","rev_68"
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4",
+        "rev_5",
+        "rev_6",
+        "rev_7",
+        "rev_8",
+        "rev_9",
+        "rev_10",
+        "rev_11",
+        "rev_12",
+        "rev_13",
+        "rev_14",
+        "rev_15",
+        "rev_16",
+        "rev_17",
+        "rev_18",
+        "rev_19",
+        "rev_20",
+        "rev_21",
+        "rev_22",
+        "rev_23",
+        "rev_24",
+        "rev_25",
+        "rev_26",
+        "rev_27",
+        "rev_28",
+        "rev_29",
+        "rev_30",
+        "rev_31",
+        "rev_32",
+        "rev_33",
+        "rev_34",
+        "rev_35",
+        "rev_36",
+        "rev_37",
+        "rev_38",
+        "rev_39",
+        "rev_40",
+        "rev_41",
+        "rev_42",
+        "rev_43",
+        "rev_44",
+        "rev_45",
+        "rev_46",
+        "rev_47",
+        "rev_48",
+        "rev_49",
+        "rev_50",
+        "rev_51",
+        "rev_52",
+        "rev_53",
+        "rev_54",
+        "rev_55",
+        "rev_56",
+        "rev_57",
+        "rev_58"
       ],
       "settings": {
         "eyebrow": "Recensioni Google",
