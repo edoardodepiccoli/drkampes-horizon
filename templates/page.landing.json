@@ -101,12 +101,19 @@
       ],
       "settings": {
         "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
+        "image_badge": "-17%",
         "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
         "headline": "Le migliori scarpe per camionisti al mondo.",
+        "rating_value": "4.9",
+        "rating_count": "127 clienti soddisfatti",
+        "verified_label": "Recensioni verificate",
         "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
         "price": "€189",
+        "savings_label": "-17% · RISPARMI €40",
         "compare_price": "€229",
-        "price_note": "o 3 rate da €63 con Klarna · Spedizione GRATIS + T-shirt OMAGGIO inclusi",
+        "tax_note": "IVA inclusa",
+        "installments_note": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>",
+        "coupon_text": "Spedizione GRATIS + T-shirt OMAGGIO inclusi",
         "cta_label": "SCOPRI L'OFFERTA SUBITO",
         "cta_url": "#acquista"
       }
