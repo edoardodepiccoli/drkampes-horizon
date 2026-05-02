@@ -27,21 +27,6 @@
       </div>
     </header>
 
-    {%- if section.settings.review_chips != blank -%}
-      <ul class="lp-reviews__chips" aria-label="Argomenti più citati">
-        {%- assign chip_pairs = section.settings.review_chips | split: ',' -%}
-        {%- for pair in chip_pairs -%}
-          {%- assign parts = pair | split: '|' -%}
-          {%- if parts.size >= 2 -%}
-            <li class="lp-reviews__chip">
-              <span>{{ parts[0] | strip }}</span>
-              <span class="lp-reviews__chip-n">{{ parts[1] | strip }}</span>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-
     {%- assign initial_show = section.settings.initial_count | default: 6 -%}
     <ul class="lp-reviews__list" data-lp-reviews-list>
       {%- for block in section.blocks -%}
@@ -265,36 +250,6 @@
   white-space: nowrap;
 }
 
-.lp-reviews__chips {
-  list-style: none;
-  margin: 0 0 16px;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.lp-reviews__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  background: #f3f4f6;
-  font-size: 0.74rem;
-  color: #333;
-  border: 1px solid #e6e6e6;
-  line-height: 1.2;
-}
-
-.lp-reviews__chip-n {
-  background: #111;
-  color: #fff;
-  padding: 1px 6px;
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-}
-
 .lp-reviews__list {
   list-style: none;
   margin: 0;
@@ -479,7 +434,7 @@
       "type": "text",
       "id": "review_count_label",
       "label": "Etichetta numero recensioni",
-      "default": "127 recensioni Google"
+      "default": "68 recensioni Google"
     },
     {
       "type": "url",
@@ -491,12 +446,6 @@
       "id": "initial_count",
       "label": "Recensioni visibili inizialmente",
       "default": 6
-    },
-    {
-      "type": "textarea",
-      "id": "review_chips",
-      "label": "Tag temi recensioni (formato: Etichetta|N, separati da virgola)",
-      "default": "Comodissime|38,Made in Italy|24,FASTWEAR top|19,Idrorepellenti|15,Antiscivolo|12"
     },
     {
       "type": "header",

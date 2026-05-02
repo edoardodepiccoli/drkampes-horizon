@@ -10,6 +10,18 @@
 {
   "layout": "lp",
   "sections": {
+    "lp_navbar": {
+      "type": "lp-navbar",
+      "blocks": {
+        "tr_1": { "type": "trust_item", "settings": { "text": "T-shirt GRATIS" } },
+        "tr_2": { "type": "trust_item", "settings": { "text": "Spedizione rapida GRATIS" } },
+        "tr_3": { "type": "trust_item", "settings": { "text": "Valido fino al 30 giugno" } }
+      },
+      "block_order": ["tr_1", "tr_2", "tr_3"],
+      "settings": {
+        "logo_max_height": 40
+      }
+    },
     "section_GQzycz": {
       "type": "section",
       "blocks": {
@@ -101,11 +113,11 @@
       ],
       "settings": {
         "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
-        "image_badge": "-14%",
+        "image_badge": "",
         "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
         "headline": "Le migliori scarpe per camionisti al mondo.",
         "rating_value": "4.9",
-        "rating_count": "127 clienti soddisfatti",
+        "rating_count": "68 clienti soddisfatti",
         "verified_label": "Recensioni verificate",
         "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
         "price": "€189",
@@ -217,10 +229,9 @@
         "eyebrow": "Recensioni Google",
         "heading": "Cosa dicono i clienti",
         "average_rating": "4.9",
-        "review_count_label": "127 recensioni Google",
+        "review_count_label": "68 recensioni Google",
         "google_url": "https://www.google.com/search?q=Dr+Kampes+Italian+Trucker+Shoes+Recensioni",
         "initial_count": 6,
-        "review_chips": "Comodissime|38,Made in Italy|24,FASTWEAR top|19,Idrorepellenti|15,Antiscivolo|12",
         "google_reviews_json_url": ""
       }
     },
@@ -400,12 +411,13 @@
     }
   },
   "order": [
+    "lp_navbar",
     "section_GQzycz",
     "lp_hero",
     "lp_benefits",
     "lp_video",
-    "lp_reviews",
     "main",
+    "lp_reviews",
     "section_eGTGaW"
   ]
 }

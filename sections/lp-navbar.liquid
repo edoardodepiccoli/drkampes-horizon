@@ -1,0 +1,189 @@
+<section class="lp-navbar">
+  <div class="lp-navbar__logo-row">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo
+         | image_url: width: 480
+         | image_tag:
+             class: 'lp-navbar__logo',
+             loading: 'eager',
+             fetchpriority: 'high',
+             widths: '180,240,320,480',
+             sizes: '(min-width:750px) 220px, 160px',
+             alt: section.settings.logo.alt | default: shop.name,
+             style: 'max-height:' | append: section.settings.logo_max_height | append: 'px;'
+      }}
+    {%- else -%}
+      <span class="lp-navbar__logo-fallback">{{ shop.name }}</span>
+    {%- endif -%}
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="lp-navbar__marquee" aria-label="Vantaggi offerta">
+      <div class="lp-navbar__track">
+        {%- for n in (1..2) -%}
+          {%- for block in section.blocks -%}
+            <span class="lp-navbar__item" {{ block.shopify_attributes }}>
+              <svg class="lp-navbar__check" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>{{ block.settings.text }}</span>
+            </span>
+            <span class="lp-navbar__sep" aria-hidden="true">&bull;</span>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+
+.lp-navbar {
+  width: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-navbar__logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  background: #000;
+}
+
+.lp-navbar__logo {
+  display: block;
+  max-height: 36px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lp-navbar__logo-fallback {
+  font-family: 'Archivo Black', sans-serif;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lp-navbar__marquee {
+  background: #F5C200;
+  color: #111;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 8px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.lp-navbar__track {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+  width: max-content;
+  animation: lp-navbar-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes lp-navbar-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.lp-navbar__marquee:hover .lp-navbar__track {
+  animation-play-state: paused;
+}
+
+.lp-navbar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.lp-navbar__check {
+  width: 14px;
+  height: 14px;
+  stroke: #111;
+  flex-shrink: 0;
+}
+
+.lp-navbar__sep {
+  color: rgba(0,0,0,0.45);
+  font-size: 0.85rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@media (min-width: 750px) {
+  .lp-navbar__logo-row {
+    padding: 18px 16px;
+  }
+  .lp-navbar__logo {
+    max-height: 44px;
+  }
+  .lp-navbar__marquee {
+    padding: 10px 0;
+  }
+  .lp-navbar__item {
+    font-size: 0.85rem;
+  }
+  .lp-navbar__check {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Navbar",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (centrato)"
+    },
+    {
+      "type": "number",
+      "id": "logo_max_height",
+      "label": "Altezza max logo (px)",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testo (es. T-shirt GRATIS)",
+          "default": "Vantaggio"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Navbar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "text": "T-shirt GRATIS" } },
+        { "type": "trust_item", "settings": { "text": "Spedizione rapida GRATIS" } },
+        { "type": "trust_item", "settings": { "text": "Valido fino al 30 giugno" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
