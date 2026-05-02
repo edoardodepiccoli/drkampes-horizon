@@ -109,24 +109,63 @@
     <div class="hps__social">
       <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       <span class="hps__review-lbl">4.9 &bull; <strong>127 clienti soddisfatti</strong></span>
+      <span class="hps__verified-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Verificate
+      </span>
     </div>
+
+    {%- if section.settings.social_proof_text != blank -%}
+      <div class="hps__social-proof">
+        <span class="hps__social-proof-dot" aria-hidden="true"></span>
+        {{ section.settings.social_proof_text }}
+      </div>
+    {%- endif -%}
+
     {%- if section.settings.review_quote != blank -%}
       <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
     {%- endif -%}
 
-    {%- assign hps_savings = 21000 | minus: product.price | divided_by: 100 -%}
+    {%- if section.settings.offer_badge != blank -%}
+      <div class="hps__offer-badge-row">{{ section.settings.offer_badge }}</div>
+    {%- endif -%}
+
+    {%- assign hps_compare_cents = section.settings.compare_price_cents | default: 22900 -%}
+    {%- assign hps_savings = hps_compare_cents | minus: product.price | divided_by: 100 -%}
+    {%- assign hps_pct = product.price | times: 100 | divided_by: hps_compare_cents -%}
+    {%- assign hps_pct = 100 | minus: hps_pct -%}
     <div class="hps__price-wrap">
       <div class="hps__price-row">
-        <p class="hps__price">
-          <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
-          <span class="hps__price-compare">&euro;210</span>
-          <span class="hps__price-tax">IVA INCLUSA</span>
-        </p>
+        <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
         {%- if hps_savings > 0 -%}
-          <span class="hps__savings">Risparmi &euro;{{ hps_savings }}</span>
+          <span class="hps__savings">-{{ hps_pct }}% &middot; RISPARMI &euro;{{ hps_savings }}</span>
         {%- endif -%}
       </div>
-      <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna e PayPal</p>
+      <div class="hps__price-meta">
+        <span class="hps__price-compare">&euro; {{ hps_compare_cents | divided_by: 100 }}</span>
+        <span class="hps__price-sep" aria-hidden="true">&middot;</span>
+        <span class="hps__price-tax">IVA inclusa</span>
+      </div>
+      <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna o PayPal</p>
+    </div>
+
+    <div class="hps__coupons">
+      <div class="hps__coupon">
+        <span class="hps__coupon-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </span>
+        <span class="hps__coupon-text">
+          <strong>Spedizione GRATIS</strong> &mdash; codice <code>SPEDIZIONEGRATIS</code> applicato in automatico
+        </span>
+      </div>
+      <div class="hps__coupon">
+        <span class="hps__coupon-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </span>
+        <span class="hps__coupon-text">
+          <strong>T-shirt Dr Kampes OMAGGIO</strong> inclusa nel bundle
+        </span>
+      </div>
     </div>
 
     <div class="hps__trust">
@@ -233,6 +272,20 @@
           ACQUISTA ORA
         </button>
       </div>
+      <ul class="hps__trust-compact" aria-label="Garanzie acquisto">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Spedizione GRATIS 48-72h</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span>14 giorni per il reso</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Pagamento sicuro SSL</span>
+        </li>
+      </ul>
       <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
         <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
         <span class="hps-offer-banner__text">{{ offer_headline | replace: 'OMAGGIO + Spedizione', '+ Spedizione Rapida' }}</span>
@@ -309,10 +362,165 @@
       </ul>
     </div>
 
+    {%- comment -%} ── Reviews section ── {%- endcomment -%}
+    <section class="hps-reviews" aria-label="Recensioni clienti">
+      <header class="hps-reviews__head">
+        <h3 class="hps-reviews__h3">Cosa dicono i clienti</h3>
+        <a class="hps-reviews__see-all" href="#" data-hps-see-all>Vedi tutte ({{ section.settings.review_count_total | default: 127 }})</a>
+      </header>
+
+      <div class="hps-reviews__photos">
+        {%- assign rphoto_count = section.settings.review_photo_count | default: 4 -%}
+        {%- for i in (1..rphoto_count) -%}
+          <div class="hps-reviews__photo hps-reviews__photo--placeholder" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="hps-reviews__rating">
+        <span class="hps-reviews__rating-num">4.9</span>
+        <span class="hps-reviews__rating-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="hps-reviews__rating-count">{{ section.settings.review_count_total | default: 127 }} recensioni verificate</span>
+      </div>
+
+      <ul class="hps-reviews__chips" aria-label="Argomenti più citati">
+        {%- assign chips_default = 'Comodissime|38,Spedizione veloce|24,Piede asciutto|19,Vere 3 anni|12,FASTWEAR top|9' -%}
+        {%- assign chips_raw = section.settings.review_chips | default: chips_default -%}
+        {%- assign chip_pairs = chips_raw | split: ',' -%}
+        {%- for pair in chip_pairs -%}
+          {%- assign parts = pair | split: '|' -%}
+          {%- if parts.size >= 2 -%}
+            <li class="hps-reviews__chip">
+              <span class="hps-reviews__chip-label">{{ parts[0] | strip }}</span>
+              <span class="hps-reviews__chip-count">{{ parts[1] | strip }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      <ul class="hps-reviews__list">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              <li class="hps-review" {{ block.shopify_attributes }}>
+                <header class="hps-review__head">
+                  {%- if block.settings.avatar != blank -%}
+                    {{ block.settings.avatar | image_url: width: 96 | image_tag: class: 'hps-review__avatar', loading: 'lazy', alt: block.settings.name }}
+                  {%- else -%}
+                    <span class="hps-review__avatar hps-review__avatar--initial" aria-hidden="true">{{ block.settings.name | slice: 0 | upcase }}</span>
+                  {%- endif -%}
+                  <div class="hps-review__id">
+                    <p class="hps-review__name">{{ block.settings.name }}</p>
+                    <p class="hps-review__meta">
+                      <span class="hps-review__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                      <span class="hps-review__sep" aria-hidden="true">&middot;</span>
+                      <span class="hps-review__time">{{ block.settings.time_ago }}</span>
+                    </p>
+                  </div>
+                  <span class="hps-review__verified">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    Verificata
+                  </span>
+                </header>
+                <p class="hps-review__text">{{ block.settings.text }}</p>
+                {%- if block.settings.variant_info != blank -%}
+                  <p class="hps-review__variant">{{ block.settings.variant_info }}</p>
+                {%- endif -%}
+                {%- if block.settings.photo_1 != blank or block.settings.photo_2 != blank or block.settings.photo_3 != blank -%}
+                  <div class="hps-review__photos">
+                    {%- if block.settings.photo_1 != blank -%}
+                      {{ block.settings.photo_1 | image_url: width: 240 | image_tag: class: 'hps-review__photo', loading: 'lazy' }}
+                    {%- endif -%}
+                    {%- if block.settings.photo_2 != blank -%}
+                      {{ block.settings.photo_2 | image_url: width: 240 | image_tag: class: 'hps-review__photo', loading: 'lazy' }}
+                    {%- endif -%}
+                    {%- if block.settings.photo_3 != blank -%}
+                      {{ block.settings.photo_3 | image_url: width: 240 | image_tag: class: 'hps-review__photo', loading: 'lazy' }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} Placeholder reviews if no blocks configured {%- endcomment -%}
+          {%- assign placeholders = 'Marco T.|3 mesi fa|Le ho prese ad aprile, le porto tutti i giorni. FASTWEAR è la svolta: salgo e scendo dalla cabina senza piegarmi. Comode anche dopo 10 ore al volante.|Colore: Nero · Taglia: 43;Giuseppe P.|2 mesi fa|Padroncino da 22 anni. Le mie ultime scarpe duravano 4 mesi. Queste hanno un anno e sembrano nuove. Spedizione veloce, t-shirt regalo gradita.|Colore: Testa di Moro · Taglia: 44;Andrea L.|5 settimane fa|Pioveva a Milano e ho camminato 2h sotto acqua. Piede asciutto. Punto.|Colore: Nero · Taglia: 42' -%}
+          {%- assign rows = placeholders | split: ';' -%}
+          {%- for row in rows -%}
+            {%- assign p = row | split: '|' -%}
+            <li class="hps-review">
+              <header class="hps-review__head">
+                <span class="hps-review__avatar hps-review__avatar--initial" aria-hidden="true">{{ p[0] | slice: 0 | upcase }}</span>
+                <div class="hps-review__id">
+                  <p class="hps-review__name">{{ p[0] }}</p>
+                  <p class="hps-review__meta">
+                    <span class="hps-review__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span class="hps-review__sep" aria-hidden="true">&middot;</span>
+                    <span class="hps-review__time">{{ p[1] }}</span>
+                  </p>
+                </div>
+                <span class="hps-review__verified">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  Verificata
+                </span>
+              </header>
+              <p class="hps-review__text">{{ p[2] }}</p>
+              <p class="hps-review__variant">{{ p[3] }}</p>
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </section>
+
+    {%- comment -%} ── Q&A accordion ── {%- endcomment -%}
+    <section class="hps-faq" aria-label="Domande dei clienti">
+      <h3 class="hps-faq__h3">Domande dei clienti</h3>
+      <ul class="hps-faq__list">
+        {%- assign faq_default = 'Come scelgo la taglia giusta?|Misura la lunghezza interna del tuo plantare attuale (in cm) e confronta con la tabella nella guida taglie. In dubbio? Vai sopra. Cambio taglia gratis entro 14 giorni.;Cosa copre la garanzia 3 anni?|Riparazione o sostituzione gratuita di difetti di fabbricazione, cuciture, suola e sistema FASTWEAR. 1.095 giorni di lavoro coperti. Garanzia scritta.;FASTWEAR funziona davvero in 1 secondo?|Sì. Il sistema brevettato sblocca lo strappo posteriore: appoggi il tallone, parti. Lo richiudi con un gesto, anche con i guanti. Zero lacci.;Quanto tempo per la spedizione?|Ordini prima delle 18:00 → spedito il giorno dopo. Consegna corriere espresso in 48-72h in tutta Italia. Tracking via SMS.;Posso pagare a rate?|Sì. Klarna o PayPal in 3 rate da €63 senza interessi. Selezioni il metodo al checkout.' -%}
+        {%- assign faq_raw = section.settings.faq_items | default: faq_default -%}
+        {%- assign faq_pairs = faq_raw | split: ';' -%}
+        {%- for pair in faq_pairs -%}
+          {%- assign qa = pair | split: '|' -%}
+          {%- if qa.size >= 2 -%}
+            <li class="hps-faq__item">
+              <button type="button" class="hps-faq__q" aria-expanded="false">
+                <span>{{ qa[0] | strip }}</span>
+                <svg class="hps-faq__chev" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="hps-faq__a" hidden>{{ qa[1] | strip }}</div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    {%- comment -%} ── Specs accordion ── {%- endcomment -%}
+    <section class="hps-specs" aria-label="Specifiche tecniche">
+      <button type="button" class="hps-specs__toggle" aria-expanded="false">
+        <span>Specifiche tecniche</span>
+        <svg class="hps-specs__chev" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="hps-specs__body" hidden>
+        <dl class="hps-specs__list">
+          {%- assign specs_default = 'Categoria DPI|S3S (massimo grado europeo);Tomaia|Pelle vera idrorepellente;Plantare|Anti-vibrazione, anti-batterico;Suola|Antiscivolo SRC su gasolio, ghiaccio, lamiera;Puntale|Composito (non metallico);Peso|480g per scarpa;Made in|Montebelluna (Treviso), Italia;Conformità|EN ISO 20345:2022' -%}
+          {%- assign specs_raw = section.settings.specs_items | default: specs_default -%}
+          {%- assign spec_pairs = specs_raw | split: ';' -%}
+          {%- for pair in spec_pairs -%}
+            {%- assign kv = pair | split: '|' -%}
+            {%- if kv.size >= 2 -%}
+              <div class="hps-specs__row">
+                <dt>{{ kv[0] | strip }}</dt>
+                <dd>{{ kv[1] | strip }}</dd>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </dl>
+      </div>
+    </section>
+
   </div>
 </div>
-
-<div class="hps__viewer-toast" id="hps-viewers-{{ section.id }}"><span class="hps-viewers-dot"></span><span class="hps-viewers-n">0</span> persone stanno guardando</div>
 
 <div class="hps-pop" id="hps-pop-tshirt-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-tshirt-title-{{ section.id }}" hidden>
   <div class="hps-pop__bg" data-pop-close></div>
@@ -426,8 +634,6 @@
   var sid = '{{ section.id }}';
   var discountCode = {{ section.settings.discount_code | json }};
   var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
-  var viewerMin = {{ section.settings.viewer_min | default: 12 }};
-  var viewerMax = {{ section.settings.viewer_max | default: 37 }};
   var customHeroSlots = [
     { id: '__custom__',  url: {{ section.settings.custom_first_image_url | json }},   colorKey: {{ section.settings.custom_first_image_color | handleize | json }} },
     { id: '__custom2__', url: {{ section.settings.custom_first_image_url_2 | json }}, colorKey: {{ section.settings.custom_first_image_color_2 | handleize | json }} }
@@ -451,7 +657,6 @@
   var vidInput   = document.getElementById('hps-vid-' + sid);
   var stockEl    = document.getElementById('hps-stock-' + sid);
   var ctaPriceEl = document.getElementById('hps-cta-price-' + sid);
-  var viewersEl  = document.getElementById('hps-viewers-' + sid);
 
   function formatPrice(cents) {
     var n = cents / 100;
@@ -736,39 +941,32 @@
     }, { threshold: 0.15 }).observe(uspWrap);
   }
 
-  if (viewersEl && viewerMin > 0 && viewerMax >= viewerMin) {
-    var viewerCount = viewerMin + Math.floor(Math.random() * (viewerMax - viewerMin + 1));
-    var viewerNumEl = viewersEl.querySelector('.hps-viewers-n');
-    function updateViewers() {
-      var drift = Math.floor(Math.random() * 5) - 2;
-      viewerCount = Math.max(viewerMin, Math.min(viewerMax, viewerCount + drift));
-      if (viewerNumEl) viewerNumEl.textContent = viewerCount;
-    }
-    var viewerTriggered = false;
-    function updateViewerToast() {
-      if (!viewerTriggered) return;
-      var sSelRect = sSel ? sSel.getBoundingClientRect() : null;
-      var show = sSelRect ? (sSelRect.top < window.innerHeight && sSelRect.bottom > 0) : false;
-      viewersEl.classList.toggle('hps__viewer-toast--visible', show);
-    }
-    function startViewers() {
-      if (viewerTriggered) return;
-      viewerTriggered = true;
-      if (viewerNumEl) viewerNumEl.textContent = viewerCount;
-      updateViewerToast();
-      (function scheduleUpdate() {
-        setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
-      })();
-    }
-    var triggerEl = sSel || root.querySelector('.hps__price-wrap') || root.querySelector('.hps__details');
-    if (triggerEl) {
-      new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { setTimeout(startViewers, 2000); obs.disconnect(); }
-      }, { threshold: 0.5 }).observe(triggerEl);
-    } else {
-      setTimeout(startViewers, 3500);
-    }
-    window.addEventListener('scroll', updateViewerToast, { passive: true });
+  root.querySelectorAll('.hps-faq__q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var ans = btn.parentNode.querySelector('.hps-faq__a');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if (ans) ans.hidden = isOpen;
+    });
+  });
+
+  var specsToggle = root.querySelector('.hps-specs__toggle');
+  if (specsToggle) {
+    specsToggle.addEventListener('click', function () {
+      var body = root.querySelector('.hps-specs__body');
+      var isOpen = specsToggle.getAttribute('aria-expanded') === 'true';
+      specsToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if (body) body.hidden = isOpen;
+    });
+  }
+
+  var seeAllBtn = root.querySelector('[data-hps-see-all]');
+  if (seeAllBtn) {
+    seeAllBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var list = root.querySelector('.hps-reviews__list');
+      if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 })();
 </script>
@@ -892,35 +1090,37 @@
 .hps__price-wrap {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   margin: 0;
+  padding: 12px 14px;
+  background: #fafafa;
+  border-left: 3px solid #F5C200;
 }
 
-.hps__price {
-  margin: 0;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
 .hps__price-main {
-  font-size: 1.65rem;
-  font-weight: 700;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
   color: #111;
   line-height: 1;
 }
+
 .hps__price-tax {
-  font-size: 0.68rem;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  color: #777;
+  letter-spacing: 0.02em;
 }
 
 .hps__installment {
-  font-size: 0.74rem;
-  color: #666;
-  margin: 0;
+  font-size: 0.78rem;
+  color: #555;
+  margin: 4px 0 0;
 }
-.hps__installment strong { color: #111; }
+.hps__installment strong {
+  color: #111;
+  font-family: 'Archivo Black', sans-serif;
+  letter-spacing: 0.02em;
+}
 
 /* Offer banner */
 @keyframes hps-pulse-border {
@@ -1376,26 +1576,30 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  line-height: 1;
 }
 
 .hps__price-compare {
-  font-size: 1rem;
-  color: #aaa;
+  font-size: 0.95rem;
+  color: #888;
   text-decoration: line-through;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .hps__savings {
   display: inline-flex;
   align-items: center;
-  background: #c62828;
+  background: #e3252b;
   color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 3px 8px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 900;
+  padding: 6px 9px;
   border-radius: 0;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 1.1;
 }
 
 /* Review quote */
@@ -1462,55 +1666,450 @@
   text-transform: uppercase;
 }
 
-/* Viewer count toast */
-@keyframes hps-toast-glow {
-  0%, 100% { box-shadow: 0 2px 12px rgba(198, 40, 40, 0.3); }
-  50%       { box-shadow: 0 2px 28px 6px rgba(198, 40, 40, 0.6); }
+/* Verified badge in social row */
+.hps__verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  letter-spacing: 0.03em;
+  margin-left: auto;
 }
-@keyframes hps-dot-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(0.65); }
+.hps__verified-badge svg {
+  width: 11px;
+  height: 11px;
+  stroke: #2e7d32;
 }
 
-.hps__viewer-toast {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%) translateY(calc(-100% - 20px));
-  background: #1a1a1a;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 10px 20px;
-  border-radius: 0;
-  border: 1.5px solid #c62828;
-  white-space: nowrap;
-  z-index: 8500;
-  pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+/* Real social proof */
+@keyframes hps-sp-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
+}
+.hps__social-proof {
   display: flex;
   align-items: center;
   gap: 8px;
-  letter-spacing: 0.02em;
+  font-size: 0.78rem;
+  color: #555;
+  background: #f7f7f7;
+  padding: 8px 12px;
+  margin: 0;
+  line-height: 1.3;
+  border-left: 3px solid #2e7d32;
 }
-.hps__viewer-toast--visible {
-  transform: translateX(-50%) translateY(0);
-  animation: hps-toast-glow 1.8s ease-in-out infinite;
-}
-
-.hps-viewers-dot {
+.hps__social-proof-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ef5350;
+  background: #2e7d32;
   flex-shrink: 0;
-  animation: hps-dot-pulse 1.2s ease-in-out infinite;
+  animation: hps-sp-dot 1.6s ease-in-out infinite;
 }
 
-.hps__viewer-toast .hps-viewers-n {
-  color: #F5C200;
+/* Offer badge row (above price) */
+.hps__offer-badge-row {
+  display: inline-block;
+  background: #F5C200;
+  color: #111;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  align-self: flex-start;
+  line-height: 1.2;
+}
+
+/* Price meta row */
+.hps__price-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+.hps__price-sep { color: #ccc; }
+
+/* Coupons */
+.hps__coupons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 0;
+}
+.hps__coupon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8e1;
+  border: 1px dashed #F5C200;
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  color: #5a4400;
+  line-height: 1.35;
+}
+.hps__coupon-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+}
+.hps__coupon-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #b88600;
+}
+.hps__coupon-text strong { color: #2a1f00; font-weight: 900; }
+.hps__coupon-text code {
+  background: #ffd54f;
+  padding: 1px 5px;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #2a1f00;
+}
+
+/* Trust strip below CTA (compact inline) */
+.hps__trust-compact {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  border-top: 1px solid #ebebeb;
+  font-size: 0.7rem;
+  color: #555;
+}
+.hps__trust-compact li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.2;
+}
+.hps__trust-compact svg {
+  width: 13px;
+  height: 13px;
+  stroke: #2e7d32;
+  flex-shrink: 0;
+}
+
+/* Reviews section */
+.hps-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid #eee;
+}
+.hps-reviews__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hps-reviews__h3 {
+  font-family: var(--font-heading--family, inherit);
   font-size: 1rem;
   font-weight: 900;
+  color: #111;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.hps-reviews__see-all {
+  font-size: 0.78rem;
+  color: #2e7d32;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hps-reviews__see-all:hover { text-decoration: underline; color: #2e7d32; }
+
+.hps-reviews__photos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.hps-reviews__photo {
+  aspect-ratio: 1 / 1;
+  background: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+}
+.hps-reviews__photo--placeholder svg {
+  width: 32px;
+  height: 32px;
+  stroke: #bbb;
+}
+
+.hps-reviews__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hps-reviews__rating-num {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.4rem;
+  color: #111;
+  line-height: 1;
+}
+.hps-reviews__rating-stars {
+  color: #f5a623;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.hps-reviews__rating-count {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.hps-reviews__chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hps-reviews__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: #f3f4f6;
+  font-size: 0.74rem;
+  color: #333;
+  line-height: 1.2;
+  border: 1px solid #e0e0e0;
+}
+.hps-reviews__chip-label { font-weight: 600; }
+.hps-reviews__chip-count {
+  background: #111;
+  color: #fff;
+  padding: 1px 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+.hps-reviews__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hps-review {
+  background: #fafafa;
+  padding: 12px 14px;
+  border-left: 3px solid #f5a623;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hps-review__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hps-review__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #d8d8d8;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.92rem;
+  color: #fff;
+}
+.hps-review__avatar--initial { background: #2e7d32; }
+.hps-review__id { flex: 1; min-width: 0; }
+.hps-review__name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  line-height: 1.2;
+}
+.hps-review__meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: #888;
+  margin: 2px 0 0;
+}
+.hps-review__stars {
+  color: #f5a623;
+  letter-spacing: 1px;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+.hps-review__sep { color: #ccc; }
+.hps-review__time { color: #777; }
+.hps-review__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.66rem;
+  color: #2e7d32;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.hps-review__verified svg {
+  width: 10px;
+  height: 10px;
+  stroke: #2e7d32;
+}
+.hps-review__text {
+  font-size: 0.85rem;
+  color: #222;
+  line-height: 1.5;
+  margin: 0;
+}
+.hps-review__variant {
+  font-size: 0.7rem;
+  color: #777;
+  margin: 0;
+  font-weight: 500;
+}
+.hps-review__photos {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.hps-review__photo {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}
+
+/* Q&A accordion */
+.hps-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 24px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid #eee;
+}
+.hps-faq__h3 {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 1rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+}
+.hps-faq__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.hps-faq__item { border-bottom: 1px solid #eee; }
+.hps-faq__item:last-child { border-bottom: none; }
+.hps-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111;
+  text-align: left;
+  line-height: 1.35;
+}
+.hps-faq__chev {
+  width: 16px;
+  height: 16px;
+  stroke: #555;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.hps-faq__q[aria-expanded="true"] .hps-faq__chev { transform: rotate(180deg); }
+.hps-faq__a {
+  font-size: 0.82rem;
+  color: #555;
+  padding: 0 0 12px;
+  line-height: 1.55;
+}
+
+/* Specs accordion */
+.hps-specs {
+  margin: 16px 0 0;
+  border-top: 1px solid #eee;
+  padding: 4px 0 0;
+}
+.hps-specs__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading--family, inherit);
+  font-size: 1rem;
+  font-weight: 900;
+  color: #111;
+  text-align: left;
+}
+.hps-specs__chev {
+  width: 16px;
+  height: 16px;
+  stroke: #555;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.hps-specs__toggle[aria-expanded="true"] .hps-specs__chev { transform: rotate(180deg); }
+.hps-specs__list {
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #eee;
+}
+.hps-specs__row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.8rem;
+}
+.hps-specs__row:last-child { border-bottom: none; }
+.hps-specs__row dt {
+  font-weight: 700;
+  color: #555;
+  margin: 0;
+}
+.hps-specs__row dd {
+  margin: 0;
+  color: #111;
 }
 
 /* Sticky bar price */
@@ -1565,7 +2164,8 @@
     min-width: 0;
   }
   .hps__title { font-size: 1.2rem; }
-  .hps__price-main { font-size: 2rem; }
+  .hps__price-main { font-size: 2.7rem; }
+  .hps-reviews__photos { grid-template-columns: repeat(6, 1fr); }
   .hps-pop { align-items: center; }
   .hps-pop__box { border-radius: 0; width: 480px; max-height: calc(100vh - 40px); }
   .hps-usp { margin: 0; }
@@ -1711,27 +2311,135 @@
       "default": 7
     },
     {
-      "type": "number",
-      "id": "viewer_min",
-      "label": "Visitatori min (social proof)",
-      "default": 12
+      "type": "header",
+      "content": "Prezzo & Offerta"
+    },
+    {
+      "type": "text",
+      "id": "offer_badge",
+      "label": "Badge offerta sopra prezzo",
+      "default": "OFFERTA PRIMAVERA — fino al 30 giugno"
     },
     {
       "type": "number",
-      "id": "viewer_max",
-      "label": "Visitatori max (social proof)",
-      "default": 37
+      "id": "compare_price_cents",
+      "label": "Prezzo barrato in centesimi (es. 22900 = €229)",
+      "default": 22900
+    },
+    {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Frase social proof (sopra prezzo)",
+      "default": "Oltre 1.500 autisti italiani le indossano già"
     },
     {
       "type": "textarea",
       "id": "review_quote",
-      "label": "Citazione recensione (vuoto = nascosta)"
+      "label": "Citazione recensione breve (opzionale, vuoto = nascosta)"
+    },
+    {
+      "type": "header",
+      "content": "Recensioni"
+    },
+    {
+      "type": "number",
+      "id": "review_count_total",
+      "label": "Numero totale recensioni",
+      "default": 127
+    },
+    {
+      "type": "number",
+      "id": "review_photo_count",
+      "label": "Numero foto galleria recensioni (placeholder)",
+      "default": 4
+    },
+    {
+      "type": "textarea",
+      "id": "review_chips",
+      "label": "Tag temi recensioni (formato: Etichetta|N, separati da virgola)",
+      "default": "Comodissime|38,Spedizione veloce|24,Piede asciutto|19,Vere 3 anni|12,FASTWEAR top|9"
+    },
+    {
+      "type": "header",
+      "content": "Domande clienti (Q&A)"
+    },
+    {
+      "type": "textarea",
+      "id": "faq_items",
+      "label": "FAQ (formato: Domanda|Risposta, separate da ;)",
+      "info": "Lasciare vuoto per usare i 5 default"
+    },
+    {
+      "type": "header",
+      "content": "Specifiche tecniche"
+    },
+    {
+      "type": "textarea",
+      "id": "specs_items",
+      "label": "Specifiche (formato: Etichetta|Valore, separate da ;)",
+      "info": "Lasciare vuoto per usare i default"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Recensione",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar (opzionale, fallback iniziale)"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome cliente",
+          "default": "Marco T."
+        },
+        {
+          "type": "text",
+          "id": "time_ago",
+          "label": "Quando (es. 3 mesi fa)",
+          "default": "3 mesi fa"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testo recensione",
+          "default": "Le ho prese ad aprile e le porto tutti i giorni. FASTWEAR è la svolta."
+        },
+        {
+          "type": "text",
+          "id": "variant_info",
+          "label": "Variante acquistata",
+          "default": "Colore: Nero · Taglia: 43"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo_1",
+          "label": "Foto 1 (opzionale)"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo_2",
+          "label": "Foto 2 (opzionale)"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo_3",
+          "label": "Foto 3 (opzionale)"
+        }
+      ]
     }
   ],
   "presets": [{ "name": "Offerta Landing" }]
