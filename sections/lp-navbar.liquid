@@ -1,4 +1,4 @@
-<section class="lp-navbar">
+<section class="lp-navbar" style="--lp-navbar-logo-h: {{ section.settings.logo_max_height | default: 40 }}px;">
   <div class="lp-navbar__logo-row">
     {%- if section.settings.logo != blank -%}
       {{ section.settings.logo
@@ -9,8 +9,7 @@
              fetchpriority: 'high',
              widths: '180,240,320,480',
              sizes: '(min-width:750px) 220px, 160px',
-             alt: section.settings.logo.alt | default: shop.name,
-             style: 'max-height:' | append: section.settings.logo_max_height | append: 'px;'
+             alt: section.settings.logo.alt | default: shop.name
       }}
     {%- else -%}
       <span class="lp-navbar__logo-fallback">{{ shop.name }}</span>
@@ -39,26 +38,29 @@
 .lp-navbar {
   width: 100%;
   background: #000;
-  display: flex;
-  flex-direction: column;
-}
-
-.lp-navbar__logo-row {
-  width: 100%;
-  text-align: center;
-  padding: 14px 16px;
-  background: #000;
+  display: block;
   box-sizing: border-box;
 }
 
+.lp-navbar__logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 16px;
+  background: #000;
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .lp-navbar__logo {
-  display: inline-block;
-  max-height: 36px;
+  display: block;
+  max-height: var(--lp-navbar-logo-h, 40px);
+  max-width: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
   margin: 0 auto;
-  vertical-align: middle;
 }
 
 .lp-navbar__logo-fallback {
@@ -128,9 +130,6 @@
 @media (min-width: 750px) {
   .lp-navbar__logo-row {
     padding: 18px 16px;
-  }
-  .lp-navbar__logo {
-    max-height: 44px;
   }
   .lp-navbar__marquee {
     padding: 10px 0;
