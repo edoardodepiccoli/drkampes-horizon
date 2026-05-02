@@ -114,12 +114,12 @@
       <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
     {%- endif -%}
 
-    {%- assign hps_savings = 21900 | minus: product.price | divided_by: 100 -%}
+    {%- assign hps_savings = 21000 | minus: product.price | divided_by: 100 -%}
     <div class="hps__price-wrap">
       <div class="hps__price-row">
         <p class="hps__price">
           <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
-          <span class="hps__price-compare">&euro;219</span>
+          <span class="hps__price-compare">&euro;210</span>
           <span class="hps__price-tax">IVA INCLUSA</span>
         </p>
         {%- if hps_savings > 0 -%}

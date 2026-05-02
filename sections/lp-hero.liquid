@@ -1,115 +1,135 @@
 {%- assign img = section.settings.image -%}
 
 <section class="lp-hero">
-  <div class="lp-hero__img-wrap">
-    {%- if img != blank -%}
-      {{ img | image_url: width: 1400 | image_tag: class: 'lp-hero__img', loading: 'eager', fetchpriority: 'high', widths: '600,800,1000,1200,1400', sizes: '(min-width:750px) 48vw, 100vw', alt: img.alt }}
-    {%- endif -%}
-  </div>
+  <div class="lp-hero__grid">
 
-  <div class="lp-hero__content">
-    {%- if section.settings.pre_badge != blank -%}
-      <div class="lp-hero__pre">{{ section.settings.pre_badge }}</div>
-    {%- endif -%}
-
-    <h1 class="lp-hero__h1">
-      {%- if section.settings.heading_line1 != blank -%}
-        {{ section.settings.heading_line1 }}
-        {%- if section.settings.heading_highlight != blank -%}
-          <em>{{ section.settings.heading_highlight }}</em>
-        {%- endif -%}
-        <br>
+    <div class="lp-hero__media">
+      {%- if img != blank -%}
+        {{ img | image_url: width: 1200 | image_tag:
+           class: 'lp-hero__img',
+           loading: 'eager',
+           fetchpriority: 'high',
+           widths: '600,800,1000,1200',
+           sizes: '(min-width:750px) 50vw, 100vw',
+           alt: img.alt }}
       {%- endif -%}
-      {%- if section.settings.heading_line2 != blank -%}{{ section.settings.heading_line2 }}<br>{%- endif -%}
-      {%- if section.settings.heading_line3 != blank -%}{{ section.settings.heading_line3 }}{%- endif -%}
-    </h1>
+    </div>
 
-    {%- if section.settings.subheading != blank -%}
-      <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
-    {%- endif -%}
+    <div class="lp-hero__offer">
 
-    <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
-      {{ section.settings.cta_label | default: "Scopri l'Offerta" }}
-    </a>
+      {%- if section.settings.offer_badge != blank -%}
+        <div class="lp-hero__badge">
+          <span class="lp-hero__badge-icon" aria-hidden="true">⏳</span>
+          <span>{{ section.settings.offer_badge }}</span>
+        </div>
+      {%- endif -%}
 
-    {%- if section.blocks.size > 0 -%}
-      <div class="lp-hero__trust">
-        {%- for block in section.blocks -%}
-          <div class="lp-hero__trust-item" {{ block.shopify_attributes }}>
-            {%- case block.settings.icon -%}
-              {%- when 'payment' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-              {%- when 'delivery' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              {%- when 'shield' -%}
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            {%- endcase -%}
-            <span>{{ block.settings.text }}</span>
-          </div>
-        {%- endfor -%}
+      <h1 class="lp-hero__h1">{{ section.settings.headline }}</h1>
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
+      <div class="lp-hero__price-row">
+        {%- if section.settings.price != blank -%}
+          <span class="lp-hero__price">{{ section.settings.price }}</span>
+        {%- endif -%}
+        {%- if section.settings.compare_price != blank -%}
+          <span class="lp-hero__compare">{{ section.settings.compare_price }}</span>
+        {%- endif -%}
+        {%- if section.settings.price_note != blank -%}
+          <span class="lp-hero__price-note">{{ section.settings.price_note }}</span>
+        {%- endif -%}
       </div>
-    {%- endif -%}
+
+      <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
+        {{ section.settings.cta_label | default: "SCOPRI L'OFFERTA SUBITO" }}
+      </a>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="lp-hero__trust">
+          {%- for block in section.blocks -%}
+            <li class="lp-hero__trust-item" {{ block.shopify_attributes }}>
+              {%- case block.settings.icon -%}
+                {%- when 'payment' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                {%- when 'delivery' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                {%- when 'shield' -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              {%- endcase -%}
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+    </div>
   </div>
 </section>
 
 {% stylesheet %}
 
 .lp-hero {
-  min-height: 100svh;
   background: #000;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+  color: #fff;
+  padding: 32px 22px 48px;
 }
 
-.lp-hero__img-wrap {
-  position: absolute;
-  inset: 0;
+.lp-hero__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.lp-hero__media {
+  width: 100%;
 }
 
 .lp-hero__img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
+  border: 1px solid #1a1a1a;
 }
 
-.lp-hero__img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.88) 100%);
-  pointer-events: none;
+.lp-hero__offer {
+  display: flex;
+  flex-direction: column;
 }
 
-.lp-hero__content {
-  position: relative;
-  z-index: 2;
-  padding: 48px 22px 48px;
+.lp-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F5C200;
+  color: #111;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 9px 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  line-height: 1.2;
+  margin-bottom: 16px;
 }
 
-.lp-hero__pre {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #F5C200;
-  border: 1px solid rgba(245,194,0,0.35);
-  border-radius: 0;
-  padding: 11px 16px;
-  margin-bottom: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  background: rgba(245,194,0,0.06);
+.lp-hero__badge-icon {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .lp-hero__h1 {
   font-family: var(--font-heading--family, inherit);
-  font-size: 1.65rem;
+  font-size: 1.85rem;
   font-weight: 900;
   color: #fff;
-  line-height: 1.13;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   margin: 0 0 14px;
   text-transform: uppercase;
@@ -121,34 +141,71 @@
 }
 
 .lp-hero__sub {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.6;
-  margin: 0 0 24px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.55;
+  margin: 0 0 20px;
 }
-
 .lp-hero__sub p { margin: 0; }
 .lp-hero__sub strong { color: #fff; }
 
+.lp-hero__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0 22px;
+}
+
+.lp-hero__price {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2.6rem;
+  color: #F5C200;
+  line-height: 1;
+}
+
+.lp-hero__compare {
+  font-size: 1.2rem;
+  color: #888;
+  text-decoration: line-through;
+  font-weight: 700;
+}
+
+.lp-hero__price-note {
+  font-size: 0.72rem;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  background: #2e7d32;
+  align-self: center;
+  line-height: 1.2;
+}
+
 .lp-hero__cta {
   display: block;
-  padding: 17px 24px;
+  width: 100%;
+  padding: 18px 24px;
   background: #F5C200;
   color: #0d0d0d;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 900;
   font-family: 'Archivo Black', sans-serif;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   text-align: center;
   border-radius: 0;
-  margin-bottom: 20px;
   text-decoration: none;
   transition: background 0.15s;
+  margin-bottom: 20px;
 }
 .lp-hero__cta:hover { background: #d9ac00; text-decoration: none; }
 
 .lp-hero__trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -158,8 +215,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.73rem;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
 }
 
 .lp-hero__trust-item svg {
@@ -190,34 +247,35 @@
 
 @media (min-width: 750px) {
   .lp-hero {
+    padding: 64px 60px;
+  }
+
+  .lp-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .lp-hero__h1 {
+    font-size: 2.8rem;
+  }
+
+  .lp-hero__price {
+    font-size: 3.2rem;
+  }
+
+  .lp-hero__cta {
+    width: auto;
+    align-self: flex-start;
+    min-width: 320px;
+  }
+
+  .lp-hero__trust {
     flex-direction: row;
-    align-items: stretch;
-    justify-content: unset;
+    flex-wrap: wrap;
+    gap: 18px;
   }
-
-  .lp-hero__img-wrap {
-    position: relative;
-    flex: 0 0 48%;
-    inset: auto;
-    order: 2;
-  }
-
-  .lp-hero__img-wrap::after {
-    background: linear-gradient(to left, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
-  }
-
-  .lp-hero__content {
-    flex: 1;
-    order: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 56px 56px;
-  }
-
-  .lp-hero__h1 { font-size: 2.5rem; }
-  .lp-hero__cta { max-width: 320px; }
-  .lp-hero__trust { flex-direction: row; flex-wrap: wrap; gap: 16px; }
 }
 
 {% endstylesheet %}
@@ -229,62 +287,66 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Foto prodotto (background)"
-    },
-    {
-      "type": "text",
-      "id": "pre_badge",
-      "label": "Badge pre-headline",
-      "default": "Accesso Esclusivo: Solo per Camionisti, Padroncini e Professionisti dell'Asfalto che rifiutano di scendere a compromessi."
+      "label": "Foto prodotto"
     },
     {
       "type": "header",
-      "content": "Headline (H1)"
+      "content": "Offerta"
     },
     {
       "type": "text",
-      "id": "heading_line1",
-      "label": "Prima riga (prima del testo evidenziato)",
-      "default": "Scendi dalla cabina in"
+      "id": "offer_badge",
+      "label": "Badge offerta",
+      "default": "OFFERTA PRIMAVERA — fino al 30 giugno"
     },
     {
       "type": "text",
-      "id": "heading_highlight",
-      "label": "Testo evidenziato (giallo)",
-      "default": "1 secondo netto."
-    },
-    {
-      "type": "text",
-      "id": "heading_line2",
-      "label": "Seconda riga",
-      "default": "Senza piegarti per allacciare le scarpe."
-    },
-    {
-      "type": "text",
-      "id": "heading_line3",
-      "label": "Terza riga",
-      "default": "Senza distruggerti i piedi e la schiena."
-    },
-    {
-      "type": "header",
-      "content": "Sottotitolo e CTA"
+      "id": "headline",
+      "label": "Headline (H1)",
+      "default": "Le migliori scarpe per camionisti al mondo"
     },
     {
       "type": "richtext",
       "id": "subheading",
-      "label": "Sottotitolo",
-      "default": "<p>Scopri le uniche calzature antinfortunistiche <strong>100% Made in Italy</strong> dotate del rivoluzionario sistema <strong>FASTWEAR®</strong> e blindate da una <strong>Garanzia Ufficiale di 3 Anni</strong>.</p>"
+      "label": "Sottotitolo (opzionale)",
+      "default": "<p>Le uniche calzature antinfortunistiche <strong>100% Made in Italy</strong> con sistema FASTWEAR® e garanzia ufficiale 3 anni.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Prezzo"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Prezzo",
+      "default": "€189"
+    },
+    {
+      "type": "text",
+      "id": "compare_price",
+      "label": "Prezzo barrato",
+      "default": "€210"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Nota prezzo (badge verde)",
+      "default": "Spedizione GRATIS inclusa"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "Testo bottone CTA",
-      "default": "Scopri l'Offerta"
+      "default": "SCOPRI L'OFFERTA SUBITO"
     },
     {
       "type": "url",
       "id": "cta_url",
-      "label": "URL CTA (es. #acquista)"
+      "label": "URL CTA (default: #acquista)"
     }
   ],
   "blocks": [
