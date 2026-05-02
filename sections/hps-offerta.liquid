@@ -747,8 +747,8 @@
     var viewerTriggered = false;
     function updateViewerToast() {
       if (!viewerTriggered) return;
-      var bnRect = bnBtn ? bnBtn.getBoundingClientRect() : null;
-      var show = bnRect ? (bnRect.top < window.innerHeight && bnRect.bottom > 0) : false;
+      var sSelRect = sSel ? sSel.getBoundingClientRect() : null;
+      var show = sSelRect ? (sSelRect.top < window.innerHeight && sSelRect.bottom > 0) : false;
       viewersEl.classList.toggle('hps__viewer-toast--visible', show);
     }
     function startViewers() {
@@ -760,14 +760,13 @@
         setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
       })();
     }
-    var priceWrap = root.querySelector('.hps__price-wrap');
-    var triggerEl = priceWrap || sSel || root.querySelector('.hps__details');
+    var triggerEl = sSel || root.querySelector('.hps__price-wrap') || root.querySelector('.hps__details');
     if (triggerEl) {
       new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { startViewers(); obs.disconnect(); }
-      }, { threshold: 0.7 }).observe(triggerEl);
+        if (entries[0].isIntersecting) { setTimeout(startViewers, 2000); obs.disconnect(); }
+      }, { threshold: 0.5 }).observe(triggerEl);
     } else {
-      setTimeout(startViewers, 1500);
+      setTimeout(startViewers, 3500);
     }
     window.addEventListener('scroll', updateViewerToast, { passive: true });
   }
@@ -1453,17 +1452,23 @@
 }
 
 /* Viewer count toast */
+@keyframes hps-toast-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(183, 28, 28, 0); }
+  50%       { box-shadow: 0 0 10px 3px rgba(183, 28, 28, 0.18); }
+}
+
 .hps__viewer-toast {
   position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(calc(-100% - 20px));
-  background: rgba(17, 17, 17, 0.92);
-  color: #fff;
+  background: #fff;
+  color: #111;
   font-size: 0.78rem;
   font-weight: 600;
   padding: 8px 18px;
   border-radius: 0;
+  border: 1px solid #eee;
   white-space: nowrap;
   z-index: 8500;
   pointer-events: none;
@@ -1471,6 +1476,7 @@
 }
 .hps__viewer-toast--visible {
   transform: translateX(-50%) translateY(0);
+  animation: hps-toast-glow 2s ease-in-out infinite;
 }
 
 /* Sticky bar price */
