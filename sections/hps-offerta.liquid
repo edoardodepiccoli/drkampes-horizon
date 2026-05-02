@@ -312,7 +312,7 @@
   </div>
 </div>
 
-<div class="hps__viewer-toast" id="hps-viewers-{{ section.id }}">&#128065; <span class="hps-viewers-n">0</span> persone stanno guardando</div>
+<div class="hps__viewer-toast" id="hps-viewers-{{ section.id }}"><span class="hps-viewers-dot"></span><span class="hps-viewers-n">0</span> persone stanno guardando</div>
 
 <div class="hps-pop" id="hps-pop-tshirt-{{ section.id }}" role="dialog" aria-modal="true" aria-labelledby="hps-tshirt-title-{{ section.id }}" hidden>
   <div class="hps-pop__bg" data-pop-close></div>
@@ -1453,8 +1453,12 @@
 
 /* Viewer count toast */
 @keyframes hps-toast-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(183, 28, 28, 0); }
-  50%       { box-shadow: 0 0 10px 3px rgba(183, 28, 28, 0.18); }
+  0%, 100% { box-shadow: 0 2px 12px rgba(198, 40, 40, 0.3); }
+  50%       { box-shadow: 0 2px 28px 6px rgba(198, 40, 40, 0.6); }
+}
+@keyframes hps-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.65); }
 }
 
 .hps__viewer-toast {
@@ -1462,21 +1466,40 @@
   top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(calc(-100% - 20px));
-  background: #fff;
-  color: #111;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 8px 18px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 10px 20px;
   border-radius: 0;
-  border: 1px solid #eee;
+  border: 1.5px solid #c62828;
   white-space: nowrap;
   z-index: 8500;
   pointer-events: none;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
 }
 .hps__viewer-toast--visible {
   transform: translateX(-50%) translateY(0);
-  animation: hps-toast-glow 2s ease-in-out infinite;
+  animation: hps-toast-glow 1.8s ease-in-out infinite;
+}
+
+.hps-viewers-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef5350;
+  flex-shrink: 0;
+  animation: hps-dot-pulse 1.2s ease-in-out infinite;
+}
+
+.hps__viewer-toast .hps-viewers-n {
+  color: #F5C200;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 /* Sticky bar price */
