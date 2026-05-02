@@ -12,31 +12,8 @@
   "sections": {
     "lp_navbar": {
       "type": "lp-navbar",
-      "blocks": {
-        "tr_1": {
-          "type": "trust_item",
-          "settings": {
-            "text": "T-shirt GRATIS"
-          }
-        },
-        "tr_2": {
-          "type": "trust_item",
-          "settings": {
-            "text": "Spedizione rapida GRATIS"
-          }
-        },
-        "tr_3": {
-          "type": "trust_item",
-          "settings": {
-            "text": "Valido fino al 30 giugno"
-          }
-        }
-      },
-      "block_order": [
-        "tr_1",
-        "tr_2",
-        "tr_3"
-      ],
+      "blocks": {},
+      "block_order": [],
       "settings": {
         "logo": "shopify://shop_images/logo_white_transparent.png",
         "logo_max_height": 40
