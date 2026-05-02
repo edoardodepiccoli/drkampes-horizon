@@ -167,6 +167,16 @@
         "heading": "5 motivi per metterle ai piedi domani"
       }
     },
+    "lp_video": {
+      "type": "lp-video",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Guarda come funzionano",
+        "heading": "1 secondo. On e off. Sul serio.",
+        "video_url": "",
+        "copy": "<p>FASTWEAR® è il sistema che abbiamo brevettato per gli autisti: niente lacci, niente velcri ingombranti. Le infili appoggiando il tallone e parti. Le sfili con un gesto, anche con i guanti. Pensate per chi sale e scende dalla cabina cento volte al giorno.</p>"
+      }
+    },
     "main": {
       "type": "hps-offerta",
       "settings": {
@@ -346,6 +356,7 @@
     "section_GQzycz",
     "lp_hero",
     "lp_benefits",
+    "lp_video",
     "main",
     "section_eGTGaW"
   ]
