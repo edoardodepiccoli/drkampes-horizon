@@ -44,19 +44,21 @@
 }
 
 .lp-navbar__logo-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  text-align: center;
   padding: 14px 16px;
   background: #000;
+  box-sizing: border-box;
 }
 
 .lp-navbar__logo {
-  display: block;
+  display: inline-block;
   max-height: 36px;
   width: auto;
   height: auto;
   object-fit: contain;
+  margin: 0 auto;
+  vertical-align: middle;
 }
 
 .lp-navbar__logo-fallback {

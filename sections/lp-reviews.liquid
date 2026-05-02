@@ -74,8 +74,9 @@
     </ul>
 
     {%- if section.blocks.size > initial_show -%}
+      {%- assign remaining = section.blocks.size | minus: initial_show -%}
       <button type="button" class="lp-reviews__more" data-lp-reviews-more>
-        Mostra tutte le {{ section.blocks.size }} recensioni
+        Mostra le altre {{ remaining }} recensioni
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
     {%- endif -%}
@@ -141,7 +142,7 @@
       if (moreBtn) {
         if (reviews.length > initialShow) {
           moreBtn.style.display = '';
-          moreBtn.firstChild.nodeValue = ' Mostra tutte le ' + reviews.length + ' recensioni ';
+          moreBtn.firstChild.nodeValue = ' Mostra le altre ' + (reviews.length - initialShow) + ' recensioni ';
         } else {
           moreBtn.style.display = 'none';
         }
