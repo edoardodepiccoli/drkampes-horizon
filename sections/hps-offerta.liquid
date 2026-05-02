@@ -131,9 +131,9 @@
     {%- endif -%}
 
     {%- assign hps_compare_cents = section.settings.compare_price_cents | default: 22900 -%}
-    {%- assign hps_savings = hps_compare_cents | minus: product.price | divided_by: 100 -%}
-    {%- assign hps_pct = product.price | times: 100 | divided_by: hps_compare_cents -%}
-    {%- assign hps_pct = 100 | minus: hps_pct -%}
+    {%- assign hps_savings_cents = hps_compare_cents | minus: product.price -%}
+    {%- assign hps_savings = hps_savings_cents | divided_by: 100 -%}
+    {%- assign hps_pct = hps_savings_cents | times: 100 | divided_by: hps_compare_cents -%}
     <div class="hps__price-wrap">
       <div class="hps__price-row">
         <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
