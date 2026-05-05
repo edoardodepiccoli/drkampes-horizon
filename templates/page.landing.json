@@ -18,7 +18,8 @@
           "settings": {
             "icon": "truck",
             "line1": "SPEDIZIONE",
-            "line2": "GRATUITA"
+            "line2": "GRATUITA",
+            "hide_on_mobile": false
           }
         },
         "trust_size": {
@@ -35,11 +36,16 @@
           "settings": {
             "icon": "shield",
             "line1": "GARANZIA",
-            "line2": "3 ANNI"
+            "line2": "3 ANNI",
+            "hide_on_mobile": false
           }
         }
       },
-      "block_order": ["trust_shipping", "trust_size", "trust_warranty"],
+      "block_order": [
+        "trust_shipping",
+        "trust_size",
+        "trust_warranty"
+      ],
       "settings": {
         "logo": "shopify://shop_images/logo_white_transparent.png",
         "logo_max_height": 56
@@ -143,10 +149,10 @@
         "headline_white": "SCENDI DAL CAMION",
         "headline_gold": "IN 2 SECONDI.",
         "headline_sub": "SENZA DOLORE.\nSENZA SBATTI.",
-        "subheading": "<p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>",
         "fastwear_image": "shopify://shop_images/dr_kampes_nere_tallone.jpg",
         "fastwear_label": "FASTWEAR SYSTEM",
         "fastwear_text": "<p>Scendi dal camion senza rovinare il tallone della scarpa.</p><p>Si reclina all'interno in 1 secondo.</p>",
+        "subheading": "<p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>",
         "offer_badge": "OFFERTA PRIMAVERA",
         "offer_badge_sub": "fino al 30 giugno",
         "banner_image": "shopify://shop_images/foto_hero_banner_landing_page_meta.png",
@@ -267,7 +273,7 @@
         "heading_white": "LE SCARPE PER CHI\nGUIDA UN MEZZO,",
         "heading_gold": "SUL SERIO.",
         "sub_text": "<p>L'unica antinfortunistica progettata dagli autisti, per gli autisti.</p><p><strong>FASTWEAR®</strong>: 3 anni di garanzia, 100% Made in Italy.</p>",
-        "shoe_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_04.png?v=1777976292",
+        "shoe_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_05.png?v=1777986828",
         "cabin_heading": "PENSATE PER CHI VIVE IN CABINA"
       }
     },
@@ -289,10 +295,6 @@
         "discount_code": "SPEDIZIONEGRATIS",
         "bundle_discount_code": "BUNDLETSHIRT",
         "offer_headline": "T-shirt OMAGGIO + Spedizione GRATIS",
-        "custom_first_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/new_immagine_offerta_bundletshirt_nere.png?v=1777568900",
-        "custom_first_image_color": "Nero",
-        "custom_first_image_url_2": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/new_immagine_offerta_bundletshirt_testa_di_moro.png?v=1777568900",
-        "custom_first_image_color_2": "Testa di Moro",
         "product_subtitle": "Antinfortunistiche S3S",
         "cta_label": "PRENOTA ORA LA TUA TAGLIA",
         "low_stock_number": 7,
@@ -338,12 +340,18 @@
           }
         }
       },
-      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
       "settings": {
         "eyebrow": "IL CONSIGLIO DEL DR. KAMPES",
         "heading": "TROVA LA TUA TAGLIA PERFETTA",
         "hero_image_url": "",
-        "hero_caption": ""
+        "hero_caption": "",
+        "cta_label": "Consulta la tabella taglie"
       }
     },
     "lp_reviews": {
@@ -887,17 +895,95 @@
     "lp_garanzie": {
       "type": "lp-garanzie",
       "blocks": {
-        "pillar_1": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "PER I CAMIONISTI", "text": "Progettate per la vita in cabina e per ogni sosta e ripartenza." } },
-        "pillar_2": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/orologio.png?v=1777983277", "title": "PER OGNI GIORNO", "text": "Dal lavoro al tempo libero. Versatili, pratiche e sempre pronte." } },
-        "pillar_3": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/italia.png?v=1777976336", "title": "100% MADE IN ITALY", "text": "Qualità artigianale italiana, materiali selezionati e controllo totale." } },
-        "pillar_4": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/clienti.png?v=1777983277", "title": "APPROVATE DA OLTRE 1200 CAMIONISTI", "text": "Migliaia di autisti le hanno già scelte. Scopri perché." } },
-        "card_1": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo.png?v=1777976336", "title": "3 ANNI DI GARANZIA", "text": "Acquistale oggi e indossale per anni. Se c'è un problema, lo risolviamo noi.", "badge_title": "1095 GIORNI\nCOPERTI" } },
-        "card_2": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/reso_gratuito.png?v=1777983277", "title": "CAMBIO TAGLIA GRATUITO", "text": "Se non è la taglia giusta, la cambiamo noi. Gratis.", "badge_title": "SENZA COSTI\nAGGIUNTIVI" } },
-        "card_3": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "SPEDIZIONE GRATUITA 1-2 GIORNI", "text": "Ordina prima delle 19:00, spediamo il giorno stesso. Consegna in 1-2 giorni lavorativi.", "badge_title": "VELOCE E\nTRACCIATA" } },
-        "card_4": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/carta_di_credito.png?v=1777983277", "title": "PAGA IN 3 RATE SENZA INTERESSI", "text": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate, senza interessi.", "badge_title": "100% SICURO\nE GARANTITO" } },
-        "card_5": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/assistenza_clienti.png?v=1777983277", "title": "ASSISTENZA DIRETTA", "text": "Parli con noi, non con un call center. Siamo camionisti come te, ti capiamo davvero.", "badge_title": "SEMPRE AL\nTUO FIANCO" } }
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277",
+            "title": "PER I CAMIONISTI",
+            "text": "Progettate per la vita in cabina e per ogni sosta e ripartenza."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/orologio.png?v=1777983277",
+            "title": "PER OGNI GIORNO",
+            "text": "Dal lavoro al tempo libero. Versatili, pratiche e sempre pronte."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/italia.png?v=1777976336",
+            "title": "100% MADE IN ITALY",
+            "text": "Qualità artigianale italiana, materiali selezionati e controllo totale."
+          }
+        },
+        "pillar_4": {
+          "type": "pillar",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/clienti.png?v=1777983277",
+            "title": "APPROVATE DA OLTRE 1200 CAMIONISTI",
+            "text": "Migliaia di autisti le hanno già scelte. Scopri perché."
+          }
+        },
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo.png?v=1777976336",
+            "title": "3 ANNI DI GARANZIA",
+            "text": "Acquistale oggi e indossale per anni. Se c'è un problema, lo risolviamo noi.",
+            "badge_title": "1095 GIORNI\nCOPERTI"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/reso_gratuito.png?v=1777983277",
+            "title": "CAMBIO TAGLIA GRATUITO",
+            "text": "Se non è la taglia giusta, la cambiamo noi. Gratis.",
+            "badge_title": "SENZA COSTI\nAGGIUNTIVI"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277",
+            "title": "SPEDIZIONE GRATUITA 1-2 GIORNI",
+            "text": "Ordina prima delle 19:00, spediamo il giorno stesso. Consegna in 1-2 giorni lavorativi.",
+            "badge_title": "VELOCE E\nTRACCIATA"
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/carta_di_credito.png?v=1777983277",
+            "title": "PAGA IN 3 RATE SENZA INTERESSI",
+            "text": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate, senza interessi.",
+            "badge_title": "100% SICURO\nE GARANTITO"
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/assistenza_clienti.png?v=1777983277",
+            "title": "ASSISTENZA DIRETTA",
+            "text": "Parli con noi, non con un call center. Siamo camionisti come te, ti capiamo davvero.",
+            "badge_title": "SEMPRE AL\nTUO FIANCO"
+          }
+        }
       },
-      "block_order": ["pillar_1", "pillar_2", "pillar_3", "pillar_4", "card_1", "card_2", "card_3", "card_4", "card_5"],
+      "block_order": [
+        "pillar_1",
+        "pillar_2",
+        "pillar_3",
+        "pillar_4",
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5"
+      ],
       "settings": {
         "top_headline": "PENSATE PER CHI NON SI FERMA MAI.",
         "eyebrow": "ACQUISTA SENZA PENSIERI",
