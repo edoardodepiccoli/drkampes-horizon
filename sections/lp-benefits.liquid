@@ -495,8 +495,38 @@
 
 /* ── Desktop ≥ 1100px ── */
 @media (min-width: 1100px) {
-  .lp-benefits__h2 { font-size: 3.4rem; }
-  .lp-benefits__shoe { width: 420px; }
+  .lp-benefits { padding: 88px 56px 104px; }
+  .lp-benefits__inner { max-width: 1280px; }
+
+  .lp-benefits__top {
+    grid-template-columns: 1.1fr auto;
+    gap: 56px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+  .lp-benefits__h2 { font-size: 3.6rem; margin-bottom: 22px; }
+  .lp-benefits__sub { font-size: 1.08rem; max-width: 52ch; }
+  .lp-benefits__shoe { width: 460px; }
+
+  .lp-benefits__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    row-gap: 0;
+    margin-bottom: 56px;
+  }
+  .lp-benefit-row { padding: 18px 0; }
+  .lp-benefit-row:nth-last-child(-n+2) { border-bottom: none; }
+  .lp-benefit-row__icon { width: 72px; height: 72px; }
+  .lp-benefit-row__title-line { font-size: 1.2rem; }
+  .lp-benefit-row__text { font-size: 1rem; }
+
+  .lp-benefits__cabin { padding: 28px 28px; }
+  .lp-benefits__cabin-heading { font-size: 1.35rem; margin-bottom: 18px; }
+  .lp-cabin-card { padding: 8px 20px; }
+  .lp-cabin-card__icon { width: 100px; height: 100px; }
+  .lp-cabin-card__title { font-size: 1.05rem; }
+  .lp-cabin-card__text { font-size: 0.95rem; }
 }
 
 {% endstylesheet %}

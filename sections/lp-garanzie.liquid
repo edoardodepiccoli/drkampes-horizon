@@ -403,6 +403,41 @@
   .lp-gz__card-badge svg { width: 18px; height: 18px; }
 }
 
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-gz__top { padding: 56px 0 48px; }
+  .lp-gz__top-inner {
+    max-width: 1280px;
+    padding: 40px 32px 36px;
+  }
+  .lp-gz__top-headline { font-size: 1.15rem; margin-bottom: 32px; }
+
+  .lp-gz__pillar { padding: 18px 24px; }
+  .lp-gz__pillar-icon { width: 100px; height: 100px; margin-bottom: 16px; }
+  .lp-gz__pillar-title { font-size: 1rem; }
+  .lp-gz__pillar-text { font-size: 0.92rem; }
+
+  .lp-gz__bottom { padding: 88px 0 104px; }
+  .lp-gz__bottom-inner { max-width: 1280px; padding: 0 56px; }
+  .lp-gz__eyebrow { font-size: 1rem; }
+  .lp-gz__h2 { font-size: 3rem; margin-bottom: 40px; }
+
+  .lp-gz__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .lp-gz__card:last-child { grid-column: 1 / -1; }
+  .lp-gz__card {
+    grid-template-columns: 120px 1fr;
+    padding: 22px 28px;
+    column-gap: 26px;
+  }
+  .lp-gz__card-icon { width: 120px; height: 120px; }
+  .lp-gz__card-title { font-size: 1.35rem; margin-bottom: 6px; }
+  .lp-gz__card-text { font-size: 1rem; }
+}
+
 {% endstylesheet %}
 
 {% schema %}
