@@ -18,7 +18,7 @@
     </div>
 
     {%- if section.blocks.size > 0 -%}
-      <ul class="lp-navbar__trust" role="list">
+      {%- capture items_html -%}
         {%- for block in section.blocks -%}
           <li class="lp-navbar__item" {{ block.shopify_attributes }}>
             <span class="lp-navbar__icon" aria-hidden="true">
@@ -47,7 +47,18 @@
             </span>
           </li>
         {%- endfor -%}
-      </ul>
+      {%- endcapture -%}
+
+      <div class="lp-navbar__marquee" aria-label="Vantaggi">
+        <ul class="lp-navbar__track" role="list">
+          {{ items_html }}
+          <li class="lp-navbar__clones" aria-hidden="true">
+            <ul class="lp-navbar__clones-inner" role="presentation">
+              {{ items_html }}
+            </ul>
+          </li>
+        </ul>
+      </div>
     {%- endif -%}
   </div>
 </section>
@@ -93,22 +104,37 @@
   text-transform: uppercase;
 }
 
-.lp-navbar__trust {
+.lp-navbar__marquee {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.lp-navbar__track {
   list-style: none;
   margin: 0;
-  padding: 0 16px;
+  padding: 0;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 28px;
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 16px;
+  width: max-content;
+  animation: lp-navbar-marquee 22s linear infinite;
+  will-change: transform;
 }
-.lp-navbar__trust::-webkit-scrollbar { display: none; }
+
+.lp-navbar__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes lp-navbar-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-navbar__track { animation: none; }
+}
 
 .lp-navbar__item {
   display: inline-flex;
@@ -116,7 +142,18 @@
   gap: 10px;
   color: #fff;
   flex-shrink: 0;
-  scroll-snap-align: center;
+  margin-inline-end: 28px;
+}
+
+.lp-navbar__clones {
+  display: contents;
+}
+
+.lp-navbar__clones-inner {
+  display: contents;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .lp-navbar__icon {
@@ -165,17 +202,24 @@
   .lp-navbar__logo-wrap {
     padding: 0;
   }
-  .lp-navbar__trust {
+  .lp-navbar__marquee {
     width: auto;
-    justify-content: flex-end;
-    gap: 40px;
-    padding: 0;
     overflow: visible;
-    scroll-snap-type: none;
+    margin-inline-end: -40px;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .lp-navbar__track {
+    width: auto;
+    animation: none;
+    transform: none;
+  }
+  .lp-navbar__clones {
+    display: none;
   }
   .lp-navbar__item {
     gap: 12px;
-    scroll-snap-align: none;
+    margin-inline-end: 40px;
   }
   .lp-navbar__icon svg {
     width: 30px;
@@ -190,8 +234,11 @@
 }
 
 @media (min-width: 1100px) {
-  .lp-navbar__trust {
-    gap: 56px;
+  .lp-navbar__marquee {
+    margin-inline-end: -56px;
+  }
+  .lp-navbar__item {
+    margin-inline-end: 56px;
   }
 }
 
