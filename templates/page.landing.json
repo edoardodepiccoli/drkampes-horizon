@@ -162,67 +162,112 @@
     "lp_benefits": {
       "type": "lp-benefits",
       "blocks": {
-        "benefit_fastwear": {
-          "type": "benefit",
+        "feat_fastwear": {
+          "type": "feature",
           "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/cronometro.png?v=1777976336",
             "title": "FASTWEAR®",
-            "text": "on/off in 1 secondo, senza lacci",
-            "icon": ""
+            "title_suffix": "indossi in 1 secondo, senza lacci",
+            "text": "Entra e esci in un attimo. Niente lacci, niente perdite di tempo."
           }
         },
-        "benefit_garanzia": {
-          "type": "benefit",
+        "feat_garanzia": {
+          "type": "feature",
           "settings": {
-            "title": "3 anni di garanzia scritta",
-            "text": "1.095 giorni coperti, €0,17 al giorno",
-            "icon": ""
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo.png?v=1777976336",
+            "title": "3 anni di garanzia reale",
+            "title_suffix": "1095 giorni coperti",
+            "text": "Qualità che dura nel tempo. Se c'è un problema, lo risolviamo noi."
           }
         },
-        "benefit_made": {
-          "type": "benefit",
+        "feat_italy": {
+          "type": "feature",
           "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/italia.png?v=1777976336",
             "title": "100% Made in Italy",
-            "text": "Montebelluna, Treviso",
-            "icon": ""
+            "title_suffix": "Montebelluna, Treviso",
+            "text": "Produzione italiana, materiali selezionati, controllo totale."
           }
         },
-        "benefit_idro": {
-          "type": "benefit",
+        "feat_antiforatura": {
+          "type": "feature",
           "settings": {
-            "title": "Idrorepellenti certificate",
-            "text": "pioggia, fango, sale stradale",
-            "icon": ""
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/antiperforazione.png?v=1777976336",
+            "title": "Intersuola antiforatura",
+            "title_suffix": "sicurezza ogni giorno",
+            "text": "Protezione certificata contro le perforazioni. Lavori in tranquillità."
           }
         },
-        "benefit_comfort": {
-          "type": "benefit",
+        "feat_antivib": {
+          "type": "feature",
           "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/antivibrazione.png?v=1777976336",
             "title": "Plantare anti-vibrazione",
-            "text": "10h di guida senza dolore",
-            "icon": ""
+            "title_suffix": "11h di guida senza dolore",
+            "text": "Assorbe gli urti e riduce l'affaticamento. Piedi e schiena ringraziano."
           }
         },
-        "benefit_sicurezza": {
-          "type": "benefit",
+        "feat_s3s": {
+          "type": "feature",
           "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/S3S_protezione.png?v=1777976336",
             "title": "S3S grado massimo UE",
-            "text": "antiscivolo gasolio, lamiera, ghiaccio",
-            "icon": ""
+            "title_suffix": "antiscivolo, gasolio, lamiere, ghiaccio",
+            "text": "Massima protezione certificata in ogni condizione di lavoro."
+          }
+        },
+        "cab_comode": {
+          "type": "cabin",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/piede.png?v=1777976336",
+            "title": "COMODE\nTUTTO IL GIORNO",
+            "text": "Niente più piedi stanchi dopo tante ore di guida."
+          }
+        },
+        "cab_veloci": {
+          "type": "cabin",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/piede_02.png?v=1777976337",
+            "title": "VELOCI DA\nINDOSSARE",
+            "text": "Le infili e sei subito pronto a scendere e ripartire."
+          }
+        },
+        "cab_asciutte": {
+          "type": "cabin",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/goccia.png?v=1777976337",
+            "title": "ASCIUTTE E\nSICURE",
+            "text": "Materiali resistenti all'acqua e al freddo, sempre protetto."
+          }
+        },
+        "cab_sicure": {
+          "type": "cabin",
+          "settings": {
+            "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo_bianco.png?v=1777976337",
+            "title": "SICURE IN OGNI\nCONDIZIONE",
+            "text": "Aderenza e protezione massima su ogni superficie."
           }
         }
       },
       "block_order": [
-        "benefit_fastwear",
-        "benefit_garanzia",
-        "benefit_made",
-        "benefit_idro",
-        "benefit_comfort",
-        "benefit_sicurezza"
+        "feat_fastwear",
+        "feat_garanzia",
+        "feat_italy",
+        "feat_antiforatura",
+        "feat_antivib",
+        "feat_s3s",
+        "cab_comode",
+        "cab_veloci",
+        "cab_asciutte",
+        "cab_sicure"
       ],
       "settings": {
-        "eyebrow": "Perché Dr Kampes",
-        "heading": "Le scarpe per chi guida un mezzo, sul serio.",
-        "uvp": "L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy."
+        "eyebrow": "PERCHÉ DR.KAMPES",
+        "heading_white": "LE SCARPE PER CHI\nGUIDA UN MEZZO,",
+        "heading_gold": "SUL SERIO.",
+        "sub_text": "<p>L'unica antinfortunistica progettata dagli autisti, per gli autisti.</p><p><strong>FASTWEAR®</strong>: 3 anni di garanzia, 100% Made in Italy.</p>",
+        "shoe_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/hero_04.png?v=1777976292",
+        "cabin_heading": "PENSATE PER CHI VIVE IN CABINA"
       }
     },
     "lp_video": {
