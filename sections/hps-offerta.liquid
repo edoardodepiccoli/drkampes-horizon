@@ -42,51 +42,51 @@
     </script>
   {%- endif -%}
 
+  {%- assign hps_compare = 21900 -%}
+  {%- assign hps_savings = hps_compare | minus: product.price | divided_by: 100 -%}
+  {%- assign hps_pct = hps_compare | minus: product.price | times: 100 | divided_by: hps_compare -%}
+
+  <div class="hps__head">
+    <h2 class="hps__title">{{ product.title }}</h2>
+    <div class="hps__social">
+      <span class="hps__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="hps__review-lbl"><strong>4,9/5</strong> da oltre 1200 camionisti soddisfatti</span>
+    </div>
+    <div class="hps__price-wrap">
+      <div class="hps__price-row">
+        <span class="hps__price-main">&euro;{{ product.price | money_without_currency }}</span>
+        <span class="hps__price-compare">&euro;219,00</span>
+        {%- if hps_pct > 0 -%}
+          <span class="hps__discount-badge">-{{ hps_pct }}%</span>
+        {%- endif -%}
+      </div>
+      <p class="hps__installment">Oppure <strong>3 rate da &euro;63,00</strong> con Klarna o PayPal</p>
+    </div>
+  </div>
+
   <div class="hps__gallery">
     <div class="hps__main">
-      {%- if section.settings.custom_first_image_url != blank -%}
-        <div class="hps__slide" data-media-id="__custom__" style="display:none">
-          <img src="{{ section.settings.custom_first_image_url }}" class="hps__img" loading="eager" alt="{{ product.title }}">
-        </div>
-      {%- endif -%}
-      {%- if section.settings.custom_first_image_url_2 != blank -%}
-        <div class="hps__slide" data-media-id="__custom2__" style="display:none">
-          <img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__img" loading="eager" alt="{{ product.title }}">
-        </div>
-      {%- endif -%}
       {%- for media in product.media -%}
         <div
           class="hps__slide{% if forloop.first %} hps__slide--active{% endif %}"
           data-media-id="{{ media.id }}"
         >
           {%- if forloop.first -%}
-            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'eager', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+            {{ media | image_url: width: 1200 | image_tag: class: 'hps__img', loading: 'eager', widths: '600,800,1100,1400', sizes: '(max-width:749px) 100vw, 50vw' }}
           {%- else -%}
-            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'lazy', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
+            {{ media | image_url: width: 1200 | image_tag: class: 'hps__img', loading: 'lazy', widths: '600,800,1100,1400', sizes: '(max-width:749px) 100vw, 50vw' }}
           {%- endif -%}
         </div>
       {%- endfor -%}
+      <button type="button" class="hps__nav hps__nav--prev" aria-label="Immagine precedente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="hps__nav hps__nav--next" aria-label="Immagine successiva">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
 
     <div class="hps__thumbs">
-      {%- if section.settings.custom_first_image_url != blank -%}
-        <button
-          type="button"
-          class="hps__thumb"
-          data-media-id="__custom__"
-          aria-label="Immagine principale"
-          style="display:none"
-        ><img src="{{ section.settings.custom_first_image_url }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
-      {%- endif -%}
-      {%- if section.settings.custom_first_image_url_2 != blank -%}
-        <button
-          type="button"
-          class="hps__thumb"
-          data-media-id="__custom2__"
-          aria-label="Immagine principale"
-          style="display:none"
-        ><img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
-      {%- endif -%}
       {%- for media in product.media -%}
         <button
           type="button"
@@ -94,55 +94,12 @@
           data-index="{{ forloop.index0 }}"
           data-media-id="{{ media.id }}"
           aria-label="Immagine {{ forloop.index }}"
-        >{{ media | image_url: width: 120 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}</button>
+        >{{ media | image_url: width: 160 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}</button>
       {%- endfor -%}
     </div>
   </div>
 
   <div class="hps__details">
-
-    <div class="hps__head">
-      <h2 class="hps__title">{{ product.title }}</h2>
-      <p class="hps__sub">{{ section.settings.product_subtitle | default: 'Antinfortunistiche S3S' }}</p>
-    </div>
-
-    <div class="hps__social">
-      <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="hps__review-lbl">4.9 &bull; <strong>68 clienti soddisfatti</strong></span>
-    </div>
-    {%- if section.settings.review_quote != blank -%}
-      <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
-    {%- endif -%}
-
-    {%- assign hps_savings = 21900 | minus: product.price | divided_by: 100 -%}
-    <div class="hps__price-wrap">
-      <div class="hps__price-row">
-        <p class="hps__price">
-          <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
-          <span class="hps__price-compare">&euro;219</span>
-          <span class="hps__price-tax">IVA INCLUSA</span>
-        </p>
-        {%- if hps_savings > 0 -%}
-          <span class="hps__savings">Risparmi &euro;{{ hps_savings }}</span>
-        {%- endif -%}
-      </div>
-      <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna e PayPal</p>
-    </div>
-
-    <div class="hps__trust">
-      <div class="hps__trust-item">
-        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <span>3 anni di<br>garanzia</span>
-      </div>
-      <div class="hps__trust-item">
-        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-        <span>Reso e Cambio<br>taglia Gratis</span>
-      </div>
-      <div class="hps__trust-item">
-        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <span>Spedizione<br>48/72 ore</span>
-      </div>
-    </div>
 
     {%- assign form_id = 'hps-form-' | append: section.id -%}
     {% form 'product', product, id: form_id, class: 'hps__form' %}
@@ -160,7 +117,7 @@
 
       {%- if color_option != nil -%}
         <div class="hps__opt">
-          <p class="hps__opt-lbl">Colore: <span id="hps-cval-{{ section.id }}">{{ color_option.selected_value }}</span></p>
+          <p class="hps__opt-lbl">COLORE: <span id="hps-cval-{{ section.id }}">{{ color_option.selected_value | upcase }}</span></p>
           <div class="hps__swatches">
             {%- for value in color_option.values -%}
               <button
@@ -201,11 +158,11 @@
       {%- if size_option != nil -%}
         <div class="hps__opt">
           <div class="hps__size-row">
-            <p class="hps__opt-lbl">Taglia: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
-            <div class="hps__info-btns">
-              <button type="button" class="hps__info-btn" id="hps-tech-{{ section.id }}">Schede tecniche</button>
-              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Guida taglie</button>
-            </div>
+            <p class="hps__opt-lbl">TAGLIA: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
+            <button type="button" class="hps__size-guide" id="hps-size-{{ section.id }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v8H3z"/><path d="M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
+              <span>Guida alle taglie</span>
+            </button>
           </div>
           <div class="hps__pills" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
             {%- for value in size_option.values -%}
@@ -224,24 +181,45 @@
               >{{ value }}</button>
             {%- endfor -%}
           </div>
-          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>&#9889; Meno di <span class="hps-stock-n">{{ section.settings.low_stock_number | default: 7 }}</span> paia rimaste</p>
+          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/></svg>
+            <span>MENO DI <span class="hps-stock-n">{{ section.settings.low_stock_number | default: 7 }}</span> PAIA RIMASTE</span>
+          </p>
         </div>
       {%- endif -%}
 
-<div class="hps__cta-group">
+      <div class="hps__cta-group">
         <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">
-          ACQUISTA ORA
+          <svg class="hps__bn-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span class="hps__bn-text">{{ section.settings.cta_label | default: 'PRENOTA ORA LA TUA TAGLIA' }}</span>
+          <svg class="hps__bn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
         </button>
-      </div>
-      <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
-        <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
-        <span class="hps-offer-banner__text">{{ offer_headline | replace: 'OMAGGIO + Spedizione', '+ Spedizione Rapida' }}</span>
-        {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
-          {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
-        {%- endif -%}
       </div>
 
     {% endform %}
+
+    <div class="hps__trust">
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <strong>3 ANNI DI GARANZIA</strong>
+        <span>Acquistale oggi e indossale per anni.</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <strong>CAMBIO TAGLIA GRATUITO</strong>
+        <span>Se non &egrave; la taglia giusta, la cambiamo noi.</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <strong>SPEDIZIONE GRATIS 1-2 GIORNI</strong>
+        <span>Ordina prima delle 19:00, spediamo il giorno dopo.</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/></svg>
+        <strong>PAGA IN 3 RATE SENZA INTERESSI</strong>
+        <span>Scegli Klarna o PayPal al checkout.</span>
+      </div>
+    </div>
 
     <div class="hps-usp" id="hps-usp-wrap-{{ section.id }}">
       <ul class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
@@ -318,8 +296,8 @@
   <div class="hps-pop__bg" data-pop-close></div>
   <div class="hps-pop__box hps-pop__box--offer">
     <button type="button" class="hps-pop__x" data-pop-close aria-label="Chiudi">&times;</button>
-    <div class="hps-offer-badge">
-      <span aria-hidden="true">🎁</span> T-shirt OMAGGIO
+    <div class="hps-pop__eyebrow">
+      <span aria-hidden="true">🎁</span> T-SHIRT OMAGGIO INCLUSA
     </div>
     <h3 class="hps-pop__title" id="hps-tshirt-title-{{ section.id }}">Scegli la taglia della tua T-shirt</h3>
     {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
@@ -330,19 +308,33 @@
     <div class="hps-pop__body">
       {%- if tshirt_product != blank -%}
         <p class="hps-tshirt-product-name">{{ tshirt_product.title }}</p>
-        <select id="hps-tshirt-sel-{{ section.id }}" class="hps__select hps-tshirt-sel" aria-label="Taglia T-shirt">
+        {%- assign tshirt_first_avail = nil -%}
+        {%- for variant in tshirt_product.variants -%}
+          {%- if variant.available and tshirt_first_avail == nil -%}
+            {%- assign tshirt_first_avail = variant -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <input type="hidden" id="hps-tshirt-sel-{{ section.id }}" value="{{ tshirt_first_avail.id | default: tshirt_product.variants.first.id }}">
+        <p class="hps__opt-lbl hps-tshirt-lbl">TAGLIA: <span id="hps-tshirt-val-{{ section.id }}">{{ tshirt_first_avail.title | default: tshirt_product.variants.first.title }}</span></p>
+        <div class="hps__pills hps-tshirt-pills" id="hps-tshirt-pills-{{ section.id }}" role="group" aria-label="Taglia T-shirt">
           {%- for variant in tshirt_product.variants -%}
-            <option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>
-              {{ variant.title }}{% unless variant.available %} — Esaurito{% endunless %}
-            </option>
+            <button
+              type="button"
+              class="hps__pill{% if variant.id == tshirt_first_avail.id %} hps__pill--on{% endif %}{% unless variant.available %} hps__pill--unavail{% endunless %}"
+              data-variant-id="{{ variant.id }}"
+              data-title="{{ variant.title }}"
+              {% unless variant.available %}aria-disabled="true"{% endunless %}
+            >{{ variant.title }}</button>
           {%- endfor -%}
-        </select>
+        </div>
       {%- else -%}
         <p style="color:#888;font-size:0.85rem;">Nessuna t-shirt configurata.</p>
       {%- endif -%}
     </div>
     <button type="button" id="hps-confirm-{{ section.id }}" class="hps__atc hps__atc--confirm">
-      Conferma e Vai al Checkout
+      <svg class="hps__bn-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span class="hps__bn-text">CONFERMA E VAI AL CHECKOUT</span>
+      <svg class="hps__bn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
     </button>
     <p class="hps__micro hps-tshirt-disclaimer">
       Entrambi i prodotti vengono aggiunti al carrello. Il codice spedizione gratuita viene applicato automaticamente al checkout.
@@ -427,10 +419,6 @@
   var bundleDiscountCode = {{ section.settings.bundle_discount_code | json }};
   var viewerMin = {{ section.settings.viewer_min | default: 12 }};
   var viewerMax = {{ section.settings.viewer_max | default: 37 }};
-  var customHeroSlots = [
-    { id: '__custom__',  url: {{ section.settings.custom_first_image_url | json }},   colorKey: {{ section.settings.custom_first_image_color | handleize | json }} },
-    { id: '__custom2__', url: {{ section.settings.custom_first_image_url_2 | json }}, colorKey: {{ section.settings.custom_first_image_color_2 | handleize | json }} }
-  ].filter(function (s) { return s.url && s.colorKey; });
 
   function buildCheckoutUrl() {
     var base = '/checkout?discount=' + encodeURIComponent(discountCode);
@@ -469,17 +457,14 @@
   }
 
   function filterGallery(variantId) {
-    var slotIds = customHeroSlots.map(function (s) { return s.id; });
-    function isCustom(el) { return slotIds.indexOf(el.dataset.mediaId) !== -1; }
-
     var ids = vgMap[String(variantId)];
 
     if (!ids || ids.length === 0) {
-      slides.forEach(function (s) { if (!isCustom(s)) s.style.display = ''; });
-      thumbs.forEach(function (t) { if (!isCustom(t)) t.style.display = ''; });
+      slides.forEach(function (s) { s.style.display = ''; });
+      thumbs.forEach(function (t) { t.style.display = ''; });
     } else {
-      slides.forEach(function (s) { if (!isCustom(s)) s.style.display = 'none'; });
-      thumbs.forEach(function (t) { if (!isCustom(t)) t.style.display = 'none'; });
+      slides.forEach(function (s) { s.style.display = 'none'; });
+      thumbs.forEach(function (t) { t.style.display = 'none'; });
 
       ids.forEach(function (id) {
         var strId = String(id);
@@ -490,35 +475,10 @@
       });
     }
 
-    var v = allVariants.find(function (fv) { return fv.id === variantId; });
-    var vc = '';
-    if (v && swatches.length) {
-      var cp = parseInt(swatches[0].dataset.pos, 10);
-      vc = (v.options[cp] || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    }
-
-    var activeSlot = null;
-    customHeroSlots.forEach(function (slot) {
-      var customSlide = mainEl.querySelector('.hps__slide[data-media-id="' + slot.id + '"]');
-      var customThumb = thumbsEl.querySelector('.hps__thumb[data-media-id="' + slot.id + '"]');
-      if (!customSlide) return;
-      if (vc && vc === slot.colorKey) {
-        activeSlot = slot;
-        customSlide.style.display = '';
-        mainEl.insertBefore(customSlide, mainEl.firstChild);
-        if (customThumb) { customThumb.style.display = ''; thumbsEl.insertBefore(customThumb, thumbsEl.firstChild); }
-      } else {
-        customSlide.style.display = 'none';
-        if (customThumb) customThumb.style.display = 'none';
-      }
-    });
-
     slides = Array.from(mainEl.querySelectorAll('.hps__slide'));
     thumbs = Array.from(thumbsEl.querySelectorAll('.hps__thumb'));
 
-    if (activeSlot) {
-      showByMediaId(activeSlot.id);
-    } else if (ids && ids.length) {
+    if (ids && ids.length) {
       showByMediaId(String(ids[0]));
     } else {
       var first = slides.find(function (s) { return s.style.display !== 'none'; });
@@ -551,14 +511,21 @@
     if (swipeLock !== 'h') return;
     var delta = e.clientX - swipeStartX;
     if (Math.abs(delta) < 40) return;
+    stepGallery(delta < 0 ? 1 : -1);
+  });
+
+  function stepGallery(dir) {
     var visible = slides.filter(function (s) { return s.style.display !== 'none'; });
     var activeIdx = visible.findIndex(function (s) { return s.classList.contains('hps__slide--active'); });
     if (activeIdx < 0) return;
-    var nextIdx = delta < 0
-      ? Math.min(activeIdx + 1, visible.length - 1)
-      : Math.max(activeIdx - 1, 0);
+    var nextIdx = (activeIdx + dir + visible.length) % visible.length;
     if (nextIdx !== activeIdx) showByMediaId(visible[nextIdx].dataset.mediaId);
-  });
+  }
+
+  var navPrev = root.querySelector('.hps__nav--prev');
+  var navNext = root.querySelector('.hps__nav--next');
+  if (navPrev) navPrev.addEventListener('click', function () { stepGallery(-1); });
+  if (navNext) navNext.addEventListener('click', function () { stepGallery(1); });
 
   function syncVariant() {
     var match = allVariants.find(function (v) {
@@ -651,7 +618,20 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePops(); });
 
   var tshirtSel  = document.getElementById('hps-tshirt-sel-' + sid);
+  var tshirtPills = document.getElementById('hps-tshirt-pills-' + sid);
+  var tshirtValEl = document.getElementById('hps-tshirt-val-' + sid);
   var confirmBtn = document.getElementById('hps-confirm-' + sid);
+
+  if (tshirtPills && tshirtSel) {
+    tshirtPills.addEventListener('click', function (e) {
+      var btn = e.target.closest('.hps__pill');
+      if (!btn || btn.getAttribute('aria-disabled') === 'true') return;
+      tshirtPills.querySelectorAll('.hps__pill').forEach(function (p) { p.classList.remove('hps__pill--on'); });
+      btn.classList.add('hps__pill--on');
+      tshirtSel.value = btn.dataset.variantId;
+      if (tshirtValEl) tshirtValEl.textContent = btn.dataset.title;
+    });
+  }
 
   if (confirmBtn) {
     confirmBtn.addEventListener('click', function () {
@@ -768,24 +748,133 @@
 {% stylesheet %}
 
 .hps {
+  --lp-gold: #D4A017;
+  --lp-gold-light: #E5B433;
+  --lp-gold-dark: #B7860D;
+  --lp-gold-soft: rgba(212, 160, 23, 0.5);
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: #f7f7f6;
+  color: #1a1a1a;
+  padding: 0 0 20px;
 }
+
+/* Head (title, stars, price) */
+.hps__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px 10px;
+}
+
+.hps__title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.05;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+
+.hps__social {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 2px;
+  margin: 2px 0 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: #1a1a1a;
+}
+
+.hps__stars {
+  color: var(--lp-gold);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.hps__review-lbl {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.hps__review-lbl strong { color: #111; font-weight: 800; }
+
+.hps__price-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 2px 0 0;
+}
+
+.hps__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hps__price-main {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #111;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+.hps__price-compare {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.hps__discount-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #d11f2a;
+  color: #fff;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  padding: 4px 8px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.hps__installment {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #444;
+  margin: 2px 0 0;
+}
+.hps__installment strong { color: #111; font-weight: 800; }
 
 /* Gallery */
 .hps__gallery {
-  flex: 0 0 50svh;
   display: flex;
   flex-direction: column;
   min-height: 0;
+  background: transparent;
+  padding: 4px 0 8px;
 }
 
 .hps__main {
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
+  aspect-ratio: 4 / 3;
 }
 
 .hps__slide {
@@ -800,14 +889,39 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  mix-blend-mode: multiply;
 }
+
+.hps__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 2;
+}
+.hps__nav:hover { transform: translateY(-50%) scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+.hps__nav:active { transform: translateY(-50%) scale(0.96); }
+.hps__nav svg { width: 22px; height: 22px; }
+.hps__nav--prev { left: 14px; }
+.hps__nav--next { right: 14px; }
 
 .hps__thumbs {
   flex: 0 0 auto;
   display: flex;
-  gap: 6px;
+  gap: 8px;
   overflow-x: auto;
-  padding: 8px 16px;
+  padding: 6px 18px 0;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -816,206 +930,68 @@
 .hps__thumb {
   flex: 0 0 56px;
   height: 56px;
-  padding: 0;
-  border: 2px solid #e0e0e0;
-  border-radius: 0;
+  padding: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
   overflow: hidden;
   background: #fff;
   cursor: pointer;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.hps__thumb--active { border-color: #111; }
+.hps__thumb--active {
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 1px #1a1a1a;
+}
 
 .hps__thumb-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  mix-blend-mode: multiply;
 }
 
-/* Details */
+/* Details (form + trust + USP) */
 .hps__details {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px 16px 24px;
-}
-
-.hps__head { display: flex; flex-direction: column; gap: 2px; }
-
-.hps__title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.3;
-  color: #111;
-}
-
-.hps__sub {
-  font-size: 0.8rem;
-  color: #888;
-  margin: 0;
-}
-
-/* Social proof */
-.hps__social {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: -10px 0 0;
-}
-
-.hps__stars {
-  color: #f5a623;
-  font-size: 0.88rem;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-
-.hps__review-lbl {
-  font-size: 0.74rem;
-  color: #666;
-  margin: 0;
-}
-
-/* Price block */
-.hps__price-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin: 0;
-}
-
-.hps__price {
-  margin: 0;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-.hps__price-main {
-  font-size: 1.65rem;
-  font-weight: 700;
-  color: #111;
-  line-height: 1;
-}
-.hps__price-tax {
-  font-size: 0.68rem;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-
-.hps__installment {
-  font-size: 0.74rem;
-  color: #666;
-  margin: 0;
-}
-.hps__installment strong { color: #111; }
-
-/* Offer banner */
-@keyframes hps-pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 194, 0, 0); }
-  50%       { box-shadow: 0 0 0 4px rgba(245, 194, 0, 0.3); }
-}
-@keyframes hps-bounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40%           { transform: translateY(-4px); }
-}
-
-.hps-offer-banner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #fff8e1;
-  border: 1.5px solid #F5C200;
-  border-radius: 0;
-  padding: 10px 14px;
-  animation: hps-pulse-border 3s ease-in-out infinite;
-}
-
-.hps-offer-banner__icon {
-  font-size: 1.25rem;
-  flex-shrink: 0;
-  line-height: 1;
-  display: inline-block;
-  animation: hps-bounce 3s ease-in-out infinite;
-}
-
-.hps-offer-banner__text {
-  font-size: 0.875rem;
-  font-weight: 800;
-  color: #7a5800;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
-}
-
-.hps-offer-banner__thumb {
-  width: 56px;
-  height: 56px;
-  border-radius: 0;
-  object-fit: cover;
-  display: block;
-  flex-shrink: 0;
-  margin-left: auto;
-  border: 1.5px solid #F5C200;
-}
-
-/* Trust strip */
-.hps__trust {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  padding: 10px 0;
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
-}
-
-.hps__trust-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  text-align: center;
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: #333;
-  letter-spacing: 0.01em;
-  line-height: 1.35;
-}
-
-.hps__trust-ico {
-  width: 22px;
-  height: 22px;
-  color: #2e7d32;
-  flex-shrink: 0;
+  gap: 14px;
+  padding: 14px 18px 10px;
+  background: transparent;
 }
 
 /* Form */
-.hps__form { display: flex; flex-direction: column; gap: 10px; }
+.hps__form { display: flex; flex-direction: column; gap: 12px; }
 
-.hps__opt { display: flex; flex-direction: column; gap: 6px; }
+.hps__opt { display: flex; flex-direction: column; gap: 8px; }
 
 .hps__opt-lbl {
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
   color: #111;
   margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
+.hps__opt-lbl span { color: #111; font-weight: 800; }
 
-.hps__swatches { display: flex; gap: 10px; }
+.hps__swatches { display: flex; gap: 12px; }
 
 .hps__swatch {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  border: 1px solid rgba(0,0,0,0.15);
   padding: 0;
   cursor: pointer;
   outline: 2px solid transparent;
-  outline-offset: 2px;
-  transition: outline-color 0.15s;
+  outline-offset: 3px;
+  transition: outline-color 0.15s, border-color 0.15s;
 }
-.hps__swatch--on { outline-color: #111; }
+.hps__swatch--on {
+  outline-color: #1a1a1a;
+}
 
 .hps__size-row {
   display: flex;
@@ -1025,25 +1001,31 @@
   flex-wrap: nowrap;
 }
 
-.hps__info-btns { display: flex; gap: 6px; flex-shrink: 0; }
-
-.hps__info-btn {
-  font-size: 0.68rem;
-  padding: 5px 8px;
-  border-radius: 0;
-  border: 1px solid #ccc;
-  background: #f2f2f2;
-  color: #333;
+.hps__size-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
-  white-space: nowrap;
-  font-family: inherit;
-  line-height: 1.3;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  flex-shrink: 0;
+  line-height: 1.2;
 }
-.hps__info-btn:active { background: #e0e0e0; }
+.hps__size-guide svg { width: 18px; height: 18px; flex-shrink: 0; stroke: #1a1a1a; }
+.hps__size-guide:hover { color: var(--lp-gold-dark); }
+.hps__size-guide:hover svg { stroke: var(--lp-gold-dark); }
 
 .hps__select {
   width: 100%;
-  padding: 9px 12px;
+  padding: 11px 12px;
   font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 0;
@@ -1060,78 +1042,187 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 4px;
 }
 
-.hps__atc {
+/* ── Shared subtle 3D gold button (also used by lp-hero CTA) ── */
+.hps__bn,
+.hps__atc,
+.hps-cta-bar .hps-cta--before,
+.hps-cta-bar .hps-cta--after {
+  position: relative;
   width: 100%;
-  padding: 17px 24px;
+  padding: 16px 16px;
   height: auto;
-  background: #2e7d32;
+  background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  line-height: 1.15;
+  transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.55),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  text-shadow: 0 1px 0 rgba(255, 220, 130, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hps__bn:hover,
+.hps__atc:hover,
+.hps-cta-bar .hps-cta--before:hover,
+.hps-cta-bar .hps-cta--after:hover {
+  filter: brightness(1.04);
+  text-decoration: none;
+  color: #1a1a1a !important;
+}
+.hps__bn:active,
+.hps__atc:active,
+.hps-cta-bar .hps-cta--before:active,
+.hps-cta-bar .hps-cta--after:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.35),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.hps__bn-text { flex: 1; text-align: center; white-space: nowrap; }
+.hps__bn-lock,
+.hps__bn-arrow {
+  width: 18px;
+  height: 18px;
+  stroke: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/* Pills */
+.hps__pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  gap: 8px;
+}
+
+.hps__pill {
+  min-width: 0;
+  height: 40px;
+  padding: 0 4px;
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 4px;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hps__pill--on {
+  border-color: #1a1a1a;
+  background: #1a1a1a;
   color: #fff;
-  border: none;
-  border-radius: 0;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.07em;
-  cursor: pointer;
+}
+.hps__pill--unavail {
+  color: #c0c0c0;
+  border-color: #ececec;
+  background: #fafafa;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.hps__pill:not(.hps__pill--unavail):hover { border-color: #1a1a1a; }
+
+/* Stock badge — soft pink with red text */
+.hps__stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fde7e9;
+  color: #d11f2a;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 8px 12px;
+  margin: 4px 0 0;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
   text-transform: uppercase;
-  font-family: 'Archivo Black', sans-serif;
   line-height: 1;
-  transition: background 0.15s;
 }
-.hps__atc:active { background: #1b5e20; }
-
-@keyframes hps-bn-pulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(245, 194, 0, 0.25); }
-  50%       { box-shadow: 0 4px 28px 6px rgba(245, 194, 0, 0.55); }
+.hps__stock svg {
+  width: 16px;
+  height: 16px;
+  stroke: #d11f2a;
+  flex-shrink: 0;
 }
 
-.hps__bn {
-  width: 100%;
-  padding: 17px 24px;
-  height: auto;
-  background: #F5C200;
-  color: #111;
-  border: none;
-  border-radius: 0;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.07em;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family: 'Archivo Black', sans-serif;
-  line-height: 1;
-  transition: background 0.15s;
-  animation: hps-bn-pulse 2.2s ease-in-out infinite;
-}
-.hps__bn:active { background: #d9ac00; }
-
-
-.hps__offer-micro {
+/* Trust strip — stacked on mobile, 4-up on desktop */
+.hps__trust {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  font-size: 0.8rem;
-  color: #333;
-  margin: 0;
-  text-align: center;
-  line-height: 1.5;
-}
-.hps__offer-micro strong { color: #111; }
-
-.hps__micro {
-  font-size: 0.75rem;
-  color: #333;
-  margin: 0;
-  text-align: center;
-  line-height: 1.6;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
 }
 
-/* USP list */
+.hps__trust-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  grid-template-rows: auto;
+  column-gap: 10px;
+  row-gap: 0;
+  align-items: center;
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.hps__trust-item:last-child { border-bottom: none; }
+
+.hps__trust-ico {
+  width: 20px;
+  height: 20px;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.hps__trust-item strong {
+  font-size: 0.74rem;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.hps__trust-item span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 2px;
+}
+
+/* USP list — light theme */
 .hps-usp {
-  border: 1px solid #e0e0e0;
-  border-radius: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
   overflow: hidden;
+  background: #fff;
 }
 
 .hps-usp__list {
@@ -1144,10 +1235,10 @@
 
 .hps-usp__item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
-  padding: 15px 18px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1162,38 +1253,40 @@
 
 .hps-usp__icon-wrap {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: 0;
-  background: #111;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid var(--lp-gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
 }
 .hps-usp__icon-wrap svg {
-  width: 18px;
-  height: 18px;
-  stroke: #F5C200;
+  width: 20px;
+  height: 20px;
+  stroke: var(--lp-gold);
+  stroke-width: 1.8;
 }
 
 .hps-usp__body { flex: 1; min-width: 0; }
 
 .hps-usp__ttl {
-  font-family: var(--font-heading--family, inherit);
-  font-size: 0.84rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
   font-weight: 900;
   color: #111;
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   letter-spacing: 0.04em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .hps-usp__dsc {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #555;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 /* Popups */
@@ -1230,7 +1323,7 @@
   right: 16px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
   color: #555;
   padding: 0 4px;
@@ -1239,29 +1332,34 @@
 }
 
 .hps-pop__title {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 10px;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin: 0 0 12px;
   padding-right: 28px;
   color: #111;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
 }
 
 .hps-pop__body p { font-size: 0.85rem; margin: 0 0 12px; color: #444; }
 
-/* Offer badge inside popup */
-.hps-offer-badge {
+/* Eyebrow inside popup */
+.hps-pop__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #fff8e1;
-  border: 1.5px solid #F5C200;
-  border-radius: 0;
-  padding: 4px 10px;
-  font-size: 0.78rem;
+  background: transparent;
+  border: 1px solid var(--lp-gold);
+  padding: 5px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
   font-weight: 800;
-  color: #7a5800;
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
+  color: var(--lp-gold-dark);
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 /* T-shirt popup specifics */
@@ -1271,6 +1369,7 @@
   margin: 0 -20px 12px;
   overflow: hidden;
   height: 180px;
+  background: #f7f7f6;
 }
 
 .hps-tshirt-img {
@@ -1281,12 +1380,15 @@
 }
 
 .hps-tshirt-product-name {
-  font-size: 0.82rem;
-  color: #666;
-  margin: 0 0 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 12px;
+  font-weight: 600;
 }
 
-.hps-tshirt-sel { margin-bottom: 16px; }
+.hps-tshirt-lbl { margin-bottom: 4px; }
+.hps-tshirt-pills { margin-bottom: 16px; }
 
 .hps__atc--confirm {
   width: 100%;
@@ -1295,10 +1397,11 @@
 .hps__atc--confirm:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  filter: grayscale(0.4);
 }
 
 .hps-tshirt-disclaimer {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: #888;
   margin: 0;
   text-align: center;
@@ -1360,102 +1463,10 @@
 .hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
 .hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
 
-/* Compare price + savings */
-.hps__price-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.hps__price-compare {
-  font-size: 1rem;
-  color: #aaa;
-  text-decoration: line-through;
-  font-weight: 400;
-}
-
-.hps__savings {
-  display: inline-flex;
-  align-items: center;
-  background: #c62828;
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 0;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-
-/* Review quote */
-.hps__review-quote {
-  font-size: 0.78rem;
-  color: #555;
-  font-style: italic;
-  margin: -4px 0 0;
-  padding: 8px 12px;
-  border-left: 3px solid #F5C200;
-  background: #fffde7;
-  border-radius: 0;
-  line-height: 1.5;
-}
-
-/* Size pills */
-.hps__pills {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
-  gap: 8px;
-}
-
-.hps__pill {
-  min-width: 0;
-  height: 40px;
-  padding: 0 4px;
-  border: 1.5px solid #ccc;
-  border-radius: 0;
-  background: #fff;
-  color: #111;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hps__pill--on {
-  border-color: #111;
-  background: #111;
-  color: #fff;
-}
-.hps__pill--unavail {
-  color: #bbb;
-  border-color: #e0e0e0;
-  text-decoration: line-through;
-  cursor: not-allowed;
-}
-.hps__pill:not(.hps__pill--unavail):hover { border-color: #111; }
-
-/* Stock badge */
-.hps__stock {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #fff;
-  background: #c62828;
-  padding: 6px 10px;
-  margin: 4px 0 0;
-  letter-spacing: 0.03em;
-  display: inline-block;
-  align-self: flex-start;
-  text-transform: uppercase;
-}
-
 /* Viewer count toast */
 @keyframes hps-toast-glow {
-  0%, 100% { box-shadow: 0 2px 12px rgba(198, 40, 40, 0.3); }
-  50%       { box-shadow: 0 2px 28px 6px rgba(198, 40, 40, 0.6); }
+  0%, 100% { box-shadow: 0 2px 12px rgba(209, 31, 42, 0.35); }
+  50%       { box-shadow: 0 2px 28px 6px rgba(209, 31, 42, 0.6); }
 }
 @keyframes hps-dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
@@ -1467,13 +1478,13 @@
   top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(calc(-100% - 20px));
-  background: #1a1a1a;
+  background: #0a0a0a;
   color: #fff;
   font-size: 0.8rem;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 0;
-  border: 1.5px solid #c62828;
+  border: 1.5px solid #d11f2a;
   white-space: nowrap;
   z-index: 8500;
   pointer-events: none;
@@ -1498,7 +1509,7 @@
 }
 
 .hps__viewer-toast .hps-viewers-n {
-  color: #F5C200;
+  color: var(--lp-gold);
   font-size: 1rem;
   font-weight: 900;
 }
@@ -1523,44 +1534,85 @@
   .hps {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'gallery head'
+      'gallery details';
+    grid-template-rows: auto 1fr;
     height: auto;
     overflow: visible;
-    padding: 40px max(24px, calc((100% - 1200px) / 2));
-    gap: 48px;
+    padding: 56px max(24px, calc((100% - 1200px) / 2)) 80px;
+    gap: 24px 56px;
     align-items: start;
+    background: #fff;
+  }
+  .hps__head {
+    grid-area: head;
+    padding: 0;
+    gap: 10px;
   }
   .hps__gallery {
+    grid-area: gallery;
     flex-direction: column;
     height: auto;
     position: sticky;
-    top: var(--sticky-header-offset, 0px);
+    top: var(--sticky-header-offset, 16px);
     min-width: 0;
+    padding: 0;
+    background: #fff;
   }
   .hps__main {
     flex: 1 1 auto;
     height: min(640px, 74svh);
+    aspect-ratio: auto;
   }
   .hps__thumbs {
     flex-direction: row;
     overflow-x: auto;
     overflow-y: visible;
     max-height: none;
-    padding: 8px 0 0;
+    padding: 14px 0 4px;
   }
   .hps__details {
+    grid-area: details;
     overflow-y: visible;
     padding: 0;
-    gap: 14px;
+    gap: 22px;
     min-height: unset;
     min-width: 0;
+    background: transparent;
   }
-  .hps__title { font-size: 1.2rem; }
-  .hps__price-main { font-size: 2rem; }
+  .hps__title { font-size: 2.4rem; }
+  .hps__price-main { font-size: 2.8rem; }
+  .hps__price-compare { font-size: 1.4rem; }
+  .hps__discount-badge { font-size: 1.05rem; padding: 6px 11px; }
+  .hps__installment { font-size: 0.95rem; }
+  .hps__review-lbl { font-size: 0.92rem; }
+  .hps__pill { height: 50px; font-size: 1rem; }
+  .hps__nav { width: 44px; height: 44px; }
+  .hps__nav svg { width: 24px; height: 24px; }
+  .hps__nav--prev { left: 18px; }
+  .hps__nav--next { right: 18px; }
+  .hps__trust { padding: 18px 8px; }
+  .hps__trust-item { padding: 12px 18px; }
+  .hps__trust-item strong { font-size: 0.78rem; }
+  .hps__trust-item span { font-size: 0.78rem; }
   .hps-pop { align-items: center; }
-  .hps-pop__box { border-radius: 0; width: 480px; max-height: calc(100vh - 40px); }
+  .hps-pop__box { width: 480px; max-height: calc(100vh - 40px); }
   .hps-usp { margin: 0; }
-  .hps-tshirt-img-wrap { height: 160px; aspect-ratio: unset; }
+  .hps-tshirt-img-wrap { height: 200px; aspect-ratio: unset; }
   .hps-tshirt-img { height: 100%; }
+  .hps__bn,
+  .hps__atc,
+  .hps-cta-bar .hps-cta--before,
+  .hps-cta-bar .hps-cta--after {
+    padding: 22px 26px;
+    font-size: 1.1rem;
+  }
+  .hps__bn-lock,
+  .hps__bn-arrow {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 /* Sticky CTA bar */
@@ -1573,7 +1625,8 @@
   display: flex;
   align-items: stretch;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-  background: #111;
+  background: #000;
+  border-top: 1px solid rgba(212,160,23,0.25);
   opacity: 0;
   transform: translateY(100%);
   pointer-events: none;
@@ -1589,37 +1642,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 50px;
+  height: 52px;
+  padding: 0 22px;
   text-decoration: none;
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  transition: background 0.15s;
 }
-
-.hps-cta-bar .hps-cta--before {
-  background: #F5C200;
-  color: #111 !important;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  font-family: 'Archivo Black', sans-serif;
-}
-.hps-cta-bar .hps-cta--before:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
-.hps-cta-bar .hps-cta--before:active { background: #d9ac00; }
 
 .hps-cta-bar .hps-cta--after {
   display: none;
   flex-direction: column;
   gap: 2px;
-  background: #F5C200;
-  color: #111 !important;
-  font-family: 'Archivo Black', sans-serif;
 }
-.hps-cta-bar .hps-cta--after:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
-.hps-cta-bar .hps-cta--after:active { background: #d9ac00; }
 
 .hps-cta-bar--past .hps-cta--before { display: none; }
 .hps-cta-bar--past .hps-cta--after { display: flex; }
@@ -1660,39 +1692,15 @@
     },
     {
       "type": "text",
-      "id": "custom_first_image_url",
-      "label": "URL prima immagine (colore specifico)",
-      "default": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/immagine_offerta_bundletshirt.png?v=1777548666"
-    },
-    {
-      "type": "text",
-      "id": "custom_first_image_color",
-      "label": "Colore prima immagine (es. Nero)",
-      "default": "Nero"
-    },
-    {
-      "type": "text",
-      "id": "custom_first_image_url_2",
-      "label": "URL prima immagine — colore 2",
-      "default": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/immagine_offerta_bundletshirt_testa_di_moro.png?v=1777548922"
-    },
-    {
-      "type": "text",
-      "id": "custom_first_image_color_2",
-      "label": "Colore prima immagine 2 (es. Testa di Moro)",
-      "default": "Testa di Moro"
-    },
-    {
-      "type": "text",
       "id": "product_subtitle",
-      "label": "Sottotitolo prodotto",
+      "label": "Sottotitolo prodotto (non visualizzato in v3)",
       "default": "Antinfortunistiche S3S"
     },
     {
       "type": "text",
       "id": "cta_label",
-      "label": "Testo CTA sticky bar",
-      "default": "SÌ, LE VOGLIO"
+      "label": "Testo bottone CTA",
+      "default": "PRENOTA ORA LA TUA TAGLIA"
     },
     {
       "type": "number",

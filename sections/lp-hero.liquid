@@ -163,6 +163,8 @@
 
 .lp-hero {
   --lp-gold: #D4A017;
+  --lp-gold-light: #E5B433;
+  --lp-gold-dark: #B7860D;
   --lp-gold-soft: rgba(212, 160, 23, 0.5);
   background: #000;
   color: #fff;
@@ -382,7 +384,7 @@
 
 .lp-hero__offer-badge {
   align-self: center;
-  background: var(--lp-gold);
+  background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
   border: none;
   border-radius: 14px 14px 0 0;
   padding: 10px 22px 16px;
@@ -390,7 +392,11 @@
   position: relative;
   z-index: 1;
   margin-bottom: -10px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.55),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.1);
   max-width: calc(100% - 32px);
   display: flex;
   flex-direction: column;
@@ -509,23 +515,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
   padding: 16px 14px;
-  background: var(--lp-gold);
+  background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
   color: #1a1a1a;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
   font-weight: 900;
-  font-size: 0.95rem;
+  font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   border-radius: 10px;
-  transition: background 0.15s, transform 0.1s;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.55),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 0 rgba(255, 220, 130, 0.3);
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
 }
-.lp-hero__cta:hover { background: #a4823b; text-decoration: none; }
-.lp-hero__cta:active { transform: scale(0.99); }
+.lp-hero__cta:hover { filter: brightness(1.04); text-decoration: none; color: #1a1a1a; }
+.lp-hero__cta:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 220, 130, 0.35),
+    inset 0 -1px 0 rgba(120, 75, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
 
 .lp-hero__cta-text {
   flex: 1;
