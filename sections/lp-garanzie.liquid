@@ -79,38 +79,73 @@
   color: #111;
 }
 
-/* ── Black top band ── */
+/* ── Black top band (benefits-cabin style, inverted) ── */
 .lp-gz__top {
-  background: #0a0a0a;
-  color: #fff;
-  padding: 24px 0;
+  padding: 18px;
+  background: #fff;
 }
 
 .lp-gz__top-inner {
+  position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 26px 14px 22px;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(212,160,23,0.08) 0%, rgba(212,160,23,0) 60%),
+    linear-gradient(180deg, #0d0d0d 0%, #050505 100%);
+  border-radius: 14px;
+  color: #fff;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.05) inset,
+    0 12px 32px rgba(0,0,0,0.32),
+    0 2px 6px rgba(0,0,0,0.18);
+}
+
+.lp-gz__top-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64%;
+  max-width: 220px;
+  height: 3px;
+  background: var(--gz-gold);
+  border-radius: 0 0 4px 4px;
 }
 
 .lp-gz__top-headline {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
   font-weight: 900;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #fff;
   text-align: center;
-  margin: 0 0 18px;
-  line-height: 1.2;
+  margin: 0 auto 4px;
+  line-height: 1.15;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.lp-gz__top-headline::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--gz-gold);
+  margin: 8px auto 0;
 }
 
 .lp-gz__pillars {
   list-style: none;
-  margin: 0;
+  margin: 10px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 0;
+  row-gap: 0;
 }
 
 .lp-gz__pillar {
@@ -118,47 +153,48 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 14px 10px;
+  gap: 4px;
+  padding: 12px 8px;
   position: relative;
 }
 
-.lp-gz__pillar:nth-child(odd)::after {
-  content: '';
-  position: absolute;
-  top: 14px;
-  bottom: 14px;
-  right: 0;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.18);
+.lp-gz__pillar:nth-child(odd) {
+  border-right: 1px solid rgba(255,255,255,0.1);
 }
-.lp-gz__pillar:nth-child(-n+2)::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 14px;
-  right: 14px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
+.lp-gz__pillar:nth-child(-n+2) {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .lp-gz__pillar-icon {
-  width: 72px;
-  height: 72px;
-  display: flex;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+}
+
+.lp-gz__pillar-icon::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.22) 0%, rgba(212,160,23,0) 70%);
+  z-index: 0;
 }
 .lp-gz__pillar-icon img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
   mix-blend-mode: screen;
-  transform: scale(1.35);
+  transform: scale(1.2);
 }
 .lp-gz__pillar:nth-child(3) .lp-gz__pillar-icon img {
-  transform: scale(1);
+  transform: scale(0.9);
 }
 
 .lp-gz__pillar-title {
@@ -225,18 +261,25 @@
 
 .lp-gz__card {
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 64px 1fr;
+  grid-template-areas:
+    "icon text"
+    "badge badge";
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
+  column-gap: 12px;
+  row-gap: 10px;
+  padding: 12px 14px;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
 }
+.lp-gz__card-icon { grid-area: icon; }
+.lp-gz__card-body { grid-area: text; }
+.lp-gz__card-badge { grid-area: badge; }
 
 .lp-gz__card-icon {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: #0a0a0a;
   display: flex;
@@ -254,7 +297,7 @@
   transform: scale(1.35);
 }
 .lp-gz__card:first-child .lp-gz__card-icon img {
-  transform: scale(1);
+  transform: scale(0.95);
 }
 
 .lp-gz__card-body {
@@ -281,20 +324,22 @@
 }
 
 .lp-gz__card-badge {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.08);
   font-family: 'Inter', sans-serif;
   font-weight: 900;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #111;
   line-height: 1.15;
 }
 .lp-gz__card-badge svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   stroke: var(--gz-gold);
   flex-shrink: 0;
 }
@@ -305,22 +350,15 @@
   .lp-gz__top-headline { font-size: 1rem; margin-bottom: 26px; }
 
   .lp-gz__pillars {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .lp-gz__pillar {
-    padding: 0 18px;
+    padding: 14px 18px;
   }
-  .lp-gz__pillar:nth-child(odd)::after,
-  .lp-gz__pillar:nth-child(-n+2)::before { display: none; }
-  .lp-gz__pillar:not(:last-child)::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 8px;
-    bottom: 8px;
-    right: 0;
-    width: 1px;
-    background: rgba(255,255,255,0.18);
+  .lp-gz__pillar:nth-child(odd) { border-right: none; }
+  .lp-gz__pillar:nth-child(-n+2) { border-bottom: none; }
+  .lp-gz__pillar:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.1);
   }
 
   .lp-gz__pillar-icon { width: 88px; height: 88px; margin-bottom: 14px; }
@@ -335,15 +373,23 @@
 
   .lp-gz__card {
     grid-template-columns: 112px 1fr 200px;
+    grid-template-areas: "icon text badge";
     padding: 18px 24px;
-    gap: 22px;
+    column-gap: 22px;
+    row-gap: 0;
   }
   .lp-gz__card-icon { width: 112px; height: 112px; }
   .lp-gz__card-title { font-size: 1.25rem; }
   .lp-gz__card-text { font-size: 0.95rem; }
-  .lp-gz__card-badge { display: inline-flex; }
+  .lp-gz__card-badge {
+    border-top: none;
+    padding-top: 0;
+    padding-left: 22px;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    align-self: stretch;
+    font-size: 0.85rem;
+  }
   .lp-gz__card-badge svg { width: 26px; height: 26px; }
-  .lp-gz__card-badge { font-size: 0.85rem; }
 }
 
 {% endstylesheet %}
