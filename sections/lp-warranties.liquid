@@ -1,0 +1,450 @@
+{%- assign top_blocks = section.blocks | where: 'type', 'top_icon' -%}
+{%- assign warranty_blocks = section.blocks | where: 'type', 'warranty' -%}
+
+<section class="lp-warranties">
+
+  {%- if top_blocks.size > 0 -%}
+    <aside class="lp-warranties__top-strip">
+      <div class="lp-warranties__top-inner">
+        {%- if section.settings.top_strip_heading != blank -%}
+          <p class="lp-warranties__top-heading">{{ section.settings.top_strip_heading }}</p>
+        {%- endif -%}
+        <ul class="lp-warranties__top-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'top_icon' -%}
+              <li class="lp-warranties__top-item" {{ block.shopify_attributes }}>
+                <span class="lp-warranties__top-icon">
+                  {%- if block.settings.icon_image != blank -%}
+                    {{ block.settings.icon_image | image_url: width: 120 | image_tag:
+                        class: 'lp-warranties__top-icon-img',
+                        loading: 'lazy', widths: '60,80,120', alt: '' }}
+                  {%- else -%}
+                    <span class="lp-warranties__top-icon-placeholder" aria-hidden="true"></span>
+                  {%- endif -%}
+                </span>
+                {%- if block.settings.label != blank -%}
+                  <span class="lp-warranties__top-label">{{ block.settings.label }}</span>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </aside>
+  {%- endif -%}
+
+  <div class="lp-warranties__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="lp-warranties__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="lp-warranties__heading lp-sec__h2">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if warranty_blocks.size > 0 -%}
+      <ul class="lp-warranties__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'warranty' -%}
+            <li class="lp-warranty" {{ block.shopify_attributes }}>
+              <span class="lp-warranty__icon">
+                {%- if block.settings.icon_image != blank -%}
+                  {{ block.settings.icon_image | image_url: width: 160 | image_tag:
+                      class: 'lp-warranty__icon-img',
+                      loading: 'lazy', widths: '80,120,160', alt: '' }}
+                {%- else -%}
+                  <span class="lp-warranty__icon-placeholder" aria-hidden="true"></span>
+                {%- endif -%}
+              </span>
+              <div class="lp-warranty__body">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="lp-warranty__title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <p class="lp-warranty__description">{{ block.settings.description }}</p>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.badge_label != blank -%}
+                <span class="lp-warranty__badge">{{ block.settings.badge_label }}</span>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+</section>
+
+{% stylesheet %}
+
+/* ============================================================================
+   lp-warranties — section wrapper
+   ============================================================================ */
+.lp-warranties {
+  background: var(--lp-color-black);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-body);
+}
+
+/* ============================================================================
+   TOP STRIP
+   ============================================================================ */
+.lp-warranties__top-strip {
+  width: 100%;
+  border-bottom: 1px solid var(--lp-color-divider-dark);
+  padding: var(--lp-space-7) var(--lp-section-pad-x);
+}
+
+.lp-warranties__top-inner {
+  max-width: var(--lp-section-max-width-md);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lp-warranties__top-heading {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  color: var(--lp-color-gold);
+  margin: 0 0 var(--lp-space-5);
+  line-height: var(--lp-lh-snug);
+}
+
+/* 2-col mobile, 4-col desktop */
+.lp-warranties__top-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--lp-space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 750px) {
+  .lp-warranties__top-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.lp-warranties__top-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--lp-space-2);
+}
+
+.lp-warranties__top-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 750px) {
+  .lp-warranties__top-icon {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.lp-warranties__top-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Placeholder shown when no image is uploaded */
+.lp-warranties__top-icon-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--lp-color-divider-dark-strong);
+}
+
+.lp-warranties__top-label {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  color: var(--lp-color-text-on-dark);
+  line-height: var(--lp-lh-snug);
+  text-align: center;
+}
+
+/* ============================================================================
+   BODY AREA
+   ============================================================================ */
+.lp-warranties__inner {
+  max-width: var(--lp-section-max-width-md);
+  margin: 0 auto;
+  padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
+}
+
+/* Eyebrow + H2 overrides — this section is always dark, not using .lp-sec--dark modifier */
+.lp-warranties .lp-sec__eyebrow {
+  color: var(--lp-color-gold);
+}
+
+.lp-warranties .lp-sec__h2 {
+  color: var(--lp-color-text-on-dark);
+}
+
+/* ============================================================================
+   WARRANTY CARDS LIST
+   ============================================================================ */
+
+/* 1-col mobile, 2-col desktop */
+.lp-warranties__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--lp-space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 750px) {
+  .lp-warranties__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================================
+   INDIVIDUAL WARRANTY CARD
+   ============================================================================ */
+.lp-warranty {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--lp-space-4);
+  padding: var(--lp-space-5);
+  background: var(--lp-color-surface-dark);
+  border: 1px solid var(--lp-color-divider-dark);
+  overflow: hidden; /* contain the absolute badge */
+}
+
+.lp-warranty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.lp-warranty__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Placeholder block shown when no icon is uploaded */
+.lp-warranty__icon-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--lp-color-divider-dark-strong);
+}
+
+.lp-warranty__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lp-space-2);
+  flex: 1;
+  /* leave room so long title text does not collide with the badge */
+  padding-right: var(--lp-space-9);
+}
+
+.lp-warranty__title {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-md);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  color: var(--lp-color-text-on-dark);
+  line-height: var(--lp-lh-snug);
+  margin: 0;
+}
+
+.lp-warranty__description {
+  font-family: var(--lp-font-body);
+  font-size: var(--lp-fs-sm);
+  color: var(--lp-color-text-on-dark-mute);
+  line-height: var(--lp-lh-base);
+  margin: 0;
+}
+
+/* ============================================================================
+   GOLD RIBBON BADGE — top-right corner
+   ============================================================================ */
+.lp-warranty__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--lp-color-gold);
+  color: var(--lp-color-black);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  line-height: var(--lp-lh-snug);
+  padding: var(--lp-space-1) var(--lp-space-3);
+  border-radius: var(--lp-radius-none);
+  /* Ribbon tail cut into the bottom-left corner */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  white-space: nowrap;
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Garanzie",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_strip_heading",
+      "label": "Titolo striscia superiore",
+      "default": "PENSATE PER CHI VIVE IN CABINA"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ACQUISTA SENZA PENSIERI"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo sezione",
+      "default": "LE NOSTRE GARANZIE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "top_icon",
+      "name": "Icona striscia superiore",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Immagine icona"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etichetta"
+        }
+      ]
+    },
+    {
+      "type": "warranty",
+      "name": "Garanzia",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Immagine icona"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrizione"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Etichetta badge"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Garanzie",
+      "blocks": [
+        {
+          "type": "top_icon",
+          "settings": {
+            "label": "COMODE"
+          }
+        },
+        {
+          "type": "top_icon",
+          "settings": {
+            "label": "VELOCI DA INDOSSARE"
+          }
+        },
+        {
+          "type": "top_icon",
+          "settings": {
+            "label": "RESISTENTI"
+          }
+        },
+        {
+          "type": "top_icon",
+          "settings": {
+            "label": "SICURE PER OGNI MEZZO"
+          }
+        },
+        {
+          "type": "warranty",
+          "settings": {
+            "title": "3 ANNI DI GARANZIA",
+            "description": "Acquista oggi e ricevi questo prodotto entro pochi giorni. Se nei primi 3 anni si manifesta un problema, lo risolviamo noi.",
+            "badge_label": "100% COPERTI"
+          }
+        },
+        {
+          "type": "warranty",
+          "settings": {
+            "title": "CAMBIO TAGLIA GRATUITO",
+            "description": "Se non è la taglia giusta, la cambiamo noi. Gratis.",
+            "badge_label": "ZERO COSTI AGGIUNTIVI"
+          }
+        },
+        {
+          "type": "warranty",
+          "settings": {
+            "title": "SPEDIZIONE GRATUITA 1-2 GIORNI",
+            "description": "Ordini entro le 18, ti arriva in 1-2 giorni lavorativi.",
+            "badge_label": "VELOCE & TRACCIATA"
+          }
+        },
+        {
+          "type": "warranty",
+          "settings": {
+            "title": "PAGA IN 3 RATE SENZA INTERESSI",
+            "description": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate.",
+            "badge_label": "SICURO & GARANTITO"
+          }
+        },
+        {
+          "type": "warranty",
+          "settings": {
+            "title": "ASSISTENZA DIRETTA",
+            "description": "Parli con noi, non con un call center. Sempre al tuo fianco.",
+            "badge_label": "SEMPRE AL TUO FIANCO"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
