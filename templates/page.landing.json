@@ -26,7 +26,8 @@
           "settings": {
             "icon": "swap",
             "line1": "CAMBIO TAGLIA",
-            "line2": "GRATUITO"
+            "line2": "GRATUITO",
+            "hide_on_mobile": true
           }
         },
         "trust_warranty": {

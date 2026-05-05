@@ -20,7 +20,7 @@
     {%- if section.blocks.size > 0 -%}
       {%- capture items_html -%}
         {%- for block in section.blocks -%}
-          <li class="lp-navbar__item" {{ block.shopify_attributes }}>
+          <li class="lp-navbar__item{% if block.settings.hide_on_mobile %} lp-navbar__item--desktop-only{% endif %}" {{ block.shopify_attributes }}>
             <span class="lp-navbar__icon" aria-hidden="true">
               {%- case block.settings.icon -%}
                 {%- when 'truck' -%}
@@ -52,11 +52,6 @@
       <div class="lp-navbar__marquee" aria-label="Vantaggi">
         <ul class="lp-navbar__track" role="list">
           {{ items_html }}
-          <li class="lp-navbar__clones" aria-hidden="true">
-            <ul class="lp-navbar__clones-inner" role="presentation">
-              {{ items_html }}
-            </ul>
-          </li>
         </ul>
       </div>
     {%- endif -%}
@@ -74,23 +69,24 @@
 
 .lp-navbar__inner {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  padding: 14px 0;
+  padding: 10px 14px;
   box-sizing: border-box;
 }
 
 .lp-navbar__logo-wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 16px;
+  justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .lp-navbar__logo {
   display: block;
-  max-height: var(--lp-navbar-logo-h, 56px);
+  max-height: calc(var(--lp-navbar-logo-h, 56px) * 0.7);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -105,10 +101,9 @@
 }
 
 .lp-navbar__marquee {
-  width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .lp-navbar__track {
@@ -117,43 +112,22 @@
   padding: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   flex-wrap: nowrap;
-  width: max-content;
-  animation: lp-navbar-marquee 22s linear infinite;
-  will-change: transform;
-}
-
-.lp-navbar__track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes lp-navbar-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lp-navbar__track { animation: none; }
+  gap: 10px;
 }
 
 .lp-navbar__item {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   color: #fff;
   flex-shrink: 0;
-  margin-inline-end: 28px;
 }
 
-.lp-navbar__clones {
-  display: contents;
-}
-
-.lp-navbar__clones-inner {
-  display: contents;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Mobile: hide items flagged desktop-only */
+.lp-navbar__item--desktop-only {
+  display: none;
 }
 
 .lp-navbar__icon {
@@ -164,23 +138,23 @@
   flex-shrink: 0;
 }
 .lp-navbar__icon svg {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
 .lp-navbar__text {
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .lp-navbar__line1,
 .lp-navbar__line2 {
   font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #fff;
   white-space: nowrap;
@@ -188,9 +162,6 @@
 
 @media (min-width: 750px) {
   .lp-navbar__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     gap: 32px;
     padding: 18px 32px;
     max-width: 1400px;
@@ -199,27 +170,14 @@
   .lp-navbar__logo {
     max-height: calc(var(--lp-navbar-logo-h, 56px) + 8px);
   }
-  .lp-navbar__logo-wrap {
-    padding: 0;
-  }
-  .lp-navbar__marquee {
-    width: auto;
-    overflow: visible;
-    margin-inline-end: -40px;
-    -webkit-mask-image: none;
-            mask-image: none;
+  .lp-navbar__item--desktop-only {
+    display: inline-flex;
   }
   .lp-navbar__track {
-    width: auto;
-    animation: none;
-    transform: none;
-  }
-  .lp-navbar__clones {
-    display: none;
+    gap: 40px;
   }
   .lp-navbar__item {
     gap: 12px;
-    margin-inline-end: 40px;
   }
   .lp-navbar__icon svg {
     width: 30px;
@@ -234,11 +192,8 @@
 }
 
 @media (min-width: 1100px) {
-  .lp-navbar__marquee {
-    margin-inline-end: -56px;
-  }
-  .lp-navbar__item {
-    margin-inline-end: 56px;
+  .lp-navbar__track {
+    gap: 56px;
   }
 }
 
@@ -292,6 +247,12 @@
           "id": "line2",
           "label": "Riga 2",
           "default": "GRATUITA"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_on_mobile",
+          "label": "Nascondi su mobile",
+          "default": false
         }
       ]
     }
@@ -300,9 +261,9 @@
     {
       "name": "LP — Navbar",
       "blocks": [
-        { "type": "trust_item", "settings": { "icon": "truck",  "line1": "SPEDIZIONE",   "line2": "GRATUITA" } },
-        { "type": "trust_item", "settings": { "icon": "swap",   "line1": "CAMBIO TAGLIA","line2": "GRATUITO" } },
-        { "type": "trust_item", "settings": { "icon": "shield", "line1": "GARANZIA",     "line2": "3 ANNI" } }
+        { "type": "trust_item", "settings": { "icon": "truck",  "line1": "SPEDIZIONE",   "line2": "GRATUITA", "hide_on_mobile": false } },
+        { "type": "trust_item", "settings": { "icon": "swap",   "line1": "CAMBIO TAGLIA","line2": "GRATUITO", "hide_on_mobile": true } },
+        { "type": "trust_item", "settings": { "icon": "shield", "line1": "GARANZIA",     "line2": "3 ANNI",   "hide_on_mobile": false } }
       ]
     }
   ]
