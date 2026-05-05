@@ -309,7 +309,7 @@
           "settings": {
             "title": "PRENDI UNA SOLETTA INTERNA",
             "text": "Rimuovi la soletta interna di una scarpa che usi abitualmente.",
-            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta_cm.png?v=1777976337"
+            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta.png?v=1777976336"
           }
         },
         "step_2": {
@@ -341,8 +341,8 @@
       "settings": {
         "eyebrow": "IL CONSIGLIO DEL DR. KAMPES",
         "heading": "TROVA LA TUA TAGLIA PERFETTA",
-        "hero_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta.png?v=1777976336",
-        "hero_caption": "LUNGHEZZA INTERNA"
+        "hero_image_url": "",
+        "hero_caption": ""
       }
     },
     "lp_reviews": {
