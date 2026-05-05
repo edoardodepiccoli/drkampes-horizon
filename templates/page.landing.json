@@ -126,8 +126,8 @@
           "type": "benefit",
           "settings": {
             "icon": "slipper",
-            "title": "Comfort vero",
-            "text": "Effetto pantofola ai tuoi piedi"
+            "title": "Comfort vero:",
+            "text": "effetto pantofola"
           }
         }
       },
