@@ -1179,10 +1179,10 @@
 .hps__trust-item {
   display: grid;
   grid-template-columns: 22px 1fr;
-  grid-template-rows: auto;
-  column-gap: 10px;
-  row-gap: 0;
-  align-items: center;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  row-gap: 1px;
+  align-items: start;
   padding: 10px 14px;
   text-align: left;
   font-family: 'Inter', sans-serif;
@@ -1191,11 +1191,17 @@
 .hps__trust-item:last-child { border-bottom: none; }
 
 .hps__trust-ico {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
   width: 20px;
   height: 20px;
   color: #1a1a1a;
   flex-shrink: 0;
 }
+
+.hps__trust-item strong { grid-column: 2; grid-row: 1; }
+.hps__trust-item span { grid-column: 2; grid-row: 2; }
 
 .hps__trust-item strong {
   font-size: 0.74rem;
