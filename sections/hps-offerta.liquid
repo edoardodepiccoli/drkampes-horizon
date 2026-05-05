@@ -159,12 +159,18 @@
         <div class="hps__opt">
           <div class="hps__size-row">
             <p class="hps__opt-lbl">TAGLIA: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
-            <button type="button" class="hps__size-guide" id="hps-size-{{ section.id }}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v8H3z"/><path d="M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
-              <span>Guida alle taglie</span>
-            </button>
+            <div class="hps__size-row-actions">
+              <button type="button" class="hps__size-guide" id="hps-size-{{ section.id }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v8H3z"/><path d="M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
+                <span>Guida alle taglie</span>
+              </button>
+              <button type="button" class="hps__size-guide" id="hps-tech-{{ section.id }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+                <span>Specifiche</span>
+              </button>
+            </div>
           </div>
-          <div class="hps__pills" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
+          <div class="hps__pills hps__pills--sizes" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
             {%- for value in size_option.values -%}
               {%- assign pill_avail = false -%}
               {%- for variant in product.variants -%}
@@ -219,72 +225,6 @@
         <strong>PAGA IN 3 RATE SENZA INTERESSI</strong>
         <span>Scegli Klarna o PayPal al checkout.</span>
       </div>
-    </div>
-
-    <div class="hps-usp" id="hps-usp-wrap-{{ section.id }}">
-      <ul class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
-
-        <li class="hps-usp__item" style="--i:0">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
-            <p class="hps-usp__dsc">Aggiungiamo un anno in pi&ugrave; ai 2 anni previsti dalla legge. Valutazione, riparazione o sostituzione gratis.</p>
-          </div>
-        </li>
-
-        <li class="hps-usp__item" style="--i:1">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATIS</p>
-            <p class="hps-usp__dsc">Hai la suola consumata? Possiamo sostituirla mantenendo il DPI. Valutazione e manutenzione gratis.</p>
-          </div>
-        </li>
-
-        <li class="hps-usp__item" style="--i:2">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">CAMBIO TAGLIA GRATIS</p>
-            <p class="hps-usp__dsc">Sbagli numero? Nessun problema: ti mando il corriere a ritirare la prima e ti spedisco la seconda, gratis.</p>
-          </div>
-        </li>
-
-        <li class="hps-usp__item" style="--i:3">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
-            <p class="hps-usp__dsc">Le provi, le cammini per 14 giorni. Non ti convincono? Rimandamele e ti restituisco tutto.</p>
-          </div>
-        </li>
-
-        <li class="hps-usp__item" style="--i:4">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">SPEDIZIONE 48/72 ORE</p>
-            <p class="hps-usp__dsc">Ordini prima delle 18:00, spedisco il giorno dopo. Corriere tracciato con conferma via SMS.</p>
-          </div>
-        </li>
-
-        <li class="hps-usp__item" style="--i:5">
-          <div class="hps-usp__icon-wrap" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          </div>
-          <div class="hps-usp__body">
-            <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
-            <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese.</p>
-          </div>
-        </li>
-
-      </ul>
     </div>
 
   </div>
@@ -408,7 +348,7 @@
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
   <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">
-    <span class="hps-cta-bar__label">{{ section.settings.cta_label | default: 'ACQUISTA ORA' }}</span>
+    <span class="hps-cta-bar__label">{{ section.settings.cta_label | default: 'PRENOTA ORA LA TUA TAGLIA' }}</span>
   </button>
 </div>
 
@@ -696,16 +636,6 @@
 
   if (initV) filterGallery(initV.id);
 
-  var uspWrap = document.getElementById('hps-usp-wrap-' + sid);
-  if (uspWrap) {
-    new IntersectionObserver(function (entries, obs) {
-      if (entries[0].isIntersecting) {
-        uspWrap.classList.add('hps-usp--in');
-        obs.disconnect();
-      }
-    }, { threshold: 0.15 }).observe(uspWrap);
-  }
-
   if (viewersEl && viewerMin > 0 && viewerMax >= viewerMin) {
     var viewerCount = viewerMin + Math.floor(Math.random() * (viewerMax - viewerMin + 1));
     var viewerNumEl = viewersEl.querySelector('.hps-viewers-n');
@@ -763,8 +693,8 @@
 .hps__head {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 16px 18px 10px;
+  gap: 4px;
+  padding: 4px 18px 6px;
 }
 
 .hps__title {
@@ -865,7 +795,7 @@
   flex-direction: column;
   min-height: 0;
   background: transparent;
-  padding: 4px 0 8px;
+  padding: 4px 0 0;
 }
 
 .hps__main {
@@ -890,6 +820,7 @@
   object-fit: contain;
   display: block;
   mix-blend-mode: multiply;
+  transform: scale(1.12);
 }
 
 .hps__nav {
@@ -955,15 +886,15 @@
 .hps__details {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 14px 18px 10px;
+  gap: 12px;
+  padding: 16px 18px 10px;
   background: transparent;
 }
 
 /* Form */
-.hps__form { display: flex; flex-direction: column; gap: 12px; }
+.hps__form { display: flex; flex-direction: column; gap: 10px; }
 
-.hps__opt { display: flex; flex-direction: column; gap: 8px; }
+.hps__opt { display: flex; flex-direction: column; gap: 6px; }
 
 .hps__opt-lbl {
   font-family: 'Inter', sans-serif;
@@ -999,6 +930,13 @@
   justify-content: space-between;
   gap: 8px;
   flex-wrap: nowrap;
+}
+
+.hps__size-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .hps__size-guide {
@@ -1042,38 +980,41 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-/* ── Shared subtle 3D gold button (also used by lp-hero CTA) ── */
+/* ── Shared subtle 3D gold button (matches lp-hero CTA) ── */
 .hps__bn,
 .hps__atc,
 .hps-cta-bar .hps-cta--before,
 .hps-cta-bar .hps-cta--after {
   position: relative;
   width: 100%;
-  padding: 16px 16px;
+  padding: 16px 14px;
   height: auto;
   background: linear-gradient(180deg, var(--lp-gold-light) 0%, var(--lp-gold) 60%, var(--lp-gold-dark) 100%);
   color: #1a1a1a;
   border: none;
   border-radius: 10px;
-  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 900;
   letter-spacing: 0.04em;
-  cursor: pointer;
   text-transform: uppercase;
-  font-family: 'Archivo Black', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
   line-height: 1.15;
   transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.15s ease;
   box-shadow:
     inset 0 1px 0 rgba(255, 220, 130, 0.55),
     inset 0 -1px 0 rgba(120, 75, 0, 0.22),
-    0 2px 6px rgba(0, 0, 0, 0.1),
-    0 1px 2px rgba(0, 0, 0, 0.06);
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.1);
   text-shadow: 0 1px 0 rgba(255, 220, 130, 0.3);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -1110,6 +1051,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
   gap: 8px;
+}
+
+.hps__pills--sizes {
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .hps__pill {
@@ -1178,9 +1123,9 @@
 
 .hps__trust-item {
   display: grid;
-  grid-template-columns: 22px 1fr;
+  grid-template-columns: 32px 1fr;
   grid-template-rows: auto auto;
-  column-gap: 12px;
+  column-gap: 14px;
   row-gap: 1px;
   align-items: start;
   padding: 10px 14px;
@@ -1194,8 +1139,8 @@
   grid-column: 1;
   grid-row: 1 / span 2;
   align-self: center;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   color: #1a1a1a;
   flex-shrink: 0;
 }
@@ -1221,78 +1166,6 @@
   letter-spacing: 0;
   text-transform: none;
   margin-top: 2px;
-}
-
-/* USP list — light theme */
-.hps-usp {
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 4px;
-  overflow: hidden;
-  background: #fff;
-}
-
-.hps-usp__list {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.hps-usp__item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--i, 0) * 0.07s);
-}
-.hps-usp__item:last-child { border-bottom: none; }
-.hps-usp--in .hps-usp__item {
-  opacity: 1;
-  transform: none;
-}
-
-.hps-usp__icon-wrap {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1.5px solid var(--lp-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hps-usp__icon-wrap svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--lp-gold);
-  stroke-width: 1.8;
-}
-
-.hps-usp__body { flex: 1; min-width: 0; }
-
-.hps-usp__ttl {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 900;
-  color: #111;
-  margin: 0 0 3px;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.hps-usp__dsc {
-  font-size: 0.82rem;
-  color: #555;
-  margin: 0;
-  line-height: 1.5;
 }
 
 /* Popups */
@@ -1528,11 +1401,12 @@
   line-height: 1;
 }
 .hps-cta-bar__label {
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 900;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
+  white-space: nowrap;
 }
 
 /* Desktop */
@@ -1604,7 +1478,6 @@
   .hps__trust-item span { font-size: 0.78rem; }
   .hps-pop { align-items: center; }
   .hps-pop__box { width: 480px; max-height: calc(100vh - 40px); }
-  .hps-usp { margin: 0; }
   .hps-tshirt-img-wrap { height: 200px; aspect-ratio: unset; }
   .hps-tshirt-img { height: 100%; }
   .hps__bn,
@@ -1612,12 +1485,13 @@
   .hps-cta-bar .hps-cta--before,
   .hps-cta-bar .hps-cta--after {
     padding: 22px 26px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    border-radius: 12px;
   }
   .hps__bn-lock,
   .hps__bn-arrow {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -1631,8 +1505,9 @@
   display: flex;
   align-items: stretch;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-  background: #000;
-  border-top: 1px solid rgba(212,160,23,0.25);
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
   opacity: 0;
   transform: translateY(100%);
   pointer-events: none;
@@ -1651,6 +1526,15 @@
   height: 52px;
   padding: 0 22px;
   text-decoration: none;
+  color: #1a1a1a;
+}
+.hps-cta-bar .hps-cta--before,
+.hps-cta-bar .hps-cta--after {
+  text-shadow: none;
+}
+.hps-cta-bar__label,
+.hps-cta-bar__price {
+  color: #1a1a1a;
 }
 
 .hps-cta-bar .hps-cta--after {
