@@ -352,6 +352,9 @@
       },
       "order_summary": {
         "vat_label_html": "Di cui {{ amount }} di IVA"
+      },
+      "payment_gateway": {
+        "bank_deposit_label": "Bonifico bancario"
       }
     }
   }
