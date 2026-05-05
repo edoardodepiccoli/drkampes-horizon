@@ -1,0 +1,386 @@
+{%- comment -%}
+  lp-size-guide.liquid
+  Light section: eyebrow → H2 → central illustration → 4 numbered step cards → optional CTA.
+  CSS tokens: var(--lp-*) only. No hardcoded colors/sizes.
+{%- endcomment -%}
+
+<section class="lp-size-guide">
+  <div class="lp-size-guide__inner">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="lp-size-guide__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    <h2 class="lp-size-guide__heading lp-sec__h2">{{ section.settings.heading }}</h2>
+
+    <figure class="lp-size-guide__illustration">
+      {%- if section.settings.illustration_image != blank -%}
+        {{ section.settings.illustration_image | image_url: width: 1200 | image_tag:
+            class: 'lp-size-guide__illustration-img',
+            loading: 'lazy',
+            widths: '600,900,1200',
+            sizes: '(min-width:750px) 720px, 100vw',
+            alt: section.settings.illustration_image.alt | default: '' }}
+      {%- else -%}
+        <div class="lp-size-guide__illustration-placeholder">Carica illustrazione (scarpa + soletta + righello)</div>
+      {%- endif -%}
+      {%- if section.settings.illustration_caption != blank -%}
+        <figcaption class="lp-size-guide__illustration-caption">{{ section.settings.illustration_caption }}</figcaption>
+      {%- endif -%}
+    </figure>
+
+    {%- if section.blocks.size > 0 -%}
+      <ol class="lp-size-guide__steps">
+        {%- for block in section.blocks -%}
+          <li class="lp-step" {{ block.shopify_attributes }}>
+            <span class="lp-step__number" aria-hidden="true">{{ block.settings.number }}</span>
+            <div class="lp-step__icon">
+              {%- if block.settings.icon_image != blank -%}
+                {{ block.settings.icon_image | image_url: width: 160 | image_tag:
+                    class: 'lp-step__icon-img',
+                    loading: 'lazy',
+                    widths: '80,120,160',
+                    alt: '' }}
+              {%- else -%}
+                <span class="lp-step__icon-placeholder">Icona step</span>
+              {%- endif -%}
+            </div>
+            <h3 class="lp-step__title">{{ block.settings.title }}</h3>
+            <p class="lp-step__text">{{ block.settings.text }}</p>
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a class="lp-cta lp-size-guide__cta" href="{{ section.settings.cta_url | default: '#acquista' }}">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+
+/* ============================================================================
+   lp-size-guide — Size Guide Section (light surface)
+   Tokens: var(--lp-*) only. No hardcoded values.
+   ============================================================================ */
+
+.lp-size-guide {
+  background: var(--lp-color-white);
+  color: var(--lp-color-text-on-light);
+  padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
+  font-family: var(--lp-font-body);
+}
+
+.lp-size-guide__inner {
+  max-width: var(--lp-section-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Eyebrow — inherits shared .lp-sec__eyebrow styles, no override needed */
+.lp-size-guide__eyebrow {
+  display: block;
+  text-align: center;
+}
+
+/* H2 — inherits shared .lp-sec__h2 styles */
+.lp-size-guide__heading {
+  text-align: center;
+  margin-bottom: var(--lp-space-6);
+}
+
+/* ----------------------------------------------------------------------------
+   Illustration
+   ---------------------------------------------------------------------------- */
+.lp-size-guide__illustration {
+  margin: var(--lp-space-5) 0;
+  padding: 0;
+  text-align: center;
+}
+
+.lp-size-guide__illustration-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.lp-size-guide__illustration-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed var(--lp-color-divider-light-strong);
+  padding: var(--lp-space-9);
+  font-size: var(--lp-fs-xs);
+  color: var(--lp-color-text-on-light-faint);
+  font-family: var(--lp-font-body);
+  text-align: center;
+}
+
+.lp-size-guide__illustration-caption {
+  display: block;
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  color: var(--lp-color-gold);
+  text-align: center;
+  margin-top: var(--lp-space-2);
+}
+
+/* ----------------------------------------------------------------------------
+   Step cards grid
+   ---------------------------------------------------------------------------- */
+.lp-size-guide__steps {
+  list-style: none;
+  margin: var(--lp-space-7) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lp-space-5);
+}
+
+/* ----------------------------------------------------------------------------
+   Individual step card
+   ---------------------------------------------------------------------------- */
+.lp-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--lp-space-3);
+  background: var(--lp-color-surface-card);
+  padding: var(--lp-space-4);
+  border-left: 3px solid var(--lp-color-gold);
+  box-shadow: var(--lp-shadow-card);
+}
+
+/* Gold numbered circle */
+.lp-step__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--lp-radius-circle);
+  background: var(--lp-color-gold);
+  color: var(--lp-color-white);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-md);
+  font-weight: var(--lp-fw-black);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Icon area */
+.lp-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.lp-step__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.lp-step__icon-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: var(--lp-fs-micro);
+  color: var(--lp-color-text-on-light-faint);
+  border: 1px dashed var(--lp-color-divider-light-strong);
+  text-align: center;
+}
+
+/* Step title */
+.lp-step__title {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-sm);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  color: var(--lp-color-text-on-light);
+  line-height: var(--lp-lh-snug);
+  margin: 0;
+}
+
+/* Step body text */
+.lp-step__text {
+  font-family: var(--lp-font-body);
+  font-size: var(--lp-fs-xs);
+  color: var(--lp-color-text-on-light-mute);
+  line-height: var(--lp-lh-base);
+  margin: 0;
+}
+
+/* Optional CTA */
+.lp-size-guide__cta {
+  margin-top: var(--lp-space-7);
+}
+
+/* ============================================================================
+   DESKTOP (≥750px)
+   ============================================================================ */
+@media (min-width: 750px) {
+
+  .lp-size-guide__inner {
+    max-width: var(--lp-section-max-width-md);
+  }
+
+  .lp-size-guide__illustration-img {
+    aspect-ratio: 16 / 9;
+    max-height: 460px;
+  }
+
+  .lp-size-guide__illustration-placeholder {
+    aspect-ratio: 16 / 9;
+    max-height: 460px;
+  }
+
+  /* 4-col grid on desktop */
+  .lp-size-guide__steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Larger number circle */
+  .lp-step__number {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: var(--lp-fs-lg);
+  }
+
+  /* Larger icon on desktop */
+  .lp-step__icon {
+    width: 80px;
+    height: 80px;
+  }
+
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Guida alle Taglie",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etichetta sopra il titolo (eyebrow)",
+      "default": "IL CONSIGLIO DR.KAMPES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo sezione",
+      "default": "TROVA LA TUA TAGLIA PERFETTA"
+    },
+    {
+      "type": "image_picker",
+      "id": "illustration_image",
+      "label": "Illustrazione (scarpa + soletta + righello)"
+    },
+    {
+      "type": "text",
+      "id": "illustration_caption",
+      "label": "Didascalia illustrazione",
+      "default": "LUNGHEZZA INTERNA"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo pulsante CTA (lascia vuoto per nascondere)"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Link pulsante CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Numero step",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo step"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testo step"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icona step (opzionale)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "LP — Guida alle Taglie",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "title": "PRENDI UNA SOLETTA INTERNA",
+            "text": "Rimuovi la soletta interna da una delle tue scarpe abituali."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "2",
+            "title": "MISURA LA LUNGHEZZA",
+            "text": "Misura la lunghezza della soletta da punta a tallone in centimetri."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "3",
+            "title": "TROVA LA TUA TAGLIA IN TABELLA",
+            "text": "Usa la lunghezza in cm per trovare la tua taglia nella tabella sotto."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "4",
+            "title": "SCEGLI LA TUA TAGLIA PERFETTA",
+            "text": "Scegli la taglia che corrisponde al tuo massimo comfort."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
