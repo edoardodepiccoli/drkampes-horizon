@@ -677,11 +677,17 @@
 
 {% stylesheet %}
 
-.hps {
+.hps,
+.hps-cta-bar,
+.hps-pop,
+.hps__viewer-toast {
   --lp-gold: #D4A017;
   --lp-gold-light: #E5B433;
   --lp-gold-dark: #B7860D;
   --lp-gold-soft: rgba(212, 160, 23, 0.5);
+}
+
+.hps {
   display: flex;
   flex-direction: column;
   background: #f7f7f6;
@@ -1465,7 +1471,7 @@
   .hps__details {
     grid-area: details;
     overflow-y: visible;
-    padding: 0;
+    padding: 24px 0 0;
     gap: 22px;
     min-height: unset;
     min-width: 0;
