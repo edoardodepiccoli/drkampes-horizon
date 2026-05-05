@@ -1,56 +1,77 @@
-<section class="lp-navbar" style="--lp-navbar-logo-h: {{ section.settings.logo_max_height | default: 40 }}px;">
-  <div class="lp-navbar__logo-row">
-    {%- if section.settings.logo != blank -%}
-      {{ section.settings.logo
-         | image_url: width: 480
-         | image_tag:
-             class: 'lp-navbar__logo',
-             loading: 'eager',
-             fetchpriority: 'high',
-             widths: '180,240,320,480',
-             sizes: '(min-width:750px) 220px, 160px',
-             alt: section.settings.logo.alt | default: shop.name
-      }}
-    {%- else -%}
-      <span class="lp-navbar__logo-fallback">{{ shop.name }}</span>
-    {%- endif -%}
-  </div>
+<header class="lp-navbar" style="--lp-navbar-logo-h: {{ section.settings.logo_max_height | default: 40 }}px;">
+  <div class="lp-navbar__inner">
 
-  {%- if section.blocks.size > 0 -%}
-    <div class="lp-navbar__marquee" aria-label="Vantaggi offerta">
-      <div class="lp-navbar__track">
-        {%- for n in (1..2) -%}
-          {%- for block in section.blocks -%}
-            <span class="lp-navbar__item" {{ block.shopify_attributes }}>
-              <svg class="lp-navbar__check" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>{{ block.settings.text }}</span>
+    <a class="lp-navbar__logo-link" href="{{ section.settings.logo_url | default: '/' }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 480 | image_tag:
+            class: 'lp-navbar__logo',
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '180,240,320,480',
+            sizes: '(min-width:750px) 220px, 160px',
+            alt: section.settings.logo.alt | default: shop.name }}
+      {%- else -%}
+        <span class="lp-navbar__logo-fallback">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-navbar__items lp-navbar__items--{{ section.settings.mobile_layout | default: 'stack' }}">
+        {%- for block in section.blocks -%}
+          <li class="lp-navbar__item" {{ block.shopify_attributes }}>
+            <span class="lp-navbar__item-icon" aria-hidden="true">
+              {%- if block.settings.icon_image != blank -%}
+                {{ block.settings.icon_image | image_url: width: 80 | image_tag:
+                    class: 'lp-navbar__item-icon-img',
+                    loading: 'eager',
+                    widths: '40,60,80',
+                    alt: '' }}
+              {%- else -%}
+                {%- case block.settings.icon_preset -%}
+                  {%- when 'tshirt' -%}
+                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l4-4h8l4 4-3 3v11H7V10L4 7z"/><path d="M9 3a3 3 0 006 0"/></svg>
+                  {%- when 'delivery' -%}
+                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  {%- when 'shield' -%}
+                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  {%- when 'check' -%}
+                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                {%- endcase -%}
+              {%- endif -%}
             </span>
-            <span class="lp-navbar__sep" aria-hidden="true">&bull;</span>
-          {%- endfor -%}
+            <span class="lp-navbar__item-label">{{ block.settings.label }}</span>
+          </li>
         {%- endfor -%}
-      </div>
-    </div>
-  {%- endif -%}
-</section>
+      </ul>
+    {%- endif -%}
+
+  </div>
+</header>
 
 {% stylesheet %}
 
 .lp-navbar {
   width: 100%;
-  background: #000;
-  display: block;
+  background: var(--lp-color-black);
   box-sizing: border-box;
 }
 
-.lp-navbar__logo-row {
+.lp-navbar__inner {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 14px 16px;
-  background: #000;
+  flex-direction: column;
+  gap: var(--lp-space-3);
+  padding: var(--lp-space-3) var(--lp-section-pad-x);
   box-sizing: border-box;
-  margin: 0;
+  width: 100%;
+}
+
+/* ---- Logo ---- */
+
+.lp-navbar__logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .lp-navbar__logo {
@@ -60,86 +81,113 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  margin: 0 auto;
 }
 
 .lp-navbar__logo-fallback {
-  font-family: 'Archivo Black', sans-serif;
-  color: #fff;
-  font-size: 1.2rem;
-  letter-spacing: 0.04em;
+  font-family: var(--lp-font-display);
+  color: var(--lp-color-text-on-dark);
+  font-size: var(--lp-fs-lg);
+  letter-spacing: var(--lp-ls-wide);
   text-transform: uppercase;
 }
 
-.lp-navbar__marquee {
-  background: #F5C200;
-  color: #111;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  padding: 8px 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
+/* ---- Items list ---- */
 
-.lp-navbar__track {
+.lp-navbar__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  align-items: center;
-  gap: 18px;
-  white-space: nowrap;
-  width: max-content;
-  animation: lp-navbar-scroll 28s linear infinite;
-  will-change: transform;
+  flex-direction: row;
+  gap: var(--lp-space-4);
 }
 
-@keyframes lp-navbar-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* stack modifier: 3-col grid on mobile */
+.lp-navbar__items--stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--lp-space-3);
 }
 
-.lp-navbar__marquee:hover .lp-navbar__track {
-  animation-play-state: paused;
+/* inline modifier: single row on mobile */
+.lp-navbar__items--inline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--lp-space-3);
 }
+
+/* ---- Individual item ---- */
 
 .lp-navbar__item {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #111;
-  line-height: 1.2;
-  flex-shrink: 0;
+  gap: var(--lp-space-1);
 }
 
-.lp-navbar__check {
-  width: 14px;
-  height: 14px;
-  stroke: #111;
-  flex-shrink: 0;
-}
-
-.lp-navbar__sep {
-  color: rgba(0,0,0,0.45);
-  font-size: 0.85rem;
+.lp-navbar__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+}
+
+.lp-navbar__item-icon-svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--lp-color-gold);
   flex-shrink: 0;
 }
+
+.lp-navbar__item-icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.lp-navbar__item-label {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  color: var(--lp-color-text-on-dark);
+  line-height: var(--lp-lh-snug);
+  text-align: center;
+}
+
+/* ---- Desktop (≥750px): single row, logo left / items right ---- */
 
 @media (min-width: 750px) {
-  .lp-navbar__logo-row {
-    padding: 18px 16px;
+  .lp-navbar__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--lp-space-7);
+    padding: var(--lp-space-4) var(--lp-section-pad-x-md);
   }
-  .lp-navbar__marquee {
-    padding: 10px 0;
+
+  .lp-navbar__items,
+  .lp-navbar__items--stack,
+  .lp-navbar__items--inline {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: unset;
+    gap: var(--lp-space-7);
   }
+
   .lp-navbar__item {
-    font-size: 0.85rem;
+    align-items: center;
   }
-  .lp-navbar__check {
-    width: 15px;
-    height: 15px;
+
+  .lp-navbar__item-icon-svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lp-navbar__item-icon-img {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -152,25 +200,58 @@
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo (centrato)"
+      "label": "Logo"
     },
     {
       "type": "number",
       "id": "logo_max_height",
       "label": "Altezza max logo (px)",
       "default": 40
+    },
+    {
+      "type": "url",
+      "id": "logo_url",
+      "label": "URL logo"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Layout mobile",
+      "options": [
+        { "value": "stack", "label": "Griglia 3 colonne" },
+        { "value": "inline", "label": "Riga orizzontale" }
+      ],
+      "default": "stack"
     }
   ],
   "blocks": [
     {
-      "type": "trust_item",
-      "name": "Trust item",
-      "limit": 8,
+      "type": "nav_item",
+      "name": "Elemento navbar",
+      "limit": 4,
       "settings": [
         {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icona (immagine, opzionale)"
+        },
+        {
+          "type": "select",
+          "id": "icon_preset",
+          "label": "Icona (preset)",
+          "options": [
+            { "value": "tshirt",   "label": "T-shirt" },
+            { "value": "delivery", "label": "Consegna" },
+            { "value": "shield",   "label": "Scudo / Garanzia" },
+            { "value": "check",    "label": "Spunta" },
+            { "value": "none",     "label": "Nessuna" }
+          ],
+          "default": "shield"
+        },
+        {
           "type": "text",
-          "id": "text",
-          "label": "Testo (es. T-shirt GRATIS)",
+          "id": "label",
+          "label": "Testo",
           "default": "Vantaggio"
         }
       ]
@@ -180,9 +261,9 @@
     {
       "name": "LP — Navbar",
       "blocks": [
-        { "type": "trust_item", "settings": { "text": "T-shirt GRATIS" } },
-        { "type": "trust_item", "settings": { "text": "Spedizione rapida GRATIS" } },
-        { "type": "trust_item", "settings": { "text": "Valido fino al 30 giugno" } }
+        { "type": "nav_item", "settings": { "icon_preset": "tshirt",   "label": "T-SHIRT GRATIS" } },
+        { "type": "nav_item", "settings": { "icon_preset": "delivery", "label": "SPEDIZIONE GRATIS" } },
+        { "type": "nav_item", "settings": { "icon_preset": "shield",   "label": "GARANZIA 3 ANNI" } }
       ]
     }
   ]
