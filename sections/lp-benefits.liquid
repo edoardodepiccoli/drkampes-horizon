@@ -277,10 +277,31 @@
 
 /* ── Cabin white card ── */
 .lp-benefits__cabin {
-  background: #fff;
+  position: relative;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(212,160,23,0.06) 0%, rgba(212,160,23,0) 60%),
+    linear-gradient(180deg, #ffffff 0%, #faf6ec 100%);
   border-radius: 14px;
-  padding: 14px 10px 14px;
+  padding: 22px 14px 18px;
   color: #1a1a1a;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 12px 32px rgba(0,0,0,0.18),
+    0 2px 6px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.lp-benefits__cabin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64%;
+  max-width: 220px;
+  height: 3px;
+  background: var(--lp-gold);
+  border-radius: 0 0 4px 4px;
 }
 
 .lp-benefits__cabin-heading {
@@ -292,9 +313,18 @@
   text-transform: uppercase;
   text-align: center;
   color: #000;
-  margin: 0 auto 10px;
+  margin: 0 auto 4px;
   max-width: 22ch;
   text-wrap: balance;
+}
+
+.lp-benefits__cabin-heading::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--lp-gold);
+  margin: 8px auto 0;
 }
 
 .lp-benefits__cabin-grid {
@@ -302,6 +332,7 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 0;
   row-gap: 0;
+  margin-top: 10px;
 }
 
 .lp-cabin-card {
@@ -310,28 +341,45 @@
   align-items: center;
   text-align: center;
   gap: 4px;
-  padding: 8px 6px;
+  padding: 12px 8px;
   position: relative;
+  transition: transform 0.2s ease;
+}
+
+.lp-cabin-card:hover {
+  transform: translateY(-2px);
 }
 
 .lp-cabin-card:nth-child(odd) {
-  border-right: 1px solid rgba(0,0,0,0.12);
+  border-right: 1px solid rgba(0,0,0,0.08);
 }
 
 .lp-cabin-card:nth-child(-n+2) {
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .lp-cabin-card__icon {
+  position: relative;
   width: 64px;
   height: 64px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+}
+
+.lp-cabin-card__icon::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.18) 0%, rgba(212,160,23,0) 70%);
+  z-index: 0;
 }
 
 .lp-cabin-card__icon img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: contain;
