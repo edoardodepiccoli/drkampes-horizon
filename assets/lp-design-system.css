@@ -1,0 +1,285 @@
+/* ============================================================================
+   Dr Kampes — LP Design System
+   Single source of truth for all landing page visual tokens.
+   Section CSS may consume var(--lp-*) only; never hardcode color/size/spacing.
+   ============================================================================ */
+
+:root {
+
+  /* --------------------------------------------------------------------------
+     COLOR — BRAND
+     Primary is rich GOLD (sampled from new design comps:
+     1 hero.png CTA + offer badge, 6 garanzie.png ribbons).
+     Distinct from the legacy bold #F5C200; do not reintroduce that hex.
+     -------------------------------------------------------------------------- */
+  --lp-color-gold:               #C9A227;
+  --lp-color-gold-hover:         #A8861E;
+  --lp-color-gold-soft:          rgba(201, 162, 39, 0.55);
+  --lp-color-gold-faint:         rgba(201, 162, 39, 0.18);
+
+  /* --------------------------------------------------------------------------
+     COLOR — NEUTRALS (DARK SURFACES)
+     -------------------------------------------------------------------------- */
+  --lp-color-black:              #000;
+  --lp-color-surface-dark:       #0d0d0d;
+  --lp-color-surface-darker:     #0a0a0a;
+  --lp-color-surface-elev:       #161616;
+  --lp-color-divider-dark:       rgba(255, 255, 255, 0.08);
+  --lp-color-divider-dark-strong: rgba(255, 255, 255, 0.18);
+
+  /* --------------------------------------------------------------------------
+     COLOR — NEUTRALS (LIGHT SURFACES)
+     -------------------------------------------------------------------------- */
+  --lp-color-white:              #fff;
+  --lp-color-surface-light:      #fafafa;
+  --lp-color-surface-card:       #f5f5f5;
+  --lp-color-divider-light:      rgba(0, 0, 0, 0.08);
+  --lp-color-divider-light-strong: rgba(0, 0, 0, 0.16);
+
+  /* --------------------------------------------------------------------------
+     COLOR — TEXT
+     -------------------------------------------------------------------------- */
+  --lp-color-text-on-dark:        #fff;
+  --lp-color-text-on-dark-mute:   rgba(255, 255, 255, 0.70);
+  --lp-color-text-on-dark-faint:  rgba(255, 255, 255, 0.55);
+  --lp-color-text-on-dark-dim:    rgba(255, 255, 255, 0.30);
+
+  --lp-color-text-on-light:       #111;
+  --lp-color-text-on-light-mute:  #555;
+  --lp-color-text-on-light-faint: #888;
+  --lp-color-text-on-light-dim:   rgba(0, 0, 0, 0.30);
+
+  /* --------------------------------------------------------------------------
+     COLOR — SEMANTIC
+     -------------------------------------------------------------------------- */
+  --lp-color-danger:             #e3252b;
+  --lp-color-danger-soft:        rgba(227, 37, 43, 0.18);
+
+  --lp-color-success:            #4ade80;
+  --lp-color-success-dark:       #2e7d32;
+  --lp-color-success-bg:         #14361a;
+  --lp-color-success-border:     #2e7d32;
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY
+     -------------------------------------------------------------------------- */
+  --lp-font-display:             'Archivo Black', 'Inter', system-ui, sans-serif;
+  --lp-font-body:                var(--font-body--family, 'Inter', system-ui, sans-serif);
+  --lp-font-heading:             var(--font-heading--family, var(--lp-font-display));
+
+  /* Size scale — mobile defaults (rem) */
+  --lp-fs-eyebrow:               0.67rem;
+  --lp-fs-micro:                 0.72rem;
+  --lp-fs-xs:                    0.78rem;
+  --lp-fs-sm:                    0.85rem;
+  --lp-fs-base:                  0.9rem;
+  --lp-fs-md:                    1rem;
+  --lp-fs-lg:                    1.15rem;
+  --lp-fs-xl:                    1.35rem;
+  --lp-fs-h3:                    1.45rem;
+  --lp-fs-h2:                    1.6rem;
+  --lp-fs-h1:                    1.8rem;
+  --lp-fs-price:                 2.4rem;
+
+  /* Weights */
+  --lp-fw-regular:               400;
+  --lp-fw-medium:                600;
+  --lp-fw-bold:                  700;
+  --lp-fw-black:                 900;
+
+  /* Line-heights */
+  --lp-lh-tight:                 1.1;
+  --lp-lh-snug:                  1.2;
+  --lp-lh-base:                  1.45;
+  --lp-lh-relaxed:               1.6;
+
+  /* Letter-spacing */
+  --lp-ls-tight:                 -0.01em;
+  --lp-ls-normal:                0;
+  --lp-ls-wide:                  0.05em;
+  --lp-ls-wider:                 0.08em;
+  --lp-ls-widest:                0.14em;
+
+  /* --------------------------------------------------------------------------
+     SPACING (4px base scale)
+     -------------------------------------------------------------------------- */
+  --lp-space-0:                  0;
+  --lp-space-1:                  4px;
+  --lp-space-2:                  8px;
+  --lp-space-3:                  12px;
+  --lp-space-4:                  16px;
+  --lp-space-5:                  20px;
+  --lp-space-6:                  24px;
+  --lp-space-7:                  32px;
+  --lp-space-8:                  40px;
+  --lp-space-9:                  48px;
+  --lp-space-10:                 56px;
+  --lp-space-11:                 64px;
+  --lp-space-12:                 80px;
+
+  /* Section padding / containers */
+  --lp-section-pad-x:            16px;
+  --lp-section-pad-y:            32px;
+  --lp-section-pad-x-md:         40px;
+  --lp-section-pad-y-md:         56px;
+  --lp-section-max-width:        580px;
+  --lp-section-max-width-md:     1100px;
+
+  /* --------------------------------------------------------------------------
+     RADIUS / SHADOWS / TRANSITIONS
+     Memory rule: border-radius is 0 for everything except circles.
+     -------------------------------------------------------------------------- */
+  --lp-radius-none:              0;
+  --lp-radius-circle:            50%;
+
+  --lp-shadow-card:              0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --lp-shadow-card-strong:       0 2px 6px rgba(0, 0, 0, 0.10), 0 12px 32px rgba(0, 0, 0, 0.12);
+  --lp-shadow-glow:              0 0 0 0 var(--lp-color-gold-soft);
+
+  --lp-transition-fast:          0.1s ease;
+  --lp-transition-base:          0.15s ease;
+  --lp-transition-slow:          0.3s ease;
+
+  /* --------------------------------------------------------------------------
+     CTA pulse animation duration / easing
+     -------------------------------------------------------------------------- */
+  --lp-cta-pulse-duration:       2.4s;
+}
+
+/* ============================================================================
+   DESKTOP TOKEN OVERRIDES (≥750px)
+   ============================================================================ */
+@media (min-width: 750px) {
+  :root {
+    --lp-fs-h1:                  2.4rem;
+    --lp-fs-h2:                  2rem;
+    --lp-fs-h3:                  1.6rem;
+    --lp-fs-price:               2.9rem;
+    --lp-section-pad-x:          var(--lp-section-pad-x-md);
+    --lp-section-pad-y:          var(--lp-section-pad-y-md);
+  }
+}
+
+/* ============================================================================
+   SHARED UTILITY CLASSES
+   ============================================================================ */
+
+/* Section wrapper baseline */
+.lp-sec {
+  padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
+  font-family: var(--lp-font-body);
+  color: var(--lp-color-text-on-light);
+  background: var(--lp-color-white);
+}
+
+.lp-sec--dark {
+  background: var(--lp-color-black);
+  color: var(--lp-color-text-on-dark);
+}
+
+.lp-sec__inner {
+  max-width: var(--lp-section-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 750px) {
+  .lp-sec__inner {
+    max-width: var(--lp-section-max-width-md);
+  }
+}
+
+/* Eyebrow label — small, tracked, uppercase */
+.lp-sec__eyebrow {
+  display: inline-block;
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  line-height: var(--lp-lh-snug);
+  color: var(--lp-color-success-dark);
+  margin: 0 0 var(--lp-space-3);
+}
+
+.lp-sec--dark .lp-sec__eyebrow {
+  color: var(--lp-color-gold);
+}
+
+/* Section H2 */
+.lp-sec__h2 {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-h2);
+  font-weight: var(--lp-fw-black);
+  line-height: var(--lp-lh-snug);
+  letter-spacing: var(--lp-ls-tight);
+  color: var(--lp-color-text-on-light);
+  text-transform: uppercase;
+  margin: 0 0 var(--lp-space-4);
+}
+
+.lp-sec--dark .lp-sec__h2 {
+  color: var(--lp-color-text-on-dark);
+}
+
+/* --------------------------------------------------------------------------
+   .lp-cta — primary gold pulse button
+   Used by hero, hps-offerta, size-guide, warranties, etc.
+   -------------------------------------------------------------------------- */
+.lp-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--lp-space-4) var(--lp-space-5);
+  background: var(--lp-color-gold);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-md);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wider);
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  line-height: var(--lp-lh-snug);
+  border: 0;
+  border-radius: var(--lp-radius-none);
+  cursor: pointer;
+  transition: background var(--lp-transition-base), transform var(--lp-transition-fast);
+  box-shadow: 0 0 0 0 var(--lp-color-gold-soft);
+  animation: lp-cta-pulse var(--lp-cta-pulse-duration) ease-in-out infinite;
+}
+
+.lp-cta:hover {
+  background: var(--lp-color-gold-hover);
+  color: var(--lp-color-text-on-dark);
+  text-decoration: none;
+}
+
+.lp-cta:active {
+  transform: scale(0.99);
+}
+
+.lp-cta:focus-visible {
+  outline: 2px solid var(--lp-color-text-on-dark);
+  outline-offset: 2px;
+}
+
+@keyframes lp-cta-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--lp-color-gold-soft); }
+  50%      { box-shadow: 0 0 0 12px rgba(201, 162, 39, 0); }
+}
+
+/* Larger CTA on desktop */
+@media (min-width: 750px) {
+  .lp-cta {
+    padding: var(--lp-space-5) var(--lp-space-6);
+    font-size: var(--lp-fs-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-cta {
+    animation: none;
+  }
+}

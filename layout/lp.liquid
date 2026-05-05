@@ -30,6 +30,9 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
+    <link rel="stylesheet" href="{{ 'lp-design-system.css' | asset_url }}">
+
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}
