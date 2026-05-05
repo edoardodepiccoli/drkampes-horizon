@@ -55,7 +55,7 @@
   --sg-gold-light: #F5C200;
   background: #fff;
   color: #111;
-  padding: 32px 0 40px;
+  padding: 18px 0 22px;
 }
 
 .lp-sg__inner {
@@ -77,13 +77,13 @@
 
 .lp-sg__h2 {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.005em;
   color: #111;
   text-transform: uppercase;
-  margin: 0 0 22px;
+  margin: 0 0 12px;
 }
 
 .lp-sg__hero {
@@ -129,9 +129,9 @@
 .lp-sg__step {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   text-align: left;
-  padding: 22px 14px;
+  padding: 12px 10px;
 }
 
 .lp-sg__step:nth-child(odd) {
@@ -145,12 +145,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 6px;
 }
 
 .lp-sg__step-title-wrap {
   width: 100%;
-  min-height: 2.4em;
+  min-height: 2.2em;
 }
 
 .lp-sg__step-num {
@@ -199,7 +199,8 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
+  overflow: hidden;
 }
 .lp-sg__step-img img {
   display: block;
@@ -207,6 +208,8 @@
   height: 100%;
   object-fit: contain;
   mix-blend-mode: multiply;
+  transform: scale(1.3);
+  transform-origin: center;
 }
 
 @media (min-width: 750px) {
