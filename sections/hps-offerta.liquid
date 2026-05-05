@@ -7,11 +7,6 @@
   <div style="padding:2rem;text-align:center;color:#888;">Nessun prodotto selezionato</div>
 {% else %}
 
-{%- assign hps_compare_cents = 21900 -%}
-{%- assign hps_diff_cents = hps_compare_cents | minus: product.price -%}
-{%- assign hps_pct = hps_diff_cents | times: 100 | divided_by: 21900.0 | round -%}
-{%- assign hps_installment_cents = product.price | divided_by: 3 -%}
-
 <div class="hps" id="acquista" data-hps-id="{{ section.id }}">
 
   <script type="application/json" id="hps-variants-{{ section.id }}">
@@ -47,43 +42,8 @@
     </script>
   {%- endif -%}
 
-  <header class="hps__head">
-    <h2 class="hps__title">{{ product.title }}</h2>
-
-    <div class="hps__rating">
-      <span class="hps__stars" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </span>
-      <span class="hps__rating-text"><strong>4,9/5</strong> da oltre 1200 camionisti soddisfatti</span>
-    </div>
-
-    <div class="hps__price-row">
-      <span class="hps__price-main">{{ product.price | money }}</span>
-      <span class="hps__price-compare">{{ hps_compare_cents | money }}</span>
-      {%- if hps_pct > 0 -%}
-        <span class="hps__price-discount">-{{ hps_pct }}%</span>
-      {%- endif -%}
-    </div>
-    <p class="hps__installment">Oppure <strong>3 rate da {{ hps_installment_cents | money }}</strong> con Klarna o PayPal</p>
-
-    {%- if section.settings.review_quote != blank -%}
-      <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
-    {%- endif -%}
-  </header>
-
   <div class="hps__gallery">
     <div class="hps__main">
-      <button type="button" class="hps__nav hps__nav--prev" id="hps-nav-prev-{{ section.id }}" aria-label="Immagine precedente">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button type="button" class="hps__nav hps__nav--next" id="hps-nav-next-{{ section.id }}" aria-label="Immagine successiva">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-
       {%- if section.settings.custom_first_image_url != blank -%}
         <div class="hps__slide" data-media-id="__custom__" style="display:none">
           <img src="{{ section.settings.custom_first_image_url }}" class="hps__img" loading="eager" alt="{{ product.title }}">
@@ -100,9 +60,9 @@
           data-media-id="{{ media.id }}"
         >
           {%- if forloop.first -%}
-            {{ media | image_url: width: 1000 | image_tag: class: 'hps__img', loading: 'eager', widths: '500,750,1000', sizes: '(max-width:749px) 100vw, 50vw' }}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'eager', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
           {%- else -%}
-            {{ media | image_url: width: 1000 | image_tag: class: 'hps__img', loading: 'lazy', widths: '500,750,1000', sizes: '(max-width:749px) 100vw, 50vw' }}
+            {{ media | image_url: width: 800 | image_tag: class: 'hps__img', loading: 'lazy', widths: '400,600,800', sizes: '(max-width:749px) 100vw, 50vw' }}
           {%- endif -%}
         </div>
       {%- endfor -%}
@@ -110,10 +70,22 @@
 
     <div class="hps__thumbs">
       {%- if section.settings.custom_first_image_url != blank -%}
-        <button type="button" class="hps__thumb" data-media-id="__custom__" aria-label="Immagine principale" style="display:none"><img src="{{ section.settings.custom_first_image_url }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
+        <button
+          type="button"
+          class="hps__thumb"
+          data-media-id="__custom__"
+          aria-label="Immagine principale"
+          style="display:none"
+        ><img src="{{ section.settings.custom_first_image_url }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
       {%- endif -%}
       {%- if section.settings.custom_first_image_url_2 != blank -%}
-        <button type="button" class="hps__thumb" data-media-id="__custom2__" aria-label="Immagine principale" style="display:none"><img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
+        <button
+          type="button"
+          class="hps__thumb"
+          data-media-id="__custom2__"
+          aria-label="Immagine principale"
+          style="display:none"
+        ><img src="{{ section.settings.custom_first_image_url_2 }}" class="hps__thumb-img" loading="lazy" alt="{{ product.title }}"></button>
       {%- endif -%}
       {%- for media in product.media -%}
         <button
@@ -122,12 +94,55 @@
           data-index="{{ forloop.index0 }}"
           data-media-id="{{ media.id }}"
           aria-label="Immagine {{ forloop.index }}"
-        >{{ media | image_url: width: 200 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}</button>
+        >{{ media | image_url: width: 120 | image_tag: class: 'hps__thumb-img', loading: 'lazy' }}</button>
       {%- endfor -%}
     </div>
   </div>
 
   <div class="hps__details">
+
+    <div class="hps__head">
+      <h2 class="hps__title">{{ product.title }}</h2>
+      <p class="hps__sub">{{ section.settings.product_subtitle | default: 'Antinfortunistiche S3S' }}</p>
+    </div>
+
+    <div class="hps__social">
+      <span class="hps__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="hps__review-lbl">4.9 &bull; <strong>68 clienti soddisfatti</strong></span>
+    </div>
+    {%- if section.settings.review_quote != blank -%}
+      <blockquote class="hps__review-quote">&#8220;{{ section.settings.review_quote }}&#8221;</blockquote>
+    {%- endif -%}
+
+    {%- assign hps_savings = 21900 | minus: product.price | divided_by: 100 -%}
+    <div class="hps__price-wrap">
+      <div class="hps__price-row">
+        <p class="hps__price">
+          <span class="hps__price-main">&euro; {{ product.price | money_without_currency }}</span>
+          <span class="hps__price-compare">&euro;219</span>
+          <span class="hps__price-tax">IVA INCLUSA</span>
+        </p>
+        {%- if hps_savings > 0 -%}
+          <span class="hps__savings">Risparmi &euro;{{ hps_savings }}</span>
+        {%- endif -%}
+      </div>
+      <p class="hps__installment">oppure <strong>3 rate da &euro;63</strong> con Klarna e PayPal</p>
+    </div>
+
+    <div class="hps__trust">
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>3 anni di<br>garanzia</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        <span>Reso e Cambio<br>taglia Gratis</span>
+      </div>
+      <div class="hps__trust-item">
+        <svg class="hps__trust-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Spedizione<br>48/72 ore</span>
+      </div>
+    </div>
 
     {%- assign form_id = 'hps-form-' | append: section.id -%}
     {% form 'product', product, id: form_id, class: 'hps__form' %}
@@ -145,7 +160,7 @@
 
       {%- if color_option != nil -%}
         <div class="hps__opt">
-          <p class="hps__opt-lbl">Colore: <span class="hps__opt-val" id="hps-cval-{{ section.id }}">{{ color_option.selected_value | upcase }}</span></p>
+          <p class="hps__opt-lbl">Colore: <span id="hps-cval-{{ section.id }}">{{ color_option.selected_value }}</span></p>
           <div class="hps__swatches">
             {%- for value in color_option.values -%}
               <button
@@ -186,11 +201,11 @@
       {%- if size_option != nil -%}
         <div class="hps__opt">
           <div class="hps__size-row">
-            <p class="hps__opt-lbl">Taglia: <span class="hps__opt-val" id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
-            <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 6H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/><line x1="6" y1="6" x2="6" y2="10"/><line x1="10" y1="6" x2="10" y2="9"/><line x1="14" y1="6" x2="14" y2="10"/><line x1="18" y1="6" x2="18" y2="9"/></svg>
-              Guida alle taglie
-            </button>
+            <p class="hps__opt-lbl">Taglia: <span id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
+            <div class="hps__info-btns">
+              <button type="button" class="hps__info-btn" id="hps-tech-{{ section.id }}">Schede tecniche</button>
+              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">Guida taglie</button>
+            </div>
           </div>
           <div class="hps__pills" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
             {%- for value in size_option.values -%}
@@ -209,43 +224,90 @@
               >{{ value }}</button>
             {%- endfor -%}
           </div>
-          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>
-            <svg class="hps__stock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.4 19.4 4 22"/><path d="M17.6 19.4 20 22"/></svg>
-            <span>Meno di <span class="hps-stock-n">{{ section.settings.low_stock_number | default: 7 }}</span> paia rimaste</span>
-          </p>
+          <p class="hps__stock" id="hps-stock-{{ section.id }}" hidden>&#9889; Meno di <span class="hps-stock-n">{{ section.settings.low_stock_number | default: 7 }}</span> paia rimaste</p>
         </div>
       {%- endif -%}
 
-      <button type="button" class="hps__cta" id="hps-bn-{{ section.id }}">
-        <svg class="hps__cta-ico hps__cta-ico--lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <span class="hps__cta-text">{{ section.settings.cta_label | default: 'PRENOTA ORA LA TUA TAGLIA' }}</span>
-        <svg class="hps__cta-ico hps__cta-ico--arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+<div class="hps__cta-group">
+        <button type="button" class="hps__bn hps__bn--primary" id="hps-bn-{{ section.id }}">
+          ACQUISTA ORA
+        </button>
+      </div>
+      <div class="hps-offer-banner" aria-label="{{ offer_headline }}">
+        <span class="hps-offer-banner__icon" aria-hidden="true">🎁</span>
+        <span class="hps-offer-banner__text">{{ offer_headline | replace: 'OMAGGIO + Spedizione', '+ Spedizione Rapida' }}</span>
+        {%- if tshirt_product != blank and tshirt_product.featured_image != blank -%}
+          {{ tshirt_product.featured_image | image_url: width: 120 | image_tag: class: 'hps-offer-banner__thumb', loading: 'lazy', alt: tshirt_product.title }}
+        {%- endif -%}
+      </div>
 
     {% endform %}
 
-    <ul class="hps__features">
-      <li class="hps__feature">
-        <svg class="hps__feature-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <p class="hps__feature-ttl">3 ANNI DI GARANZIA</p>
-        <p class="hps__feature-dsc">Acquistale oggi e indossale per anni.</p>
-      </li>
-      <li class="hps__feature">
-        <svg class="hps__feature-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-        <p class="hps__feature-ttl">CAMBIO TAGLIA GRATUITO</p>
-        <p class="hps__feature-dsc">Se non &egrave; la taglia giusta, la cambiamo noi.</p>
-      </li>
-      <li class="hps__feature">
-        <svg class="hps__feature-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <p class="hps__feature-ttl">SPEDIZIONE GRATIS 1-2 GIORNI</p>
-        <p class="hps__feature-dsc">Ordina prima delle 19:00, spediamo il giorno dopo.</p>
-      </li>
-      <li class="hps__feature">
-        <svg class="hps__feature-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-        <p class="hps__feature-ttl">PAGA IN 3 RATE SENZA INTERESSI</p>
-        <p class="hps__feature-dsc">Scegli Klarna o PayPal al checkout.</p>
-      </li>
-    </ul>
+    <div class="hps-usp" id="hps-usp-wrap-{{ section.id }}">
+      <ul class="hps-usp__list" id="hps-usp-list-{{ section.id }}">
+
+        <li class="hps-usp__item" style="--i:0">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">3 ANNI DI GARANZIA</p>
+            <p class="hps-usp__dsc">Aggiungiamo un anno in pi&ugrave; ai 2 anni previsti dalla legge. Valutazione, riparazione o sostituzione gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:1">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">&ldquo;CAMBIO GOMME&rdquo; GRATIS</p>
+            <p class="hps-usp__dsc">Hai la suola consumata? Possiamo sostituirla mantenendo il DPI. Valutazione e manutenzione gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:2">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">CAMBIO TAGLIA GRATIS</p>
+            <p class="hps-usp__dsc">Sbagli numero? Nessun problema: ti mando il corriere a ritirare la prima e ti spedisco la seconda, gratis.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:3">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">14 GIORNI PER RIPENSARCI</p>
+            <p class="hps-usp__dsc">Le provi, le cammini per 14 giorni. Non ti convincono? Rimandamele e ti restituisco tutto.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:4">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">SPEDIZIONE 48/72 ORE</p>
+            <p class="hps-usp__dsc">Ordini prima delle 18:00, spedisco il giorno dopo. Corriere tracciato con conferma via SMS.</p>
+          </div>
+        </li>
+
+        <li class="hps-usp__item" style="--i:5">
+          <div class="hps-usp__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div class="hps-usp__body">
+            <p class="hps-usp__ttl">PAGA IN 3 RATE DA &euro;63</p>
+            <p class="hps-usp__dsc">Dividi il pagamento con Klarna o PayPal. Zero interessi, zero sorprese.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
 
   </div>
 </div>
@@ -354,7 +416,7 @@
 
 <div class="hps-cta-bar" id="hps-cta-bar-{{ section.id }}">
   <button type="button" class="hps-cta hps-cta--after" id="hps-cta-bn-{{ section.id }}">
-    <span class="hps-cta-bar__label">{{ section.settings.cta_label | default: 'PRENOTA ORA LA TUA TAGLIA' }}</span>
+    <span class="hps-cta-bar__label">{{ section.settings.cta_label | default: 'ACQUISTA ORA' }}</span>
   </button>
 </div>
 
@@ -473,7 +535,6 @@
   var swipeStartY = 0;
   var swipeLock   = null;
   mainEl.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('.hps__nav')) return;
     swipeStartX = e.clientX;
     swipeStartY = e.clientY;
     swipeLock   = null;
@@ -498,19 +559,6 @@
       : Math.max(activeIdx - 1, 0);
     if (nextIdx !== activeIdx) showByMediaId(visible[nextIdx].dataset.mediaId);
   });
-
-  function navStep(dir) {
-    var visible = slides.filter(function (s) { return s.style.display !== 'none'; });
-    if (!visible.length) return;
-    var idx = visible.findIndex(function (s) { return s.classList.contains('hps__slide--active'); });
-    if (idx < 0) idx = 0;
-    var nextIdx = (idx + dir + visible.length) % visible.length;
-    showByMediaId(visible[nextIdx].dataset.mediaId);
-  }
-  var navPrev = document.getElementById('hps-nav-prev-' + sid);
-  var navNext = document.getElementById('hps-nav-next-' + sid);
-  if (navPrev) navPrev.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); navStep(-1); });
-  if (navNext) navNext.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); navStep(1); });
 
   function syncVariant() {
     var match = allVariants.find(function (v) {
@@ -544,7 +592,7 @@
       selOpts[pos] = btn.dataset.color;
       swatches.forEach(function (s) { s.classList.remove('hps__swatch--on'); });
       btn.classList.add('hps__swatch--on');
-      if (cValEl) cValEl.textContent = btn.dataset.color.toUpperCase();
+      if (cValEl) cValEl.textContent = btn.dataset.color;
       syncVariant();
     });
   });
@@ -668,6 +716,16 @@
 
   if (initV) filterGallery(initV.id);
 
+  var uspWrap = document.getElementById('hps-usp-wrap-' + sid);
+  if (uspWrap) {
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) {
+        uspWrap.classList.add('hps-usp--in');
+        obs.disconnect();
+      }
+    }, { threshold: 0.15 }).observe(uspWrap);
+  }
+
   if (viewersEl && viewerMin > 0 && viewerMax >= viewerMin) {
     var viewerCount = viewerMin + Math.floor(Math.random() * (viewerMax - viewerMin + 1));
     var viewerNumEl = viewersEl.querySelector('.hps-viewers-n');
@@ -692,7 +750,7 @@
         setTimeout(function () { updateViewers(); scheduleUpdate(); }, 4000 + Math.random() * 2000);
       })();
     }
-    var triggerEl = sSel || root.querySelector('.hps__price-row') || root.querySelector('.hps__details');
+    var triggerEl = sSel || root.querySelector('.hps__price-wrap') || root.querySelector('.hps__details');
     if (triggerEl) {
       new IntersectionObserver(function (entries, obs) {
         if (entries[0].isIntersecting) { setTimeout(startViewers, 2000); obs.disconnect(); }
@@ -709,160 +767,31 @@
 
 {% stylesheet %}
 
-/* =============================================================================
-   hps-offerta — PDP redesign
-   Light surface, gold pulse CTA, red savings chip, square size pills,
-   4-card features grid. All tokens from lp-design-system.css.
-   ============================================================================= */
-
 .hps {
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-5);
-  background: var(--lp-color-white);
-  font-family: var(--lp-font-body);
-  color: var(--lp-color-text-on-light);
-  padding: var(--lp-space-5) 0 var(--lp-space-7);
-  scroll-margin-top: var(--lp-space-5);
+  background: #fff;
 }
 
-/* ---------------------------------------------------------------------------
-   Head: title + rating + price + installment
-   --------------------------------------------------------------------------- */
-.hps__head {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-3);
-  padding: 0 var(--lp-section-pad-x);
-}
-
-.hps__title {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-h2);
-  font-weight: var(--lp-fw-black);
-  margin: 0;
-  line-height: var(--lp-lh-snug);
-  letter-spacing: var(--lp-ls-tight);
-  color: var(--lp-color-text-on-light);
-  text-transform: uppercase;
-}
-
-.hps__rating {
-  display: flex;
-  align-items: center;
-  gap: var(--lp-space-2);
-  flex-wrap: wrap;
-}
-
-.hps__stars {
-  display: inline-flex;
-  align-items: center;
-  gap: 1px;
-  color: var(--lp-color-gold);
-  flex-shrink: 0;
-}
-
-.hps__stars svg {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-
-.hps__rating-text {
-  font-size: var(--lp-fs-xs);
-  color: var(--lp-color-text-on-light-mute);
-  line-height: var(--lp-lh-snug);
-}
-.hps__rating-text strong {
-  color: var(--lp-color-text-on-light);
-  font-weight: var(--lp-fw-bold);
-}
-
-.hps__price-row {
-  display: flex;
-  align-items: baseline;
-  gap: var(--lp-space-2);
-  flex-wrap: wrap;
-  margin: var(--lp-space-1) 0 0;
-}
-
-.hps__price-main {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-h1);
-  font-weight: var(--lp-fw-black);
-  color: var(--lp-color-text-on-light);
-  line-height: 1;
-  letter-spacing: var(--lp-ls-tight);
-}
-
-.hps__price-compare {
-  font-size: var(--lp-fs-md);
-  color: var(--lp-color-text-on-light-faint);
-  text-decoration: line-through;
-  font-weight: var(--lp-fw-regular);
-}
-
-.hps__price-discount {
-  display: inline-flex;
-  align-items: center;
-  background: var(--lp-color-danger);
-  color: var(--lp-color-white);
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-xs);
-  font-weight: var(--lp-fw-black);
-  padding: 4px var(--lp-space-2);
-  border-radius: var(--lp-radius-none);
-  letter-spacing: var(--lp-ls-wide);
-  white-space: nowrap;
-  align-self: center;
-  line-height: 1;
-}
-
-.hps__installment {
-  font-size: var(--lp-fs-sm);
-  color: var(--lp-color-text-on-light-mute);
-  margin: 0;
-  line-height: var(--lp-lh-base);
-}
-.hps__installment strong {
-  color: var(--lp-color-text-on-light);
-  font-weight: var(--lp-fw-bold);
-}
-
-.hps__review-quote {
-  font-size: var(--lp-fs-xs);
-  color: var(--lp-color-text-on-light-mute);
-  font-style: italic;
-  margin: 0;
-  padding: var(--lp-space-2) var(--lp-space-3);
-  border-left: 3px solid var(--lp-color-gold);
-  background: var(--lp-color-gold-faint);
-  border-radius: var(--lp-radius-none);
-  line-height: var(--lp-lh-base);
-}
-
-/* ---------------------------------------------------------------------------
-   Gallery
-   --------------------------------------------------------------------------- */
+/* Gallery */
 .hps__gallery {
+  flex: 0 0 50svh;
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-3);
-  min-width: 0;
+  min-height: 0;
 }
 
 .hps__main {
-  position: relative;
-  background: var(--lp-color-white);
-  aspect-ratio: 4 / 3;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: hidden;
-  touch-action: pan-y;
+  background: #fff;
 }
 
 .hps__slide {
   display: none;
-  position: absolute;
-  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 .hps__slide--active { display: block; }
 
@@ -871,327 +800,403 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  padding: var(--lp-space-4);
-  box-sizing: border-box;
 }
-
-.hps__nav {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--lp-radius-circle);
-  background: var(--lp-color-white);
-  border: 1px solid var(--lp-color-divider-light);
-  color: var(--lp-color-text-on-light);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-  transition: background var(--lp-transition-base), transform var(--lp-transition-fast);
-  transform: translateY(-50%);
-}
-.hps__nav:hover { background: var(--lp-color-surface-card); }
-.hps__nav:active { transform: translateY(-50%) scale(0.95); }
-.hps__nav svg { width: 18px; height: 18px; }
-.hps__nav--prev { left: var(--lp-space-3); }
-.hps__nav--next { right: var(--lp-space-3); }
 
 .hps__thumbs {
+  flex: 0 0 auto;
   display: flex;
-  gap: var(--lp-space-2);
+  gap: 6px;
   overflow-x: auto;
+  padding: 8px 16px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: var(--lp-space-1);
 }
 .hps__thumbs::-webkit-scrollbar { display: none; }
 
 .hps__thumb {
-  flex: 0 0 64px;
-  height: 64px;
-  padding: var(--lp-space-1);
-  border: 1.5px solid var(--lp-color-divider-light-strong);
-  border-radius: var(--lp-radius-none);
-  background: var(--lp-color-white);
+  flex: 0 0 56px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid #e0e0e0;
+  border-radius: 0;
+  overflow: hidden;
+  background: #fff;
   cursor: pointer;
-  transition: border-color var(--lp-transition-base);
+  transition: border-color 0.15s;
 }
-.hps__thumb--active {
-  border-color: var(--lp-color-text-on-light);
-  border-width: 2px;
-}
+.hps__thumb--active { border-color: #111; }
+
 .hps__thumb-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
-/* ---------------------------------------------------------------------------
-   Details: form + features
-   --------------------------------------------------------------------------- */
+/* Details */
 .hps__details {
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-5);
-  min-width: 0;
-  padding: 0 var(--lp-section-pad-x);
+  gap: 12px;
+  padding: 14px 16px 24px;
 }
 
-.hps__form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-4);
+.hps__head { display: flex; flex-direction: column; gap: 2px; }
+
+.hps__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  color: #111;
 }
 
-.hps__opt {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-3);
-}
-
-.hps__opt-lbl {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-sm);
-  font-weight: var(--lp-fw-black);
-  color: var(--lp-color-text-on-light);
-  text-transform: uppercase;
-  letter-spacing: var(--lp-ls-wide);
+.hps__sub {
+  font-size: 0.8rem;
+  color: #888;
   margin: 0;
 }
-.hps__opt-val { font-weight: var(--lp-fw-black); }
 
-/* Color swatches: 36px circles, dark ring when selected */
-.hps__swatches { display: flex; gap: var(--lp-space-3); }
+/* Social proof */
+.hps__social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -10px 0 0;
+}
+
+.hps__stars {
+  color: #f5a623;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.hps__review-lbl {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Price block */
+.hps__price-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+}
+
+.hps__price {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.hps__price-main {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1;
+}
+.hps__price-tax {
+  font-size: 0.68rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.hps__installment {
+  font-size: 0.74rem;
+  color: #666;
+  margin: 0;
+}
+.hps__installment strong { color: #111; }
+
+/* Offer banner */
+@keyframes hps-pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 194, 0, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(245, 194, 0, 0.3); }
+}
+@keyframes hps-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40%           { transform: translateY(-4px); }
+}
+
+.hps-offer-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8e1;
+  border: 1.5px solid #F5C200;
+  border-radius: 0;
+  padding: 10px 14px;
+  animation: hps-pulse-border 3s ease-in-out infinite;
+}
+
+.hps-offer-banner__icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+  display: inline-block;
+  animation: hps-bounce 3s ease-in-out infinite;
+}
+
+.hps-offer-banner__text {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #7a5800;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.hps-offer-banner__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 0;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  margin-left: auto;
+  border: 1.5px solid #F5C200;
+}
+
+/* Trust strip */
+.hps__trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.hps__trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.hps__trust-ico {
+  width: 22px;
+  height: 22px;
+  color: #2e7d32;
+  flex-shrink: 0;
+}
+
+/* Form */
+.hps__form { display: flex; flex-direction: column; gap: 10px; }
+
+.hps__opt { display: flex; flex-direction: column; gap: 6px; }
+
+.hps__opt-lbl {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111;
+  margin: 0;
+}
+
+.hps__swatches { display: flex; gap: 10px; }
 
 .hps__swatch {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--lp-radius-circle);
-  border: 2px solid var(--lp-color-white);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
   padding: 0;
   cursor: pointer;
-  outline: 1.5px solid var(--lp-color-divider-light-strong);
-  outline-offset: 0;
-  transition: outline-color var(--lp-transition-base), outline-width var(--lp-transition-base);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.15s;
 }
-.hps__swatch--on {
-  outline: 2px solid var(--lp-color-text-on-light);
-}
+.hps__swatch--on { outline-color: #111; }
 
-/* Size row + info buttons */
 .hps__size-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--lp-space-2);
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 
-.hps__info-btns {
-  display: flex;
-  gap: var(--lp-space-3);
-  flex-shrink: 0;
-}
+.hps__info-btns { display: flex; gap: 6px; flex-shrink: 0; }
 
 .hps__info-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--lp-space-1);
-  font-size: var(--lp-fs-eyebrow);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--lp-color-text-on-light);
+  font-size: 0.68rem;
+  padding: 5px 8px;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  color: #333;
   cursor: pointer;
   white-space: nowrap;
   font-family: inherit;
-  font-weight: var(--lp-fw-medium);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  letter-spacing: var(--lp-ls-normal);
-  line-height: var(--lp-lh-snug);
-  transition: color var(--lp-transition-base);
+  line-height: 1.3;
 }
-.hps__info-btn:hover { color: var(--lp-color-text-on-light-mute); }
-.hps__info-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.hps__info-btn:active { background: #e0e0e0; }
 
-/* Size pills: white square, black solid when selected */
-.hps__pills {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
-  gap: var(--lp-space-1);
-}
-
-.hps__pill {
-  min-width: 0;
-  height: 48px;
-  padding: 0 var(--lp-space-2);
-  border: 1.5px solid var(--lp-color-divider-light-strong);
-  border-radius: var(--lp-radius-none);
-  background: var(--lp-color-white);
-  color: var(--lp-color-text-on-light);
-  font-family: inherit;
-  font-size: var(--lp-fs-base);
-  font-weight: var(--lp-fw-medium);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color var(--lp-transition-base),
-              background var(--lp-transition-base),
-              color var(--lp-transition-base);
-}
-.hps__pill:not(.hps__pill--unavail):hover {
-  border-color: var(--lp-color-text-on-light);
-}
-.hps__pill--on {
-  background: var(--lp-color-text-on-light);
-  border-color: var(--lp-color-text-on-light);
-  color: var(--lp-color-white);
-  font-weight: var(--lp-fw-bold);
-}
-.hps__pill--unavail {
-  color: var(--lp-color-text-on-light-dim);
-  border-color: var(--lp-color-divider-light);
-  text-decoration: line-through;
-  cursor: not-allowed;
-}
-
-/* Low-stock pill: light pink bg + red text + alarm icon */
-.hps__stock {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--lp-space-2);
-  font-size: var(--lp-fs-sm);
-  font-weight: var(--lp-fw-black);
-  color: var(--lp-color-danger);
-  background: var(--lp-color-danger-soft);
-  padding: var(--lp-space-3) var(--lp-space-4);
-  margin: 0;
-  border-radius: var(--lp-radius-none);
-  letter-spacing: var(--lp-ls-wide);
-  text-transform: uppercase;
-  align-self: stretch;
-  text-align: center;
-  line-height: var(--lp-lh-snug);
-}
-.hps__stock-ico {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-/* ---------------------------------------------------------------------------
-   CTA — gold, full-width, lock + text + arrow
-   --------------------------------------------------------------------------- */
-.hps__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--lp-space-3);
+.hps__select {
   width: 100%;
-  padding: var(--lp-space-4) var(--lp-space-5);
-  background: var(--lp-color-gold);
-  color: var(--lp-color-black);
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-md);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-wider);
-  text-transform: uppercase;
-  text-align: center;
-  text-decoration: none;
-  line-height: var(--lp-lh-snug);
-  border: 0;
-  border-radius: var(--lp-radius-none);
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: #fff;
   cursor: pointer;
-  transition: background var(--lp-transition-base), transform var(--lp-transition-fast);
-  box-shadow: 0 0 0 0 var(--lp-color-gold-soft);
-  animation: lp-cta-pulse var(--lp-cta-pulse-duration) ease-in-out infinite;
-  position: relative;
-  margin-top: var(--lp-space-1);
-}
-.hps__cta:hover { background: var(--lp-color-gold-hover); color: var(--lp-color-black); }
-.hps__cta:active { transform: scale(0.99); }
-.hps__cta:focus-visible {
-  outline: 2px solid var(--lp-color-text-on-light);
-  outline-offset: 2px;
-}
-.hps__cta-text {
-  flex: 1;
-  text-align: center;
-  min-width: 0;
-}
-.hps__cta-ico {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hps__cta { animation: none; }
+  font-family: inherit;
+  color: #111;
+  appearance: auto;
 }
 
-/* ---------------------------------------------------------------------------
-   Features (4-card trust grid)
-   --------------------------------------------------------------------------- */
-.hps__features {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  list-style: none;
+
+/* CTA group */
+.hps__cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hps__atc {
+  width: 100%;
+  padding: 17px 24px;
+  height: auto;
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  line-height: 1;
+  transition: background 0.15s;
+}
+.hps__atc:active { background: #1b5e20; }
+
+@keyframes hps-bn-pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(245, 194, 0, 0.25); }
+  50%       { box-shadow: 0 4px 28px 6px rgba(245, 194, 0, 0.55); }
+}
+
+.hps__bn {
+  width: 100%;
+  padding: 17px 24px;
+  height: auto;
+  background: #F5C200;
+  color: #111;
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Archivo Black', sans-serif;
+  line-height: 1;
+  transition: background 0.15s;
+  animation: hps-bn-pulse 2.2s ease-in-out infinite;
+}
+.hps__bn:active { background: #d9ac00; }
+
+
+.hps__offer-micro {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #333;
   margin: 0;
-  padding: 0;
-  background: var(--lp-color-divider-light-strong);
-  border: 1px solid var(--lp-color-divider-light-strong);
-  border-radius: var(--lp-radius-none);
+  text-align: center;
+  line-height: 1.5;
+}
+.hps__offer-micro strong { color: #111; }
+
+.hps__micro {
+  font-size: 0.75rem;
+  color: #333;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* USP list */
+.hps-usp {
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
   overflow: hidden;
 }
 
-.hps__feature {
+.hps-usp__list {
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-2);
-  padding: var(--lp-space-3) var(--lp-space-2);
-  background: var(--lp-color-surface-card);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.hps__feature-ico {
-  width: 22px;
-  height: 22px;
-  color: var(--lp-color-text-on-light);
+.hps-usp__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e0e0e0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 0.07s);
+}
+.hps-usp__item:last-child { border-bottom: none; }
+.hps-usp--in .hps-usp__item {
+  opacity: 1;
+  transform: none;
+}
+
+.hps-usp__icon-wrap {
   flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.hps-usp__icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: #F5C200;
 }
 
-.hps__feature-ttl {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-eyebrow);
-  font-weight: var(--lp-fw-black);
-  color: var(--lp-color-text-on-light);
+.hps-usp__body { flex: 1; min-width: 0; }
+
+.hps-usp__ttl {
+  font-family: var(--font-heading--family, inherit);
+  font-size: 0.84rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 4px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.hps-usp__dsc {
+  font-size: 0.8rem;
+  color: #555;
   margin: 0;
-  letter-spacing: var(--lp-ls-wide);
-  line-height: var(--lp-lh-snug);
-  text-transform: uppercase;
+  line-height: 1.55;
 }
 
-.hps__feature-dsc {
-  font-size: var(--lp-fs-xs);
-  color: var(--lp-color-text-on-light-mute);
-  margin: 0;
-  line-height: var(--lp-lh-base);
-}
-
-@media (min-width: 480px) {
-  .hps__feature { padding: var(--lp-space-4); }
-}
-
-/* ---------------------------------------------------------------------------
-   Popups / modals
-   --------------------------------------------------------------------------- */
+/* Popups */
 .hps-pop {
   position: fixed;
   inset: 0;
@@ -1205,218 +1210,278 @@
 .hps-pop__bg {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0,0,0,0.45);
   cursor: pointer;
 }
 
 .hps-pop__box {
   position: relative;
-  background: var(--lp-color-white);
-  border-radius: var(--lp-radius-none);
+  background: #fff;
+  border-radius: 0;
   width: 100%;
   max-height: calc(100svh - 40px);
   overflow-y: auto;
-  padding: var(--lp-space-4) var(--lp-space-5) var(--lp-space-6);
-  box-shadow: var(--lp-shadow-card-strong);
+  padding: 16px 20px 24px;
 }
 
 .hps-pop__x {
   position: absolute;
-  top: var(--lp-space-4);
-  right: var(--lp-space-4);
+  top: 14px;
+  right: 16px;
   background: none;
   border: none;
-  font-size: var(--lp-fs-xl);
+  font-size: 1.5rem;
   cursor: pointer;
-  color: var(--lp-color-text-on-light-mute);
-  padding: 0 var(--lp-space-1);
+  color: #555;
+  padding: 0 4px;
   line-height: 1;
   font-family: inherit;
-  transition: color var(--lp-transition-base);
 }
-.hps-pop__x:hover { color: var(--lp-color-text-on-light); }
 
 .hps-pop__title {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-lg);
-  font-weight: var(--lp-fw-black);
-  margin: 0 0 var(--lp-space-3);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 10px;
   padding-right: 28px;
-  color: var(--lp-color-text-on-light);
+  color: #111;
 }
 
-.hps-pop__body p {
-  font-size: var(--lp-fs-sm);
-  margin: 0 0 var(--lp-space-3);
-  color: var(--lp-color-text-on-light-mute);
-}
+.hps-pop__body p { font-size: 0.85rem; margin: 0 0 12px; color: #444; }
 
+/* Offer badge inside popup */
 .hps-offer-badge {
   display: inline-flex;
   align-items: center;
-  gap: var(--lp-space-2);
-  background: var(--lp-color-gold-faint);
-  border: 1.5px solid var(--lp-color-gold);
-  border-radius: var(--lp-radius-none);
-  padding: var(--lp-space-1) var(--lp-space-3);
-  font-size: var(--lp-fs-xs);
-  font-weight: var(--lp-fw-black);
-  color: var(--lp-color-gold-hover);
-  letter-spacing: var(--lp-ls-wide);
-  margin-bottom: var(--lp-space-2);
+  gap: 6px;
+  background: #fff8e1;
+  border: 1.5px solid #F5C200;
+  border-radius: 0;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #7a5800;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
 }
 
+/* T-shirt popup specifics */
 .hps-pop__box--offer { padding-bottom: 28px; }
 
 .hps-tshirt-img-wrap {
-  margin: 0 calc(var(--lp-space-5) * -1) var(--lp-space-3);
+  margin: 0 -20px 12px;
   overflow: hidden;
   height: 180px;
 }
+
 .hps-tshirt-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
 }
+
 .hps-tshirt-product-name {
-  font-size: var(--lp-fs-sm);
-  color: var(--lp-color-text-on-light-mute);
-  margin: 0 0 var(--lp-space-2);
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0 0 8px;
 }
-.hps-tshirt-sel { margin-bottom: var(--lp-space-4); }
 
-.hps__select {
+.hps-tshirt-sel { margin-bottom: 16px; }
+
+.hps__atc--confirm {
   width: 100%;
-  padding: var(--lp-space-2) var(--lp-space-3);
-  font-size: var(--lp-fs-base);
-  border: 1px solid var(--lp-color-divider-light-strong);
-  border-radius: var(--lp-radius-none);
-  background: var(--lp-color-white);
-  cursor: pointer;
-  font-family: inherit;
-  color: var(--lp-color-text-on-light);
-  appearance: auto;
+  margin-bottom: 12px;
+}
+.hps__atc--confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.hps__atc {
-  width: 100%;
-  padding: var(--lp-space-4) var(--lp-space-6);
-  background: var(--lp-color-success-dark);
-  color: var(--lp-color-white);
-  border: none;
-  border-radius: var(--lp-radius-none);
-  font-size: var(--lp-fs-md);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-wider);
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family: var(--lp-font-display);
-  line-height: var(--lp-lh-snug);
-  transition: background var(--lp-transition-base);
-}
-.hps__atc:active { background: var(--lp-color-success-bg); }
-.hps__atc--confirm { width: 100%; margin-bottom: var(--lp-space-3); }
-.hps__atc--confirm:disabled { opacity: 0.6; cursor: not-allowed; }
-
-.hps__micro {
-  font-size: var(--lp-fs-xs);
-  color: var(--lp-color-text-on-light-mute);
-  margin: 0;
-  text-align: center;
-  line-height: var(--lp-lh-relaxed);
-}
 .hps-tshirt-disclaimer {
-  font-size: var(--lp-fs-eyebrow);
-  color: var(--lp-color-text-on-light-faint);
+  font-size: 0.7rem;
+  color: #888;
   margin: 0;
   text-align: center;
-  line-height: var(--lp-lh-base);
+  line-height: 1.5;
 }
 
-.hps-doc-section { display: flex; flex-direction: column; gap: var(--lp-space-2); margin-bottom: var(--lp-space-5); }
+.hps-doc-section { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
 .hps-doc-section:last-child { margin-bottom: 0; }
+
 .hps-doc-section__label {
-  font-size: var(--lp-fs-eyebrow);
-  font-weight: var(--lp-fw-bold);
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: var(--lp-ls-wider);
-  color: var(--lp-color-text-on-light-faint);
-  margin: 0 0 var(--lp-space-1);
+  letter-spacing: 0.08em;
+  color: #999;
+  margin: 0 0 2px;
 }
+
 .hps-doc-row {
   display: flex;
   align-items: center;
-  gap: var(--lp-space-3);
-  padding: var(--lp-space-3);
-  background: var(--lp-color-surface-card);
-  border-radius: var(--lp-radius-none);
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border-radius: 0;
   text-decoration: none;
-  color: var(--lp-color-text-on-light);
-  transition: background var(--lp-transition-base);
+  color: #111;
+  transition: background 0.15s;
 }
-.hps-doc-row:hover { background: var(--lp-color-divider-light); color: var(--lp-color-text-on-light); text-decoration: none; }
+.hps-doc-row:hover { background: #eee; color: #111; text-decoration: none; }
+
 .hps-doc-row__icon {
   width: 28px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--lp-color-black);
-  color: var(--lp-color-white);
-  border-radius: var(--lp-radius-circle);
-  font-size: var(--lp-fs-sm);
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
+
 .hps-doc-row__name {
   flex: 1;
-  font-size: var(--lp-fs-sm);
-  font-weight: var(--lp-fw-medium);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
+
 .hps-doc-row__type {
-  font-size: var(--lp-fs-eyebrow);
-  font-weight: var(--lp-fw-bold);
-  color: var(--lp-color-text-on-light-faint);
-  letter-spacing: var(--lp-ls-wide);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #999;
+  letter-spacing: 0.05em;
 }
 
-.hps-stbl { width: 100%; border-collapse: collapse; font-size: var(--lp-fs-sm); }
-.hps-stbl th,
-.hps-stbl td { border-bottom: 1px solid var(--lp-color-divider-light); padding: var(--lp-space-2); text-align: left; }
-.hps-stbl th { font-weight: var(--lp-fw-bold); color: var(--lp-color-text-on-light); padding-top: var(--lp-space-1); }
+.hps-stbl { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.hps-stbl th, .hps-stbl td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; }
+.hps-stbl th { font-weight: 700; color: #111; padding-top: 2px; }
 
-/* ---------------------------------------------------------------------------
-   Viewer toast
-   --------------------------------------------------------------------------- */
+/* Compare price + savings */
+.hps__price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hps__price-compare {
+  font-size: 1rem;
+  color: #aaa;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.hps__savings {
+  display: inline-flex;
+  align-items: center;
+  background: #c62828;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 0;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* Review quote */
+.hps__review-quote {
+  font-size: 0.78rem;
+  color: #555;
+  font-style: italic;
+  margin: -4px 0 0;
+  padding: 8px 12px;
+  border-left: 3px solid #F5C200;
+  background: #fffde7;
+  border-radius: 0;
+  line-height: 1.5;
+}
+
+/* Size pills */
+.hps__pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 8px;
+}
+
+.hps__pill {
+  min-width: 0;
+  height: 40px;
+  padding: 0 4px;
+  border: 1.5px solid #ccc;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hps__pill--on {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+.hps__pill--unavail {
+  color: #bbb;
+  border-color: #e0e0e0;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.hps__pill:not(.hps__pill--unavail):hover { border-color: #111; }
+
+/* Stock badge */
+.hps__stock {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  background: #c62828;
+  padding: 6px 10px;
+  margin: 4px 0 0;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  align-self: flex-start;
+  text-transform: uppercase;
+}
+
+/* Viewer count toast */
 @keyframes hps-toast-glow {
-  0%, 100% { box-shadow: 0 2px 12px rgba(201, 162, 39, 0.25); }
-  50%      { box-shadow: 0 2px 24px 4px rgba(201, 162, 39, 0.50); }
+  0%, 100% { box-shadow: 0 2px 12px rgba(198, 40, 40, 0.3); }
+  50%       { box-shadow: 0 2px 28px 6px rgba(198, 40, 40, 0.6); }
 }
 @keyframes hps-dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.4; transform: scale(0.65); }
+  50%       { opacity: 0.4; transform: scale(0.65); }
 }
 
 .hps__viewer-toast {
   position: fixed;
-  top: var(--lp-space-4);
+  top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(calc(-100% - 20px));
-  background: var(--lp-color-surface-dark);
-  color: var(--lp-color-text-on-dark);
-  font-size: var(--lp-fs-xs);
-  font-weight: var(--lp-fw-bold);
-  padding: var(--lp-space-3) var(--lp-space-5);
-  border-radius: var(--lp-radius-none);
-  border: 1.5px solid var(--lp-color-gold);
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 0;
+  border: 1.5px solid #c62828;
   white-space: nowrap;
   z-index: 8500;
   pointer-events: none;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   align-items: center;
-  gap: var(--lp-space-2);
-  letter-spacing: var(--lp-ls-normal);
+  gap: 8px;
+  letter-spacing: 0.02em;
 }
 .hps__viewer-toast--visible {
   transform: translateX(-50%) translateY(0);
@@ -1426,21 +1491,79 @@
 .hps-viewers-dot {
   width: 8px;
   height: 8px;
-  border-radius: var(--lp-radius-circle);
-  background: var(--lp-color-gold);
+  border-radius: 50%;
+  background: #ef5350;
   flex-shrink: 0;
   animation: hps-dot-pulse 1.2s ease-in-out infinite;
 }
 
 .hps__viewer-toast .hps-viewers-n {
-  color: var(--lp-color-gold);
-  font-size: var(--lp-fs-md);
-  font-weight: var(--lp-fw-black);
+  color: #F5C200;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
-/* ---------------------------------------------------------------------------
-   Sticky CTA bar
-   --------------------------------------------------------------------------- */
+/* Sticky bar price */
+.hps-cta-bar__price {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.hps-cta-bar__label {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Desktop */
+@media screen and (min-width: 750px) {
+  .hps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    overflow: visible;
+    padding: 40px max(24px, calc((100% - 1200px) / 2));
+    gap: 48px;
+    align-items: start;
+  }
+  .hps__gallery {
+    flex-direction: column;
+    height: auto;
+    position: sticky;
+    top: var(--sticky-header-offset, 0px);
+    min-width: 0;
+  }
+  .hps__main {
+    flex: 1 1 auto;
+    height: min(640px, 74svh);
+  }
+  .hps__thumbs {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: none;
+    padding: 8px 0 0;
+  }
+  .hps__details {
+    overflow-y: visible;
+    padding: 0;
+    gap: 14px;
+    min-height: unset;
+    min-width: 0;
+  }
+  .hps__title { font-size: 1.2rem; }
+  .hps__price-main { font-size: 2rem; }
+  .hps-pop { align-items: center; }
+  .hps-pop__box { border-radius: 0; width: 480px; max-height: calc(100vh - 40px); }
+  .hps-usp { margin: 0; }
+  .hps-tshirt-img-wrap { height: 160px; aspect-ratio: unset; }
+  .hps-tshirt-img { height: 100%; }
+}
+
+/* Sticky CTA bar */
 .hps-cta-bar {
   position: fixed;
   bottom: 0;
@@ -1449,8 +1572,8 @@
   z-index: 9000;
   display: flex;
   align-items: stretch;
-  padding: var(--lp-space-3) var(--lp-space-4) calc(var(--lp-space-3) + env(safe-area-inset-bottom, 0px));
-  background: var(--lp-color-black);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: #111;
   opacity: 0;
   transform: translateY(100%);
   pointer-events: none;
@@ -1467,77 +1590,39 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 52px;
+  height: 50px;
   text-decoration: none;
-  border-radius: var(--lp-radius-none);
+  border-radius: 0;
   border: none;
   cursor: pointer;
-  background: var(--lp-color-gold);
-  color: var(--lp-color-black) !important;
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-md);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-wider);
+  transition: background 0.15s;
+}
+
+.hps-cta-bar .hps-cta--before {
+  background: #F5C200;
+  color: #111 !important;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  transition: background var(--lp-transition-base);
+  font-family: 'Archivo Black', sans-serif;
 }
-.hps-cta-bar .hps-cta:hover { background: var(--lp-color-gold-hover); color: var(--lp-color-black) !important; text-decoration: none; }
-.hps-cta-bar .hps-cta:active { background: var(--lp-color-gold-hover); }
+.hps-cta-bar .hps-cta--before:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
+.hps-cta-bar .hps-cta--before:active { background: #d9ac00; }
 
-.hps-cta-bar__label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--lp-fs-md);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-wider);
-  text-transform: uppercase;
-  line-height: 1;
+.hps-cta-bar .hps-cta--after {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  background: #F5C200;
+  color: #111 !important;
+  font-family: 'Archivo Black', sans-serif;
 }
+.hps-cta-bar .hps-cta--after:hover { background: #d9ac00; color: #111 !important; text-decoration: none; }
+.hps-cta-bar .hps-cta--after:active { background: #d9ac00; }
 
-/* ---------------------------------------------------------------------------
-   Desktop layout (≥750px) — gallery left, head + details right
-   --------------------------------------------------------------------------- */
-@media (min-width: 750px) {
-  .hps {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-      "gallery head"
-      "gallery details";
-    grid-template-rows: auto 1fr;
-    gap: var(--lp-space-5) var(--lp-space-9);
-    padding: var(--lp-space-8) max(var(--lp-space-6), calc((100% - 1200px) / 2));
-    align-items: start;
-  }
-  .hps__head    { grid-area: head; }
-  .hps__details { grid-area: details; }
-  .hps__gallery {
-    grid-area: gallery;
-    position: sticky;
-    top: var(--sticky-header-offset, 24px);
-  }
-
-  .hps__title       { font-size: var(--lp-fs-h1); }
-  .hps__price-main  { font-size: var(--lp-fs-price); }
-  .hps__price-compare { font-size: var(--lp-fs-lg); }
-
-  .hps__main { aspect-ratio: 1 / 1; }
-  .hps__nav  { width: 44px; height: 44px; }
-  .hps__nav--prev { left: var(--lp-space-4); }
-  .hps__nav--next { right: var(--lp-space-4); }
-
-  .hps__thumb { flex: 0 0 80px; height: 80px; }
-
-  .hps__cta {
-    padding: var(--lp-space-5) var(--lp-space-6);
-    font-size: var(--lp-fs-lg);
-  }
-
-  .hps-pop      { align-items: center; }
-  .hps-pop__box { width: 480px; max-height: calc(100vh - 40px); }
-  .hps-tshirt-img-wrap { height: 200px; }
-}
+.hps-cta-bar--past .hps-cta--before { display: none; }
+.hps-cta-bar--past .hps-cta--after { display: flex; }
 
 {% endstylesheet %}
 
@@ -1606,8 +1691,8 @@
     {
       "type": "text",
       "id": "cta_label",
-      "label": "Testo CTA",
-      "default": "PRENOTA ORA LA TUA TAGLIA"
+      "label": "Testo CTA sticky bar",
+      "default": "SÌ, LE VOGLIO"
     },
     {
       "type": "number",

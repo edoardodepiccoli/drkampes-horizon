@@ -1,375 +1,131 @@
 <section class="lp-benefits">
   <div class="lp-benefits__inner">
 
-    <div class="lp-benefits__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="lp-sec__eyebrow lp-benefits__eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
 
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="lp-benefits__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
-      {%- endif -%}
+    <h2 class="lp-sec__h2 lp-benefits__h2">{{ section.settings.heading }}</h2>
 
-      <h2 class="lp-benefits__heading lp-sec__h2">{{ section.settings.heading }}</h2>
+    {%- if section.settings.uvp != blank -%}
+      <p class="lp-benefits__uvp">{{ section.settings.uvp }}</p>
+    {%- endif -%}
 
-      {%- if section.settings.subheading != blank -%}
-        <div class="lp-benefits__subheading">{{ section.settings.subheading }}</div>
-      {%- endif -%}
-
-      {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
-      {%- if benefit_blocks.size > 0 -%}
-        <ul class="lp-benefits__list">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'benefit' -%}
-              <li class="lp-benefit" {{ block.shopify_attributes }}>
-                <span class="lp-benefit__check-wrap" aria-hidden="true">
-                  <svg class="lp-benefit__check" viewBox="0 0 20 20" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="9" class="lp-benefit__check-circle"/><path d="M6 10.5l3 3 5-6" class="lp-benefit__check-tick"/></svg>
-                </span>
-                <span class="lp-benefit__body">
-                  {%- if block.settings.title != blank -%}
-                    <strong class="lp-benefit__title">{{ block.settings.title }}</strong>
-                  {%- else -%}
-                    <strong class="lp-benefit__title lp-benefit__title--placeholder">Titolo benefit</strong>
-                  {%- endif -%}
-                  {%- if block.settings.text != blank -%}
-                    <span class="lp-benefit__text">{{ block.settings.text }}</span>
-                  {%- endif -%}
-                </span>
-              </li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
-
-    </div>
-
-    <div class="lp-benefits__media">
-      {%- if section.settings.hero_image != blank -%}
-        {{ section.settings.hero_image | image_url: width: 1200 | image_tag:
-            class: 'lp-benefits__media-img',
-            loading: 'lazy',
-            widths: '600,800,1000,1200',
-            sizes: '(min-width:750px) 540px, 100vw',
-            alt: section.settings.hero_image.alt | default: '' }}
-      {%- else -%}
-        <div class="lp-benefits__media-placeholder">Carica foto prodotto</div>
-      {%- endif -%}
-    </div>
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-benefits__list">
+        {%- for block in section.blocks -%}
+          <li class="lp-benefit" {{ block.shopify_attributes }}>
+            <svg class="lp-benefit__check" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="lp-benefit__body">
+              <strong class="lp-benefit__title">{{ block.settings.title }}</strong>
+              {%- if block.settings.text != blank -%}
+                <span class="lp-benefit__sep" aria-hidden="true"> — </span>
+                <span class="lp-benefit__text">{{ block.settings.text }}</span>
+              {%- endif -%}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
 
   </div>
-
-  {%- assign cabin_blocks = section.blocks | where: 'type', 'cabin_icon' -%}
-  {%- if cabin_blocks.size > 0 -%}
-    <aside class="lp-benefits__cabin">
-      <div class="lp-benefits__cabin-inner">
-        <p class="lp-benefits__cabin-heading">{{ section.settings.cabin_strip_heading }}</p>
-        <ul class="lp-benefits__cabin-list">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'cabin_icon' -%}
-              <li class="lp-benefits__cabin-item" {{ block.shopify_attributes }}>
-                <span class="lp-benefits__cabin-icon">
-                  {%- if block.settings.icon_image != blank -%}
-                    {{ block.settings.icon_image | image_url: width: 120 | image_tag:
-                        class: 'lp-benefits__cabin-icon-img',
-                        loading: 'lazy',
-                        widths: '60,80,120',
-                        alt: '' }}
-                  {%- else -%}
-                    <svg class="lp-benefits__cabin-icon-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="0" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
-                  {%- endif -%}
-                </span>
-                {%- if block.settings.label != blank -%}
-                  <span class="lp-benefits__cabin-label">{{ block.settings.label }}</span>
-                {%- else -%}
-                  <span class="lp-benefits__cabin-label lp-benefits__cabin-label--placeholder">Etichetta icona</span>
-                {%- endif -%}
-              </li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-      </div>
-    </aside>
-  {%- endif -%}
-
 </section>
 
 {% stylesheet %}
 
-/* ── Section shell ───────────────────────────────────────────── */
 .lp-benefits {
-  background: var(--lp-color-white);
-  color: var(--lp-color-text-on-light);
-  padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
+  padding: 32px 16px 36px;
+  background: #000;
+  color: #fff;
 }
 
-/* ── Inner — single col mobile, 2-col desktop ────────────────── */
 .lp-benefits__inner {
-  max-width: var(--lp-section-max-width);
+  max-width: 580px;
   margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-7);
 }
 
-/* ── Header column ───────────────────────────────────────────── */
-.lp-benefits__header {
-  display: flex;
-  flex-direction: column;
+.lp-benefits .lp-sec__eyebrow {
+  color: #F5C200;
+  margin-bottom: 8px;
 }
 
-/* ── Eyebrow — green chip badge ──────────────────────────────── */
-/* Overrides lp-sec__eyebrow base to add chip background */
-.lp-benefits__eyebrow {
-  background: var(--lp-color-success-bg);
-  color: var(--lp-color-success-dark);
-  padding: var(--lp-space-1) var(--lp-space-3);
-  margin-bottom: var(--lp-space-5);
-  border: 1px solid var(--lp-color-success-border);
+.lp-benefits .lp-sec__h2 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin: 0 0 8px;
 }
 
-/* ── H2 — last line in gold ──────────────────────────────────── */
-.lp-benefits__heading {
-  margin: 0 0 var(--lp-space-5);
-  color: var(--lp-color-text-on-light);
+.lp-benefits__uvp {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.45;
+  margin: 0 0 18px;
+  max-width: 540px;
 }
 
-/* ── Subheading ──────────────────────────────────────────────── */
-.lp-benefits__subheading {
-  font-size: var(--lp-fs-md);
-  color: var(--lp-color-text-on-light-mute);
-  line-height: var(--lp-lh-base);
-  margin: 0 0 var(--lp-space-7);
-}
-
-.lp-benefits__subheading p {
-  margin: 0;
-}
-
-/* ── Benefits list ───────────────────────────────────────────── */
 .lp-benefits__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-5);
+  gap: 10px;
 }
 
 .lp-benefit {
   display: flex;
   align-items: flex-start;
-  gap: var(--lp-space-3);
-  font-size: var(--lp-fs-base);
-  line-height: var(--lp-lh-base);
-}
-
-/* Circular check icon */
-.lp-benefit__check-wrap {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  margin-top: 1px;
+  gap: 10px;
+  padding: 0;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
 }
 
 .lp-benefit__check {
-  width: 22px;
-  height: 22px;
-  display: block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: #F5C200;
+  margin-top: 2px;
 }
 
-.lp-benefit__check-circle {
-  stroke: var(--lp-color-success-dark);
-  fill: none;
-}
-
-.lp-benefit__check-tick {
-  stroke: var(--lp-color-success-dark);
-  fill: none;
-}
-
-/* Body: stacked title + description */
 .lp-benefit__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-1);
+  display: inline;
 }
 
 .lp-benefit__title {
-  font-family: var(--lp-font-display);
-  font-weight: var(--lp-fw-black);
-  font-size: var(--lp-fs-base);
-  color: var(--lp-color-text-on-light);
-  line-height: var(--lp-lh-snug);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.01em;
 }
 
-.lp-benefit__title--placeholder {
-  opacity: 0.35;
+.lp-benefit__sep {
+  color: rgba(255,255,255,0.4);
 }
 
 .lp-benefit__text {
-  font-size: var(--lp-fs-sm);
-  color: var(--lp-color-text-on-light-mute);
-  line-height: var(--lp-lh-base);
+  color: rgba(255,255,255,0.65);
 }
 
-/* ── Hero shoe image ─────────────────────────────────────────── */
-.lp-benefits__media {
-  width: 100%;
-}
-
-.lp-benefits__media-img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-.lp-benefits__media-placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed var(--lp-color-divider-light-strong);
-  background: var(--lp-color-surface-card);
-  color: var(--lp-color-text-on-light-faint);
-  font-size: var(--lp-fs-sm);
-}
-
-/* ── Cabin strip — full-bleed dark transition ────────────────── */
-/* margin-top collapses onto the section bottom padding; net = section-pad-y gap between image and strip */
-.lp-benefits__cabin {
-  background: var(--lp-color-black);
-  color: var(--lp-color-text-on-dark);
-  margin-top: var(--lp-space-7);
-  margin-left: calc(-1 * var(--lp-section-pad-x));
-  margin-right: calc(-1 * var(--lp-section-pad-x));
-  margin-bottom: calc(-1 * var(--lp-section-pad-y));
-}
-
-.lp-benefits__cabin-inner {
-  max-width: var(--lp-section-max-width);
-  margin: 0 auto;
-  padding: var(--lp-space-9) var(--lp-section-pad-x);
-}
-
-/* Cabin heading — h2 scale, centered, white */
-.lp-benefits__cabin-heading {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-h2);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-tight);
-  text-transform: uppercase;
-  color: var(--lp-color-text-on-dark);
-  text-align: center;
-  margin: 0 0 var(--lp-space-9);
-  line-height: var(--lp-lh-snug);
-}
-
-/* ── Cabin icon grid ─────────────────────────────────────────── */
-.lp-benefits__cabin-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-}
-
-.lp-benefits__cabin-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--lp-space-3);
-  padding: var(--lp-space-6) var(--lp-space-4);
-  border-top: 1px solid var(--lp-color-divider-dark);
-  border-left: 1px solid var(--lp-color-divider-dark);
-}
-
-.lp-benefits__cabin-item:nth-child(odd) {
-  border-left: none;
-}
-
-.lp-benefits__cabin-icon {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.lp-benefits__cabin-icon-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.lp-benefits__cabin-icon-svg {
-  width: 48px;
-  height: 48px;
-  color: var(--lp-color-divider-dark-strong);
-}
-
-.lp-benefits__cabin-label {
-  font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-sm);
-  font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-wider);
-  text-transform: uppercase;
-  color: var(--lp-color-text-on-dark);
-  text-align: center;
-  line-height: var(--lp-lh-snug);
-}
-
-.lp-benefits__cabin-label--placeholder {
-  opacity: 0.35;
-}
-
-/* ── Desktop (≥750px) ────────────────────────────────────────── */
 @media (min-width: 750px) {
+  .lp-benefits {
+    padding: 56px 40px 64px;
+  }
   .lp-benefits__inner {
-    max-width: var(--lp-section-max-width-md);
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--lp-space-10);
+    max-width: 1100px;
   }
-
-  .lp-benefits__header {
-    flex: 1 1 0;
-    min-width: 0;
+  .lp-benefits .lp-sec__h2 {
+    font-size: 1.8rem;
   }
-
-  .lp-benefits__media {
-    flex: 0 0 440px;
-    width: 440px;
+  .lp-benefits__uvp {
+    font-size: 1rem;
+    margin-bottom: 24px;
   }
-
-  .lp-benefits__subheading {
-    font-size: var(--lp-fs-lg);
-  }
-
   .lp-benefits__list {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--lp-space-5);
-  }
-
-  .lp-benefits__cabin-inner {
-    max-width: var(--lp-section-max-width-md);
-    padding: var(--lp-space-10) var(--lp-section-pad-x);
-  }
-
-  .lp-benefits__cabin-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* On desktop: restore left border for all items, remove only first */
-  .lp-benefits__cabin-item:nth-child(odd) {
-    border-left: 1px solid var(--lp-color-divider-dark);
-  }
-
-  .lp-benefits__cabin-item:nth-child(1) {
-    border-left: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
   }
 }
 
@@ -377,36 +133,25 @@
 
 {% schema %}
 {
-  "name": "LP — Benefici",
+  "name": "LP — Benefits",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Etichetta eyebrow",
-      "default": "PERCHÉ DR KAMPES"
+      "label": "Eyebrow label",
+      "default": "Perché Dr Kampes"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Titolo sezione",
-      "default": "LE SCARPE PER CHI GUIDA UN MEZZO, SUL SERIO."
+      "default": "Le scarpe per chi guida un mezzo, sul serio."
     },
     {
-      "type": "richtext",
-      "id": "subheading",
-      "label": "Sottotitolo",
-      "default": "<p>L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy.</p>"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Foto prodotto (sopra i benefici)"
-    },
-    {
-      "type": "text",
-      "id": "cabin_strip_heading",
-      "label": "Titolo striscia scura",
-      "default": "PENSATE PER CHI VIVE IN CABINA"
+      "type": "textarea",
+      "id": "uvp",
+      "label": "UVP (frase di valore breve)",
+      "default": "L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy."
     }
   ],
   "blocks": [
@@ -424,41 +169,25 @@
           "type": "textarea",
           "id": "text",
           "label": "Descrizione breve (1 riga ideale)"
-        }
-      ]
-    },
-    {
-      "type": "cabin_icon",
-      "name": "Icona cabina",
-      "limit": 4,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "icon_image",
-          "label": "Icona (sostituisce il segnaposto)"
         },
         {
           "type": "text",
-          "id": "label",
-          "label": "Etichetta icona"
+          "id": "icon",
+          "label": "(deprecato — non più usato)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "LP — Benefici",
+      "name": "LP — Benefits",
       "blocks": [
-        { "type": "benefit",     "settings": { "title": "FASTWEAR®",                  "text": "on/off in 1 secondo, senza lacci" } },
-        { "type": "benefit",     "settings": { "title": "3 anni di garanzia scritta",  "text": "1.095 giorni coperti, €0,17 al giorno" } },
-        { "type": "benefit",     "settings": { "title": "100% Made in Italy",          "text": "Montebelluna, Treviso" } },
-        { "type": "benefit",     "settings": { "title": "Idrorepellenti certificate",  "text": "pioggia, fango, sale stradale" } },
-        { "type": "benefit",     "settings": { "title": "Plantare anti-vibrazione",    "text": "10h di guida senza dolore" } },
-        { "type": "benefit",     "settings": { "title": "S3S grado massimo UE",        "text": "antiscivolo gasolio, lamiera, ghiaccio" } },
-        { "type": "cabin_icon",  "settings": { "label": "COMODE" } },
-        { "type": "cabin_icon",  "settings": { "label": "VELOCI DA INDOSSARE" } },
-        { "type": "cabin_icon",  "settings": { "label": "RESISTENTI" } },
-        { "type": "cabin_icon",  "settings": { "label": "SICURE PER OGNI MEZZO" } }
+        { "type": "benefit", "settings": { "title": "FASTWEAR®",                 "text": "on/off in 1 secondo, senza lacci" } },
+        { "type": "benefit", "settings": { "title": "3 anni di garanzia scritta", "text": "1.095 giorni coperti, €0,17 al giorno" } },
+        { "type": "benefit", "settings": { "title": "100% Made in Italy",         "text": "Montebelluna, Treviso" } },
+        { "type": "benefit", "settings": { "title": "Idrorepellenti certificate", "text": "pioggia, fango, sale stradale" } },
+        { "type": "benefit", "settings": { "title": "Plantare anti-vibrazione",   "text": "10h di guida senza dolore" } },
+        { "type": "benefit", "settings": { "title": "S3S grado massimo UE",       "text": "antiscivolo gasolio, lamiera, ghiaccio" } }
       ]
     }
   ]
