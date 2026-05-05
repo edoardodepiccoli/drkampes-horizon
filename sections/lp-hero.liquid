@@ -1,463 +1,581 @@
-{%- assign img = section.settings.image -%}
+{%- assign img           = section.settings.image -%}
+{%- assign sec_img       = section.settings.secondary_image -%}
+{%- assign headline      = section.settings.headline | default: 'SCENDI DAL CAMION IN 2 SECONDI.' -%}
+{%- assign highlight     = section.settings.headline_highlight | default: 'IN 2 SECONDI.' -%}
+{%- assign cta_url       = section.settings.cta_url | default: '#acquista' -%}
 
-<section class="lp-hero">
+{%- comment -%} Split headline around the highlight phrase {%- endcomment -%}
+{%- assign hl_index = headline | split: highlight | first -%}
+{%- assign before_hl = hl_index -%}
+{%- if highlight != blank and headline contains highlight -%}
+  {%- assign before_hl = headline | split: highlight | first -%}
+  {%- assign hl_found = true -%}
+{%- else -%}
+  {%- assign hl_found = false -%}
+{%- endif -%}
+
+<section class="lp-hero lp-sec lp-sec--dark">
   <div class="lp-hero__inner">
 
+    <!-- ── EYEBROW ── -->
+    {%- if section.settings.eyebrow_text != blank -%}
+      <p class="lp-hero__eyebrow">{{ section.settings.eyebrow_text }}</p>
+    {%- endif -%}
+
+    <!-- ── H1 ── -->
+    <h1 class="lp-hero__title">
+      {%- if hl_found -%}
+        {{- before_hl -}}<em class="lp-hero__title--highlight">{{- highlight -}}</em>
+      {%- else -%}
+        {{- headline }} <em class="lp-hero__title--highlight">{{- highlight -}}</em>
+      {%- endif -%}
+    </h1>
+
+    <!-- ── TAGLINE ── -->
+    {%- if section.settings.tagline_1 != blank or section.settings.tagline_2 != blank -%}
+      <p class="lp-hero__tagline">
+        {%- if section.settings.tagline_1 != blank -%}{{- section.settings.tagline_1 -}}{%- endif -%}
+        {%- if section.settings.tagline_1 != blank and section.settings.tagline_2 != blank -%}<br>{%- endif -%}
+        {%- if section.settings.tagline_2 != blank -%}{{- section.settings.tagline_2 -}}{%- endif -%}
+      </p>
+    {%- endif -%}
+
+    <!-- ── MAIN HERO IMAGE ── -->
     <div class="lp-hero__media">
       {%- if img != blank -%}
         {{ img | image_url: width: 1200 | image_tag:
-           class: 'lp-hero__img',
+           class: 'lp-hero__media-img',
            loading: 'eager',
            fetchpriority: 'high',
-           widths: '600,800,1000,1200',
-           sizes: '(min-width:750px) 560px, 100vw',
+           widths: '400,600,800,1200',
+           sizes: '(min-width:750px) 580px, 100vw',
            alt: img.alt }}
-      {%- endif -%}
-      {%- if section.settings.image_badge != blank -%}
-        <span class="lp-hero__img-badge">{{ section.settings.image_badge }}</span>
+      {%- else -%}
+        <div class="lp-hero__media-placeholder">Carica immagine prodotto</div>
       {%- endif -%}
     </div>
 
-    <div class="lp-hero__info">
+    <!-- ── FEATURE BLOCKS ── -->
+    <div class="lp-hero__features">
 
-      {%- if section.settings.offer_badge != blank -%}
-        <div class="lp-hero__badge">
-          <span>{{ section.settings.offer_badge }}</span>
-        </div>
-      {%- endif -%}
-
-      <h1 class="lp-hero__h1">{{ section.settings.headline }}</h1>
-
-      {%- if section.settings.rating_value != blank or section.settings.rating_count != blank -%}
-        <div class="lp-hero__rating">
-          {%- if section.settings.rating_value != blank -%}
-            <span class="lp-hero__stars" aria-hidden="true">★★★★★</span>
-            <span class="lp-hero__rating-val">{{ section.settings.rating_value }}</span>
-          {%- endif -%}
-          {%- if section.settings.rating_count != blank -%}
-            <span class="lp-hero__rating-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__rating-count">{{ section.settings.rating_count }}</span>
-          {%- endif -%}
-          {%- if section.settings.verified_label != blank -%}
-            <span class="lp-hero__rating-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__verified">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              {{ section.settings.verified_label }}
-            </span>
+      <!-- Feature 1: FASTWEAR -->
+      <div class="lp-hero__feature">
+        <div class="lp-hero__feature-media">
+          {%- if sec_img != blank -%}
+            {{ sec_img | image_url: width: 400 | image_tag:
+               class: 'lp-hero__feature-img',
+               loading: 'lazy',
+               widths: '200,400',
+               sizes: '(min-width:750px) 200px, 50vw',
+               alt: sec_img.alt }}
+          {%- else -%}
+            <div class="lp-hero__media-placeholder lp-hero__media-placeholder--sm">Carica immagine feature</div>
           {%- endif -%}
         </div>
-      {%- endif -%}
-
-      {%- if section.settings.subheading != blank -%}
-        <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
-      {%- endif -%}
-
-      <div class="lp-hero__price-block">
-        <div class="lp-hero__price-row">
-          {%- if section.settings.price != blank -%}
-            <span class="lp-hero__price">{{ section.settings.price }}</span>
+        <div class="lp-hero__feature-body">
+          {%- if section.settings.secondary_badge_text != blank -%}
+            <span class="lp-hero__feature-badge">{{ section.settings.secondary_badge_text }}</span>
           {%- endif -%}
-          {%- if section.settings.savings_label != blank -%}
-            <span class="lp-hero__savings">{{ section.settings.savings_label }}</span>
+          {%- if section.settings.feature_1_text != blank -%}
+            <div class="lp-hero__feature-text">{{ section.settings.feature_1_text }}</div>
           {%- endif -%}
         </div>
-        <div class="lp-hero__price-meta">
-          {%- if section.settings.compare_price != blank -%}
-            <span class="lp-hero__compare">{{ section.settings.compare_price }}</span>
-          {%- endif -%}
-          {%- if section.settings.tax_note != blank -%}
-            <span class="lp-hero__price-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__tax">{{ section.settings.tax_note }}</span>
-          {%- endif -%}
-        </div>
-        {%- if section.settings.installments_note != blank -%}
-          <div class="lp-hero__installments">{{ section.settings.installments_note }}</div>
-        {%- endif -%}
       </div>
 
-      {%- if section.settings.coupon_text != blank -%}
-        <div class="lp-hero__coupon">
-          <span class="lp-hero__coupon-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a2 2 0 0 1 0 4v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4Z"/><path d="M9 9h.01M15 15h.01M9 15l6-6"/></svg>
-          </span>
-          <span>{{ section.settings.coupon_text }}</span>
+      <!-- Feature 2: anti-vibrazione (no secondary image — shares layout with alt modifier) -->
+      <div class="lp-hero__feature lp-hero__feature--alt">
+        <div class="lp-hero__feature-body lp-hero__feature-body--solo">
+          {%- if section.settings.feature_2_text != blank -%}
+            <div class="lp-hero__feature-text">{{ section.settings.feature_2_text }}</div>
+          {%- endif -%}
         </div>
-      {%- endif -%}
-
-      <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
-        {{ section.settings.cta_label | default: "SCOPRI L'OFFERTA SUBITO" }}
-      </a>
-
-      {%- if section.blocks.size > 0 -%}
-        <ul class="lp-hero__trust">
-          {%- for block in section.blocks -%}
-            <li class="lp-hero__trust-item" {{ block.shopify_attributes }}>
-              {%- case block.settings.icon -%}
-                {%- when 'payment' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                {%- when 'delivery' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                {%- when 'shield' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              {%- endcase -%}
-              <span>{{ block.settings.text }}</span>
-            </li>
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
+      </div>
 
     </div>
+
+    <!-- ── OFFER BADGE ── -->
+    {%- if section.settings.offer_badge != blank -%}
+      <div class="lp-hero__offer-badge">{{ section.settings.offer_badge }}</div>
+    {%- endif -%}
+
+    <!-- ── COUPON BANNER ── -->
+    <div class="lp-hero__coupon">
+
+      <!-- Row 1: shoe + t-shirt = price + savings -->
+      <div class="lp-hero__coupon-row">
+
+        <!-- Shoe image -->
+        <div class="lp-hero__coupon-item">
+          {%- if section.settings.coupon_shoe_image != blank -%}
+            {{ section.settings.coupon_shoe_image | image_url: width: 120 | image_tag:
+               class: 'lp-hero__coupon-img',
+               loading: 'lazy',
+               widths: '80,120',
+               sizes: '80px',
+               alt: 'Scarpe Dr Kampes' }}
+          {%- else -%}
+            <div class="lp-hero__media-placeholder lp-hero__media-placeholder--coupon">Scarpa</div>
+          {%- endif -%}
+        </div>
+
+        <span class="lp-hero__coupon-op" aria-hidden="true">+</span>
+
+        <!-- T-shirt image -->
+        <div class="lp-hero__coupon-item">
+          {%- if section.settings.coupon_tshirt_image != blank -%}
+            {{ section.settings.coupon_tshirt_image | image_url: width: 120 | image_tag:
+               class: 'lp-hero__coupon-img',
+               loading: 'lazy',
+               widths: '80,120',
+               sizes: '80px',
+               alt: 'T-shirt Dr Kampes' }}
+          {%- else -%}
+            <div class="lp-hero__media-placeholder lp-hero__media-placeholder--coupon">T-shirt</div>
+          {%- endif -%}
+          <span class="lp-hero__coupon-caption">
+            {%- if section.settings.coupon_free_label != blank -%}
+              {{ section.settings.coupon_free_label }}
+            {%- else -%}GRATIS{%- endif -%}
+          </span>
+        </div>
+
+        <span class="lp-hero__coupon-op" aria-hidden="true">=</span>
+
+        <!-- Price + savings -->
+        <div class="lp-hero__coupon-item lp-hero__coupon-item--price">
+          <span class="lp-hero__coupon-price">
+            {%- if section.settings.coupon_price != blank -%}{{ section.settings.coupon_price }}{%- else -%}€ 189{%- endif -%}
+          </span>
+          {%- if section.settings.coupon_savings_label != blank -%}
+            <span class="lp-hero__coupon-savings">{{ section.settings.coupon_savings_label }}</span>
+          {%- endif -%}
+        </div>
+
+      </div>
+
+      <!-- Row 2: shipping + installments -->
+      <div class="lp-hero__coupon-row lp-hero__coupon-row--shipping">
+
+        <div class="lp-hero__coupon-item lp-hero__coupon-item--shipping">
+          {%- if section.settings.coupon_shipping_icon_image != blank -%}
+            {{ section.settings.coupon_shipping_icon_image | image_url: width: 80 | image_tag:
+               class: 'lp-hero__coupon-img lp-hero__coupon-img--icon',
+               loading: 'lazy',
+               widths: '48,80',
+               sizes: '48px',
+               alt: 'Spedizione' }}
+          {%- else -%}
+            <span class="lp-hero__coupon-truck" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </span>
+          {%- endif -%}
+          <span class="lp-hero__coupon-caption lp-hero__coupon-caption--shipping">
+            {%- if section.settings.coupon_shipping_label != blank -%}
+              {{ section.settings.coupon_shipping_label }}
+            {%- else -%}SPEDIZIONE GRATIS{%- endif -%}
+          </span>
+        </div>
+
+        {%- if section.settings.installments_note != blank -%}
+          <div class="lp-hero__coupon-meta">{{ section.settings.installments_note }}</div>
+        {%- endif -%}
+
+      </div>
+
+    </div>
+
+    <!-- ── CTA ── -->
+    <a href="{{ cta_url }}" class="lp-cta lp-hero__cta">
+      {{ section.settings.cta_label | default: 'PRENOTA ORA LA TUA TAGLIA' }}
+    </a>
+
+    <!-- ── TRUST STRIP ── -->
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-hero__trust" role="list">
+        {%- for block in section.blocks -%}
+          <li class="lp-hero__trust-item" {{ block.shopify_attributes }}>
+            {%- case block.settings.icon -%}
+              {%- when 'payment' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="0"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              {%- when 'delivery' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="0"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              {%- when 'shield' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              {%- when 'check' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            {%- endcase -%}
+            <span>{{ block.settings.text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <!-- ── FOOTER TRUST TEXT ── -->
+    {%- if section.settings.footer_trust_text != blank -%}
+      <p class="lp-hero__footer-trust">{{ section.settings.footer_trust_text }}</p>
+    {%- endif -%}
+
   </div>
 </section>
 
 {% stylesheet %}
 
+/* ============================================================
+   LP HERO — scoped styles (tokens only, no raw hex)
+   ============================================================ */
+
 .lp-hero {
-  background: #000;
-  color: #fff;
-  padding: 0 0 24px;
+  padding: 0;
 }
 
 .lp-hero__inner {
   display: flex;
   flex-direction: column;
-  max-width: 580px;
+  max-width: var(--lp-section-max-width);
   margin: 0 auto;
+  padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
+  gap: var(--lp-space-5);
 }
 
+/* ── Eyebrow ── */
+.lp-hero__eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--lp-color-gold);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  line-height: var(--lp-lh-snug);
+  padding: var(--lp-space-2) var(--lp-space-3);
+  margin: 0;
+}
+
+/* ── H1 ── */
+.lp-hero__title {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-h1);
+  font-weight: var(--lp-fw-black);
+  line-height: var(--lp-lh-tight);
+  letter-spacing: var(--lp-ls-tight);
+  color: var(--lp-color-text-on-dark);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.lp-hero__title--highlight {
+  color: var(--lp-color-gold);
+  font-style: normal;
+}
+
+/* ── Tagline ── */
+.lp-hero__tagline {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-h3);
+  font-weight: var(--lp-fw-black);
+  line-height: var(--lp-lh-snug);
+  color: var(--lp-color-gold);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Main media ── */
 .lp-hero__media {
-  position: relative;
   width: 100%;
-  background: #0a0a0a;
+  background: var(--lp-color-surface-dark);
 }
 
-.lp-hero__img {
+.lp-hero__media-img {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
 }
 
-.lp-hero__img-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #e3252b;
-  color: #fff;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  padding: 6px 10px;
+.lp-hero__media-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--lp-color-surface-elev);
+  color: var(--lp-color-text-on-dark-faint);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-sm);
   text-transform: uppercase;
-  line-height: 1.2;
-  z-index: 2;
+  letter-spacing: var(--lp-ls-wide);
 }
 
-.lp-hero__info {
+.lp-hero__media-placeholder--sm {
+  aspect-ratio: 4 / 3;
+}
+
+.lp-hero__media-placeholder--coupon {
+  aspect-ratio: 1 / 1;
+  width: 72px;
+  height: 72px;
+  font-size: var(--lp-fs-micro);
+}
+
+/* ── Feature blocks ── */
+.lp-hero__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lp-space-4);
+}
+
+.lp-hero__feature {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 0;
-  gap: 12px;
+  gap: var(--lp-space-3);
+  background: var(--lp-color-surface-dark);
+  padding: var(--lp-space-4);
 }
 
-.lp-hero__badge {
-  background: #F5C200;
-  color: #111;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 900;
-  padding: 8px 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  align-self: flex-start;
-  line-height: 1.2;
-  margin: 0;
+.lp-hero__feature--alt {
+  justify-content: flex-start;
 }
 
-.lp-hero__h1 {
-  font-family: var(--font-heading--family, inherit);
-  font-size: 1.45rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.lp-hero__h1 em {
-  color: #F5C200;
-  font-style: normal;
-}
-
-.lp-hero__rating {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.78);
-  margin: 0;
-}
-
-.lp-hero__stars {
-  color: #F5C200;
-  letter-spacing: 0.05em;
-  font-size: 0.95rem;
-  line-height: 1;
-}
-
-.lp-hero__rating-val {
-  font-family: 'Archivo Black', sans-serif;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.lp-hero__rating-sep {
-  color: rgba(255,255,255,0.3);
-}
-
-.lp-hero__rating-count {
-  color: rgba(255,255,255,0.78);
-}
-
-.lp-hero__verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #4ade80;
-  font-weight: 700;
-  font-size: 0.78rem;
-}
-
-.lp-hero__verified svg {
-  width: 12px;
-  height: 12px;
-  stroke: #4ade80;
-}
-
-.lp-hero__sub {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.45;
-  margin: 0;
-}
-.lp-hero__sub p { margin: 0; }
-.lp-hero__sub strong { color: #fff; }
-
-.lp-hero__price-block {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: #0d0d0d;
-  border-left: 3px solid #F5C200;
-  padding: 12px 14px;
-  margin: 4px 0 0;
-}
-
-.lp-hero__price-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  line-height: 1;
-}
-
-.lp-hero__price {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 2.4rem;
-  color: #F5C200;
-  line-height: 1;
-}
-
-.lp-hero__savings {
-  background: #e3252b;
-  color: #fff;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  padding: 6px 9px;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.lp-hero__price-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-}
-
-.lp-hero__compare {
-  color: rgba(255,255,255,0.55);
-  text-decoration: line-through;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.lp-hero__price-sep {
-  color: rgba(255,255,255,0.25);
-}
-
-.lp-hero__tax {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.55);
-}
-
-.lp-hero__installments {
-  font-size: 0.8rem;
-  color: #fff;
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-.lp-hero__installments strong {
-  color: #F5C200;
-  font-family: 'Archivo Black', sans-serif;
-  letter-spacing: 0.02em;
-}
-
-.lp-hero__coupon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #14361a;
-  border: 1px dashed #2e7d32;
-  color: #d4ffd9;
-  padding: 10px 12px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.lp-hero__coupon-icon {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.lp-hero__coupon-icon svg {
-  width: 16px;
-  height: 16px;
-  stroke: #4ade80;
-}
-
-.lp-hero__cta {
+.lp-hero__feature-img {
   display: block;
   width: 100%;
-  padding: 17px 20px;
-  background: #F5C200;
-  color: #0d0d0d;
-  font-size: 1rem;
-  font-weight: 900;
-  font-family: 'Archivo Black', sans-serif;
-  letter-spacing: 0.06em;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.lp-hero__feature-badge {
+  display: inline-block;
+  background: var(--lp-color-gold);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wider);
+  text-transform: uppercase;
+  padding: var(--lp-space-1) var(--lp-space-2);
+  line-height: var(--lp-lh-snug);
+}
+
+.lp-hero__feature-text {
+  font-family: var(--lp-font-body);
+  font-size: var(--lp-fs-xs);
+  color: var(--lp-color-text-on-dark-mute);
+  line-height: var(--lp-lh-relaxed);
+}
+
+.lp-hero__feature-text p {
+  margin: 0;
+}
+
+.lp-hero__feature-body--solo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ── Offer badge ── */
+.lp-hero__offer-badge {
+  display: block;
+  width: 100%;
+  background: var(--lp-color-gold);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wider);
   text-transform: uppercase;
   text-align: center;
-  border-radius: 0;
-  text-decoration: none;
-  transition: background 0.15s, transform 0.1s;
-  margin: 4px 0 0;
-  box-shadow: 0 0 0 0 rgba(245,194,0,0.55);
-  animation: lp-hero-cta-pulse 2.4s ease-in-out infinite;
-}
-.lp-hero__cta:hover {
-  background: #d9ac00;
-  text-decoration: none;
-}
-.lp-hero__cta:active {
-  transform: scale(0.99);
+  padding: var(--lp-space-3) var(--lp-space-4);
+  line-height: var(--lp-lh-snug);
 }
 
-@keyframes lp-hero-cta-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245,194,0,0.55); }
-  50% { box-shadow: 0 0 0 12px rgba(245,194,0,0); }
+/* ── Coupon banner ── */
+.lp-hero__coupon {
+  background: var(--lp-color-surface-dark);
+  border: 1px solid var(--lp-color-divider-dark-strong);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
+.lp-hero__coupon-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--lp-space-2) var(--lp-space-3);
+  padding: var(--lp-space-4) var(--lp-space-4);
+}
+
+.lp-hero__coupon-row--shipping {
+  border-top: 1px solid var(--lp-color-divider-dark);
+  padding: var(--lp-space-3) var(--lp-space-4);
+  gap: var(--lp-space-3) var(--lp-space-5);
+}
+
+.lp-hero__coupon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--lp-space-1);
+}
+
+.lp-hero__coupon-item--price {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--lp-space-3);
+  flex-wrap: wrap;
+}
+
+.lp-hero__coupon-item--shipping {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--lp-space-2);
+}
+
+.lp-hero__coupon-img {
+  display: block;
+  width: 72px;
+  height: auto;
+  object-fit: contain;
+}
+
+.lp-hero__coupon-img--icon {
+  width: 40px;
+}
+
+.lp-hero__coupon-op {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-xl);
+  font-weight: var(--lp-fw-black);
+  color: var(--lp-color-text-on-dark-mute);
+  line-height: 1;
+}
+
+.lp-hero__coupon-price {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-price);
+  font-weight: var(--lp-fw-black);
+  color: var(--lp-color-gold);
+  line-height: 1;
+}
+
+.lp-hero__coupon-savings {
+  display: inline-block;
+  background: var(--lp-color-danger);
+  color: var(--lp-color-text-on-dark);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  padding: var(--lp-space-1) var(--lp-space-2);
+  line-height: var(--lp-lh-snug);
+}
+
+.lp-hero__coupon-caption {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  color: var(--lp-color-gold);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.lp-hero__coupon-caption--shipping {
+  font-size: var(--lp-fs-xs);
+  color: var(--lp-color-text-on-dark-mute);
+}
+
+.lp-hero__coupon-meta {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-xs);
+  font-weight: var(--lp-fw-black);
+  color: var(--lp-color-text-on-dark-mute);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.lp-hero__coupon-meta p {
+  margin: 0;
+}
+
+.lp-hero__coupon-truck svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--lp-color-gold);
+  display: block;
+}
+
+/* ── CTA layout tweak (base styles from .lp-cta) ── */
+.lp-hero__cta {
+  margin-top: var(--lp-space-5);
+}
+
+/* ── Trust strip ── */
 .lp-hero__trust {
   list-style: none;
-  margin: 4px 0 0;
-  padding: 12px 0 0;
+  margin: 0;
+  padding: var(--lp-space-4) 0 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 8px 14px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  gap: var(--lp-space-2) var(--lp-space-4);
+  border-top: 1px solid var(--lp-color-divider-dark);
 }
 
 .lp-hero__trust-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.2;
+  gap: var(--lp-space-2);
+  font-family: var(--lp-font-body);
+  font-size: var(--lp-fs-micro);
+  color: var(--lp-color-text-on-dark-faint);
+  line-height: var(--lp-lh-snug);
 }
 
 .lp-hero__trust-item svg {
   width: 13px;
   height: 13px;
   flex-shrink: 0;
-  stroke: #F5C200;
+  stroke: var(--lp-color-gold);
 }
 
-/* ── Shared LP base styles (loaded first via hero) ── */
-.lp-sec__eyebrow {
-  font-size: 0.67rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+/* ── Footer trust ── */
+.lp-hero__footer-trust {
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
+  color: var(--lp-color-gold);
+  letter-spacing: var(--lp-ls-wider);
   text-transform: uppercase;
-  color: #2e7d32;
-  margin-bottom: 10px;
+  text-align: center;
+  margin: 0;
 }
 
-.lp-sec__h2 {
-  font-family: var(--font-heading--family, inherit);
-  font-size: 1.5rem;
-  font-weight: 900;
-  line-height: 1.2;
-  color: #111;
-  margin: 0 0 18px;
-}
-
+/* ============================================================
+   DESKTOP ≥ 750px
+   ============================================================ */
 @media (min-width: 750px) {
-  .lp-hero {
-    padding: 32px 40px 48px;
-  }
-
   .lp-hero__inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 1100px;
-    align-items: start;
+    max-width: var(--lp-section-max-width);
+    gap: var(--lp-space-6);
   }
 
-  .lp-hero__media {
-    position: sticky;
-    top: 24px;
+  .lp-hero__coupon-img {
+    width: 88px;
   }
 
-  .lp-hero__info {
-    padding: 0;
-    gap: 14px;
-  }
-
-  .lp-hero__h1 {
-    font-size: 2rem;
-  }
-
-  .lp-hero__price {
-    font-size: 2.9rem;
-  }
-
-  .lp-hero__cta {
-    padding: 20px 24px;
-    font-size: 1.05rem;
+  .lp-hero__features {
+    gap: var(--lp-space-5);
   }
 }
 
@@ -468,103 +586,129 @@
   "name": "LP — Hero",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Foto prodotto"
+      "type": "header",
+      "content": "Header"
     },
     {
       "type": "text",
-      "id": "image_badge",
-      "label": "Badge sopra immagine (es. -17%)",
-      "info": "Lasciare vuoto per nascondere"
+      "id": "eyebrow_text",
+      "label": "Testo eyebrow",
+      "default": "LE SCARPE N°1 PER CAMIONISTI"
     },
     {
       "type": "header",
-      "content": "Offerta"
-    },
-    {
-      "type": "text",
-      "id": "offer_badge",
-      "label": "Badge offerta",
-      "default": "OFFERTA PRIMAVERA — fino al 30 giugno"
+      "content": "Hero principale"
     },
     {
       "type": "text",
       "id": "headline",
-      "label": "Headline (H1)",
-      "default": "Le migliori scarpe per camionisti al mondo"
+      "label": "Headline H1",
+      "default": "SCENDI DAL CAMION IN 2 SECONDI."
+    },
+    {
+      "type": "text",
+      "id": "headline_highlight",
+      "label": "Frase evidenziata in oro (deve essere parte della headline)",
+      "default": "IN 2 SECONDI."
+    },
+    {
+      "type": "text",
+      "id": "tagline_1",
+      "label": "Tagline riga 1",
+      "default": "SENZA DOLORE."
+    },
+    {
+      "type": "text",
+      "id": "tagline_2",
+      "label": "Tagline riga 2",
+      "default": "SENZA SBATTI."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine principale prodotto"
     },
     {
       "type": "header",
-      "content": "Rating"
+      "content": "Feature blocks"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Immagine feature 1 (FASTWEAR)"
     },
     {
       "type": "text",
-      "id": "rating_value",
-      "label": "Valutazione (es. 4.9)",
-      "default": "4.9"
-    },
-    {
-      "type": "text",
-      "id": "rating_count",
-      "label": "Numero recensioni / clienti",
-      "default": "68 clienti soddisfatti"
-    },
-    {
-      "type": "text",
-      "id": "verified_label",
-      "label": "Etichetta verificate (opzionale)",
-      "default": "Recensioni verificate"
+      "id": "secondary_badge_text",
+      "label": "Badge feature 1",
+      "default": "FASTWEAR SYSTEM"
     },
     {
       "type": "richtext",
-      "id": "subheading",
-      "label": "Sottotitolo (opzionale)",
-      "default": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>"
+      "id": "feature_1_text",
+      "label": "Testo feature 1",
+      "default": "<p>Sistema antinfortunistico unico al mondo che ti permette di calzare le scarpe in 1 secondo, comodo, veloce e in totale sicurezza.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "feature_2_text",
+      "label": "Testo feature 2",
+      "default": "<p>Plantare anti-vibrazione che riduce l'affaticamento del piede in cabina anche dopo 10 ore di guida.</p>"
     },
     {
       "type": "header",
-      "content": "Prezzo"
+      "content": "Offerta + coupon"
     },
     {
       "type": "text",
-      "id": "price",
-      "label": "Prezzo",
-      "default": "€189"
+      "id": "offer_badge",
+      "label": "Badge offerta (striscia oro)",
+      "default": "OFFERTA PRIMAVERA — FINO AL 30 GIUGNO"
+    },
+    {
+      "type": "image_picker",
+      "id": "coupon_shoe_image",
+      "label": "Immagine scarpa nel coupon"
+    },
+    {
+      "type": "image_picker",
+      "id": "coupon_tshirt_image",
+      "label": "Immagine t-shirt nel coupon"
+    },
+    {
+      "type": "image_picker",
+      "id": "coupon_shipping_icon_image",
+      "label": "Icona spedizione (opzionale, usa SVG se vuota)"
     },
     {
       "type": "text",
-      "id": "savings_label",
-      "label": "Badge risparmi (rosso)",
-      "default": "-14% · RISPARMI €30"
+      "id": "coupon_price",
+      "label": "Prezzo nel coupon",
+      "default": "€ 189"
     },
     {
       "type": "text",
-      "id": "compare_price",
-      "label": "Prezzo barrato",
-      "default": "€219"
+      "id": "coupon_savings_label",
+      "label": "Badge risparmio (rosso)",
+      "default": "RISPARMI € 30"
     },
     {
       "type": "text",
-      "id": "tax_note",
-      "label": "Nota IVA",
-      "default": "IVA inclusa"
+      "id": "coupon_free_label",
+      "label": "Etichetta GRATIS sotto t-shirt",
+      "default": "GRATIS"
+    },
+    {
+      "type": "text",
+      "id": "coupon_shipping_label",
+      "label": "Etichetta spedizione",
+      "default": "SPEDIZIONE GRATIS"
     },
     {
       "type": "richtext",
       "id": "installments_note",
       "label": "Nota rate / pagamento",
-      "default": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>"
-    },
-    {
-      "type": "header",
-      "content": "Coupon banner"
-    },
-    {
-      "type": "text",
-      "id": "coupon_text",
-      "label": "Testo coupon",
-      "default": "Spedizione GRATIS + T-shirt OMAGGIO inclusi"
+      "default": "<p>PAGA IN 3 RATE</p>"
     },
     {
       "type": "header",
@@ -574,12 +718,22 @@
       "type": "text",
       "id": "cta_label",
       "label": "Testo bottone CTA",
-      "default": "SCOPRI L'OFFERTA SUBITO"
+      "default": "PRENOTA ORA LA TUA TAGLIA"
     },
     {
       "type": "url",
       "id": "cta_url",
       "label": "URL CTA (default: #acquista)"
+    },
+    {
+      "type": "header",
+      "content": "Trust footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_trust_text",
+      "label": "Testo trust footer",
+      "default": "PAGAMENTO SICURO & GARANTITO"
     }
   ],
   "blocks": [
@@ -595,7 +749,8 @@
           "options": [
             { "value": "payment", "label": "Pagamento" },
             { "value": "delivery", "label": "Spedizione" },
-            { "value": "shield", "label": "Garanzia" }
+            { "value": "shield", "label": "Garanzia" },
+            { "value": "check", "label": "Spunta" }
           ],
           "default": "shield"
         },
@@ -607,6 +762,33 @@
       ]
     }
   ],
-  "presets": [{ "name": "LP — Hero" }]
+  "presets": [
+    {
+      "name": "LP — Hero",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "payment",
+            "text": "Pagamento sicuro"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "delivery",
+            "text": "Consegna 1-2 giorni"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shield",
+            "text": "Garanzia 3 anni"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
