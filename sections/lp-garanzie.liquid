@@ -154,6 +154,11 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  mix-blend-mode: screen;
+  transform: scale(1.35);
+}
+.lp-gz__pillar:nth-child(3) .lp-gz__pillar-icon img {
+  transform: scale(1);
 }
 
 .lp-gz__pillar-title {
@@ -238,12 +243,18 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
 }
 .lp-gz__card-icon img {
-  width: 78%;
-  height: 78%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
+  mix-blend-mode: screen;
+  transform: scale(1.35);
+}
+.lp-gz__card:first-child .lp-gz__card-icon img {
+  transform: scale(1);
 }
 
 .lp-gz__card-body {
