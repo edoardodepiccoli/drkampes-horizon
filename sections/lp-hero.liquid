@@ -161,8 +161,8 @@
 {% stylesheet %}
 
 .lp-hero {
-  --lp-gold: #B89545;
-  --lp-gold-soft: rgba(184, 149, 69, 0.5);
+  --lp-gold: #D4A017;
+  --lp-gold-soft: rgba(212, 160, 23, 0.5);
   background: #000;
   color: #fff;
   padding: 0 0 24px;
@@ -444,36 +444,35 @@
 .lp-hero__card-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 2px 4px;
+  gap: 8px;
+  padding: 2px 2px;
 }
 
 .lp-hero__info-cell {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
 .lp-hero__info-cell svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   stroke: #111;
   stroke-width: 1.4;
   flex-shrink: 0;
 }
 
-.lp-hero__info-cell > div { min-width: 0; }
+.lp-hero__info-cell > div { min-width: 0; flex: 1; }
 
 .lp-hero__info-cell strong,
 .lp-hero__info-cell span {
   display: block;
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
   line-height: 1.2;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .lp-hero__info-cell strong { color: #111; }
