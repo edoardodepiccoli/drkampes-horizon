@@ -139,7 +139,8 @@
       "settings": {
         "bg_image": "shopify://shop_images/foto_hero_landing_page_meta.png",
         "eyebrow": "LE SCARPE N°1 PER CAMIONISTI",
-        "headline_main": "SCENDI DAL CAMION\nIN 2 SECONDI.",
+        "headline_white": "SCENDI DAL CAMION",
+        "headline_gold": "IN 2 SECONDI.",
         "headline_sub": "SENZA DOLORE.\nSENZA SBATTI.",
         "subheading": "<p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>",
         "fastwear_image": "shopify://shop_images/dr_kampes_nere_tallone.jpg",
