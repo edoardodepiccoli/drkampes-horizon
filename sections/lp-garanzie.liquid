@@ -219,7 +219,7 @@
 /* ── White bottom ── */
 .lp-gz__bottom {
   background: #fff;
-  padding: 32px 0 40px;
+  padding: 22px 0 26px;
 }
 
 .lp-gz__bottom-inner {
@@ -241,13 +241,13 @@
 
 .lp-gz__h2 {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.005em;
   color: #111;
   text-transform: uppercase;
-  margin: 0 0 22px;
+  margin: 0 0 14px;
 }
 
 .lp-gz__cards {
@@ -256,7 +256,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .lp-gz__card {
@@ -267,8 +267,8 @@
     "badge badge";
   align-items: center;
   column-gap: 12px;
-  row-gap: 10px;
-  padding: 12px 14px;
+  row-gap: 8px;
+  padding: 10px 12px;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
@@ -294,10 +294,10 @@
   object-fit: contain;
   display: block;
   mix-blend-mode: screen;
-  transform: scale(1.35);
+  transform: scale(1.55);
 }
 .lp-gz__card:first-child .lp-gz__card-icon img {
-  transform: scale(0.95);
+  transform: scale(0.85) translateY(3px);
 }
 
 .lp-gz__card-body {
@@ -343,6 +343,7 @@
   stroke: var(--gz-gold);
   flex-shrink: 0;
 }
+.lp-gz__card-badge br { display: none; }
 
 /* ── Tablet ≥ 750px ── */
 @media (min-width: 750px) {
@@ -389,6 +390,7 @@
     align-self: stretch;
     font-size: 0.85rem;
   }
+  .lp-gz__card-badge br { display: inline; }
   .lp-gz__card-badge svg { width: 26px; height: 26px; }
 }
 
