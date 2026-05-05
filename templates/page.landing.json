@@ -301,6 +301,50 @@
         "color_scheme": ""
       }
     },
+    "lp_size_guide": {
+      "type": "lp-size-guide",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "PRENDI UNA SOLETTA INTERNA",
+            "text": "Rimuovi la soletta interna di una scarpa che usi abitualmente.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta_cm.png?v=1777976337"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "MISURA LA LUNGHEZZA",
+            "text": "Misura la lunghezza della soletta da punta a tallone come indicato.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta_cm.png?v=1777976337"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "TROVA LA TUA TAGLIA IN TABELLA",
+            "text": "Usa la lunghezza in cm per trovare la tua taglia nella tabella qui sotto.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/tabella.png?v=1777976337"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "SCEGLI LA TUA TAGLIA PERFETTA",
+            "text": "Scegli la taglia che corrisponde alla tua misura per il massimo comfort.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scarpa_profilo.png?v=1777976337"
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "settings": {
+        "eyebrow": "IL CONSIGLIO DEL DR. KAMPES",
+        "heading": "TROVA LA TUA TAGLIA PERFETTA",
+        "hero_image_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/soletta.png?v=1777976336",
+        "hero_caption": "LUNGHEZZA INTERNA"
+      }
+    },
     "lp_reviews": {
       "type": "lp-reviews",
       "blocks": {
@@ -1000,6 +1044,7 @@
     "lp_benefits",
     "lp_video",
     "main",
+    "lp_size_guide",
     "lp_reviews",
     "section_eGTGaW"
   ]
