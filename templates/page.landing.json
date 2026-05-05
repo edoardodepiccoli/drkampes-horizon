@@ -12,11 +12,39 @@
   "sections": {
     "lp_navbar": {
       "type": "lp-navbar",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "nav_item_tshirt": {
+          "type": "nav_item",
+          "settings": {
+            "icon_preset": "tshirt",
+            "label": "T-SHIRT GRATIS"
+          }
+        },
+        "nav_item_delivery": {
+          "type": "nav_item",
+          "settings": {
+            "icon_preset": "delivery",
+            "label": "SPEDIZIONE GRATIS"
+          }
+        },
+        "nav_item_shield": {
+          "type": "nav_item",
+          "settings": {
+            "icon_preset": "shield",
+            "label": "GARANZIA 3 ANNI"
+          }
+        }
+      },
+      "block_order": [
+        "nav_item_tshirt",
+        "nav_item_delivery",
+        "nav_item_shield"
+      ],
       "settings": {
         "logo": "shopify://shop_images/logo_white_transparent.png",
-        "logo_max_height": 40
+        "logo_max_height": 40,
+        "logo_url": "/",
+        "mobile_layout": "stack"
       }
     },
     "section_GQzycz": {
@@ -110,20 +138,6 @@
       ],
       "settings": {
         "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
-        "image_badge": "",
-        "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
-        "headline": "Le migliori scarpe per camionisti al mondo.",
-        "rating_value": "4.9",
-        "rating_count": "68 clienti soddisfatti",
-        "verified_label": "Recensioni verificate",
-        "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
-        "price": "€189",
-        "savings_label": "-14% · RISPARMI €30",
-        "compare_price": "€219",
-        "tax_note": "IVA inclusa",
-        "installments_note": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>",
-        "coupon_text": "Spedizione GRATIS + T-shirt OMAGGIO inclusi",
-        "cta_label": "SCOPRI L'OFFERTA SUBITO",
         "cta_url": "#acquista"
       }
     },
@@ -188,9 +202,10 @@
         "benefit_sicurezza"
       ],
       "settings": {
-        "eyebrow": "Perché Dr Kampes",
-        "heading": "Le scarpe per chi guida un mezzo, sul serio.",
-        "uvp": "L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy."
+        "eyebrow": "PERCHÉ DR KAMPES",
+        "heading": "LE SCARPE PER CHI GUIDA UN MEZZO, SUL SERIO.",
+        "subheading": "<p>L'unica antinfortunistica progettata dagli autisti, per gli autisti. FASTWEAR®, 3 anni di garanzia, 100% Made in Italy.</p>",
+        "cabin_strip_heading": "PENSATE PER CHI VIVE IN CABINA"
       }
     },
     "lp_video": {
@@ -222,6 +237,54 @@
         "viewer_max": 37,
         "review_quote": "",
         "color_scheme": ""
+      }
+    },
+    "lp_size_guide": {
+      "type": "lp-size-guide",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "title": "PRENDI UNA SOLETTA INTERNA",
+            "text": "Rimuovi la soletta interna da una delle tue scarpe abituali."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "number": "2",
+            "title": "MISURA LA LUNGHEZZA",
+            "text": "Misura la lunghezza della soletta da punta a tallone in centimetri."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "number": "3",
+            "title": "TROVA LA TUA TAGLIA IN TABELLA",
+            "text": "Usa la lunghezza in cm per trovare la tua taglia nella tabella sotto."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "number": "4",
+            "title": "SCEGLI LA TUA TAGLIA PERFETTA",
+            "text": "Scegli la taglia che corrisponde al tuo massimo comfort."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ],
+      "settings": {
+        "eyebrow": "IL CONSIGLIO DR.KAMPES",
+        "heading": "TROVA LA TUA TAGLIA PERFETTA",
+        "illustration_caption": "LUNGHEZZA INTERNA"
       }
     },
     "lp_reviews": {
@@ -762,6 +825,91 @@
         "google_reviews_json_url": ""
       }
     },
+    "lp_warranties": {
+      "type": "lp-warranties",
+      "blocks": {
+        "top_comode": {
+          "type": "top_icon",
+          "settings": {
+            "label": "COMODE"
+          }
+        },
+        "top_veloci": {
+          "type": "top_icon",
+          "settings": {
+            "label": "VELOCI DA INDOSSARE"
+          }
+        },
+        "top_resistenti": {
+          "type": "top_icon",
+          "settings": {
+            "label": "RESISTENTI"
+          }
+        },
+        "top_sicure": {
+          "type": "top_icon",
+          "settings": {
+            "label": "SICURE PER OGNI MEZZO"
+          }
+        },
+        "warranty_3y": {
+          "type": "warranty",
+          "settings": {
+            "title": "3 ANNI DI GARANZIA",
+            "description": "Acquista oggi e ricevi questo prodotto entro pochi giorni. Se nei primi 3 anni si manifesta un problema, lo risolviamo noi.",
+            "badge_label": "100% COPERTI"
+          }
+        },
+        "warranty_size": {
+          "type": "warranty",
+          "settings": {
+            "title": "CAMBIO TAGLIA GRATUITO",
+            "description": "Se non è la taglia giusta, la cambiamo noi. Gratis.",
+            "badge_label": "ZERO COSTI AGGIUNTIVI"
+          }
+        },
+        "warranty_ship": {
+          "type": "warranty",
+          "settings": {
+            "title": "SPEDIZIONE GRATUITA 1-2 GIORNI",
+            "description": "Ordini entro le 18, ti arriva in 1-2 giorni lavorativi.",
+            "badge_label": "VELOCE & TRACCIATA"
+          }
+        },
+        "warranty_pay": {
+          "type": "warranty",
+          "settings": {
+            "title": "PAGA IN 3 RATE SENZA INTERESSI",
+            "description": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate.",
+            "badge_label": "SICURO & GARANTITO"
+          }
+        },
+        "warranty_support": {
+          "type": "warranty",
+          "settings": {
+            "title": "ASSISTENZA DIRETTA",
+            "description": "Parli con noi, non con un call center. Sempre al tuo fianco.",
+            "badge_label": "SEMPRE AL TUO FIANCO"
+          }
+        }
+      },
+      "block_order": [
+        "top_comode",
+        "top_veloci",
+        "top_resistenti",
+        "top_sicure",
+        "warranty_3y",
+        "warranty_size",
+        "warranty_ship",
+        "warranty_pay",
+        "warranty_support"
+      ],
+      "settings": {
+        "top_strip_heading": "PENSATE PER CHI VIVE IN CABINA",
+        "eyebrow": "ACQUISTA SENZA PENSIERI",
+        "heading": "LE NOSTRE GARANZIE"
+      }
+    },
     "section_eGTGaW": {
       "type": "section",
       "blocks": {
@@ -923,7 +1071,9 @@
     "lp_benefits",
     "lp_video",
     "main",
+    "lp_size_guide",
     "lp_reviews",
+    "lp_warranties",
     "section_eGTGaW"
   ]
 }
