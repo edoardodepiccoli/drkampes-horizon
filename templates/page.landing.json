@@ -12,11 +12,36 @@
   "sections": {
     "lp_navbar": {
       "type": "lp-navbar",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "trust_shipping": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "line1": "SPEDIZIONE",
+            "line2": "GRATUITA"
+          }
+        },
+        "trust_size": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "swap",
+            "line1": "CAMBIO TAGLIA",
+            "line2": "GRATUITO"
+          }
+        },
+        "trust_warranty": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shield",
+            "line1": "GARANZIA",
+            "line2": "3 ANNI"
+          }
+        }
+      },
+      "block_order": ["trust_shipping", "trust_size", "trust_warranty"],
       "settings": {
         "logo": "shopify://shop_images/logo_white_transparent.png",
-        "logo_max_height": 40
+        "logo_max_height": 56
       }
     },
     "section_GQzycz": {
