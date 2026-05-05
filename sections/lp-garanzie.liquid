@@ -1,0 +1,412 @@
+<section class="lp-gz">
+
+  <div class="lp-gz__top">
+    <div class="lp-gz__top-inner">
+      {%- if section.settings.top_headline != blank -%}
+        <p class="lp-gz__top-headline">{{ section.settings.top_headline }}</p>
+      {%- endif -%}
+
+      <ul class="lp-gz__pillars">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'pillar' -%}
+            <li class="lp-gz__pillar" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon_url != blank -%}
+                <div class="lp-gz__pillar-icon">
+                  <img src="{{ block.settings.icon_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                </div>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <p class="lp-gz__pillar-title">{{ block.settings.title | newline_to_br }}</p>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <p class="lp-gz__pillar-text">{{ block.settings.text | newline_to_br }}</p>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  <div class="lp-gz__bottom">
+    <div class="lp-gz__bottom-inner">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="lp-gz__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="lp-gz__h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <ul class="lp-gz__cards">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'card' -%}
+            <li class="lp-gz__card" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon_url != blank -%}
+                <div class="lp-gz__card-icon">
+                  <img src="{{ block.settings.icon_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                </div>
+              {%- endif -%}
+              <div class="lp-gz__card-body">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="lp-gz__card-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="lp-gz__card-text">{{ block.settings.text | newline_to_br }}</p>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.badge_title != blank -%}
+                <div class="lp-gz__card-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+                  <span>{{ block.settings.badge_title | newline_to_br }}</span>
+                </div>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+{% stylesheet %}
+
+.lp-gz {
+  --gz-gold: #D4A017;
+  --gz-gold-light: #F5C200;
+  background: #fff;
+  color: #111;
+}
+
+/* ── Black top band ── */
+.lp-gz__top {
+  background: #0a0a0a;
+  color: #fff;
+  padding: 24px 0;
+}
+
+.lp-gz__top-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.lp-gz__top-headline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 18px;
+  line-height: 1.2;
+}
+
+.lp-gz__pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.lp-gz__pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 14px 10px;
+  position: relative;
+}
+
+.lp-gz__pillar:nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  right: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+.lp-gz__pillar:nth-child(-n+2)::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lp-gz__pillar-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.lp-gz__pillar-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.lp-gz__pillar-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+
+.lp-gz__pillar-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+/* ── White bottom ── */
+.lp-gz__bottom {
+  background: #fff;
+  padding: 32px 0 40px;
+}
+
+.lp-gz__bottom-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.lp-gz__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: var(--gz-gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.lp-gz__h2 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  color: #111;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+
+.lp-gz__cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-gz__card {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+}
+
+.lp-gz__card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.lp-gz__card-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  display: block;
+}
+
+.lp-gz__card-body {
+  min-width: 0;
+}
+
+.lp-gz__card-title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  color: #111;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  line-height: 1.15;
+}
+
+.lp-gz__card-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #444;
+  margin: 0;
+}
+
+.lp-gz__card-badge {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1.15;
+}
+.lp-gz__card-badge svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--gz-gold);
+  flex-shrink: 0;
+}
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-gz__top { padding: 36px 0 32px; }
+  .lp-gz__top-headline { font-size: 1rem; margin-bottom: 26px; }
+
+  .lp-gz__pillars {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .lp-gz__pillar {
+    padding: 0 18px;
+  }
+  .lp-gz__pillar:nth-child(odd)::after,
+  .lp-gz__pillar:nth-child(-n+2)::before { display: none; }
+  .lp-gz__pillar:not(:last-child)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    right: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.18);
+  }
+
+  .lp-gz__pillar-icon { width: 56px; height: 56px; margin-bottom: 12px; }
+  .lp-gz__pillar-title { font-size: 0.92rem; }
+  .lp-gz__pillar-text { font-size: 0.85rem; }
+
+  .lp-gz__bottom { padding: 56px 0 72px; }
+  .lp-gz__eyebrow { font-size: 0.9rem; margin-bottom: 12px; }
+  .lp-gz__h2 { font-size: 2.6rem; margin-bottom: 32px; }
+
+  .lp-gz__cards { gap: 16px; }
+
+  .lp-gz__card {
+    grid-template-columns: 88px 1fr 200px;
+    padding: 18px 24px;
+    gap: 22px;
+  }
+  .lp-gz__card-icon { width: 88px; height: 88px; }
+  .lp-gz__card-title { font-size: 1.25rem; }
+  .lp-gz__card-text { font-size: 0.95rem; }
+  .lp-gz__card-badge { display: inline-flex; }
+  .lp-gz__card-badge svg { width: 26px; height: 26px; }
+  .lp-gz__card-badge { font-size: 0.85rem; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP — Garanzie",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banda nera (top)"
+    },
+    {
+      "type": "text",
+      "id": "top_headline",
+      "label": "Headline",
+      "default": "PENSATE PER CHI NON SI FERMA MAI."
+    },
+    {
+      "type": "header",
+      "content": "Sezione bianca (bottom)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ACQUISTA SENZA PENSIERI"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "LE NOSTRE GARANZIE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pilastro (top)",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "icon_url", "label": "URL icona" },
+        { "type": "text", "id": "title", "label": "Titolo" },
+        { "type": "textarea", "id": "text", "label": "Testo" }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Garanzia (bottom)",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "icon_url", "label": "URL icona" },
+        { "type": "text", "id": "title", "label": "Titolo" },
+        { "type": "textarea", "id": "text", "label": "Testo" },
+        { "type": "textarea", "id": "badge_title", "label": "Badge (destra, desktop)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP — Garanzie",
+      "blocks": [
+        { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "PER I CAMIONISTI", "text": "Progettate per la vita in cabina e per ogni sosta e ripartenza." }},
+        { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/orologio.png?v=1777983277", "title": "PER OGNI GIORNO", "text": "Dal lavoro al tempo libero. Versatili, pratiche e sempre pronte." }},
+        { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/italia.png?v=1777976336", "title": "100% MADE IN ITALY", "text": "Qualità artigianale italiana, materiali selezionati e controllo totale." }},
+        { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/clienti.png?v=1777983277", "title": "APPROVATE DA OLTRE 1200 CAMIONISTI", "text": "Migliaia di autisti le hanno già scelte. Scopri perché." }},
+
+        { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo.png?v=1777976336", "title": "3 ANNI DI GARANZIA", "text": "Acquistale oggi e indossale per anni. Se c'è un problema, lo risolviamo noi.", "badge_title": "1095 GIORNI\nCOPERTI" }},
+        { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/reso_gratuito.png?v=1777983277", "title": "CAMBIO TAGLIA GRATUITO", "text": "Se non è la taglia giusta, la cambiamo noi. Gratis.", "badge_title": "SENZA COSTI\nAGGIUNTIVI" }},
+        { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "SPEDIZIONE GRATUITA 1-2 GIORNI", "text": "Ordina prima delle 19:00, spediamo il giorno stesso. Consegna in 1-2 giorni lavorativi.", "badge_title": "VELOCE E\nTRACCIATA" }},
+        { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/carta_di_credito.png?v=1777983277", "title": "PAGA IN 3 RATE SENZA INTERESSI", "text": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate, senza interessi.", "badge_title": "100% SICURO\nE GARANTITO" }},
+        { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/assistenza_clienti.png?v=1777983277", "title": "ASSISTENZA DIRETTA", "text": "Parli con noi, non con un call center. Siamo camionisti come te, ti capiamo davvero.", "badge_title": "SEMPRE AL\nTUO FIANCO" }}
+      ]
+    }
+  ]
+}
+{% endschema %}

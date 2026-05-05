@@ -883,6 +883,26 @@
         "google_reviews_json_url": ""
       }
     },
+    "lp_garanzie": {
+      "type": "lp-garanzie",
+      "blocks": {
+        "pillar_1": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "PER I CAMIONISTI", "text": "Progettate per la vita in cabina e per ogni sosta e ripartenza." } },
+        "pillar_2": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/orologio.png?v=1777983277", "title": "PER OGNI GIORNO", "text": "Dal lavoro al tempo libero. Versatili, pratiche e sempre pronte." } },
+        "pillar_3": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/italia.png?v=1777976336", "title": "100% MADE IN ITALY", "text": "Qualità artigianale italiana, materiali selezionati e controllo totale." } },
+        "pillar_4": { "type": "pillar", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/clienti.png?v=1777983277", "title": "APPROVATE DA OLTRE 1200 CAMIONISTI", "text": "Migliaia di autisti le hanno già scelte. Scopri perché." } },
+        "card_1": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/scudo.png?v=1777976336", "title": "3 ANNI DI GARANZIA", "text": "Acquistale oggi e indossale per anni. Se c'è un problema, lo risolviamo noi.", "badge_title": "1095 GIORNI\nCOPERTI" } },
+        "card_2": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/reso_gratuito.png?v=1777983277", "title": "CAMBIO TAGLIA GRATUITO", "text": "Se non è la taglia giusta, la cambiamo noi. Gratis.", "badge_title": "SENZA COSTI\nAGGIUNTIVI" } },
+        "card_3": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/furgoncino.png?v=1777983277", "title": "SPEDIZIONE GRATUITA 1-2 GIORNI", "text": "Ordina prima delle 19:00, spediamo il giorno stesso. Consegna in 1-2 giorni lavorativi.", "badge_title": "VELOCE E\nTRACCIATA" } },
+        "card_4": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/carta_di_credito.png?v=1777983277", "title": "PAGA IN 3 RATE SENZA INTERESSI", "text": "Scegli Klarna o PayPal al checkout e paga in 3 comode rate, senza interessi.", "badge_title": "100% SICURO\nE GARANTITO" } },
+        "card_5": { "type": "card", "settings": { "icon_url": "https://cdn.shopify.com/s/files/1/0960/9527/3303/files/assistenza_clienti.png?v=1777983277", "title": "ASSISTENZA DIRETTA", "text": "Parli con noi, non con un call center. Siamo camionisti come te, ti capiamo davvero.", "badge_title": "SEMPRE AL\nTUO FIANCO" } }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3", "pillar_4", "card_1", "card_2", "card_3", "card_4", "card_5"],
+      "settings": {
+        "top_headline": "PENSATE PER CHI NON SI FERMA MAI.",
+        "eyebrow": "ACQUISTA SENZA PENSIERI",
+        "heading": "LE NOSTRE GARANZIE"
+      }
+    },
     "section_eGTGaW": {
       "type": "section",
       "blocks": {
@@ -1046,6 +1066,7 @@
     "main",
     "lp_size_guide",
     "lp_reviews",
+    "lp_garanzie",
     "section_eGTGaW"
   ]
 }
