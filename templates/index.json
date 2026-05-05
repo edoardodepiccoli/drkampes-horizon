@@ -873,8 +873,8 @@
       }
     },
     "home_product_showcase": {
-      "type": "home-product-showcase",
-      "name": "Home Product Showcase",
+      "type": "home-buy-section",
+      "name": "Home Buy Section",
       "settings": {
         "product": "dr-kampes-s3s-nero-copia",
         "color_scheme": "scheme-1"
