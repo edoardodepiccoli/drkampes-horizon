@@ -694,23 +694,12 @@
 }
 
 .hps {
-  position: relative;
   display: flex;
   flex-direction: column;
-  background: #f7f7f6;
+  background-color: #f7f7f6;
+  background-image: linear-gradient(to bottom, rgba(247,247,246,0) calc(100% - 140px), #fff 100%);
   color: #1a1a1a;
   padding: 0 0 20px;
-}
-.hps::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(247,247,246,0) 0%, #fff 100%);
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Head (title, stars, price) */
