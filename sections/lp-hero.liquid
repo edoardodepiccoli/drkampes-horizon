@@ -78,7 +78,7 @@
                 {%- endcase -%}
               </span>
               <div class="lp-hero__benefit-text">
-                {%- if block.settings.title != blank -%}{{ block.settings.title }}{%- endif -%}
+                {%- if block.settings.title != blank -%}<strong>{{ block.settings.title }}</strong>{%- endif -%}
                 {%- if block.settings.text != blank %} {{ block.settings.text }}{%- endif -%}
               </div>
             </li>
@@ -362,9 +362,15 @@
 .lp-hero__benefit-text {
   flex: 1;
   min-width: 0;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.7);
   font-size: 0.98rem;
   line-height: 1.3;
+  font-weight: 400;
+}
+
+.lp-hero__benefit-text strong {
+  color: #fff;
+  font-weight: 700;
 }
 
 /* ── Purchase block ── */
