@@ -19,26 +19,28 @@
       <ul class="lp-navbar__items lp-navbar__items--{{ section.settings.mobile_layout | default: 'stack' }}">
         {%- for block in section.blocks -%}
           <li class="lp-navbar__item" {{ block.shopify_attributes }}>
-            <span class="lp-navbar__item-icon" aria-hidden="true">
-              {%- if block.settings.icon_image != blank -%}
-                {{ block.settings.icon_image | image_url: width: 80 | image_tag:
-                    class: 'lp-navbar__item-icon-img',
-                    loading: 'eager',
-                    widths: '40,60,80',
-                    alt: '' }}
-              {%- else -%}
-                {%- case block.settings.icon_preset -%}
-                  {%- when 'tshirt' -%}
-                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l4-4h8l4 4-3 3v11H7V10L4 7z"/><path d="M9 3a3 3 0 006 0"/></svg>
-                  {%- when 'delivery' -%}
-                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                  {%- when 'shield' -%}
-                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                  {%- when 'check' -%}
-                    <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                {%- endcase -%}
-              {%- endif -%}
-            </span>
+            {%- unless block.settings.icon_preset == 'none' and block.settings.icon_image == blank -%}
+              <span class="lp-navbar__item-icon" aria-hidden="true">
+                {%- if block.settings.icon_image != blank -%}
+                  {{ block.settings.icon_image | image_url: width: 64 | image_tag:
+                      class: 'lp-navbar__item-icon-img',
+                      loading: 'eager',
+                      widths: '32,48,64',
+                      alt: '' }}
+                {%- else -%}
+                  {%- case block.settings.icon_preset -%}
+                    {%- when 'tshirt' -%}
+                      <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l4-4h8l4 4-3 3v11H7V10L4 7z"/><path d="M9 3a3 3 0 006 0"/></svg>
+                    {%- when 'delivery' -%}
+                      <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    {%- when 'shield' -%}
+                      <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    {%- when 'check' -%}
+                      <svg class="lp-navbar__item-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  {%- endcase -%}
+                {%- endif -%}
+              </span>
+            {%- endunless -%}
             <span class="lp-navbar__item-label">{{ block.settings.label }}</span>
           </li>
         {%- endfor -%}
@@ -53,12 +55,15 @@
 .lp-navbar {
   width: 100%;
   background: var(--lp-color-black);
+  border-bottom: 1px solid var(--lp-color-divider-dark-strong);
   box-sizing: border-box;
 }
 
 .lp-navbar__inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--lp-space-3);
   padding: var(--lp-space-3) var(--lp-section-pad-x);
   box-sizing: border-box;
@@ -99,22 +104,20 @@
   padding: 0;
   display: flex;
   flex-direction: row;
-  gap: var(--lp-space-4);
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
 }
 
-/* stack modifier: 3-col grid on mobile */
+/* stack: items visible as compact row on mobile (default) */
 .lp-navbar__items--stack {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--lp-space-3);
+  flex-direction: row;
 }
 
-/* inline modifier: single row on mobile */
+/* inline: items in a single line with no wrap */
 .lp-navbar__items--inline {
-  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--lp-space-3);
+  flex-wrap: nowrap;
 }
 
 /* ---- Individual item ---- */
@@ -124,70 +127,78 @@
   flex-direction: column;
   align-items: center;
   gap: var(--lp-space-1);
+  padding: 0 var(--lp-space-3);
+  position: relative;
+}
+
+/* Vertical divider between items */
+.lp-navbar__item + .lp-navbar__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: var(--lp-space-6);
+  background: var(--lp-color-divider-dark-strong);
 }
 
 .lp-navbar__item-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   line-height: 1;
 }
 
 .lp-navbar__item-icon-svg {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   stroke: var(--lp-color-gold);
   flex-shrink: 0;
 }
 
 .lp-navbar__item-icon-img {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
 }
 
 .lp-navbar__item-label {
   font-family: var(--lp-font-display);
   font-size: var(--lp-fs-micro);
+  font-weight: var(--lp-fw-black);
   letter-spacing: var(--lp-ls-wide);
   text-transform: uppercase;
   color: var(--lp-color-text-on-dark);
   line-height: var(--lp-lh-snug);
+  white-space: nowrap;
   text-align: center;
 }
 
-/* ---- Desktop (≥750px): single row, logo left / items right ---- */
+/* ---- Desktop (≥750px) ---- */
 
 @media (min-width: 750px) {
   .lp-navbar__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--lp-space-7);
-    padding: var(--lp-space-4) var(--lp-section-pad-x-md);
-  }
-
-  .lp-navbar__items,
-  .lp-navbar__items--stack,
-  .lp-navbar__items--inline {
-    display: flex;
-    flex-direction: row;
-    grid-template-columns: unset;
-    gap: var(--lp-space-7);
+    padding: var(--lp-space-3) var(--lp-section-pad-x-md);
   }
 
   .lp-navbar__item {
-    align-items: center;
+    padding: 0 var(--lp-space-5);
   }
 
   .lp-navbar__item-icon-svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
   }
 
   .lp-navbar__item-icon-img {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .lp-navbar__item-label {
+    font-size: var(--lp-fs-xs);
   }
 }
 

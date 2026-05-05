@@ -69,7 +69,7 @@
    ============================================================================ */
 
 .lp-size-guide {
-  background: var(--lp-color-white);
+  background: var(--lp-color-surface-light);
   color: var(--lp-color-text-on-light);
   padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
   font-family: var(--lp-font-body);
@@ -79,33 +79,43 @@
   max-width: var(--lp-section-max-width);
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Eyebrow — inherits shared .lp-sec__eyebrow styles, no override needed */
-.lp-size-guide__eyebrow {
-  display: block;
+/* Eyebrow — outlined chip badge with gold border, overrides shared class green */
+.lp-size-guide__eyebrow.lp-sec__eyebrow {
+  display: inline-block;
   text-align: center;
+  border: 2px solid var(--lp-color-gold);
+  padding: var(--lp-space-1) var(--lp-space-4);
+  margin-bottom: var(--lp-space-4);
+  color: var(--lp-color-gold);
 }
 
 /* H2 — inherits shared .lp-sec__h2 styles */
 .lp-size-guide__heading {
   text-align: center;
   margin-bottom: var(--lp-space-6);
+  color: var(--lp-color-text-on-light);
 }
 
 /* ----------------------------------------------------------------------------
    Illustration
    ---------------------------------------------------------------------------- */
 .lp-size-guide__illustration {
-  margin: var(--lp-space-5) 0;
+  margin: 0 0 var(--lp-space-7);
   padding: 0;
   text-align: center;
+  width: 100%;
 }
 
 .lp-size-guide__illustration-img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  max-width: 420px;
+  margin: 0 auto;
   object-fit: contain;
 }
 
@@ -113,6 +123,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
   aspect-ratio: 4 / 3;
   border: 2px dashed var(--lp-color-divider-light-strong);
   padding: var(--lp-space-9);
@@ -131,36 +144,43 @@
   text-transform: uppercase;
   color: var(--lp-color-gold);
   text-align: center;
-  margin-top: var(--lp-space-2);
+  margin-top: var(--lp-space-3);
+  padding-top: var(--lp-space-3);
+  border-top: 2px solid var(--lp-color-gold);
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ----------------------------------------------------------------------------
-   Step cards grid
+   Step cards grid — 2×2 mobile, 4-col desktop
    ---------------------------------------------------------------------------- */
 .lp-size-guide__steps {
   list-style: none;
-  margin: var(--lp-space-7) 0 0;
+  margin: 0 0 0;
   padding: 0;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--lp-space-5);
+  gap: var(--lp-space-4);
 }
 
 /* ----------------------------------------------------------------------------
-   Individual step card
+   Individual step card — centered column layout
    ---------------------------------------------------------------------------- */
 .lp-step {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: var(--lp-space-3);
   background: var(--lp-color-surface-card);
-  padding: var(--lp-space-4);
-  border-left: 3px solid var(--lp-color-gold);
+  padding: var(--lp-space-5) var(--lp-space-4);
   box-shadow: var(--lp-shadow-card);
+  border-radius: var(--lp-radius-none);
 }
 
-/* Gold numbered circle */
+/* Gold numbered circle — top of card */
 .lp-step__number {
   display: flex;
   align-items: center;
@@ -178,13 +198,13 @@
   flex-shrink: 0;
 }
 
-/* Icon area */
+/* Icon area — centered, taller */
 .lp-step__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   flex-shrink: 0;
 }
 
@@ -210,7 +230,7 @@
 /* Step title */
 .lp-step__title {
   font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-sm);
+  font-size: var(--lp-fs-xs);
   font-weight: var(--lp-fw-black);
   letter-spacing: var(--lp-ls-wide);
   text-transform: uppercase;
@@ -231,6 +251,7 @@
 /* Optional CTA */
 .lp-size-guide__cta {
   margin-top: var(--lp-space-7);
+  width: 100%;
 }
 
 /* ============================================================================
@@ -243,13 +264,11 @@
   }
 
   .lp-size-guide__illustration-img {
-    aspect-ratio: 16 / 9;
-    max-height: 460px;
+    max-width: 540px;
   }
 
   .lp-size-guide__illustration-placeholder {
-    aspect-ratio: 16 / 9;
-    max-height: 460px;
+    max-width: 540px;
   }
 
   /* 4-col grid on desktop */
@@ -267,8 +286,13 @@
 
   /* Larger icon on desktop */
   .lp-step__icon {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Slightly larger title on desktop */
+  .lp-step__title {
+    font-size: var(--lp-fs-sm);
   }
 
 }

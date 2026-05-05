@@ -785,7 +785,7 @@
    Gallery
    --------------------------------------------------------------------------- */
 .hps__gallery {
-  flex: 0 0 50svh;
+  flex: 0 0 60svh;
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -849,15 +849,15 @@
 .hps__details {
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-3);
-  padding: var(--lp-space-4) var(--lp-section-pad-x) var(--lp-space-7);
+  gap: var(--lp-space-4);
+  padding: var(--lp-space-5) var(--lp-section-pad-x) var(--lp-space-7);
 }
 
 .hps__head { display: flex; flex-direction: column; gap: var(--lp-space-1); }
 
 .hps__title {
   font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-h3);
+  font-size: var(--lp-fs-h2);
   font-weight: var(--lp-fw-black);
   margin: 0;
   line-height: var(--lp-lh-snug);
@@ -866,9 +866,12 @@
 }
 
 .hps__sub {
-  font-size: var(--lp-fs-xs);
-  color: var(--lp-color-text-on-light-faint);
+  font-size: var(--lp-fs-sm);
+  color: var(--lp-color-text-on-light-mute);
   margin: 0;
+  font-weight: var(--lp-fw-medium);
+  letter-spacing: var(--lp-ls-wide);
+  text-transform: uppercase;
 }
 
 /* ---------------------------------------------------------------------------
@@ -878,18 +881,18 @@
   display: flex;
   align-items: center;
   gap: var(--lp-space-2);
-  margin: calc(var(--lp-space-3) * -1) 0 0;
+  margin: 0;
 }
 
 .hps__stars {
   color: var(--lp-color-gold);
-  font-size: var(--lp-fs-sm);
-  letter-spacing: 1px;
+  font-size: var(--lp-fs-md);
+  letter-spacing: 2px;
   line-height: 1;
 }
 
 .hps__review-lbl {
-  font-size: var(--lp-fs-xs);
+  font-size: var(--lp-fs-sm);
   color: var(--lp-color-text-on-light-mute);
   margin: 0;
 }
@@ -922,21 +925,21 @@
   font-family: var(--lp-font-display);
   font-size: var(--lp-fs-price);
   font-weight: var(--lp-fw-black);
-  color: var(--lp-color-text-on-light);
+  color: var(--lp-color-gold);
   line-height: 1;
   letter-spacing: var(--lp-ls-tight);
 }
 
 .hps__price-compare {
-  font-size: var(--lp-fs-md);
-  color: var(--lp-color-text-on-light-faint);
+  font-size: var(--lp-fs-lg);
+  color: var(--lp-color-text-on-light-mute);
   text-decoration: line-through;
   font-weight: var(--lp-fw-regular);
 }
 
 .hps__price-tax {
   font-size: var(--lp-fs-eyebrow);
-  color: var(--lp-color-text-on-light-faint);
+  color: var(--lp-color-text-on-light-mute);
   text-transform: uppercase;
   letter-spacing: var(--lp-ls-wide);
 }
@@ -957,11 +960,11 @@
 }
 
 .hps__installment {
-  font-size: var(--lp-fs-xs);
+  font-size: var(--lp-fs-sm);
   color: var(--lp-color-text-on-light-mute);
   margin: 0;
 }
-.hps__installment strong { color: var(--lp-color-text-on-light); }
+.hps__installment strong { color: var(--lp-color-text-on-light); font-weight: var(--lp-fw-black); }
 
 /* ---------------------------------------------------------------------------
    Offer banner
@@ -1020,9 +1023,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--lp-space-2);
-  padding: var(--lp-space-3) 0;
-  border-top: 1px solid var(--lp-color-divider-light);
-  border-bottom: 1px solid var(--lp-color-divider-light);
+  padding: var(--lp-space-4) 0;
+  border-top: 1px solid var(--lp-color-divider-light-strong);
+  border-bottom: 1px solid var(--lp-color-divider-light-strong);
 }
 
 .hps__trust-item {
@@ -1032,16 +1035,16 @@
   gap: var(--lp-space-1);
   text-align: center;
   font-size: var(--lp-fs-eyebrow);
-  font-weight: var(--lp-fw-medium);
-  color: var(--lp-color-text-on-light-mute);
+  font-weight: var(--lp-fw-bold);
+  color: var(--lp-color-text-on-light);
   letter-spacing: var(--lp-ls-normal);
   line-height: var(--lp-lh-snug);
 }
 
 .hps__trust-ico {
-  width: 22px;
-  height: 22px;
-  color: var(--lp-color-success-dark);
+  width: 24px;
+  height: 24px;
+  color: var(--lp-color-gold);
   flex-shrink: 0;
 }
 
@@ -1054,8 +1057,10 @@
 
 .hps__opt-lbl {
   font-size: var(--lp-fs-sm);
-  font-weight: var(--lp-fw-medium);
+  font-weight: var(--lp-fw-bold);
   color: var(--lp-color-text-on-light);
+  text-transform: uppercase;
+  letter-spacing: var(--lp-ls-wide);
   margin: 0;
 }
 
@@ -1071,11 +1076,11 @@
   border: 2px solid transparent;
   padding: 0;
   cursor: pointer;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+  outline: 3px solid transparent;
+  outline-offset: 3px;
   transition: outline-color var(--lp-transition-base);
 }
-.hps__swatch--on { outline-color: var(--lp-color-gold); }
+.hps__swatch--on { outline-color: var(--lp-color-text-on-light); }
 
 /* ---------------------------------------------------------------------------
    Size pills — bordered squares
@@ -1126,7 +1131,7 @@
 
 .hps__pill {
   min-width: 0;
-  height: 40px;
+  height: 44px;
   padding: 0 var(--lp-space-1);
   border: 1.5px solid var(--lp-color-divider-light-strong);
   border-radius: var(--lp-radius-none);
@@ -1163,15 +1168,16 @@
    Low-stock badge
    --------------------------------------------------------------------------- */
 .hps__stock {
-  font-size: var(--lp-fs-xs);
+  font-size: var(--lp-fs-sm);
   font-weight: var(--lp-fw-black);
   color: var(--lp-color-white);
   background: var(--lp-color-danger);
-  padding: var(--lp-space-1) var(--lp-space-3);
-  margin: var(--lp-space-1) 0 0;
+  padding: var(--lp-space-2) var(--lp-space-4);
+  margin: var(--lp-space-2) 0 0;
   letter-spacing: var(--lp-ls-wide);
-  display: inline-block;
-  align-self: flex-start;
+  display: block;
+  width: 100%;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -1181,7 +1187,7 @@
 .hps__cta-group {
   display: flex;
   flex-direction: column;
-  gap: var(--lp-space-2);
+  gap: var(--lp-space-3);
 }
 
 /* Confirm / secondary ATC (green) */
@@ -1210,11 +1216,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--lp-space-4) var(--lp-space-5);
+  padding: var(--lp-space-5) var(--lp-space-6);
   background: var(--lp-color-gold);
   color: var(--lp-color-black);
   font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-md);
+  font-size: var(--lp-fs-lg);
   font-weight: var(--lp-fw-black);
   letter-spacing: var(--lp-ls-wider);
   text-transform: uppercase;
@@ -1264,7 +1270,7 @@
   font-size: var(--lp-fs-xs);
   color: var(--lp-color-text-on-light-mute);
   font-style: italic;
-  margin: calc(var(--lp-space-1) * -1) 0 0;
+  margin: 0;
   padding: var(--lp-space-2) var(--lp-space-3);
   border-left: 3px solid var(--lp-color-gold);
   background: var(--lp-color-gold-faint);

@@ -4,38 +4,44 @@
 <section class="lp-warranties">
 
   {%- if top_blocks.size > 0 -%}
-    <aside class="lp-warranties__top-strip">
+    <div class="lp-warranties__top-strip">
       <div class="lp-warranties__top-inner">
         {%- if section.settings.top_strip_heading != blank -%}
           <p class="lp-warranties__top-heading">{{ section.settings.top_strip_heading }}</p>
         {%- endif -%}
         <ul class="lp-warranties__top-list">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'top_icon' -%}
-              <li class="lp-warranties__top-item" {{ block.shopify_attributes }}>
-                <span class="lp-warranties__top-icon">
-                  {%- if block.settings.icon_image != blank -%}
-                    {{ block.settings.icon_image | image_url: width: 120 | image_tag:
-                        class: 'lp-warranties__top-icon-img',
-                        loading: 'lazy', widths: '60,80,120', alt: '' }}
-                  {%- else -%}
-                    <span class="lp-warranties__top-icon-placeholder" aria-hidden="true"></span>
-                  {%- endif -%}
-                </span>
-                {%- if block.settings.label != blank -%}
-                  <span class="lp-warranties__top-label">{{ block.settings.label }}</span>
+          {%- for block in top_blocks -%}
+            <li class="lp-warranties__top-item" {{ block.shopify_attributes }}>
+              <span class="lp-warranties__top-icon">
+                {%- if block.settings.icon_image != blank -%}
+                  {{ block.settings.icon_image | image_url: width: 120 | image_tag:
+                      class: 'lp-warranties__top-icon-img',
+                      loading: 'lazy', widths: '60,80,120', alt: '' }}
+                {%- else -%}
+                  <span class="lp-warranties__top-icon-placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect width="48" height="48" fill="none"/>
+                      <path d="M24 12 L36 20 L36 32 L24 40 L12 32 L12 20 Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+                      <circle cx="24" cy="24" r="5" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+                    </svg>
+                  </span>
                 {%- endif -%}
-              </li>
-            {%- endif -%}
+              </span>
+              {%- if block.settings.label != blank -%}
+                <span class="lp-warranties__top-label">{{ block.settings.label }}</span>
+              {%- endif -%}
+            </li>
           {%- endfor -%}
         </ul>
       </div>
-    </aside>
+    </div>
   {%- endif -%}
 
   <div class="lp-warranties__inner">
     {%- if section.settings.eyebrow != blank -%}
-      <span class="lp-warranties__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
+      <p class="lp-warranties__eyebrow">
+        <span class="lp-warranties__eyebrow-chip">{{ section.settings.eyebrow }}</span>
+      </p>
     {%- endif -%}
     {%- if section.settings.heading != blank -%}
       <h2 class="lp-warranties__heading lp-sec__h2">{{ section.settings.heading }}</h2>
@@ -43,31 +49,37 @@
 
     {%- if warranty_blocks.size > 0 -%}
       <ul class="lp-warranties__list">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'warranty' -%}
-            <li class="lp-warranty" {{ block.shopify_attributes }}>
-              <span class="lp-warranty__icon">
-                {%- if block.settings.icon_image != blank -%}
-                  {{ block.settings.icon_image | image_url: width: 160 | image_tag:
-                      class: 'lp-warranty__icon-img',
-                      loading: 'lazy', widths: '80,120,160', alt: '' }}
-                {%- else -%}
-                  <span class="lp-warranty__icon-placeholder" aria-hidden="true"></span>
-                {%- endif -%}
-              </span>
-              <div class="lp-warranty__body">
-                {%- if block.settings.title != blank -%}
-                  <h3 class="lp-warranty__title">{{ block.settings.title }}</h3>
-                {%- endif -%}
-                {%- if block.settings.description != blank -%}
-                  <p class="lp-warranty__description">{{ block.settings.description }}</p>
-                {%- endif -%}
-              </div>
-              {%- if block.settings.badge_label != blank -%}
-                <span class="lp-warranty__badge">{{ block.settings.badge_label }}</span>
+        {%- for block in warranty_blocks -%}
+          <li class="lp-warranty" {{ block.shopify_attributes }}>
+            <span class="lp-warranty__icon-wrap">
+              {%- if block.settings.icon_image != blank -%}
+                {{ block.settings.icon_image | image_url: width: 160 | image_tag:
+                    class: 'lp-warranty__icon-img',
+                    loading: 'lazy', widths: '80,120,160', alt: '' }}
+              {%- else -%}
+                <span class="lp-warranty__icon-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="56" height="56" fill="none"/>
+                    <path d="M28 14 L42 22 L42 36 L28 44 L14 36 L14 22 Z" stroke="rgba(201,162,39,0.5)" stroke-width="1.5" fill="none"/>
+                    <circle cx="28" cy="28" r="6" stroke="rgba(201,162,39,0.5)" stroke-width="1.5" fill="none"/>
+                    <line x1="28" y1="22" x2="28" y2="34" stroke="rgba(201,162,39,0.5)" stroke-width="1.5"/>
+                    <line x1="22" y1="28" x2="34" y2="28" stroke="rgba(201,162,39,0.5)" stroke-width="1.5"/>
+                  </svg>
+                </span>
               {%- endif -%}
-            </li>
-          {%- endif -%}
+            </span>
+            <div class="lp-warranty__body">
+              {%- if block.settings.title != blank -%}
+                <h3 class="lp-warranty__title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="lp-warranty__description">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.badge_label != blank -%}
+              <span class="lp-warranty__badge">{{ block.settings.badge_label }}</span>
+            {%- endif -%}
+          </li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
@@ -91,7 +103,8 @@
    ============================================================================ */
 .lp-warranties__top-strip {
   width: 100%;
-  border-bottom: 1px solid var(--lp-color-divider-dark);
+  background: var(--lp-color-surface-dark);
+  border-bottom: 1px solid var(--lp-color-divider-dark-strong);
   padding: var(--lp-space-7) var(--lp-section-pad-x);
 }
 
@@ -107,16 +120,16 @@
   font-weight: var(--lp-fw-black);
   letter-spacing: var(--lp-ls-widest);
   text-transform: uppercase;
-  color: var(--lp-color-gold);
-  margin: 0 0 var(--lp-space-5);
+  color: var(--lp-color-text-on-dark-mute);
+  margin: 0 0 var(--lp-space-6);
   line-height: var(--lp-lh-snug);
 }
 
-/* 2-col mobile, 4-col desktop */
+/* Always 4-col: 2-col on mobile, 4-col on desktop — column dividers via box-shadow */
 .lp-warranties__top-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--lp-space-4);
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -128,26 +141,44 @@
   }
 }
 
+/* Each item gets right border except last in row */
 .lp-warranties__top-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--lp-space-2);
+  gap: var(--lp-space-3);
+  padding: var(--lp-space-4) var(--lp-space-3);
+  border-right: 1px solid var(--lp-color-divider-dark-strong);
+}
+
+/* On mobile 2-col: remove right border on 2nd and 4th items */
+.lp-warranties__top-item:nth-child(2n) {
+  border-right: none;
+}
+
+/* On desktop 4-col: remove right border only on last item */
+@media (min-width: 750px) {
+  .lp-warranties__top-item:nth-child(2n) {
+    border-right: 1px solid var(--lp-color-divider-dark-strong);
+  }
+  .lp-warranties__top-item:last-child {
+    border-right: none;
+  }
 }
 
 .lp-warranties__top-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   flex-shrink: 0;
 }
 
 @media (min-width: 750px) {
   .lp-warranties__top-icon {
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -158,12 +189,18 @@
   display: block;
 }
 
-/* Placeholder shown when no image is uploaded */
+/* Placeholder SVG container — visible when no image is uploaded */
 .lp-warranties__top-icon-placeholder {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  background: var(--lp-color-divider-dark-strong);
+}
+
+.lp-warranties__top-icon-placeholder svg {
+  width: 100%;
+  height: 100%;
 }
 
 .lp-warranties__top-label {
@@ -186,26 +223,37 @@
   padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
 }
 
-/* Eyebrow + H2 overrides — this section is always dark, not using .lp-sec--dark modifier */
-.lp-warranties .lp-sec__eyebrow {
-  color: var(--lp-color-gold);
+/* Eyebrow — plain gold text label above the H2, matching shared .lp-sec__eyebrow style */
+.lp-warranties__eyebrow {
+  margin: 0 0 var(--lp-space-3);
 }
 
-.lp-warranties .lp-sec__h2 {
+.lp-warranties__eyebrow-chip {
+  display: inline-block;
+  color: var(--lp-color-gold);
+  font-family: var(--lp-font-display);
+  font-size: var(--lp-fs-eyebrow);
+  font-weight: var(--lp-fw-black);
+  letter-spacing: var(--lp-ls-widest);
+  text-transform: uppercase;
+  line-height: var(--lp-lh-snug);
+}
+
+/* Section H2 on dark surface */
+.lp-warranties__heading {
   color: var(--lp-color-text-on-dark);
 }
 
 /* ============================================================================
    WARRANTY CARDS LIST
+   1-col mobile, 2-col desktop
    ============================================================================ */
-
-/* 1-col mobile, 2-col desktop */
 .lp-warranties__list {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--lp-space-4);
   list-style: none;
-  margin: 0;
+  margin: var(--lp-space-7) 0 0;
   padding: 0;
 }
 
@@ -226,32 +274,46 @@
   gap: var(--lp-space-4);
   padding: var(--lp-space-5);
   background: var(--lp-color-surface-dark);
-  border: 1px solid var(--lp-color-divider-dark);
-  overflow: hidden; /* contain the absolute badge */
+  border: 1px solid var(--lp-color-divider-dark-strong);
+  overflow: hidden;
 }
 
-.lp-warranty__icon {
+/* Icon wrapper — plain container, no border or background */
+.lp-warranty__icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   flex-shrink: 0;
 }
 
+@media (min-width: 750px) {
+  .lp-warranty__icon-wrap {
+    width: 60px;
+    height: 60px;
+  }
+}
+
 .lp-warranty__icon-img {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
   display: block;
 }
 
-/* Placeholder block shown when no icon is uploaded */
+/* Placeholder SVG container — visible when no icon is uploaded */
 .lp-warranty__icon-placeholder {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  background: var(--lp-color-divider-dark-strong);
+}
+
+.lp-warranty__icon-placeholder svg {
+  width: 60%;
+  height: 60%;
 }
 
 .lp-warranty__body {
@@ -260,7 +322,7 @@
   gap: var(--lp-space-2);
   flex: 1;
   /* leave room so long title text does not collide with the badge */
-  padding-right: var(--lp-space-9);
+  padding-right: var(--lp-space-10);
 }
 
 .lp-warranty__title {
@@ -283,7 +345,7 @@
 }
 
 /* ============================================================================
-   GOLD RIBBON BADGE — top-right corner
+   GOLD BADGE — top-right corner, flat rectangle flush to card edge
    ============================================================================ */
 .lp-warranty__badge {
   position: absolute;
@@ -297,10 +359,8 @@
   letter-spacing: var(--lp-ls-widest);
   text-transform: uppercase;
   line-height: var(--lp-lh-snug);
-  padding: var(--lp-space-1) var(--lp-space-3);
+  padding: var(--lp-space-2) var(--lp-space-3);
   border-radius: var(--lp-radius-none);
-  /* Ribbon tail cut into the bottom-left corner */
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   white-space: nowrap;
 }
 

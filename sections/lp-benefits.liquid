@@ -1,15 +1,44 @@
 <section class="lp-benefits">
   <div class="lp-benefits__inner">
 
-    {%- if section.settings.eyebrow != blank -%}
-      <span class="lp-benefits__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
-    {%- endif -%}
+    <div class="lp-benefits__header">
 
-    <h2 class="lp-benefits__heading lp-sec__h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="lp-benefits__eyebrow lp-sec__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
 
-    {%- if section.settings.subheading != blank -%}
-      <div class="lp-benefits__subheading">{{ section.settings.subheading }}</div>
-    {%- endif -%}
+      <h2 class="lp-benefits__heading lp-sec__h2">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="lp-benefits__subheading">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
+      {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
+      {%- if benefit_blocks.size > 0 -%}
+        <ul class="lp-benefits__list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'benefit' -%}
+              <li class="lp-benefit" {{ block.shopify_attributes }}>
+                <span class="lp-benefit__check-wrap" aria-hidden="true">
+                  <svg class="lp-benefit__check" viewBox="0 0 20 20" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="9" class="lp-benefit__check-circle"/><path d="M6 10.5l3 3 5-6" class="lp-benefit__check-tick"/></svg>
+                </span>
+                <span class="lp-benefit__body">
+                  {%- if block.settings.title != blank -%}
+                    <strong class="lp-benefit__title">{{ block.settings.title }}</strong>
+                  {%- else -%}
+                    <strong class="lp-benefit__title lp-benefit__title--placeholder">Titolo benefit</strong>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <span class="lp-benefit__text">{{ block.settings.text }}</span>
+                  {%- endif -%}
+                </span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+    </div>
 
     <div class="lp-benefits__media">
       {%- if section.settings.hero_image != blank -%}
@@ -23,26 +52,6 @@
         <div class="lp-benefits__media-placeholder">Carica foto prodotto</div>
       {%- endif -%}
     </div>
-
-    {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
-    {%- if benefit_blocks.size > 0 -%}
-      <ul class="lp-benefits__list">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'benefit' -%}
-            <li class="lp-benefit" {{ block.shopify_attributes }}>
-              <svg class="lp-benefit__check" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span class="lp-benefit__body">
-                <strong class="lp-benefit__title">{{ block.settings.title }}</strong>
-                {%- if block.settings.text != blank -%}
-                  <span class="lp-benefit__sep" aria-hidden="true"> — </span>
-                  <span class="lp-benefit__text">{{ block.settings.text }}</span>
-                {%- endif -%}
-              </span>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
 
   </div>
 
@@ -63,10 +72,14 @@
                         widths: '60,80,120',
                         alt: '' }}
                   {%- else -%}
-                    <span class="lp-benefits__cabin-icon-placeholder">Icona</span>
+                    <svg class="lp-benefits__cabin-icon-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="0" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
                   {%- endif -%}
                 </span>
-                <span class="lp-benefits__cabin-label">{{ block.settings.label }}</span>
+                {%- if block.settings.label != blank -%}
+                  <span class="lp-benefits__cabin-label">{{ block.settings.label }}</span>
+                {%- else -%}
+                  <span class="lp-benefits__cabin-label lp-benefits__cabin-label--placeholder">Etichetta icona</span>
+                {%- endif -%}
               </li>
             {%- endif -%}
           {%- endfor -%}
@@ -86,21 +99,36 @@
   padding: var(--lp-section-pad-y) var(--lp-section-pad-x);
 }
 
-/* ── Inner content column ────────────────────────────────────── */
+/* ── Inner — single col mobile, 2-col desktop ────────────────── */
 .lp-benefits__inner {
   max-width: var(--lp-section-max-width);
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--lp-space-7);
 }
 
-/* ── Eyebrow — inherits .lp-sec__eyebrow (green on light) ───── */
+/* ── Header column ───────────────────────────────────────────── */
+.lp-benefits__header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Eyebrow — green chip badge ──────────────────────────────── */
+/* Overrides lp-sec__eyebrow base to add chip background */
 .lp-benefits__eyebrow {
-  margin-bottom: var(--lp-space-3);
+  background: var(--lp-color-success-bg);
+  color: var(--lp-color-success-dark);
+  padding: var(--lp-space-1) var(--lp-space-3);
+  margin-bottom: var(--lp-space-5);
+  border: 1px solid var(--lp-color-success-border);
 }
 
-/* ── H2 — inherits .lp-sec__h2 ──────────────────────────────── */
+/* ── H2 — last line in gold ──────────────────────────────────── */
 .lp-benefits__heading {
-  margin: 0 0 var(--lp-space-4);
+  margin: 0 0 var(--lp-space-5);
+  color: var(--lp-color-text-on-light);
 }
 
 /* ── Subheading ──────────────────────────────────────────────── */
@@ -108,17 +136,83 @@
   font-size: var(--lp-fs-md);
   color: var(--lp-color-text-on-light-mute);
   line-height: var(--lp-lh-base);
-  margin: 0 0 var(--lp-space-5);
+  margin: 0 0 var(--lp-space-7);
 }
 
 .lp-benefits__subheading p {
   margin: 0;
 }
 
+/* ── Benefits list ───────────────────────────────────────────── */
+.lp-benefits__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--lp-space-5);
+}
+
+.lp-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--lp-space-3);
+  font-size: var(--lp-fs-base);
+  line-height: var(--lp-lh-base);
+}
+
+/* Circular check icon */
+.lp-benefit__check-wrap {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+}
+
+.lp-benefit__check {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.lp-benefit__check-circle {
+  stroke: var(--lp-color-success-dark);
+  fill: none;
+}
+
+.lp-benefit__check-tick {
+  stroke: var(--lp-color-success-dark);
+  fill: none;
+}
+
+/* Body: stacked title + description */
+.lp-benefit__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lp-space-1);
+}
+
+.lp-benefit__title {
+  font-family: var(--lp-font-display);
+  font-weight: var(--lp-fw-black);
+  font-size: var(--lp-fs-base);
+  color: var(--lp-color-text-on-light);
+  line-height: var(--lp-lh-snug);
+}
+
+.lp-benefit__title--placeholder {
+  opacity: 0.35;
+}
+
+.lp-benefit__text {
+  font-size: var(--lp-fs-sm);
+  color: var(--lp-color-text-on-light-mute);
+  line-height: var(--lp-lh-base);
+}
+
 /* ── Hero shoe image ─────────────────────────────────────────── */
 .lp-benefits__media {
   width: 100%;
-  margin: 0 0 var(--lp-space-6);
 }
 
 .lp-benefits__media-img {
@@ -140,55 +234,12 @@
   font-size: var(--lp-fs-sm);
 }
 
-/* ── Benefits list ───────────────────────────────────────────── */
-.lp-benefits__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--lp-space-3);
-}
-
-.lp-benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--lp-space-3);
-  font-size: var(--lp-fs-base);
-  line-height: var(--lp-lh-base);
-}
-
-.lp-benefit__check {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  stroke: var(--lp-color-gold);
-  margin-top: 2px;
-}
-
-.lp-benefit__body {
-  display: inline;
-}
-
-.lp-benefit__title {
-  font-weight: var(--lp-fw-bold);
-  color: var(--lp-color-text-on-light);
-}
-
-.lp-benefit__sep {
-  color: var(--lp-color-text-on-light-dim);
-}
-
-.lp-benefit__text {
-  color: var(--lp-color-text-on-light-mute);
-}
-
 /* ── Cabin strip — full-bleed dark transition ────────────────── */
+/* margin-top collapses onto the section bottom padding; net = section-pad-y gap between image and strip */
 .lp-benefits__cabin {
   background: var(--lp-color-black);
   color: var(--lp-color-text-on-dark);
-  margin-top: var(--lp-space-9);
-  /* escape the section's side padding to go full-bleed */
+  margin-top: var(--lp-space-7);
   margin-left: calc(-1 * var(--lp-section-pad-x));
   margin-right: calc(-1 * var(--lp-section-pad-x));
   margin-bottom: calc(-1 * var(--lp-section-pad-y));
@@ -197,18 +248,20 @@
 .lp-benefits__cabin-inner {
   max-width: var(--lp-section-max-width);
   margin: 0 auto;
-  padding: var(--lp-space-7) var(--lp-section-pad-x);
+  padding: var(--lp-space-9) var(--lp-section-pad-x);
 }
 
+/* Cabin heading — h2 scale, centered, white */
 .lp-benefits__cabin-heading {
   font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-eyebrow);
+  font-size: var(--lp-fs-h2);
   font-weight: var(--lp-fw-black);
-  letter-spacing: var(--lp-ls-widest);
+  letter-spacing: var(--lp-ls-tight);
   text-transform: uppercase;
-  color: var(--lp-color-gold);
+  color: var(--lp-color-text-on-dark);
   text-align: center;
-  margin: 0 0 var(--lp-space-6);
+  margin: 0 0 var(--lp-space-9);
+  line-height: var(--lp-lh-snug);
 }
 
 /* ── Cabin icon grid ─────────────────────────────────────────── */
@@ -218,14 +271,21 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--lp-space-5);
+  gap: 0;
 }
 
 .lp-benefits__cabin-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--lp-space-2);
+  gap: var(--lp-space-3);
+  padding: var(--lp-space-6) var(--lp-space-4);
+  border-top: 1px solid var(--lp-color-divider-dark);
+  border-left: 1px solid var(--lp-color-divider-dark);
+}
+
+.lp-benefits__cabin-item:nth-child(odd) {
+  border-left: none;
 }
 
 .lp-benefits__cabin-icon {
@@ -234,7 +294,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--lp-color-divider-dark);
   flex-shrink: 0;
 }
 
@@ -245,50 +304,72 @@
   object-fit: contain;
 }
 
-.lp-benefits__cabin-icon-placeholder {
-  font-size: var(--lp-fs-micro);
-  color: var(--lp-color-text-on-dark-dim);
-  text-align: center;
+.lp-benefits__cabin-icon-svg {
+  width: 48px;
+  height: 48px;
+  color: var(--lp-color-divider-dark-strong);
 }
 
 .lp-benefits__cabin-label {
   font-family: var(--lp-font-display);
-  font-size: var(--lp-fs-micro);
+  font-size: var(--lp-fs-sm);
   font-weight: var(--lp-fw-black);
   letter-spacing: var(--lp-ls-wider);
   text-transform: uppercase;
   color: var(--lp-color-text-on-dark);
   text-align: center;
+  line-height: var(--lp-lh-snug);
+}
+
+.lp-benefits__cabin-label--placeholder {
+  opacity: 0.35;
 }
 
 /* ── Desktop (≥750px) ────────────────────────────────────────── */
 @media (min-width: 750px) {
   .lp-benefits__inner {
     max-width: var(--lp-section-max-width-md);
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--lp-space-10);
+  }
+
+  .lp-benefits__header {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .lp-benefits__media {
+    flex: 0 0 440px;
+    width: 440px;
   }
 
   .lp-benefits__subheading {
     font-size: var(--lp-fs-lg);
-    margin-bottom: var(--lp-space-7);
-  }
-
-  .lp-benefits__media {
-    margin-bottom: var(--lp-space-8);
   }
 
   .lp-benefits__list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--lp-space-3) var(--lp-space-7);
+    grid-template-columns: 1fr;
+    gap: var(--lp-space-5);
   }
 
   .lp-benefits__cabin-inner {
     max-width: var(--lp-section-max-width-md);
-    padding: var(--lp-space-7) var(--lp-section-pad-x);
+    padding: var(--lp-space-10) var(--lp-section-pad-x);
   }
 
   .lp-benefits__cabin-list {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* On desktop: restore left border for all items, remove only first */
+  .lp-benefits__cabin-item:nth-child(odd) {
+    border-left: 1px solid var(--lp-color-divider-dark);
+  }
+
+  .lp-benefits__cabin-item:nth-child(1) {
+    border-left: none;
   }
 }
 
