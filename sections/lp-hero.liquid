@@ -1,112 +1,147 @@
-{%- assign img = section.settings.image -%}
+{%- assign bg = section.settings.bg_image -%}
+{%- assign fw_img = section.settings.fastwear_image -%}
+{%- assign banner = section.settings.banner_image -%}
 
 <section class="lp-hero">
-  <div class="lp-hero__inner">
 
-    <div class="lp-hero__media">
-      {%- if img != blank -%}
-        {{ img | image_url: width: 1200 | image_tag:
-           class: 'lp-hero__img',
-           loading: 'eager',
-           fetchpriority: 'high',
-           widths: '600,800,1000,1200',
-           sizes: '(min-width:750px) 560px, 100vw',
-           alt: img.alt }}
+  <div class="lp-hero__visual">
+    {%- if bg != blank -%}
+      {{ bg | image_url: width: 1600 | image_tag:
+         class: 'lp-hero__bg',
+         loading: 'eager',
+         fetchpriority: 'high',
+         widths: '600,800,1100,1400,1800',
+         sizes: '100vw',
+         alt: bg.alt | default: section.settings.headline_main }}
+    {%- endif -%}
+    <div class="lp-hero__overlay">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="lp-hero__eyebrow">{{ section.settings.eyebrow }}</div>
       {%- endif -%}
-      {%- if section.settings.image_badge != blank -%}
-        <span class="lp-hero__img-badge">{{ section.settings.image_badge }}</span>
+      {%- if section.settings.headline_main != blank -%}
+        <h1 class="lp-hero__h1">{{ section.settings.headline_main | newline_to_br }}</h1>
+      {%- endif -%}
+      {%- if section.settings.headline_sub != blank -%}
+        <p class="lp-hero__h2">{{ section.settings.headline_sub | newline_to_br }}</p>
       {%- endif -%}
     </div>
+  </div>
 
-    <div class="lp-hero__info">
+  <div class="lp-hero__content">
 
-      {%- if section.settings.offer_badge != blank -%}
-        <div class="lp-hero__badge">
-          <span>{{ section.settings.offer_badge }}</span>
-        </div>
-      {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
+    {%- endif -%}
 
-      <h1 class="lp-hero__h1">{{ section.settings.headline }}</h1>
-
-      {%- if section.settings.rating_value != blank or section.settings.rating_count != blank -%}
-        <div class="lp-hero__rating">
-          {%- if section.settings.rating_value != blank -%}
-            <span class="lp-hero__stars" aria-hidden="true">★★★★★</span>
-            <span class="lp-hero__rating-val">{{ section.settings.rating_value }}</span>
-          {%- endif -%}
-          {%- if section.settings.rating_count != blank -%}
-            <span class="lp-hero__rating-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__rating-count">{{ section.settings.rating_count }}</span>
-          {%- endif -%}
-          {%- if section.settings.verified_label != blank -%}
-            <span class="lp-hero__rating-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__verified">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              {{ section.settings.verified_label }}
-            </span>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-
-      {%- if section.settings.subheading != blank -%}
-        <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
-      {%- endif -%}
-
-      <div class="lp-hero__price-block">
-        <div class="lp-hero__price-row">
-          {%- if section.settings.price != blank -%}
-            <span class="lp-hero__price">{{ section.settings.price }}</span>
-          {%- endif -%}
-          {%- if section.settings.savings_label != blank -%}
-            <span class="lp-hero__savings">{{ section.settings.savings_label }}</span>
-          {%- endif -%}
-        </div>
-        <div class="lp-hero__price-meta">
-          {%- if section.settings.compare_price != blank -%}
-            <span class="lp-hero__compare">{{ section.settings.compare_price }}</span>
-          {%- endif -%}
-          {%- if section.settings.tax_note != blank -%}
-            <span class="lp-hero__price-sep" aria-hidden="true">·</span>
-            <span class="lp-hero__tax">{{ section.settings.tax_note }}</span>
-          {%- endif -%}
-        </div>
-        {%- if section.settings.installments_note != blank -%}
-          <div class="lp-hero__installments">{{ section.settings.installments_note }}</div>
-        {%- endif -%}
-      </div>
-
-      {%- if section.settings.coupon_text != blank -%}
-        <div class="lp-hero__coupon">
-          <span class="lp-hero__coupon-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a2 2 0 0 1 0 4v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4Z"/><path d="M9 9h.01M15 15h.01M9 15l6-6"/></svg>
-          </span>
-          <span>{{ section.settings.coupon_text }}</span>
-        </div>
-      {%- endif -%}
-
-      <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
-        {{ section.settings.cta_label | default: "SCOPRI L'OFFERTA SUBITO" }}
-      </a>
+    <div class="lp-hero__split">
 
       {%- if section.blocks.size > 0 -%}
-        <ul class="lp-hero__trust">
+        <ul class="lp-hero__benefits">
           {%- for block in section.blocks -%}
-            <li class="lp-hero__trust-item" {{ block.shopify_attributes }}>
-              {%- case block.settings.icon -%}
-                {%- when 'payment' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                {%- when 'delivery' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                {%- when 'shield' -%}
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              {%- endcase -%}
-              <span>{{ block.settings.text }}</span>
-            </li>
+            {%- if block.type == 'benefit' -%}
+              <li class="lp-hero__benefit" {{ block.shopify_attributes }}>
+                <span class="lp-hero__benefit-icon" aria-hidden="true">
+                  {%- case block.settings.icon -%}
+                    {%- when 'timer' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg>
+                    {%- when 'feather' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
+                    {%- when 'slipper' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c0-3 2-5 5-5h6c3 0 5 1.5 6 4l1 3v2H3z"/><path d="M3 14h18"/><path d="M8 9V7"/><path d="M11 9V7"/><path d="M14 9V7"/></svg>
+                  {%- endcase -%}
+                </span>
+                <div class="lp-hero__benefit-text">
+                  {%- if block.settings.title != blank -%}
+                    <strong>{{ block.settings.title }}</strong>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <span>{{ block.settings.text }}</span>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       {%- endif -%}
 
+      {%- if fw_img != blank or section.settings.fastwear_text != blank -%}
+        <div class="lp-hero__fastwear">
+          {%- if fw_img != blank -%}
+            <div class="lp-hero__fastwear-circle">
+              {{ fw_img | image_url: width: 320 | image_tag:
+                 widths: '160,240,320',
+                 sizes: '160px',
+                 loading: 'lazy',
+                 alt: fw_img.alt | default: 'Sistema FASTWEAR Dr Kampes' }}
+            </div>
+          {%- endif -%}
+          <div class="lp-hero__fastwear-info">
+            {%- if section.settings.fastwear_label != blank -%}
+              <span class="lp-hero__fastwear-label">{{ section.settings.fastwear_label }}</span>
+            {%- endif -%}
+            {%- if section.settings.fastwear_text != blank -%}
+              <div class="lp-hero__fastwear-text">{{ section.settings.fastwear_text }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
     </div>
+
+    {%- if section.settings.offer_badge != blank -%}
+      <div class="lp-hero__offer-badge">
+        <span>{{ section.settings.offer_badge }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if banner != blank -%}
+      <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__banner">
+        {{ banner | image_url: width: 1200 | image_tag:
+           widths: '500,700,900,1200',
+           sizes: '(min-width:750px) 700px, 100vw',
+           loading: 'lazy',
+           alt: banner.alt | default: 'Scarpe Dr Kampes + T-shirt omaggio + spedizione gratis a 189 euro' }}
+      </a>
+    {%- endif -%}
+
+    <div class="lp-hero__info-row">
+      <div class="lp-hero__info-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="1.5"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/></svg>
+        <div>
+          {%- if section.settings.pay_title != blank -%}
+            <strong>{{ section.settings.pay_title }}</strong>
+          {%- endif -%}
+          {%- if section.settings.pay_text != blank -%}
+            <span>{{ section.settings.pay_text }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="lp-hero__info-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 10h4l3 4v3h-7z"/><circle cx="5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg>
+        <div>
+          {%- if section.settings.ship_title != blank -%}
+            <strong>{{ section.settings.ship_title }}</strong>
+          {%- endif -%}
+          {%- if section.settings.ship_text != blank -%}
+            <span>{{ section.settings.ship_text }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <a href="{{ section.settings.cta_url | default: '#acquista' }}" class="lp-hero__cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span>{{ section.settings.cta_label | default: "PRENOTA ORA LA TUA TAGLIA" }}</span>
+      <svg class="lp-hero__cta-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+    </a>
+
+    {%- if section.settings.secure_text != blank -%}
+      <div class="lp-hero__secure">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span>{{ section.settings.secure_text }}</span>
+      </div>
+    {%- endif -%}
+
   </div>
 </section>
 
@@ -118,291 +153,324 @@
   padding: 0 0 24px;
 }
 
-.lp-hero__inner {
-  display: flex;
-  flex-direction: column;
-  max-width: 580px;
-  margin: 0 auto;
-}
-
-.lp-hero__media {
+/* ── Visual top ── */
+.lp-hero__visual {
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
   background: #0a0a0a;
 }
 
-.lp-hero__img {
+.lp-hero__bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center;
+  display: block;
+}
+
+.lp-hero__overlay {
+  position: absolute;
+  inset: 0;
+  padding: 24px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%);
+}
+
+.lp-hero__eyebrow {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  color: #F5C200;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.lp-hero__h1 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2.1rem;
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  color: #fff;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  max-width: 11ch;
+}
+
+.lp-hero__h2 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  max-width: 13ch;
+}
+
+/* ── Content ── */
+.lp-hero__content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px 0;
+  gap: 22px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.lp-hero__sub {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.lp-hero__sub p { margin: 0; }
+.lp-hero__sub strong { color: #fff; font-weight: 700; }
+
+.lp-hero__split {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ── Benefits ── */
+.lp-hero__benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-hero__benefit {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.lp-hero__benefit-icon {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #F5C200;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-hero__benefit-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #F5C200;
+}
+
+.lp-hero__benefit-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.lp-hero__benefit-text strong {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.lp-hero__benefit-text span {
+  color: rgba(255,255,255,0.62);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+/* ── FASTWEAR card ── */
+.lp-hero__fastwear {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(245,194,0,0.4);
+  background: rgba(245,194,0,0.04);
+  align-items: center;
+}
+
+.lp-hero__fastwear-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #111;
+  border: 1.5px solid rgba(245,194,0,0.55);
+  flex-shrink: 0;
+}
+
+.lp-hero__fastwear-circle img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.lp-hero__img-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #e3252b;
-  color: #fff;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  padding: 6px 10px;
-  text-transform: uppercase;
-  line-height: 1.2;
-  z-index: 2;
-}
-
-.lp-hero__info {
+.lp-hero__fastwear-info {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 0;
-  gap: 12px;
+  gap: 8px;
 }
 
-.lp-hero__badge {
-  background: #F5C200;
-  color: #111;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 900;
-  padding: 8px 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  align-self: flex-start;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.lp-hero__h1 {
-  font-family: var(--font-heading--family, inherit);
-  font-size: 1.45rem;
-  font-weight: 900;
+.lp-hero__fastwear-label {
+  display: inline-block;
+  background: #000;
   color: #fff;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.lp-hero__h1 em {
-  color: #F5C200;
-  font-style: normal;
-}
-
-.lp-hero__rating {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.78);
-  margin: 0;
-}
-
-.lp-hero__stars {
-  color: #F5C200;
-  letter-spacing: 0.05em;
-  font-size: 0.95rem;
-  line-height: 1;
-}
-
-.lp-hero__rating-val {
-  font-family: 'Archivo Black', sans-serif;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.lp-hero__rating-sep {
-  color: rgba(255,255,255,0.3);
-}
-
-.lp-hero__rating-count {
-  color: rgba(255,255,255,0.78);
-}
-
-.lp-hero__verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #4ade80;
-  font-weight: 700;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
   font-size: 0.78rem;
-}
-
-.lp-hero__verified svg {
-  width: 12px;
-  height: 12px;
-  stroke: #4ade80;
-}
-
-.lp-hero__sub {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.45;
-  margin: 0;
-}
-.lp-hero__sub p { margin: 0; }
-.lp-hero__sub strong { color: #fff; }
-
-.lp-hero__price-block {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: #0d0d0d;
-  border-left: 3px solid #F5C200;
-  padding: 12px 14px;
-  margin: 4px 0 0;
-}
-
-.lp-hero__price-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  line-height: 1;
-}
-
-.lp-hero__price {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 2.4rem;
-  color: #F5C200;
-  line-height: 1;
-}
-
-.lp-hero__savings {
-  background: #e3252b;
-  color: #fff;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
   padding: 6px 9px;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
   line-height: 1.1;
   text-transform: uppercase;
 }
 
-.lp-hero__price-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
+.lp-hero__fastwear-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.lp-hero__fastwear-text p { margin: 0 0 6px; }
+.lp-hero__fastwear-text p:last-child { margin: 0; }
+
+/* ── Offer badge ── */
+.lp-hero__offer-badge {
+  border: 1.5px solid #F5C200;
+  padding: 11px 14px;
+  text-align: center;
+  background: rgba(245,194,0,0.04);
 }
 
-.lp-hero__compare {
-  color: rgba(255,255,255,0.55);
-  text-decoration: line-through;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.lp-hero__price-sep {
-  color: rgba(255,255,255,0.25);
-}
-
-.lp-hero__tax {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.55);
-}
-
-.lp-hero__installments {
-  font-size: 0.8rem;
-  color: #fff;
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-.lp-hero__installments strong {
+.lp-hero__offer-badge span {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
   color: #F5C200;
-  font-family: 'Archivo Black', sans-serif;
-  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
-.lp-hero__coupon {
+/* ── Banner ── */
+.lp-hero__banner {
+  display: block;
+  width: 100%;
+  background: #000;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.lp-hero__banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Info row ── */
+.lp-hero__info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 4px 4px 0;
+}
+
+.lp-hero__info-cell {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #14361a;
-  border: 1px dashed #2e7d32;
-  color: #d4ffd9;
-  padding: 10px 12px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0;
 }
 
-.lp-hero__coupon-icon {
-  display: inline-flex;
-  align-items: center;
+.lp-hero__info-cell svg {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
   flex-shrink: 0;
 }
 
-.lp-hero__coupon-icon svg {
-  width: 16px;
-  height: 16px;
-  stroke: #4ade80;
+.lp-hero__info-cell strong,
+.lp-hero__info-cell span {
+  display: block;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
+.lp-hero__info-cell strong { color: #fff; }
+.lp-hero__info-cell span { color: rgba(255,255,255,0.65); }
+
+/* ── CTA ── */
 .lp-hero__cta {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
-  padding: 17px 20px;
+  padding: 18px 16px;
   background: #F5C200;
   color: #0d0d0d;
-  font-size: 1rem;
-  font-weight: 900;
-  font-family: 'Archivo Black', sans-serif;
-  letter-spacing: 0.06em;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-align: center;
-  border-radius: 0;
   text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.0);
+  border-radius: 0;
   transition: background 0.15s, transform 0.1s;
-  margin: 4px 0 0;
   box-shadow: 0 0 0 0 rgba(245,194,0,0.55);
   animation: lp-hero-cta-pulse 2.4s ease-in-out infinite;
 }
-.lp-hero__cta:hover {
-  background: #d9ac00;
-  text-decoration: none;
+.lp-hero__cta:hover { background: #d9ac00; text-decoration: none; }
+.lp-hero__cta:active { transform: scale(0.99); }
+
+.lp-hero__cta svg {
+  width: 18px;
+  height: 18px;
+  stroke: #0d0d0d;
+  flex-shrink: 0;
 }
-.lp-hero__cta:active {
-  transform: scale(0.99);
-}
+
+.lp-hero__cta-arrow { margin-left: 2px; }
 
 @keyframes lp-hero-cta-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(245,194,0,0.55); }
   50% { box-shadow: 0 0 0 12px rgba(245,194,0,0); }
 }
 
-.lp-hero__trust {
-  list-style: none;
-  margin: 4px 0 0;
-  padding: 12px 0 0;
+/* ── Secure ── */
+.lp-hero__secure {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.lp-hero__trust-item {
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.2;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
-.lp-hero__trust-item svg {
+.lp-hero__secure svg {
   width: 13px;
   height: 13px;
-  flex-shrink: 0;
-  stroke: #F5C200;
+  stroke: rgba(255,255,255,0.6);
 }
 
 /* ── Shared LP base styles (loaded first via hero) ── */
@@ -424,41 +492,107 @@
   margin: 0 0 18px;
 }
 
+/* ── Tablet ≥ 750px ── */
 @media (min-width: 750px) {
   .lp-hero {
-    padding: 32px 40px 48px;
+    padding: 0 0 40px;
   }
 
-  .lp-hero__inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 1100px;
-    align-items: start;
+  .lp-hero__visual {
+    aspect-ratio: 16 / 9;
+    max-height: 620px;
   }
 
-  .lp-hero__media {
-    position: sticky;
-    top: 24px;
+  .lp-hero__bg {
+    object-position: 75% center;
   }
 
-  .lp-hero__info {
-    padding: 0;
-    gap: 14px;
+  .lp-hero__overlay {
+    padding: 56px 48px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0) 65%);
+    max-width: 1200px;
+    margin: 0 auto;
+    inset: 0;
+    width: auto;
+  }
+
+  .lp-hero__eyebrow {
+    font-size: 0.95rem;
+    margin-bottom: 22px;
   }
 
   .lp-hero__h1 {
-    font-size: 2rem;
+    font-size: 3.4rem;
+    line-height: 0.95;
+    margin-bottom: 22px;
   }
 
-  .lp-hero__price {
-    font-size: 2.9rem;
+  .lp-hero__h2 {
+    font-size: 1.7rem;
+  }
+
+  .lp-hero__content {
+    padding: 36px 48px 0;
+    max-width: 1200px;
+    gap: 28px;
+  }
+
+  .lp-hero__sub {
+    font-size: 1.05rem;
+    max-width: 50ch;
+  }
+
+  .lp-hero__split {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .lp-hero__benefits {
+    flex: 1;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .lp-hero__fastwear {
+    flex: 1;
+    grid-template-columns: 150px 1fr;
+    padding: 22px;
+    gap: 18px;
+  }
+
+  .lp-hero__fastwear-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .lp-hero__fastwear-text {
+    font-size: 0.92rem;
+  }
+
+  .lp-hero__offer-badge span {
+    font-size: 1rem;
   }
 
   .lp-hero__cta {
-    padding: 20px 24px;
-    font-size: 1.05rem;
+    padding: 22px 24px;
+    font-size: 1.1rem;
   }
+
+  .lp-hero__cta svg { width: 20px; height: 20px; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-hero__visual {
+    aspect-ratio: auto;
+    height: 640px;
+    max-height: none;
+  }
+
+  .lp-hero__h1 { font-size: 4rem; }
+  .lp-hero__h2 { font-size: 2rem; }
+  .lp-hero__eyebrow { font-size: 1rem; }
 }
 
 {% endstylesheet %}
@@ -468,15 +602,62 @@
   "name": "LP — Hero",
   "settings": [
     {
+      "type": "header",
+      "content": "Visual hero"
+    },
+    {
       "type": "image_picker",
-      "id": "image",
-      "label": "Foto prodotto"
+      "id": "bg_image",
+      "label": "Immagine di sfondo (tallone scarpa)"
     },
     {
       "type": "text",
-      "id": "image_badge",
-      "label": "Badge sopra immagine (es. -17%)",
-      "info": "Lasciare vuoto per nascondere"
+      "id": "eyebrow",
+      "label": "Eyebrow (sopra titolo)",
+      "default": "LE SCARPE N°1 PER CAMIONISTI"
+    },
+    {
+      "type": "textarea",
+      "id": "headline_main",
+      "label": "Titolo principale (H1)",
+      "default": "SCENDI DAL CAMION\nIN 2 SECONDI."
+    },
+    {
+      "type": "textarea",
+      "id": "headline_sub",
+      "label": "Sottotitolo grande",
+      "default": "SENZA DOLORE.\nSENZA SBATTI."
+    },
+    {
+      "type": "header",
+      "content": "Descrizione"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Paragrafo descrittivo",
+      "default": "<p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>"
+    },
+    {
+      "type": "header",
+      "content": "FASTWEAR card"
+    },
+    {
+      "type": "image_picker",
+      "id": "fastwear_image",
+      "label": "Immagine sistema FASTWEAR (cerchio)"
+    },
+    {
+      "type": "text",
+      "id": "fastwear_label",
+      "label": "Etichetta",
+      "default": "FASTWEAR SYSTEM"
+    },
+    {
+      "type": "richtext",
+      "id": "fastwear_text",
+      "label": "Testo FASTWEAR",
+      "default": "<p>Scendi dal camion senza rovinare il tallone della scarpa.</p><p>Si reclina all'interno in 1 secondo.</p>"
     },
     {
       "type": "header",
@@ -486,85 +667,40 @@
       "type": "text",
       "id": "offer_badge",
       "label": "Badge offerta",
-      "default": "OFFERTA PRIMAVERA — fino al 30 giugno"
+      "default": "OFFERTA PRIMAVERA – FINO AL 30 GIUGNO"
     },
     {
-      "type": "text",
-      "id": "headline",
-      "label": "Headline (H1)",
-      "default": "Le migliori scarpe per camionisti al mondo"
-    },
-    {
-      "type": "header",
-      "content": "Rating"
-    },
-    {
-      "type": "text",
-      "id": "rating_value",
-      "label": "Valutazione (es. 4.9)",
-      "default": "4.9"
-    },
-    {
-      "type": "text",
-      "id": "rating_count",
-      "label": "Numero recensioni / clienti",
-      "default": "68 clienti soddisfatti"
-    },
-    {
-      "type": "text",
-      "id": "verified_label",
-      "label": "Etichetta verificate (opzionale)",
-      "default": "Recensioni verificate"
-    },
-    {
-      "type": "richtext",
-      "id": "subheading",
-      "label": "Sottotitolo (opzionale)",
-      "default": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>"
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner offerta (scarpe + t-shirt + prezzo)"
     },
     {
       "type": "header",
-      "content": "Prezzo"
+      "content": "Info pagamento + spedizione"
     },
     {
       "type": "text",
-      "id": "price",
-      "label": "Prezzo",
-      "default": "€189"
+      "id": "pay_title",
+      "label": "Titolo pagamento",
+      "default": "PAGA IN 3 RATE"
     },
     {
       "type": "text",
-      "id": "savings_label",
-      "label": "Badge risparmi (rosso)",
-      "default": "-14% · RISPARMI €30"
+      "id": "pay_text",
+      "label": "Testo pagamento",
+      "default": "SENZA INTERESSI"
     },
     {
       "type": "text",
-      "id": "compare_price",
-      "label": "Prezzo barrato",
-      "default": "€219"
+      "id": "ship_title",
+      "label": "Titolo spedizione",
+      "default": "SPEDIZIONE GRATIS"
     },
     {
       "type": "text",
-      "id": "tax_note",
-      "label": "Nota IVA",
-      "default": "IVA inclusa"
-    },
-    {
-      "type": "richtext",
-      "id": "installments_note",
-      "label": "Nota rate / pagamento",
-      "default": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>"
-    },
-    {
-      "type": "header",
-      "content": "Coupon banner"
-    },
-    {
-      "type": "text",
-      "id": "coupon_text",
-      "label": "Testo coupon",
-      "default": "Spedizione GRATIS + T-shirt OMAGGIO inclusi"
+      "id": "ship_text",
+      "label": "Testo spedizione",
+      "default": "1-2 GIORNI"
     },
     {
       "type": "header",
@@ -574,39 +710,59 @@
       "type": "text",
       "id": "cta_label",
       "label": "Testo bottone CTA",
-      "default": "SCOPRI L'OFFERTA SUBITO"
+      "default": "PRENOTA ORA LA TUA TAGLIA"
     },
     {
       "type": "url",
       "id": "cta_url",
       "label": "URL CTA (default: #acquista)"
+    },
+    {
+      "type": "text",
+      "id": "secure_text",
+      "label": "Testo riga sicurezza",
+      "default": "PAGAMENTO SICURO E GARANTITO"
     }
   ],
   "blocks": [
     {
-      "type": "trust_item",
-      "name": "Trust item",
-      "limit": 4,
+      "type": "benefit",
+      "name": "Beneficio",
+      "limit": 6,
       "settings": [
         {
           "type": "select",
           "id": "icon",
           "label": "Icona",
           "options": [
-            { "value": "payment", "label": "Pagamento" },
-            { "value": "delivery", "label": "Spedizione" },
-            { "value": "shield", "label": "Garanzia" }
+            { "value": "timer", "label": "Cronometro" },
+            { "value": "feather", "label": "Piuma" },
+            { "value": "slipper", "label": "Pantofola" }
           ],
-          "default": "shield"
+          "default": "timer"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo"
         },
         {
           "type": "text",
           "id": "text",
-          "label": "Testo"
+          "label": "Testo secondario"
         }
       ]
     }
   ],
-  "presets": [{ "name": "LP — Hero" }]
+  "presets": [
+    {
+      "name": "LP — Hero",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "timer", "title": "Le infili in un attimo", "text": "(anche senza usare le mani)" }},
+        { "type": "benefit", "settings": { "icon": "feather", "title": "Niente più scarpe", "text": "rigide e pesanti" }},
+        { "type": "benefit", "settings": { "icon": "slipper", "title": "Comfort vero", "text": "Effetto pantofola ai tuoi piedi" }}
+      ]
+    }
+  ]
 }
 {% endschema %}

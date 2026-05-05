@@ -106,50 +106,54 @@
     "lp_hero": {
       "type": "lp-hero",
       "blocks": {
-        "trust_payment": {
-          "type": "trust_item",
+        "benefit_fast": {
+          "type": "benefit",
           "settings": {
-            "icon": "payment",
-            "text": "Pagamento sicuro & criptato"
+            "icon": "timer",
+            "title": "Le infili in un attimo",
+            "text": "(anche senza usare le mani)"
           }
         },
-        "trust_delivery": {
-          "type": "trust_item",
+        "benefit_light": {
+          "type": "benefit",
           "settings": {
-            "icon": "delivery",
-            "text": "Spedizione Express GRATIS in tutta Italia"
+            "icon": "feather",
+            "title": "Niente più scarpe",
+            "text": "rigide e pesanti"
           }
         },
-        "trust_shield": {
-          "type": "trust_item",
+        "benefit_comfort": {
+          "type": "benefit",
           "settings": {
-            "icon": "shield",
-            "text": "Garanzia Ufficiale e Scritta 3 Anni"
+            "icon": "slipper",
+            "title": "Comfort vero",
+            "text": "Effetto pantofola ai tuoi piedi"
           }
         }
       },
       "block_order": [
-        "trust_payment",
-        "trust_delivery",
-        "trust_shield"
+        "benefit_fast",
+        "benefit_light",
+        "benefit_comfort"
       ],
       "settings": {
-        "image": "shopify://shop_images/dsc01829-migliorato-nr-1769702382-697b83ee51461_4afaa9cd-977b-4285-852e-bd51f7b96aec.jpg",
-        "image_badge": "",
-        "offer_badge": "OFFERTA PRIMAVERA — fino al 30 giugno",
-        "headline": "Le migliori scarpe per camionisti al mondo.",
-        "rating_value": "4.9",
-        "rating_count": "68 clienti soddisfatti",
-        "verified_label": "Recensioni verificate",
-        "subheading": "<p>Antinfortunistiche S3S <strong>100% Made in Italy</strong>. Sistema FASTWEAR® on/off in 1 secondo. Garanzia scritta 3 anni.</p>",
-        "price": "€189",
-        "savings_label": "-14% · RISPARMI €30",
-        "compare_price": "€219",
-        "tax_note": "IVA inclusa",
-        "installments_note": "<p>oppure <strong>3 rate da €63</strong> con Klarna o PayPal</p>",
-        "coupon_text": "Spedizione GRATIS + T-shirt OMAGGIO inclusi",
-        "cta_label": "SCOPRI L'OFFERTA SUBITO",
-        "cta_url": "#acquista"
+        "bg_image": "shopify://shop_images/foto_hero_landing_page_meta.png",
+        "eyebrow": "LE SCARPE N°1 PER CAMIONISTI",
+        "headline_main": "SCENDI DAL CAMION\nIN 2 SECONDI.",
+        "headline_sub": "SENZA DOLORE.\nSENZA SBATTI.",
+        "subheading": "<p>Le uniche scarpe antinfortunistiche pensate per chi vive in cabina: <strong>comode</strong>, <strong>veloci</strong> da indossare e sempre <strong>asciutte</strong>.</p>",
+        "fastwear_image": "shopify://shop_images/dr_kampes_nere_tallone.jpg",
+        "fastwear_label": "FASTWEAR SYSTEM",
+        "fastwear_text": "<p>Scendi dal camion senza rovinare il tallone della scarpa.</p><p>Si reclina all'interno in 1 secondo.</p>",
+        "offer_badge": "OFFERTA PRIMAVERA – FINO AL 30 GIUGNO",
+        "banner_image": "shopify://shop_images/foto_hero_banner_landing_page_meta.png",
+        "pay_title": "PAGA IN 3 RATE",
+        "pay_text": "SENZA INTERESSI",
+        "ship_title": "SPEDIZIONE GRATIS",
+        "ship_text": "1-2 GIORNI",
+        "cta_label": "PRENOTA ORA LA TUA TAGLIA",
+        "cta_url": "#acquista",
+        "secure_text": "PAGAMENTO SICURO E GARANTITO"
       }
     },
     "lp_benefits": {
