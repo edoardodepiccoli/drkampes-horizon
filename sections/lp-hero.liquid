@@ -32,6 +32,10 @@
         <p class="lp-hero__h2">{{ section.settings.headline_sub | newline_to_br }}</p>
       {%- endif -%}
 
+      {%- if section.settings.subheading != blank -%}
+        <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
       {%- if fw_img != blank or section.settings.fastwear_text != blank -%}
         <div class="lp-hero__fastwear">
           {%- if fw_img != blank -%}
@@ -57,10 +61,6 @@
   </div>
 
   <div class="lp-hero__content">
-
-    {%- if section.settings.subheading != blank -%}
-      <div class="lp-hero__sub">{{ section.settings.subheading }}</div>
-    {%- endif -%}
 
     {%- if section.blocks.size > 0 -%}
       <ul class="lp-hero__benefits">
@@ -313,10 +313,11 @@
 }
 
 .lp-hero__sub {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.45;
-  color: rgba(255,255,255,0.85);
-  margin: 0;
+  color: rgba(255,255,255,0.88);
+  margin: 0 0 16px;
+  max-width: 32ch;
 }
 .lp-hero__sub p { margin: 0; }
 .lp-hero__sub strong { color: #fff; font-weight: 700; }
@@ -325,53 +326,66 @@
 .lp-hero__benefits {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 14px 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
+  border-top: 1px solid rgba(212, 160, 23, 0.22);
+  border-bottom: 1px solid rgba(212, 160, 23, 0.22);
 }
 
 .lp-hero__benefit {
   display: flex;
   gap: 14px;
-  align-items: flex-start;
+  align-items: center;
+  padding: 12px 0;
+  position: relative;
+}
+
+.lp-hero__benefit + .lp-hero__benefit {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .lp-hero__benefit-icon {
-  width: 38px;
-  height: 38px;
-  border: 1.5px solid var(--lp-gold);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--lp-gold) 0%, #b8860b 100%);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(212, 160, 23, 0.25), inset 0 1px 0 rgba(255,255,255,0.18);
 }
 
 .lp-hero__benefit-icon svg {
-  width: 18px;
-  height: 18px;
-  stroke: var(--lp-gold);
+  width: 22px;
+  height: 22px;
+  stroke: #1a1a1a;
+  stroke-width: 2;
 }
 
 .lp-hero__benefit-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding-top: 4px;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
 }
 
 .lp-hero__benefit-text strong {
   color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  line-height: 1.25;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
 }
 
 .lp-hero__benefit-text span {
-  color: rgba(255,255,255,0.62);
-  font-size: 0.85rem;
-  line-height: 1.3;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.84rem;
+  line-height: 1.35;
 }
 
 /* ── Purchase block ── */
@@ -616,15 +630,23 @@
     gap: 28px;
   }
 
-  .lp-hero__sub { font-size: 1.02rem; max-width: 50ch; }
+  .lp-hero__sub { font-size: 1.02rem; max-width: 50ch; margin-bottom: 24px; }
 
   .lp-hero__benefits {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 22px;
+    padding: 0;
+    border: none;
   }
 
-  .lp-hero__benefit { flex: 1 1 240px; }
+  .lp-hero__benefit {
+    flex: 1 1 240px;
+    padding: 0;
+  }
+  .lp-hero__benefit + .lp-hero__benefit {
+    border-top: none;
+  }
 
   .lp-hero__purchase { max-width: 720px; align-self: center; width: 100%; }
 
