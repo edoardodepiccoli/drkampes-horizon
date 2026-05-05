@@ -1,0 +1,91 @@
+# Role
+You are a world-class Shopify theme developer specialized in high-conversion Liquid development and maintainable frontend architecture.
+
+---
+
+# Context
+
+## Codebase
+- Landing page entry point: `templates/page.landing.json`
+- Existing section to improve (logic intact): `sections/hps-offerta.liquid`
+- Existing section to leave untouched: `sections/lp-reviews.liquid`
+- Design screenshots: `other/landing-page-design/` (numbered per section)
+
+## What you are building
+A full redesign of the landing page and all its sections, matching the design screenshots exactly, mobile-first.
+
+---
+
+# Phase 1 — Plan (complete this before writing any code)
+
+Read the following before planning:
+- `sections/hps-offerta.liquid`
+- `sections/lp-reviews.liquid`
+- All screenshots in `other/landing-page-design/`
+
+Produce a structured technical plan with these exact sections:
+
+## Plan Section 1 — Design System (`assets/lp-design-system.css`)
+Define every CSS custom property the project will use:
+- Color tokens (brand, neutral, semantic)
+- Typography scale (font-family, size scale, weights, line-heights)
+- Spacing scale
+- Border radius, shadows, transitions
+- Breakpoints (mobile-first)
+
+Derive all values from the design screenshots. No guessing.
+
+## Plan Section 2 — File Architecture
+Exact list of every file to create or modify, with full path.
+
+## Plan Section 3 — Section Specs
+For each section below (skip lp-reviews.liquid entirely):
+
+**Per section, specify:**
+- File path
+- Schema settings: name, type, default value for every editable field
+- Liquid structure outline: blocks, loops, conditionals, asset placeholders
+- CSS class names (BEM, scoped to section)
+- Which design tokens it uses
+- Mobile-specific layout notes
+- Any dependency on other sections or files
+
+**Sections:**
+1. `lp-hero.liquid` — Hero with banner coupon (shoes + t-shirt + free shipping + price)
+2. `lp-benefits.liquid` — Benefits strip
+3. `sections/hps-offerta.liquid` — Buy section (style update only, logic untouched)
+4. `lp-size-guide.liquid` — Size guide (illustration + icons = uploadable placeholders)
+5. `lp-warranties.liquid` — Warranties
+
+## Plan Section 4 — Execution Order
+Ordered list of self-contained tasks for subagents.
+Each task must specify: file to create/modify, inputs needed, definition of done.
+
+---
+
+# Phase 2 — Execution Rules (for subagents)
+
+- The Phase 1 plan is the single source of truth. Do not re-read screenshots.
+- Read only the files explicitly listed in your assigned task.
+- Complete one task fully before starting the next.
+
+---
+
+# Global Constraints
+
+## Design
+- Match screenshots exactly. Mobile-first: fix any mobile issues found (font sizes, layout breaks, color mismatches).
+- Assets: every image and video must be uploadable via the Shopify theme editor. Use visible labeled placeholders where no asset is provided.
+- Icons: build as inline SVG, matching the design screenshots.
+
+## Code quality
+- `assets/lp-design-system.css` is the only source for visual values. No hardcoded colors, sizes, or spacing anywhere.
+- BEM naming for all CSS, scoped per section (e.g. `.lp-hero__title`, `.lp-hero__title--highlighted`).
+- Every section is fully self-contained. No cross-section CSS dependencies.
+- No inline styles.
+- All copy and visual content editable via schema. No hardcoded text in Liquid.
+- Schema settings must cover every value a merchant might realistically want to change.
+
+## What to preserve
+- All business logic in `sections/hps-offerta.liquid` (shoe + t-shirt + combined discounts). Style updates only.
+- `sections/lp-reviews.liquid` entirely. Do not open, read, or modify it.
