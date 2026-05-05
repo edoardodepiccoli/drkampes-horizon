@@ -187,16 +187,10 @@
         <div class="hps__opt">
           <div class="hps__size-row">
             <p class="hps__opt-lbl">Taglia: <span class="hps__opt-val" id="hps-sval-{{ section.id }}">{{ size_option.selected_value }}</span></p>
-            <div class="hps__info-btns">
-              <button type="button" class="hps__info-btn" id="hps-tech-{{ section.id }}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Schede tecniche
-              </button>
-              <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 6H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/><line x1="6" y1="6" x2="6" y2="10"/><line x1="10" y1="6" x2="10" y2="9"/><line x1="14" y1="6" x2="14" y2="10"/><line x1="18" y1="6" x2="18" y2="9"/></svg>
-                Guida alle taglie
-              </button>
-            </div>
+            <button type="button" class="hps__info-btn" id="hps-size-{{ section.id }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 6H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/><line x1="6" y1="6" x2="6" y2="10"/><line x1="10" y1="6" x2="10" y2="9"/><line x1="14" y1="6" x2="14" y2="10"/><line x1="18" y1="6" x2="18" y2="9"/></svg>
+              Guida alle taglie
+            </button>
           </div>
           <div class="hps__pills" id="hps-ssel-{{ section.id }}" data-pos="{{ size_pos }}" role="group" aria-label="Taglia">
             {%- for value in size_option.values -%}
@@ -725,10 +719,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--lp-space-5);
-  background: var(--lp-color-surface-light);
+  background: var(--lp-color-white);
   font-family: var(--lp-font-body);
   color: var(--lp-color-text-on-light);
-  padding: var(--lp-space-5) var(--lp-section-pad-x) var(--lp-space-7);
+  padding: var(--lp-space-5) 0 var(--lp-space-7);
   scroll-margin-top: var(--lp-space-5);
 }
 
@@ -739,6 +733,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--lp-space-3);
+  padding: 0 var(--lp-section-pad-x);
 }
 
 .hps__title {
@@ -768,13 +763,13 @@
 }
 
 .hps__stars svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
 .hps__rating-text {
-  font-size: var(--lp-fs-sm);
+  font-size: var(--lp-fs-xs);
   color: var(--lp-color-text-on-light-mute);
   line-height: var(--lp-lh-snug);
 }
@@ -944,6 +939,7 @@
   flex-direction: column;
   gap: var(--lp-space-5);
   min-width: 0;
+  padding: 0 var(--lp-section-pad-x);
 }
 
 .hps__form {
@@ -1027,8 +1023,8 @@
 /* Size pills: white square, black solid when selected */
 .hps__pills {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
-  gap: var(--lp-space-2);
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: var(--lp-space-1);
 }
 
 .hps__pill {
@@ -1145,7 +1141,7 @@
    --------------------------------------------------------------------------- */
 .hps__features {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   list-style: none;
   margin: 0;
@@ -1160,7 +1156,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--lp-space-2);
-  padding: var(--lp-space-3);
+  padding: var(--lp-space-3) var(--lp-space-2);
   background: var(--lp-color-surface-card);
 }
 
@@ -1190,9 +1186,6 @@
 }
 
 @media (min-width: 480px) {
-  .hps__features {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
   .hps__feature { padding: var(--lp-space-4); }
 }
 
