@@ -93,9 +93,14 @@
 
     <div class="lp-hero__purchase">
 
-      {%- if section.settings.offer_badge != blank -%}
+      {%- if section.settings.offer_badge != blank or section.settings.offer_badge_sub != blank -%}
         <div class="lp-hero__offer-badge">
-          <span>{{ section.settings.offer_badge }}</span>
+          {%- if section.settings.offer_badge != blank -%}
+            <span class="lp-hero__offer-badge-main">{{ section.settings.offer_badge }}</span>
+          {%- endif -%}
+          {%- if section.settings.offer_badge_sub != blank -%}
+            <span class="lp-hero__offer-badge-sub">{{ section.settings.offer_badge_sub }}</span>
+          {%- endif -%}
         </div>
       {%- endif -%}
 
@@ -380,31 +385,46 @@
   background: var(--lp-gold);
   border: none;
   border-radius: 14px 14px 0 0;
-  padding: 12px 22px 18px;
+  padding: 10px 22px 16px;
   text-align: center;
   position: relative;
   z-index: 1;
   margin-bottom: -10px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12);
   max-width: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1.15;
 }
 
-.lp-hero__offer-badge span {
+.lp-hero__offer-badge-main {
   font-family: 'Archivo Black', 'Inter', sans-serif;
   color: #1a1a1a;
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.15;
+}
+
+.lp-hero__offer-badge-sub {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  color: #1a1a1a;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1.15;
 }
 
 .lp-hero__card {
   background: #fff;
   border-radius: 14px;
-  padding: 12px 12px 14px;
+  padding: 10px 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   position: relative;
   z-index: 2;
 }
@@ -604,13 +624,14 @@
   .lp-hero__purchase { max-width: 720px; align-self: center; width: 100%; }
 
   .lp-hero__offer-badge {
-    padding: 13px 28px 20px;
+    padding: 12px 30px 18px;
     border-radius: 16px 16px 0 0;
     margin-bottom: -12px;
   }
-  .lp-hero__offer-badge span { font-size: 0.92rem; }
+  .lp-hero__offer-badge-main { font-size: 1.05rem; }
+  .lp-hero__offer-badge-sub { font-size: 0.78rem; }
 
-  .lp-hero__card { padding: 16px; gap: 16px; border-radius: 16px; }
+  .lp-hero__card { padding: 14px; gap: 10px; border-radius: 16px; }
   .lp-hero__card-banner { border-radius: 12px; }
   .lp-hero__card-info { padding: 4px 8px; gap: 16px; }
   .lp-hero__info-cell { gap: 14px; }
@@ -713,8 +734,14 @@
     {
       "type": "text",
       "id": "offer_badge",
-      "label": "Badge offerta (sopra card)",
-      "default": "OFFERTA PRIMAVERA – FINO AL 30 GIUGNO"
+      "label": "Badge offerta — riga grande",
+      "default": "OFFERTA PRIMAVERA"
+    },
+    {
+      "type": "text",
+      "id": "offer_badge_sub",
+      "label": "Badge offerta — riga piccola",
+      "default": "fino al 30 giugno"
     },
     {
       "type": "image_picker",
