@@ -331,8 +331,10 @@
   }
 
   /* Sticky media gallery on desktop default product page.
-     Cap media height to viewport so the gallery actually pins
-     while user scrolls through the description. */
+     Sticky range = container_height - element_height. We cap the
+     gallery to the viewport AND force the details column to stretch
+     to at least the gallery height so the grid container is always
+     taller than the gallery — guaranteeing sticky range > 0. */
   @media screen and (min-width: 750px) {
     .product-information .product-information__grid:not(.product-information--media-none) .product-information__media {
       position: sticky !important;
@@ -347,6 +349,20 @@
       position: relative !important;
       top: auto !important;
       max-height: none !important;
+    }
+
+    /* Force details column to stretch full grid height so the gallery
+       always has scroll room to remain sticky while details scroll. */
+    .product-information .product-information__grid:not(.product-information--media-none) .product-details {
+      align-self: stretch !important;
+    }
+
+    /* Ensure grid container is taller than the gallery so sticky has
+       scroll range. Without this, if the details column is shorter
+       than the media column, sticky range = 0 and the gallery scrolls
+       with the page instead of pinning. */
+    .product-information .product-information__grid:not(.product-information--media-none) {
+      min-height: calc(100dvh + 200px);
     }
   }
 
