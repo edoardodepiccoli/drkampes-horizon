@@ -330,6 +330,19 @@
     }
   }
 
+  /* Sticky media gallery on desktop default product page.
+     Cap media height to viewport so the gallery actually pins
+     while user scrolls through the description. */
+  @media screen and (min-width: 750px) {
+    .product-information .product-information__grid:not(.product-information--media-none) .product-information__media {
+      position: sticky;
+      top: var(--sticky-header-offset, 0px);
+      align-self: start;
+      max-height: calc(100dvh - var(--sticky-header-offset, 0px));
+      overflow: hidden;
+    }
+  }
+
   /* Small mobile - hide text content and compare price */
   @media screen and (max-width: 389px) {
     .sticky-add-to-cart__bar {
