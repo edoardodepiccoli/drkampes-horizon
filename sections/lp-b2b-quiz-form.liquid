@@ -115,7 +115,7 @@
           <div class="lp-b2b-quiz-form__q">
             <label class="lp-b2b-quiz-form__q-label">Oggi chi fornisce le scarpe antinfortunistiche?</label>
             <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Fornitore scarpe">
-              {%- assign provs = 'Le fornisce l''azienda|Ogni autista compra le proprie|Dipende dai casi|Non abbiamo una gestione precisa' | split: '|' -%}
+              {%- assign provs = "Le fornisce l'azienda|Ogni autista compra le proprie|Dipende dai casi|Non abbiamo una gestione precisa" | split: '|' -%}
               {%- for p in provs -%}
                 <label class="lp-b2b-quiz-form__option">
                   <input type="radio" name="fornitore" value="{{ p }}" data-required>
@@ -150,7 +150,7 @@
           <div class="lp-b2b-quiz-form__q">
             <label class="lp-b2b-quiz-form__q-label">Quale vantaggio ti interessa di più? <span class="lp-b2b-quiz-form__hint">(max 2)</span></label>
             <div class="lp-b2b-quiz-form__options" data-multi-max="2" aria-label="Vantaggio">
-              {%- assign vants = 'Personalizzazione con colori/logo aziendale|Maggiore comfort per gli autisti|Fast Wear per scendere dal camion con più praticità|Risparmio sul costo reale nei 2 anni|Gestione taglie e storico ordini|Supporto diretto per l''azienda' | split: '|' -%}
+              {%- assign vants = "Personalizzazione con colori/logo aziendale|Maggiore comfort per gli autisti|Fast Wear per scendere dal camion con più praticità|Risparmio sul costo reale nei 2 anni|Gestione taglie e storico ordini|Supporto diretto per l'azienda" | split: '|' -%}
               {%- for v in vants -%}
                 <label class="lp-b2b-quiz-form__option">
                   <input type="checkbox" name="vantaggio" value="{{ v }}" data-required-multi>
