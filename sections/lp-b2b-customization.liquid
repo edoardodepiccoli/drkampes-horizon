@@ -1,0 +1,389 @@
+{%- assign main_img = section.settings.main_image -%}
+
+<section class="lp-b2b-custom">
+  <div class="lp-b2b-custom__inner">
+
+    <div class="lp-b2b-custom__showcase">
+      {%- if main_img != blank -%}
+        <div class="lp-b2b-custom__main">
+          {{ main_img | image_url: width: 1600 | image_tag:
+             class: 'lp-b2b-custom__main-img',
+             loading: 'lazy',
+             widths: '600,900,1200,1600',
+             sizes: '(min-width:750px) 70vw, 100vw',
+             alt: main_img.alt | default: 'Personalizzazione logo scarpe Dr Kampes' }}
+        </div>
+      {%- endif -%}
+
+      {%- assign has_swatch = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'swatch' -%}{%- assign has_swatch = true -%}{%- endif -%}
+      {%- endfor -%}
+
+      {%- if has_swatch -%}
+        <ul class="lp-b2b-custom__swatches">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'swatch' and block.settings.image != blank -%}
+              <li class="lp-b2b-custom__swatch" {{ block.shopify_attributes }}>
+                {{ block.settings.image | image_url: width: 320 | image_tag:
+                   widths: '160,240,320',
+                   sizes: '120px',
+                   loading: 'lazy',
+                   alt: block.settings.image.alt | default: block.settings.label | default: 'Colore pelle' }}
+                {%- if block.settings.label != blank -%}
+                  <span class="visually-hidden">{{ block.settings.label }}</span>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- assign has_feature = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'feature' -%}{%- assign has_feature = true -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_feature -%}
+      <div class="lp-b2b-custom__features">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <article class="lp-b2b-custom__card" {{ block.shopify_attributes }}>
+              <span class="lp-b2b-custom__card-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'truck' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1z"/><path d="M15 8h4l3 4v4h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  {%- when 'tag' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2h9v9L11 21z"/><circle cx="16" cy="8" r="1.5"/></svg>
+                  {%- when 'pen' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l4-4 8-8 2 2-8 8-4 4z"/><path d="M14 6l4 4"/><line x1="2" y1="12" x2="6" y2="12" stroke-dasharray="2 2"/><line x1="18" y1="12" x2="22" y2="12" stroke-dasharray="2 2"/><line x1="12" y1="2" x2="12" y2="6" stroke-dasharray="2 2"/><line x1="12" y1="18" x2="12" y2="22" stroke-dasharray="2 2"/></svg>
+                  {%- when 'scissors' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="8.5" y1="8.5" x2="21" y2="21"/><line x1="8.5" y1="15.5" x2="21" y2="3"/></svg>
+                  {%- when 'palette' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1 0 2-1 2-2 0-1-1-2-1-3s1-2 2-2h3a4 4 0 0 0 4-4 9 9 0 0 0-10-7z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="11" cy="7" r="1.2"/><circle cx="16" cy="8.5" r="1.2"/></svg>
+                  {%- when 'thread' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c4 0 4 4 8 4s4-4 8-4"/><path d="M3 12c4 0 4 4 8 4s4-4 8-4"/><path d="M3 18c4 0 4 2 8 2s4-2 8-2"/></svg>
+                {%- endcase -%}
+              </span>
+              {%- if block.settings.title != blank -%}
+                <h3 class="lp-b2b-custom__card-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <p class="lp-b2b-custom__card-text">{{ block.settings.text | newline_to_br }}</p>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+
+.lp-b2b-custom {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-soft:   rgba(232, 184, 46, 0.55);
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  background: #000;
+  color: #fff;
+  padding: 32px 16px 40px;
+}
+
+.lp-b2b-custom__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Showcase (main image + swatches) ── */
+.lp-b2b-custom__showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.lp-b2b-custom__main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+}
+
+.lp-b2b-custom__main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lp-b2b-custom__swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.lp-b2b-custom__swatch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1.5px solid var(--b2b-gold-faint);
+  background: #111;
+}
+
+.lp-b2b-custom__swatch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Features (3-up cards) ── */
+.lp-b2b-custom__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.lp-b2b-custom__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 22px 18px 20px;
+  background: rgba(0,0,0,0.6);
+  border: 1.5px solid var(--b2b-gold-faint);
+  border-radius: 12px;
+}
+
+.lp-b2b-custom__card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--b2b-gold);
+  background: rgba(232, 184, 46, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-b2b-custom__card-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--b2b-gold);
+}
+
+.lp-b2b-custom__card-title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.lp-b2b-custom__card-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--b2b-gold);
+  margin: 0;
+}
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-custom { padding: 56px 32px 64px; }
+  .lp-b2b-custom__inner { gap: 28px; }
+
+  .lp-b2b-custom__showcase {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .lp-b2b-custom__main {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 320px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-custom__swatches {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 120px;
+    flex-shrink: 0;
+  }
+
+  .lp-b2b-custom__swatch {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .lp-b2b-custom__features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 12px;
+  }
+
+  .lp-b2b-custom__card {
+    padding: 28px 22px 26px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-custom__card-icon { width: 64px; height: 64px; }
+  .lp-b2b-custom__card-icon svg { width: 32px; height: 32px; }
+  .lp-b2b-custom__card-title { font-size: 1.1rem; }
+  .lp-b2b-custom__card-text { font-size: 0.96rem; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-custom { padding: 80px 48px 96px; }
+  .lp-b2b-custom__inner { gap: 32px; }
+
+  .lp-b2b-custom__showcase { gap: 20px; }
+
+  .lp-b2b-custom__main {
+    min-height: 380px;
+    border-radius: 16px;
+  }
+
+  .lp-b2b-custom__swatches {
+    width: 140px;
+    gap: 14px;
+  }
+
+  .lp-b2b-custom__features {
+    gap: 22px;
+    margin-top: 16px;
+  }
+
+  .lp-b2b-custom__card {
+    padding: 36px 26px 30px;
+    gap: 16px;
+    border-radius: 16px;
+  }
+
+  .lp-b2b-custom__card-icon { width: 72px; height: 72px; }
+  .lp-b2b-custom__card-icon svg { width: 36px; height: 36px; }
+  .lp-b2b-custom__card-title { font-size: 1.2rem; letter-spacing: 0.03em; }
+  .lp-b2b-custom__card-text { font-size: 1rem; line-height: 1.4; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP B2B — Personalizzazione",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Immagine principale"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Immagine showcase (logo embossed)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swatch",
+      "name": "Swatch colore",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine swatch (pelle)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etichetta (a11y, opzionale)"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Card feature",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "truck",    "label": "Camion" },
+            { "value": "tag",      "label": "Etichetta" },
+            { "value": "pen",      "label": "Penna + mirino" },
+            { "value": "scissors", "label": "Forbici" },
+            { "value": "palette",  "label": "Tavolozza" },
+            { "value": "thread",   "label": "Cuciture" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Sottotitolo (2 righe ammesse)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Personalizzazione",
+      "blocks": [
+        { "type": "swatch",  "settings": { "label": "Pelle rossa" }},
+        { "type": "swatch",  "settings": { "label": "Pelle grigia" }},
+        { "type": "swatch",  "settings": { "label": "Pelle nera" }},
+        { "type": "feature", "settings": { "icon": "truck", "title": "COLORI DI FLOTTA", "text": "Coordiniamo la tua identità su ogni dettaglio." }},
+        { "type": "feature", "settings": { "icon": "tag",   "title": "LOGO AZIENDALE",  "text": "Il tuo marchio sempre in primo piano." }},
+        { "type": "feature", "settings": { "icon": "pen",   "title": "DETTAGLI COORDINATI", "text": "Cuciture, inserti e finiture in perfetta sintonia." }}
+      ]
+    }
+  ]
+}
+{% endschema %}

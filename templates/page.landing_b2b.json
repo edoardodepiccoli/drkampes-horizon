@@ -36,11 +36,69 @@
         "eyebrow": "PER AZIENDE DI AUTOTRASPORTO",
         "headline_white": "FINALMENTE SCARPE ANTINFORTUNISTICHE",
         "headline_gold": "PERSONALIZZATE COME VUOI TU",
-        "subheading": "<p>Fai indossare ai tuoi autisti le scarpe col logo della tua azienda.</p>",
+        "subheading": "<p>Fai indossare ai tuoi autisti le scarpe con il logo della tua azienda.</p>",
         "cta_label": "CANDIDA LA TUA AZIENDA",
         "cta_url": "#candida",
         "bonus_title": "Bonus quiz:",
         "bonus_text": "2 strategie pratiche per risparmiare sulla gestione DPI"
+      }
+    },
+    "lp_b2b_customization": {
+      "type": "lp-b2b-customization",
+      "blocks": {
+        "swatch_red": {
+          "type": "swatch",
+          "settings": {
+            "label": "Pelle rossa"
+          }
+        },
+        "swatch_gray": {
+          "type": "swatch",
+          "settings": {
+            "label": "Pelle grigia"
+          }
+        },
+        "swatch_black": {
+          "type": "swatch",
+          "settings": {
+            "label": "Pelle nera"
+          }
+        },
+        "feat_colors": {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "COLORI DI FLOTTA",
+            "text": "Coordiniamo la tua identità su ogni dettaglio."
+          }
+        },
+        "feat_logo": {
+          "type": "feature",
+          "settings": {
+            "icon": "tag",
+            "title": "LOGO AZIENDALE",
+            "text": "Il tuo marchio sempre in primo piano."
+          }
+        },
+        "feat_details": {
+          "type": "feature",
+          "settings": {
+            "icon": "pen",
+            "title": "DETTAGLI COORDINATI",
+            "text": "Cuciture, inserti e finiture in perfetta sintonia."
+          }
+        }
+      },
+      "block_order": [
+        "swatch_red",
+        "swatch_gray",
+        "swatch_black",
+        "feat_colors",
+        "feat_logo",
+        "feat_details"
+      ],
+      "settings": {
+        "main_image": "shopify://shop_images/3d_logo_render.jpg"
       }
     },
     "main": {
@@ -209,6 +267,7 @@
   },
   "order": [
     "lp_b2b_hero",
+    "lp_b2b_customization",
     "main",
     "section_eGTGaW"
   ]
