@@ -115,6 +115,8 @@
             "text": "Aggressiva, visibile, stile racing.",
             "color_1": "#000000",
             "color_2": "#E8B82E",
+            "badge_bg": "#E8B82E",
+            "badge_text": "#111111",
             "image": "shopify://shop_images/CAMION_NERO_E_GIALLO.png"
           }
         },
@@ -126,6 +128,8 @@
             "text": "Classica, pulita, ad alta visibilità.",
             "color_1": "#FFFFFF",
             "color_2": "#C0192A",
+            "badge_bg": "#C0192A",
+            "badge_text": "#FFFFFF",
             "image": "shopify://shop_images/CAMION_BIANCO-ROSSO.png"
           }
         },
@@ -137,6 +141,8 @@
             "text": "Professionale, affidabile, istituzionale.",
             "color_1": "#1B3D8C",
             "color_2": "#FFFFFF",
+            "badge_bg": "#1B3D8C",
+            "badge_text": "#FFFFFF",
             "image": "shopify://shop_images/CAMION_BLU_BIANCO.png"
           }
         },
@@ -148,6 +154,8 @@
             "text": "Distintiva, ricercata, premium.",
             "color_1": "#2D5C3E",
             "color_2": "#C9A227",
+            "badge_bg": "#2D5C3E",
+            "badge_text": "#FFFFFF",
             "image": "shopify://shop_images/CAMION_VERDE_ORO.png"
           }
         }

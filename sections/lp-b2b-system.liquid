@@ -45,12 +45,14 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 1 1 4 4l-9 9-3-3 9-9a4 4 0 0 1 0-1z"/></svg>
                   {%- endcase -%}
                 </span>
-                {%- if block.settings.title != blank -%}
-                  <h3 class="lp-b2b-system__card-title">{{ block.settings.title }}</h3>
-                {%- endif -%}
-                {%- if block.settings.text != blank -%}
-                  <p class="lp-b2b-system__card-text">{{ block.settings.text | newline_to_br }}</p>
-                {%- endif -%}
+                <div class="lp-b2b-system__card-body">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="lp-b2b-system__card-title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <p class="lp-b2b-system__card-text">{{ block.settings.text | newline_to_br }}</p>
+                  {%- endif -%}
+                </div>
               </li>
             {%- endif -%}
           {%- endfor -%}
@@ -201,45 +203,44 @@
   min-width: 0;
   scroll-snap-align: start;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-  gap: 12px;
-  padding: 22px 20px 24px;
-  border: 1.5px solid transparent;
-  border-radius: 12px;
-  background:
-    linear-gradient(#000, #000) padding-box,
-    linear-gradient(135deg,
-      var(--b2b-gold-light) 0%,
-      var(--b2b-gold) 35%,
-      var(--b2b-gold-dark) 65%,
-      var(--b2b-gold) 100%) border-box;
+  text-align: left;
+  gap: 14px;
+  padding: 6px 16px;
+  background: none;
+  border: none;
+  border-radius: 0;
 }
 
 .lp-b2b-system__card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1.5px solid var(--b2b-gold);
-  background: rgba(232, 184, 46, 0.05);
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .lp-b2b-system__card-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 100%;
+  height: 100%;
   stroke: var(--b2b-gold);
+  stroke-width: 1.4;
+}
+
+.lp-b2b-system__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .lp-b2b-system__card-title {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: #fff;
   margin: 0;
   text-transform: uppercase;
@@ -248,10 +249,10 @@
 
 .lp-b2b-system__card-text {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 500;
-  line-height: 1.4;
-  color: var(--b2b-gold);
+  line-height: 1.3;
+  color: #fff;
   margin: 0;
 }
 
@@ -287,55 +288,56 @@
 /* ── Tablet ≥ 750px ── */
 @media (min-width: 750px) {
   .lp-b2b-system { padding: 64px 0 80px; }
-  .lp-b2b-system__inner { gap: 32px; }
+  .lp-b2b-system__inner { gap: 28px; }
 
   .lp-b2b-system__head { padding: 0 48px; gap: 10px; }
   .lp-b2b-system__heading { font-size: 2.2rem; }
   .lp-b2b-system__sub { font-size: 1.15rem; }
 
   .lp-b2b-system__track {
-    padding: 4px 48px 12px;
-    gap: 16px;
+    padding: 4px 32px 12px;
+    gap: 0;
   }
 
   .lp-b2b-system__card {
-    flex: 0 0 calc(50% - 32px);
-    padding: 28px 22px 28px;
-    gap: 14px;
-    border-radius: 14px;
+    flex: 0 0 50%;
+    padding: 10px 22px;
+    gap: 16px;
+    border-right: 1px solid var(--b2b-gold-faint);
   }
+  .lp-b2b-system__card:nth-child(2n) { border-right: none; }
 
-  .lp-b2b-system__card-icon { width: 64px; height: 64px; }
-  .lp-b2b-system__card-icon svg { width: 32px; height: 32px; }
-  .lp-b2b-system__card-title { font-size: 1.08rem; }
-  .lp-b2b-system__card-text { font-size: 0.95rem; }
+  .lp-b2b-system__card-icon { width: 56px; height: 56px; }
+  .lp-b2b-system__card-title { font-size: 1rem; }
+  .lp-b2b-system__card-text { font-size: 0.9rem; }
 }
 
 /* ── Desktop ≥ 1100px ── */
 @media (min-width: 1100px) {
-  .lp-b2b-system { padding: 88px 0 104px; }
-  .lp-b2b-system__inner { gap: 40px; }
+  .lp-b2b-system { padding: 80px 0 96px; }
+  .lp-b2b-system__inner { gap: 36px; }
 
   .lp-b2b-system__head { padding: 0 64px; gap: 12px; }
-  .lp-b2b-system__heading { font-size: 2.8rem; }
-  .lp-b2b-system__sub { font-size: 1.25rem; }
+  .lp-b2b-system__heading { font-size: 2.6rem; }
+  .lp-b2b-system__sub { font-size: 1.2rem; }
 
   .lp-b2b-system__track {
-    padding: 4px 64px 14px;
-    gap: 22px;
+    padding: 4px 48px 14px;
+    gap: 0;
   }
 
   .lp-b2b-system__card {
-    flex: 0 0 calc(33.333% - 44px);
-    padding: 36px 26px 32px;
-    gap: 16px;
-    border-radius: 16px;
+    flex: 0 0 33.333%;
+    padding: 12px 28px;
+    gap: 18px;
+    border-right: 1px solid var(--b2b-gold-faint);
   }
+  .lp-b2b-system__card:nth-child(2n) { border-right: 1px solid var(--b2b-gold-faint); }
+  .lp-b2b-system__card:nth-child(3n) { border-right: none; }
 
-  .lp-b2b-system__card-icon { width: 72px; height: 72px; }
-  .lp-b2b-system__card-icon svg { width: 36px; height: 36px; }
-  .lp-b2b-system__card-title { font-size: 1.18rem; letter-spacing: 0.03em; }
-  .lp-b2b-system__card-text { font-size: 1rem; }
+  .lp-b2b-system__card-icon { width: 60px; height: 60px; }
+  .lp-b2b-system__card-title { font-size: 1.08rem; letter-spacing: 0.03em; }
+  .lp-b2b-system__card-text { font-size: 0.96rem; }
 }
 
 {% endstylesheet %}

@@ -27,7 +27,10 @@
 
             <div class="lp-b2b-livery__card-text">
               {%- if block.settings.number != blank -%}
-                <span class="lp-b2b-livery__badge">{{ block.settings.number }}</span>
+                <span
+                  class="lp-b2b-livery__badge"
+                  style="background-color: {{ block.settings.badge_bg | default: '#E8B82E' }}; color: {{ block.settings.badge_text | default: '#111111' }};"
+                >{{ block.settings.number }}</span>
               {%- endif -%}
               {%- if block.settings.title != blank -%}
                 <h3 class="lp-b2b-livery__title">{{ block.settings.title | newline_to_br }}</h3>
@@ -170,15 +173,9 @@
     "text"
     "media";
   padding: 14px 16px 16px;
-  border: 1.5px solid transparent;
+  border: 1px solid var(--b2b-gold-faint);
   border-radius: 12px;
-  background:
-    linear-gradient(#000, #000) padding-box,
-    linear-gradient(135deg,
-      var(--b2b-gold-light) 0%,
-      var(--b2b-gold) 35%,
-      var(--b2b-gold-dark) 65%,
-      var(--b2b-gold) 100%) border-box;
+  background: #000;
   gap: 8px;
 }
 
@@ -194,8 +191,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--b2b-gold);
-  color: #111;
   font-family: 'Archivo Black', 'Inter', sans-serif;
   font-size: 0.78rem;
   font-weight: 900;
@@ -447,6 +442,18 @@
           "default": "#E8B82E"
         },
         {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Sfondo badge numero",
+          "default": "#E8B82E"
+        },
+        {
+          "type": "color",
+          "id": "badge_text",
+          "label": "Testo badge numero",
+          "default": "#111111"
+        },
+        {
           "type": "image_picker",
           "id": "image",
           "label": "Immagine camion + scarpa"
@@ -463,10 +470,10 @@
     {
       "name": "LP B2B — Livrea",
       "blocks": [
-        { "type": "livery", "settings": { "number": "01", "title": "NERO + GIALLO",  "text": "Aggressiva, visibile, stile racing.", "color_1": "#000000", "color_2": "#E8B82E" }},
-        { "type": "livery", "settings": { "number": "02", "title": "BIANCO + ROSSO", "text": "Classica, pulita, ad alta visibilità.", "color_1": "#FFFFFF", "color_2": "#C0192A" }},
-        { "type": "livery", "settings": { "number": "03", "title": "BLU + BIANCO",   "text": "Professionale, affidabile, istituzionale.", "color_1": "#1B3D8C", "color_2": "#FFFFFF" }},
-        { "type": "livery", "settings": { "number": "04", "title": "VERDE + ORO",    "text": "Distintiva, ricercata, premium.", "color_1": "#2D5C3E", "color_2": "#C9A227" }}
+        { "type": "livery", "settings": { "number": "01", "title": "NERO + GIALLO",  "text": "Aggressiva, visibile, stile racing.", "color_1": "#000000", "color_2": "#E8B82E", "badge_bg": "#E8B82E", "badge_text": "#111111" }},
+        { "type": "livery", "settings": { "number": "02", "title": "BIANCO + ROSSO", "text": "Classica, pulita, ad alta visibilità.", "color_1": "#FFFFFF", "color_2": "#C0192A", "badge_bg": "#C0192A", "badge_text": "#FFFFFF" }},
+        { "type": "livery", "settings": { "number": "03", "title": "BLU + BIANCO",   "text": "Professionale, affidabile, istituzionale.", "color_1": "#1B3D8C", "color_2": "#FFFFFF", "badge_bg": "#1B3D8C", "badge_text": "#FFFFFF" }},
+        { "type": "livery", "settings": { "number": "04", "title": "VERDE + ORO",    "text": "Distintiva, ricercata, premium.", "color_1": "#2D5C3E", "color_2": "#C9A227", "badge_bg": "#2D5C3E", "badge_text": "#FFFFFF" }}
       ]
     }
   ]
