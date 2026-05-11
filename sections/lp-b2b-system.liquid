@@ -92,26 +92,34 @@
       var first = track.firstElementChild;
       if (!first) return 0;
       var rect = first.getBoundingClientRect();
-      var styles = getComputedStyle(track);
-      var gap = parseFloat(styles.columnGap || styles.gap || 0);
+      var cs = getComputedStyle(track);
+      var gap = parseFloat(cs.columnGap);
+      if (isNaN(gap)) gap = parseFloat(cs.gap);
+      if (isNaN(gap)) gap = 0;
       return rect.width + gap;
     }
 
     function activeIndex() {
       var step = getCardStep();
-      if (step === 0) return 0;
-      return Math.round(track.scrollLeft / step);
+      if (!step || isNaN(step)) return 0;
+      var idx = Math.round(track.scrollLeft / step);
+      if (idx < 0) idx = 0;
+      if (idx > dots.length - 1) idx = dots.length - 1;
+      return idx;
     }
 
     function update() {
       var idx = activeIndex();
-      dots.forEach(function (d, i) {
-        d.classList.toggle('is-active', i === idx);
-      });
+      for (var i = 0; i < dots.length; i++) {
+        if (i === idx) dots[i].classList.add('is-active');
+        else dots[i].classList.remove('is-active');
+      }
     }
 
+    var raf;
     track.addEventListener('scroll', function () {
-      window.requestAnimationFrame(update);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
     }, { passive: true });
 
     dots.forEach(function (dot) {
@@ -122,8 +130,11 @@
     });
 
     window.addEventListener('resize', function () {
-      window.requestAnimationFrame(update);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
     });
+
+    update();
   })();
 </script>
 
@@ -157,22 +168,23 @@
 }
 
 .lp-b2b-system__heading {
-  font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.1;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
   color: #fff;
   margin: 0;
-  text-transform: none;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .lp-b2b-system__sub {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.35;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.15;
   color: var(--b2b-gold);
   margin: 0;
+  letter-spacing: -0.005em;
 }
 
 /* ── Carousel ── */
@@ -211,7 +223,9 @@
   background: none;
   border: none;
   border-radius: 0;
+  border-right: 1px solid var(--b2b-gold-faint);
 }
+.lp-b2b-system__card:last-child { border-right: none; }
 
 .lp-b2b-system__card-icon {
   width: 48px;
@@ -291,8 +305,8 @@
   .lp-b2b-system__inner { gap: 28px; }
 
   .lp-b2b-system__head { padding: 0 48px; gap: 10px; }
-  .lp-b2b-system__heading { font-size: 2.2rem; }
-  .lp-b2b-system__sub { font-size: 1.15rem; }
+  .lp-b2b-system__heading { font-size: 1.2rem; }
+  .lp-b2b-system__sub { font-size: 2rem; }
 
   .lp-b2b-system__track {
     padding: 4px 32px 12px;
@@ -318,8 +332,8 @@
   .lp-b2b-system__inner { gap: 36px; }
 
   .lp-b2b-system__head { padding: 0 64px; gap: 12px; }
-  .lp-b2b-system__heading { font-size: 2.6rem; }
-  .lp-b2b-system__sub { font-size: 1.2rem; }
+  .lp-b2b-system__heading { font-size: 1.3rem; }
+  .lp-b2b-system__sub { font-size: 2.4rem; }
 
   .lp-b2b-system__track {
     padding: 4px 48px 14px;
@@ -349,14 +363,14 @@
     {
       "type": "textarea",
       "id": "heading",
-      "label": "Titolo",
-      "default": "Non sono solo scarpe antinfortunistiche."
+      "label": "Titolo (piccolo, sopra)",
+      "default": "Non una semplice scarpa."
     },
     {
       "type": "textarea",
       "id": "subheading",
-      "label": "Sottotitolo",
-      "default": "Sono un sistema pensato per aziende di autotrasporto."
+      "label": "Sottotitolo (grande, oro)",
+      "default": "Un segno distintivo per la tua flotta."
     }
   ],
   "blocks": [
