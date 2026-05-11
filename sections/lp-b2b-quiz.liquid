@@ -140,7 +140,7 @@
 .lp-b2b-quiz__badge {
   position: absolute;
   top: 18px;
-  right: 18px;
+  left: 18px;
   z-index: 2;
   width: 110px;
   height: auto;
@@ -157,20 +157,29 @@
 .lp-b2b-quiz__content {
   position: relative;
   z-index: 3;
-  padding: 0 14px;
+  padding: 0;
   margin-top: -10px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ── Headline ── */
+.lp-b2b-quiz__trust,
+.lp-b2b-quiz__cta,
+.lp-b2b-quiz__helper,
+.lp-b2b-quiz__reassure {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+/* ── Headline (full-bleed on mobile) ── */
 .lp-b2b-quiz__heading {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1.95rem;
+  font-size: 2.5rem;
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   margin: 0;
+  padding: 0 8px;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
@@ -202,13 +211,12 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Trust row (4-up bordered grid) ── */
+/* ── Trust (vertical compact stack on mobile) ── */
 .lp-b2b-quiz__trust {
   list-style: none;
-  margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--b2b-gold-faint);
   border-radius: 8px;
   overflow: hidden;
@@ -216,19 +224,19 @@
 
 .lp-b2b-quiz__trust-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-  gap: 6px;
-  padding: 12px 6px;
-  border-right: 1px solid var(--b2b-gold-faint);
+  text-align: left;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--b2b-gold-faint);
   min-width: 0;
 }
-.lp-b2b-quiz__trust-item:last-child { border-right: none; }
+.lp-b2b-quiz__trust-item:last-child { border-bottom: none; }
 
 .lp-b2b-quiz__trust-icon {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -236,17 +244,19 @@
 }
 
 .lp-b2b-quiz__trust-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   stroke: var(--b2b-gold);
 }
 
 .lp-b2b-quiz__trust-text {
   font-family: 'Inter', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
   color: #fff;
+  flex: 1;
+  min-width: 0;
 }
 
 /* ── CTA ── */
@@ -332,16 +342,32 @@
     margin: -20px auto 0;
     gap: 24px;
   }
+  .lp-b2b-quiz__trust,
+  .lp-b2b-quiz__cta,
+  .lp-b2b-quiz__helper,
+  .lp-b2b-quiz__reassure { margin-left: 0; margin-right: 0; }
 
   .lp-b2b-quiz__heading {
     font-size: 3.2rem;
     gap: 6px;
+    padding: 0;
   }
 
   .lp-b2b-quiz__trust {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     border-radius: 10px;
   }
-  .lp-b2b-quiz__trust-item { padding: 18px 14px; gap: 10px; }
+  .lp-b2b-quiz__trust-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 14px;
+    gap: 10px;
+    border-bottom: none;
+    border-right: 1px solid var(--b2b-gold-faint);
+  }
+  .lp-b2b-quiz__trust-item:last-child { border-right: none; }
   .lp-b2b-quiz__trust-icon { width: 36px; height: 36px; }
   .lp-b2b-quiz__trust-icon svg { width: 36px; height: 36px; }
   .lp-b2b-quiz__trust-text { font-size: 0.88rem; line-height: 1.3; }
