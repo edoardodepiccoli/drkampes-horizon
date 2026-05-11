@@ -1,0 +1,447 @@
+{%- assign hero_bg = section.settings.bg_image -%}
+
+<section class="lp-b2b-livery">
+
+  <div class="lp-b2b-livery__hero">
+    {%- if hero_bg != blank -%}
+      {{ hero_bg | image_url: width: 2000 | image_tag:
+         class: 'lp-b2b-livery__bg',
+         loading: 'lazy',
+         widths: '800,1200,1600,2000',
+         sizes: '100vw',
+         alt: hero_bg.alt | default: section.settings.heading }}
+    {%- endif -%}
+    <div class="lp-b2b-livery__hero-overlay">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="lp-b2b-livery__heading">{{ section.settings.heading | newline_to_br }}</h2>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="lp-b2b-livery__cards">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'livery' -%}
+          {%- assign card_link = block.settings.link -%}
+          <article class="lp-b2b-livery__card" {{ block.shopify_attributes }}>
+
+            <div class="lp-b2b-livery__card-text">
+              {%- if block.settings.number != blank -%}
+                <span class="lp-b2b-livery__badge">{{ block.settings.number }}</span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="lp-b2b-livery__title">{{ block.settings.title | newline_to_br }}</h3>
+              {%- endif -%}
+              <span class="lp-b2b-livery__rule" aria-hidden="true"></span>
+              {%- if block.settings.text != blank -%}
+                <p class="lp-b2b-livery__text">{{ block.settings.text | newline_to_br }}</p>
+              {%- endif -%}
+              {%- if block.settings.color_1 != blank or block.settings.color_2 != blank -%}
+                <div class="lp-b2b-livery__swatches" aria-hidden="true">
+                  {%- if block.settings.color_1 != blank -%}
+                    <span class="lp-b2b-livery__swatch" style="background-color: {{ block.settings.color_1 }};"></span>
+                  {%- endif -%}
+                  {%- if block.settings.color_2 != blank -%}
+                    <span class="lp-b2b-livery__swatch" style="background-color: {{ block.settings.color_2 }};"></span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.image != blank -%}
+              <div class="lp-b2b-livery__media">
+                {{ block.settings.image | image_url: width: 1400 | image_tag:
+                   class: 'lp-b2b-livery__img',
+                   loading: 'lazy',
+                   widths: '600,900,1200,1400',
+                   sizes: '(min-width:1100px) 55vw, 100vw',
+                   alt: block.settings.image.alt | default: block.settings.title }}
+              </div>
+            {%- endif -%}
+
+            {%- if card_link != blank -%}
+              <a class="lp-b2b-livery__arrow" href="{{ card_link }}" aria-label="{{ block.settings.title | default: 'Vedi livrea' }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m9 6 6 6-6 6"/>
+                </svg>
+              </a>
+            {%- else -%}
+              <span class="lp-b2b-livery__arrow lp-b2b-livery__arrow--static" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 6 6 6-6 6"/>
+                </svg>
+              </span>
+            {%- endif -%}
+
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% stylesheet %}
+
+.lp-b2b-livery {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  background: #000;
+  color: #fff;
+}
+
+/* ── Hero band (bg + headline) ── */
+.lp-b2b-livery__hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 12;
+  min-height: 320px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.lp-b2b-livery__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+.lp-b2b-livery__hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+}
+
+.lp-b2b-livery__hero-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 24px 20px;
+}
+
+.lp-b2b-livery__heading {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.7rem;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  max-width: 14ch;
+  text-align: right;
+}
+
+/* ── Cards stack ── */
+.lp-b2b-livery__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+}
+
+.lp-b2b-livery__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "text"
+    "media";
+  padding: 20px 18px 24px;
+  background: #000;
+  border-top: 1px solid var(--b2b-gold-faint);
+  gap: 14px;
+}
+.lp-b2b-livery__card:last-child {
+  border-bottom: 1px solid var(--b2b-gold-faint);
+}
+
+.lp-b2b-livery__card-text {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.lp-b2b-livery__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--b2b-gold);
+  color: #111;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.lp-b2b-livery__title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.lp-b2b-livery__rule {
+  display: block;
+  width: 64px;
+  height: 1.5px;
+  background: var(--b2b-gold);
+  margin: 2px 0 4px;
+}
+
+.lp-b2b-livery__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #fff;
+  margin: 0;
+  max-width: 38ch;
+}
+
+.lp-b2b-livery__swatches {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.lp-b2b-livery__swatch {
+  display: block;
+  width: 44px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+/* ── Media (truck + shoe combo image) ── */
+.lp-b2b-livery__media {
+  grid-area: media;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.lp-b2b-livery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* ── Arrow button ── */
+.lp-b2b-livery__arrow {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--b2b-gold);
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+.lp-b2b-livery__arrow:hover {
+  background: rgba(232, 184, 46, 0.15);
+  text-decoration: none;
+}
+.lp-b2b-livery__arrow:active {
+  transform: scale(0.96);
+}
+.lp-b2b-livery__arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--b2b-gold);
+}
+.lp-b2b-livery__arrow--static { pointer-events: none; }
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-livery__hero {
+    aspect-ratio: 16 / 9;
+    min-height: 420px;
+  }
+  .lp-b2b-livery__hero-overlay { padding: 48px 56px; }
+  .lp-b2b-livery__heading {
+    font-size: 3rem;
+    max-width: 18ch;
+  }
+
+  .lp-b2b-livery__card {
+    grid-template-columns: minmax(220px, 1fr) 1.8fr;
+    grid-template-areas: "text media";
+    align-items: center;
+    padding: 28px 56px;
+    gap: 24px;
+  }
+
+  .lp-b2b-livery__title { font-size: 1.8rem; }
+  .lp-b2b-livery__text { font-size: 1rem; }
+  .lp-b2b-livery__rule { width: 80px; }
+  .lp-b2b-livery__swatch { width: 52px; height: 22px; }
+
+  .lp-b2b-livery__media {
+    aspect-ratio: 16 / 8;
+  }
+
+  .lp-b2b-livery__arrow {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+  }
+  .lp-b2b-livery__arrow svg { width: 24px; height: 24px; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-livery__hero {
+    aspect-ratio: 16 / 7;
+    min-height: 480px;
+  }
+  .lp-b2b-livery__hero-overlay { padding: 64px 72px; }
+  .lp-b2b-livery__heading {
+    font-size: 4.2rem;
+    max-width: 22ch;
+  }
+
+  .lp-b2b-livery__card {
+    grid-template-columns: minmax(280px, 1fr) 2fr 80px;
+    grid-template-areas: "text media arrow";
+    padding: 36px 64px;
+    gap: 40px;
+  }
+
+  .lp-b2b-livery__title { font-size: 2.1rem; }
+  .lp-b2b-livery__text { font-size: 1.05rem; }
+  .lp-b2b-livery__rule { width: 96px; height: 2px; }
+  .lp-b2b-livery__badge { font-size: 0.86rem; padding: 5px 12px; }
+  .lp-b2b-livery__swatch { width: 60px; height: 24px; }
+
+  .lp-b2b-livery__media {
+    aspect-ratio: 16 / 7;
+  }
+
+  .lp-b2b-livery__arrow {
+    position: static;
+    transform: none;
+    grid-area: arrow;
+    justify-self: center;
+    align-self: center;
+    width: 64px;
+    height: 64px;
+  }
+  .lp-b2b-livery__arrow svg { width: 28px; height: 28px; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP B2B — Livrea",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero band"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Immagine di sfondo (scarpa + ambiente)"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "LA LIVREA CONTINUA AI PIEDI DEI TUOI AUTISTI."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "livery",
+      "name": "Livrea",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Numero badge",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo livrea"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descrizione"
+        },
+        {
+          "type": "color",
+          "id": "color_1",
+          "label": "Colore 1",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "color_2",
+          "label": "Colore 2",
+          "default": "#E8B82E"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Immagine camion + scarpa"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link CTA (freccia)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Livrea",
+      "blocks": [
+        { "type": "livery", "settings": { "number": "01", "title": "NERO + GIALLO",  "text": "Aggressiva, visibile, stile racing.", "color_1": "#000000", "color_2": "#E8B82E" }},
+        { "type": "livery", "settings": { "number": "02", "title": "BIANCO + ROSSO", "text": "Classica, pulita, ad alta visibilità.", "color_1": "#FFFFFF", "color_2": "#C0192A" }},
+        { "type": "livery", "settings": { "number": "03", "title": "BLU + BIANCO",   "text": "Professionale, affidabile, istituzionale.", "color_1": "#1B3D8C", "color_2": "#FFFFFF" }},
+        { "type": "livery", "settings": { "number": "04", "title": "VERDE + ORO",    "text": "Distintiva, ricercata, premium.", "color_1": "#2D5C3E", "color_2": "#C9A227" }}
+      ]
+    }
+  ]
+}
+{% endschema %}

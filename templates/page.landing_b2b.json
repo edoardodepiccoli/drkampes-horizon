@@ -104,6 +104,65 @@
         "main_image": "shopify://shop_images/3d_logo_render.jpg"
       }
     },
+    "lp_b2b_livery": {
+      "type": "lp-b2b-livery",
+      "blocks": {
+        "livery_1": {
+          "type": "livery",
+          "settings": {
+            "number": "01",
+            "title": "NERO + GIALLO",
+            "text": "Aggressiva, visibile, stile racing.",
+            "color_1": "#000000",
+            "color_2": "#E8B82E",
+            "image": "shopify://shop_images/CAMION_NERO_E_GIALLO.png"
+          }
+        },
+        "livery_2": {
+          "type": "livery",
+          "settings": {
+            "number": "02",
+            "title": "BIANCO + ROSSO",
+            "text": "Classica, pulita, ad alta visibilità.",
+            "color_1": "#FFFFFF",
+            "color_2": "#C0192A",
+            "image": "shopify://shop_images/CAMION_BIANCO-ROSSO.png"
+          }
+        },
+        "livery_3": {
+          "type": "livery",
+          "settings": {
+            "number": "03",
+            "title": "BLU + BIANCO",
+            "text": "Professionale, affidabile, istituzionale.",
+            "color_1": "#1B3D8C",
+            "color_2": "#FFFFFF",
+            "image": "shopify://shop_images/CAMION_BLU_BIANCO.png"
+          }
+        },
+        "livery_4": {
+          "type": "livery",
+          "settings": {
+            "number": "04",
+            "title": "VERDE + ORO",
+            "text": "Distintiva, ricercata, premium.",
+            "color_1": "#2D5C3E",
+            "color_2": "#C9A227",
+            "image": "shopify://shop_images/CAMION_VERDE_ORO.png"
+          }
+        }
+      },
+      "block_order": [
+        "livery_1",
+        "livery_2",
+        "livery_3",
+        "livery_4"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/real_world_use_case_wallpaper.png",
+        "heading": "LA LIVREA CONTINUA AI PIEDI DEI TUOI AUTISTI."
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -271,6 +330,7 @@
   "order": [
     "lp_b2b_hero",
     "lp_b2b_customization",
+    "lp_b2b_livery",
     "main",
     "section_eGTGaW"
   ]
