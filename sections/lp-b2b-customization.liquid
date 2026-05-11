@@ -23,13 +23,12 @@
       {%- if has_swatch -%}
         <ul class="lp-b2b-custom__swatches">
           {%- for block in section.blocks -%}
-            {%- if block.type == 'swatch' and block.settings.image != blank -%}
-              <li class="lp-b2b-custom__swatch" {{ block.shopify_attributes }}>
-                {{ block.settings.image | image_url: width: 320 | image_tag:
-                   widths: '160,240,320',
-                   sizes: '120px',
-                   loading: 'lazy',
-                   alt: block.settings.image.alt | default: block.settings.label | default: 'Colore pelle' }}
+            {%- if block.type == 'swatch' -%}
+              <li
+                class="lp-b2b-custom__swatch"
+                style="background-color: {{ block.settings.color | default: '#333' }};"
+                {{ block.shopify_attributes }}
+              >
                 {%- if block.settings.label != blank -%}
                   <span class="visually-hidden">{{ block.settings.label }}</span>
                 {%- endif -%}
@@ -102,20 +101,21 @@
   gap: 18px;
 }
 
-/* ── Showcase (main image + swatches) ── */
+/* ── Showcase (main image + swatches) — horizontal on all sizes ── */
 .lp-b2b-custom__showcase {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
   width: 100%;
 }
 
 .lp-b2b-custom__main {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #111;
 }
 
@@ -130,26 +130,38 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 56px;
+  flex-shrink: 0;
 }
 
 .lp-b2b-custom__swatch {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1.5px solid var(--b2b-gold-faint);
-  background: #111;
+  background-color: #333;
+  background-image:
+    radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.35) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-blend-mode: overlay, multiply, overlay;
+  background-size: cover, cover, 180px 180px;
 }
 
-.lp-b2b-custom__swatch img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.lp-b2b-custom__swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.18' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 280px 280px;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .visually-hidden {
@@ -164,29 +176,29 @@
   border: 0;
 }
 
-/* ── Features (3-up cards) ── */
+/* ── Features (compact horizontal cards on mobile) ── */
 .lp-b2b-custom__features {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 6px;
+  gap: 10px;
+  margin-top: 4px;
 }
 
 .lp-b2b-custom__card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 48px 1fr;
   align-items: center;
-  text-align: center;
+  text-align: left;
   gap: 12px;
-  padding: 22px 18px 20px;
-  background: rgba(0,0,0,0.6);
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.55);
   border: 1.5px solid var(--b2b-gold-faint);
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .lp-b2b-custom__card-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1.5px solid var(--b2b-gold);
   background: rgba(232, 184, 46, 0.05);
@@ -197,29 +209,38 @@
 }
 
 .lp-b2b-custom__card-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   stroke: var(--b2b-gold);
 }
 
 .lp-b2b-custom__card-title {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 900;
   letter-spacing: 0.02em;
   color: #fff;
-  margin: 0;
+  margin: 0 0 2px;
   text-transform: uppercase;
   line-height: 1.15;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .lp-b2b-custom__card-text {
   font-family: 'Inter', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.3;
   color: var(--b2b-gold);
   margin: 0;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.lp-b2b-custom__card-icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
 }
 
 /* ── Tablet ≥ 750px ── */
@@ -227,30 +248,19 @@
   .lp-b2b-custom { padding: 56px 32px 64px; }
   .lp-b2b-custom__inner { gap: 28px; }
 
-  .lp-b2b-custom__showcase {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 16px;
-  }
+  .lp-b2b-custom__showcase { gap: 16px; }
 
   .lp-b2b-custom__main {
-    flex: 1;
-    aspect-ratio: auto;
     min-height: 320px;
     border-radius: 14px;
   }
 
   .lp-b2b-custom__swatches {
-    display: flex;
-    flex-direction: column;
     gap: 12px;
     width: 120px;
-    flex-shrink: 0;
   }
 
   .lp-b2b-custom__swatch {
-    aspect-ratio: 1 / 1;
-    width: 100%;
     border-radius: 10px;
   }
 
@@ -261,15 +271,19 @@
   }
 
   .lp-b2b-custom__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 28px 22px 26px;
     gap: 14px;
     border-radius: 14px;
   }
 
-  .lp-b2b-custom__card-icon { width: 64px; height: 64px; }
+  .lp-b2b-custom__card-icon { width: 64px; height: 64px; grid-column: auto; grid-row: auto; }
   .lp-b2b-custom__card-icon svg { width: 32px; height: 32px; }
-  .lp-b2b-custom__card-title { font-size: 1.1rem; }
-  .lp-b2b-custom__card-text { font-size: 0.96rem; }
+  .lp-b2b-custom__card-title { font-size: 1.1rem; grid-column: auto; grid-row: auto; margin: 0; }
+  .lp-b2b-custom__card-text { font-size: 0.96rem; grid-column: auto; grid-row: auto; }
 }
 
 /* ── Desktop ≥ 1100px ── */
@@ -329,9 +343,10 @@
       "limit": 6,
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Immagine swatch (pelle)"
+          "type": "color",
+          "id": "color",
+          "label": "Colore pelle",
+          "default": "#B5331E"
         },
         {
           "type": "text",
@@ -376,9 +391,9 @@
     {
       "name": "LP B2B — Personalizza",
       "blocks": [
-        { "type": "swatch",  "settings": { "label": "Pelle rossa" }},
-        { "type": "swatch",  "settings": { "label": "Pelle grigia" }},
-        { "type": "swatch",  "settings": { "label": "Pelle nera" }},
+        { "type": "swatch",  "settings": { "color": "#B5331E", "label": "Pelle rossa" }},
+        { "type": "swatch",  "settings": { "color": "#4A4A4A", "label": "Pelle grigia" }},
+        { "type": "swatch",  "settings": { "color": "#1A1A1A", "label": "Pelle nera" }},
         { "type": "feature", "settings": { "icon": "truck", "title": "COLORI DI FLOTTA", "text": "Coordiniamo la tua identità su ogni dettaglio." }},
         { "type": "feature", "settings": { "icon": "tag",   "title": "LOGO AZIENDALE",  "text": "Il tuo marchio sempre in primo piano." }},
         { "type": "feature", "settings": { "icon": "pen",   "title": "DETTAGLI COORDINATI", "text": "Cuciture, inserti e finiture in perfetta sintonia." }}

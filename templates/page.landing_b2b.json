@@ -49,18 +49,21 @@
         "swatch_red": {
           "type": "swatch",
           "settings": {
+            "color": "#B5331E",
             "label": "Pelle rossa"
           }
         },
         "swatch_gray": {
           "type": "swatch",
           "settings": {
+            "color": "#4A4A4A",
             "label": "Pelle grigia"
           }
         },
         "swatch_black": {
           "type": "swatch",
           "settings": {
+            "color": "#1A1A1A",
             "label": "Pelle nera"
           }
         },
