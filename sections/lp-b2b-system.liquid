@@ -1,0 +1,411 @@
+{%- assign sec_id = section.id -%}
+
+<section class="lp-b2b-system" id="lp-b2b-system-{{ sec_id }}">
+
+  <div class="lp-b2b-system__inner">
+
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <header class="lp-b2b-system__head">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="lp-b2b-system__heading">{{ section.settings.heading | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="lp-b2b-system__sub">{{ section.settings.subheading | newline_to_br }}</p>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="lp-b2b-system__carousel">
+        <ul class="lp-b2b-system__track">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <li class="lp-b2b-system__card" {{ block.shopify_attributes }}>
+                <span class="lp-b2b-system__card-icon" aria-hidden="true">
+                  {%- case block.settings.icon -%}
+                    {%- when 'palette' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1 0 2-1 2-2 0-1-1-2-1-3s1-2 2-2h3a4 4 0 0 0 4-4 9 9 0 0 0-10-7z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="11" cy="7" r="1.2"/><circle cx="16" cy="8.5" r="1.2"/></svg>
+                    {%- when 'bolt' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+                    {%- when 'ruler' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6"/><line x1="6" y1="9" x2="6" y2="12"/><line x1="10" y1="9" x2="10" y2="13"/><line x1="14" y1="9" x2="14" y2="12"/><line x1="18" y1="9" x2="18" y2="13"/></svg>
+                    {%- when 'recycle' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7 4 10l3 3"/><path d="M4 10h11a4 4 0 0 1 4 4"/><path d="M17 17l3-3-3-3"/><path d="M20 14H9a4 4 0 0 1-4-4"/></svg>
+                    {%- when 'user-card' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><circle cx="9" cy="11" r="2.5"/><path d="M5 18a4 4 0 0 1 8 0"/><line x1="14" y1="9" x2="19" y2="9"/><line x1="14" y1="12" x2="19" y2="12"/><line x1="14" y1="15" x2="17" y2="15"/></svg>
+                    {%- when 'headset' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="7" rx="1"/><rect x="17" y="13" width="4" height="7" rx="1"/><path d="M19 20a3 3 0 0 1-3 3h-2"/></svg>
+                    {%- when 'shield' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/></svg>
+                    {%- when 'truck' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1z"/><path d="M15 8h4l3 4v4h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    {%- when 'tag' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2h9v9L11 21z"/><circle cx="16" cy="8" r="1.5"/></svg>
+                    {%- when 'wrench' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 1 1 4 4l-9 9-3-3 9-9a4 4 0 0 1 0-1z"/></svg>
+                  {%- endcase -%}
+                </span>
+                {%- if block.settings.title != blank -%}
+                  <h3 class="lp-b2b-system__card-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="lp-b2b-system__card-text">{{ block.settings.text | newline_to_br }}</p>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        {%- if section.blocks.size > 1 -%}
+          <ul class="lp-b2b-system__dots" role="tablist" aria-label="Naviga le feature">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <li>
+                  <button
+                    type="button"
+                    class="lp-b2b-system__dot {%- if forloop.first %} is-active{%- endif -%}"
+                    data-index="{{ forloop.index0 }}"
+                    aria-label="Vai alla feature {{ forloop.index }}"
+                  ></button>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('lp-b2b-system-{{ sec_id }}');
+    if (!root) return;
+    var track = root.querySelector('.lp-b2b-system__track');
+    var dots  = root.querySelectorAll('.lp-b2b-system__dot');
+    if (!track || dots.length === 0) return;
+
+    function getCardStep() {
+      var first = track.firstElementChild;
+      if (!first) return 0;
+      var rect = first.getBoundingClientRect();
+      var styles = getComputedStyle(track);
+      var gap = parseFloat(styles.columnGap || styles.gap || 0);
+      return rect.width + gap;
+    }
+
+    function activeIndex() {
+      var step = getCardStep();
+      if (step === 0) return 0;
+      return Math.round(track.scrollLeft / step);
+    }
+
+    function update() {
+      var idx = activeIndex();
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === idx);
+      });
+    }
+
+    track.addEventListener('scroll', function () {
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(dot.dataset.index, 10) || 0;
+        track.scrollTo({ left: idx * getCardStep(), behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('resize', function () {
+      window.requestAnimationFrame(update);
+    });
+  })();
+</script>
+
+{% stylesheet %}
+
+.lp-b2b-system {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  background: #000;
+  color: #fff;
+  padding: 48px 0 56px;
+}
+
+.lp-b2b-system__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Header ── */
+.lp-b2b-system__head {
+  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lp-b2b-system__heading {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.lp-b2b-system__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--b2b-gold);
+  margin: 0;
+}
+
+/* ── Carousel ── */
+.lp-b2b-system__carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lp-b2b-system__track {
+  list-style: none;
+  margin: 0;
+  padding: 4px 16px 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.lp-b2b-system__track::-webkit-scrollbar { display: none; }
+
+.lp-b2b-system__card {
+  flex: 0 0 calc(100% - 24px);
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 22px 20px 24px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(135deg,
+      var(--b2b-gold-light) 0%,
+      var(--b2b-gold) 35%,
+      var(--b2b-gold-dark) 65%,
+      var(--b2b-gold) 100%) border-box;
+}
+
+.lp-b2b-system__card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--b2b-gold);
+  background: rgba(232, 184, 46, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-b2b-system__card-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--b2b-gold);
+}
+
+.lp-b2b-system__card-title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.lp-b2b-system__card-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--b2b-gold);
+  margin: 0;
+}
+
+/* ── Dots ── */
+.lp-b2b-system__dots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lp-b2b-system__dots li { display: inline-flex; }
+
+.lp-b2b-system__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.lp-b2b-system__dot.is-active {
+  background: var(--b2b-gold);
+  transform: scale(1.15);
+}
+.lp-b2b-system__dot:hover { background: rgba(232, 184, 46, 0.6); }
+.lp-b2b-system__dot:focus-visible { outline: 2px solid var(--b2b-gold); outline-offset: 3px; }
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-system { padding: 64px 0 80px; }
+  .lp-b2b-system__inner { gap: 32px; }
+
+  .lp-b2b-system__head { padding: 0 48px; gap: 10px; }
+  .lp-b2b-system__heading { font-size: 2.2rem; }
+  .lp-b2b-system__sub { font-size: 1.15rem; }
+
+  .lp-b2b-system__track {
+    padding: 4px 48px 12px;
+    gap: 16px;
+  }
+
+  .lp-b2b-system__card {
+    flex: 0 0 calc(50% - 32px);
+    padding: 28px 22px 28px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .lp-b2b-system__card-icon { width: 64px; height: 64px; }
+  .lp-b2b-system__card-icon svg { width: 32px; height: 32px; }
+  .lp-b2b-system__card-title { font-size: 1.08rem; }
+  .lp-b2b-system__card-text { font-size: 0.95rem; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-system { padding: 88px 0 104px; }
+  .lp-b2b-system__inner { gap: 40px; }
+
+  .lp-b2b-system__head { padding: 0 64px; gap: 12px; }
+  .lp-b2b-system__heading { font-size: 2.8rem; }
+  .lp-b2b-system__sub { font-size: 1.25rem; }
+
+  .lp-b2b-system__track {
+    padding: 4px 64px 14px;
+    gap: 22px;
+  }
+
+  .lp-b2b-system__card {
+    flex: 0 0 calc(33.333% - 44px);
+    padding: 36px 26px 32px;
+    gap: 16px;
+    border-radius: 16px;
+  }
+
+  .lp-b2b-system__card-icon { width: 72px; height: 72px; }
+  .lp-b2b-system__card-icon svg { width: 36px; height: 36px; }
+  .lp-b2b-system__card-title { font-size: 1.18rem; letter-spacing: 0.03em; }
+  .lp-b2b-system__card-text { font-size: 1rem; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP B2B — Sistema",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "Non sono solo scarpe antinfortunistiche."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sottotitolo",
+      "default": "Sono un sistema pensato per aziende di autotrasporto."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "palette",   "label": "Tavolozza" },
+            { "value": "tag",       "label": "Etichetta" },
+            { "value": "bolt",      "label": "Fulmine" },
+            { "value": "ruler",     "label": "Righello" },
+            { "value": "recycle",   "label": "Riciclo" },
+            { "value": "user-card", "label": "Scheda utente" },
+            { "value": "headset",   "label": "Cuffie" },
+            { "value": "shield",    "label": "Scudo" },
+            { "value": "truck",     "label": "Camion" },
+            { "value": "wrench",    "label": "Chiave inglese" }
+          ],
+          "default": "palette"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titolo"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descrizione"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Sistema",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "palette",   "title": "Personalizzazione aziendale", "text": "Colori e logo per rendere riconoscibili i tuoi autisti." }},
+        { "type": "feature", "settings": { "icon": "bolt",      "title": "Fast Wear System",            "text": "Più praticità quando l'autista scende dal camion." }},
+        { "type": "feature", "settings": { "icon": "ruler",     "title": "Gestione taglie",             "text": "Sviluppiamo la base taglie aziendale, gestiamo lo storico ordini e il cambio taglia rapido." }},
+        { "type": "feature", "settings": { "icon": "recycle",   "title": "Cambio gomme gratuito",       "text": "Sostituzione suole consumate gratuita previa verifica dell'integrità della tomaia." }},
+        { "type": "feature", "settings": { "icon": "user-card", "title": "Scheda autista",              "text": "Taglie, cambi, sostituzioni, riparazioni e perdite tracciate per ogni autista." }},
+        { "type": "feature", "settings": { "icon": "headset",   "title": "Supporto diretto",            "text": "Un referente chiaro per ordini, riordini e assistenza." }}
+      ]
+    }
+  ]
+}
+{% endschema %}

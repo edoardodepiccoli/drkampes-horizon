@@ -163,6 +163,71 @@
         "heading": "LA LIVREA CONTINUA AI PIEDI DEI TUOI AUTISTI."
       }
     },
+    "lp_b2b_system": {
+      "type": "lp-b2b-system",
+      "blocks": {
+        "feat_custom": {
+          "type": "feature",
+          "settings": {
+            "icon": "palette",
+            "title": "Personalizzazione aziendale",
+            "text": "Colori e logo per rendere riconoscibili i tuoi autisti."
+          }
+        },
+        "feat_fastwear": {
+          "type": "feature",
+          "settings": {
+            "icon": "bolt",
+            "title": "Fast Wear System",
+            "text": "Più praticità quando l'autista scende dal camion."
+          }
+        },
+        "feat_sizes": {
+          "type": "feature",
+          "settings": {
+            "icon": "ruler",
+            "title": "Gestione taglie",
+            "text": "Sviluppiamo la base taglie aziendale, gestiamo lo storico ordini e il cambio taglia rapido."
+          }
+        },
+        "feat_resole": {
+          "type": "feature",
+          "settings": {
+            "icon": "recycle",
+            "title": "Cambio gomme gratuito",
+            "text": "Sostituzione suole consumate gratuita previa verifica dell'integrità della tomaia."
+          }
+        },
+        "feat_driver": {
+          "type": "feature",
+          "settings": {
+            "icon": "user-card",
+            "title": "Scheda autista",
+            "text": "Taglie, cambi, sostituzioni, riparazioni e perdite tracciate per ogni autista."
+          }
+        },
+        "feat_support": {
+          "type": "feature",
+          "settings": {
+            "icon": "headset",
+            "title": "Supporto diretto",
+            "text": "Un referente chiaro per ordini, riordini e assistenza."
+          }
+        }
+      },
+      "block_order": [
+        "feat_custom",
+        "feat_fastwear",
+        "feat_sizes",
+        "feat_resole",
+        "feat_driver",
+        "feat_support"
+      ],
+      "settings": {
+        "heading": "Non sono solo scarpe antinfortunistiche.",
+        "subheading": "Sono un sistema pensato per aziende di autotrasporto."
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -331,6 +396,7 @@
     "lp_b2b_hero",
     "lp_b2b_customization",
     "lp_b2b_livery",
+    "lp_b2b_system",
     "main",
     "section_eGTGaW"
   ]
