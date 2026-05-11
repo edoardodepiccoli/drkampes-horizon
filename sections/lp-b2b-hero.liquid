@@ -10,38 +10,38 @@
          loading: 'eager',
          fetchpriority: 'high',
          widths: '600,800,1100,1400,1800',
-         sizes: '100vw',
+         sizes: '(min-width:1100px) 50vw, 100vw',
          alt: bg.alt | default: section.settings.headline_white }}
     {%- endif -%}
+  </div>
 
-    <div class="lp-b2b-hero__overlay">
-      {%- if section.settings.eyebrow != blank -%}
-        <div class="lp-b2b-hero__eyebrow">
-          <svg class="lp-b2b-hero__eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M1 4h14v12H1z"/>
-            <path d="M15 8h4l3 4v4h-7z"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/>
-            <circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-          <span>{{ section.settings.eyebrow }}</span>
-        </div>
-      {%- endif -%}
+  <div class="lp-b2b-hero__overlay">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="lp-b2b-hero__eyebrow">
+        <svg class="lp-b2b-hero__eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M1 4h14v12H1z"/>
+          <path d="M15 8h4l3 4v4h-7z"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/>
+          <circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <span>{{ section.settings.eyebrow }}</span>
+      </div>
+    {%- endif -%}
 
-      {%- if section.settings.headline_white != blank or section.settings.headline_gold != blank -%}
-        <h1 class="lp-b2b-hero__h1">
-          {%- if section.settings.headline_white != blank -%}
-            <span class="lp-b2b-hero__h1-line">{{ section.settings.headline_white | newline_to_br }}</span>
-          {%- endif -%}
-          {%- if section.settings.headline_gold != blank -%}
-            <span class="lp-b2b-hero__h1-line lp-b2b-hero__h1-line--gold">{{ section.settings.headline_gold | newline_to_br }}</span>
-          {%- endif -%}
-        </h1>
-      {%- endif -%}
+    {%- if section.settings.headline_white != blank or section.settings.headline_gold != blank -%}
+      <h1 class="lp-b2b-hero__h1">
+        {%- if section.settings.headline_white != blank -%}
+          <span class="lp-b2b-hero__h1-line">{{ section.settings.headline_white | newline_to_br }}</span>
+        {%- endif -%}
+        {%- if section.settings.headline_gold != blank -%}
+          <span class="lp-b2b-hero__h1-line lp-b2b-hero__h1-line--gold">{{ section.settings.headline_gold | newline_to_br }}</span>
+        {%- endif -%}
+      </h1>
+    {%- endif -%}
 
-      {%- if section.settings.subheading != blank -%}
-        <div class="lp-b2b-hero__sub">{{ section.settings.subheading }}</div>
-      {%- endif -%}
-    </div>
+    {%- if section.settings.subheading != blank -%}
+      <div class="lp-b2b-hero__sub">{{ section.settings.subheading }}</div>
+    {%- endif -%}
   </div>
 
   <div class="lp-b2b-hero__content">
@@ -124,9 +124,10 @@
   background: #000;
   color: #fff;
   padding: 0 0 28px;
+  position: relative;
 }
 
-/* ── Visual (bg + overlay text) ── */
+/* ── Visual (bg only, overlay is sibling) ── */
 .lp-b2b-hero__visual {
   position: relative;
   width: 100%;
@@ -157,16 +158,26 @@
   pointer-events: none;
   z-index: 1;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 22%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.4) 88%, #000 100%);
+    linear-gradient(to bottom,
+      #000 0%,
+      rgba(0,0,0,0.95) 8%,
+      rgba(0,0,0,0.55) 18%,
+      rgba(0,0,0,0.15) 30%,
+      rgba(0,0,0,0) 42%,
+      rgba(0,0,0,0.4) 88%,
+      #000 100%);
 }
 
 .lp-b2b-hero__overlay {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 2;
-  padding: 20px 22px;
+  padding: 20px 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* ── Eyebrow pill ── */
@@ -197,9 +208,9 @@
 /* ── Headline ── */
 .lp-b2b-hero__h1 {
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 2.5rem;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+  font-size: 1.85rem;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
   color: #fff;
   margin: 0;
   text-transform: uppercase;
@@ -213,7 +224,7 @@
 
 .lp-b2b-hero__sub {
   font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 600;
   line-height: 1.3;
   color: #fff;
@@ -282,7 +293,7 @@
 .lp-b2b-hero__trust {
   list-style: none;
   margin: 0;
-  padding: 4px 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -291,38 +302,39 @@
 .lp-b2b-hero__trust-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
-  padding: 12px 0;
+  padding: 7px 0;
   border-bottom: 1px solid var(--b2b-gold-faint);
 }
 .lp-b2b-hero__trust-item:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 .lp-b2b-hero__trust-item:first-child {
-  padding-top: 6px;
+  padding-top: 0;
 }
 
 .lp-b2b-hero__trust-icon {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
 .lp-b2b-hero__trust-icon svg {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   stroke: var(--b2b-gold);
 }
 
 .lp-b2b-hero__trust-text {
   font-family: 'Inter', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.25;
   color: #fff;
   min-width: 0;
   flex: 1;
@@ -331,18 +343,18 @@
 /* ── Bonus card ── */
 .lp-b2b-hero__bonus {
   display: grid;
-  grid-template-columns: 60px 1fr 90px;
+  grid-template-columns: 48px 1fr;
   gap: 12px;
   align-items: center;
-  padding: 12px 14px;
+  padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1.5px solid var(--b2b-gold);
   border-radius: 10px;
 }
 
 .lp-b2b-hero__bonus-icon {
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1.5px solid var(--b2b-gold);
   background: rgba(232, 184, 46, 0.08);
@@ -353,8 +365,8 @@
 }
 
 .lp-b2b-hero__bonus-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   stroke: var(--b2b-gold);
 }
 
@@ -368,20 +380,21 @@
 .lp-b2b-hero__bonus-text strong {
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   color: var(--b2b-gold);
   line-height: 1.2;
 }
 
 .lp-b2b-hero__bonus-text span {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: #fff;
   line-height: 1.3;
 }
 
 .lp-b2b-hero__bonus-img {
+  display: none;
   width: 90px;
   height: 64px;
   overflow: hidden;
@@ -395,20 +408,18 @@
   display: block;
 }
 
-/* ── Tablet ≥ 750px ── */
+/* ── Tablet ≥ 750px (still overlay layout, bigger) ── */
 @media (min-width: 750px) {
   .lp-b2b-hero { padding: 0 0 56px; }
 
   .lp-b2b-hero__visual {
     aspect-ratio: 16 / 10;
-    min-height: 620px;
+    min-height: 560px;
   }
 
   .lp-b2b-hero__overlay {
     padding: 44px 56px;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 22px;
+    gap: 18px;
   }
 
   .lp-b2b-hero__eyebrow {
@@ -419,13 +430,13 @@
   .lp-b2b-hero__eyebrow-icon { width: 22px; height: 22px; }
 
   .lp-b2b-hero__h1 {
-    font-size: 3.8rem;
+    font-size: 2.8rem;
     max-width: 16ch;
     gap: 6px;
   }
 
   .lp-b2b-hero__sub {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     max-width: 40ch;
   }
 
@@ -433,16 +444,16 @@
     padding: 0 56px;
     max-width: 1100px;
     margin: -20px auto 0;
-    gap: 22px;
+    gap: 18px;
   }
 
   .lp-b2b-hero__cta {
-    padding: 22px 28px;
-    font-size: 1.25rem;
+    padding: 20px 26px;
+    font-size: 1.1rem;
     border-radius: 12px;
-    gap: 18px;
+    gap: 16px;
   }
-  .lp-b2b-hero__cta-arrow { width: 28px; height: 28px; }
+  .lp-b2b-hero__cta-arrow { width: 26px; height: 26px; }
 
   .lp-b2b-hero__trust {
     display: grid;
@@ -462,55 +473,113 @@
     border-right: none;
     padding-right: 0;
   }
-  .lp-b2b-hero__trust-icon { width: 36px; height: 36px; }
-  .lp-b2b-hero__trust-icon svg { width: 30px; height: 30px; }
-  .lp-b2b-hero__trust-text { font-size: 0.92rem; }
+  .lp-b2b-hero__trust-icon { width: 32px; height: 32px; }
+  .lp-b2b-hero__trust-icon svg { width: 26px; height: 26px; }
+  .lp-b2b-hero__trust-text { font-size: 0.85rem; }
 
   .lp-b2b-hero__bonus {
-    grid-template-columns: 78px 1fr 160px;
-    padding: 18px 22px;
-    gap: 20px;
+    grid-template-columns: 68px 1fr 140px;
+    padding: 14px 18px;
+    gap: 18px;
     border-radius: 12px;
   }
-  .lp-b2b-hero__bonus-icon { width: 78px; height: 78px; }
-  .lp-b2b-hero__bonus-icon svg { width: 38px; height: 38px; }
-  .lp-b2b-hero__bonus-text strong { font-size: 1.1rem; }
-  .lp-b2b-hero__bonus-text span { font-size: 1rem; }
-  .lp-b2b-hero__bonus-img { width: 160px; height: 90px; border-radius: 8px; }
+  .lp-b2b-hero__bonus-icon { width: 68px; height: 68px; }
+  .lp-b2b-hero__bonus-icon svg { width: 32px; height: 32px; }
+  .lp-b2b-hero__bonus-text strong { font-size: 1rem; }
+  .lp-b2b-hero__bonus-text span { font-size: 0.92rem; }
+  .lp-b2b-hero__bonus-img { display: block; width: 140px; height: 78px; border-radius: 8px; }
 }
 
-/* ── Desktop ≥ 1100px ── */
+/* ── Desktop ≥ 1100px (side-by-side: text left, image right) ── */
 @media (min-width: 1100px) {
-  .lp-b2b-hero { padding: 0 0 80px; }
+  .lp-b2b-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    grid-template-areas:
+      "overlay visual"
+      "content visual";
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 64px 64px 80px;
+    column-gap: 56px;
+    row-gap: 28px;
+    align-items: stretch;
+  }
 
   .lp-b2b-hero__visual {
-    aspect-ratio: 16 / 9;
-    min-height: 720px;
+    position: relative;
+    grid-area: visual;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 560px;
+    max-height: 720px;
+    border-radius: 16px;
+  }
+
+  .lp-b2b-hero__bg {
+    object-position: center center;
+    transform: scale(1.05);
+    transform-origin: center center;
+  }
+
+  .lp-b2b-hero__visual::after {
+    background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
   }
 
   .lp-b2b-hero__overlay {
-    padding: 64px 72px;
-    max-width: 1320px;
-    gap: 26px;
+    position: static;
+    grid-area: overlay;
+    padding: 0;
+    align-self: end;
+    gap: 20px;
+    max-width: none;
+    transform: none;
+    left: auto;
+    right: auto;
+    width: auto;
   }
-
-  .lp-b2b-hero__eyebrow { font-size: 0.98rem; }
-  .lp-b2b-hero__h1 { font-size: 4.8rem; }
-  .lp-b2b-hero__sub { font-size: 1.22rem; max-width: 44ch; }
 
   .lp-b2b-hero__content {
-    padding: 0 72px;
-    max-width: 1320px;
-    margin: -28px auto 0;
-    gap: 26px;
+    position: static;
+    grid-area: content;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+    max-width: none;
   }
 
+  .lp-b2b-hero__eyebrow { font-size: 0.92rem; }
+  .lp-b2b-hero__h1 { font-size: 3rem; max-width: 14ch; }
+  .lp-b2b-hero__sub { font-size: 1.08rem; max-width: 38ch; }
+
   .lp-b2b-hero__cta {
-    padding: 26px 32px;
-    font-size: 1.4rem;
-    border-radius: 14px;
+    padding: 20px 26px;
+    font-size: 1.15rem;
+    border-radius: 12px;
   }
-  .lp-b2b-hero__cta-arrow { width: 32px; height: 32px; }
+  .lp-b2b-hero__cta-arrow { width: 24px; height: 24px; }
+
+  .lp-b2b-hero__trust {
+    padding: 0;
+    gap: 14px;
+  }
+  .lp-b2b-hero__trust-item { padding: 0 14px 0 0; }
+  .lp-b2b-hero__trust-icon { width: 28px; height: 28px; }
+  .lp-b2b-hero__trust-icon svg { width: 24px; height: 24px; }
+  .lp-b2b-hero__trust-text { font-size: 0.82rem; }
+
+  .lp-b2b-hero__bonus {
+    grid-template-columns: 56px 1fr;
+    padding: 12px 16px;
+    gap: 14px;
+    border-radius: 10px;
+  }
+  .lp-b2b-hero__bonus-icon { width: 56px; height: 56px; }
+  .lp-b2b-hero__bonus-icon svg { width: 26px; height: 26px; }
+  .lp-b2b-hero__bonus-text strong { font-size: 0.95rem; }
+  .lp-b2b-hero__bonus-text span { font-size: 0.85rem; }
+  .lp-b2b-hero__bonus-img { display: none; }
 }
 
 {% endstylesheet %}
