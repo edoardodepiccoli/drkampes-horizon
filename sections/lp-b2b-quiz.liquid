@@ -1,0 +1,511 @@
+{%- assign bg = section.settings.bg_image -%}
+{%- assign badge = section.settings.badge_image -%}
+
+<section class="lp-b2b-quiz">
+
+  <div class="lp-b2b-quiz__visual">
+    {%- if bg != blank -%}
+      {{ bg | image_url: width: 1800 | image_tag:
+         class: 'lp-b2b-quiz__bg',
+         loading: 'lazy',
+         widths: '700,1000,1400,1800',
+         sizes: '100vw',
+         alt: bg.alt | default: 'Fleet manager Dr Kampes' }}
+    {%- endif -%}
+    {%- if badge != blank -%}
+      <div class="lp-b2b-quiz__badge">
+        {{ badge | image_url: width: 360 | image_tag:
+           widths: '180,260,360',
+           sizes: '160px',
+           loading: 'lazy',
+           alt: badge.alt | default: 'TOP 10 PRIME AZIENDE' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="lp-b2b-quiz__content">
+
+    {%- if section.settings.headline_silver != blank or section.settings.headline_gold != blank -%}
+      <h2 class="lp-b2b-quiz__heading">
+        {%- if section.settings.headline_silver != blank -%}
+          <span class="lp-b2b-quiz__heading-line lp-b2b-quiz__heading-line--silver">{{ section.settings.headline_silver | newline_to_br }}</span>
+        {%- endif -%}
+        {%- if section.settings.headline_gold != blank -%}
+          <span class="lp-b2b-quiz__heading-line lp-b2b-quiz__heading-line--gold">{{ section.settings.headline_gold | newline_to_br }}</span>
+        {%- endif -%}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-b2b-quiz__trust">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trust' -%}
+            <li class="lp-b2b-quiz__trust-item" {{ block.shopify_attributes }}>
+              <span class="lp-b2b-quiz__trust-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'stopwatch' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg>
+                  {%- when 'shield-check' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
+                  {%- when 'lock' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                  {%- when 'gift' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/><path d="m11.2 14.5.8-1.5.8 1.5 1.6.25-1.2 1.15.3 1.6L12 16.7l-1.5.8.3-1.6-1.2-1.15z"/></svg>
+                  {%- when 'check' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+                  {%- when 'star' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.5 5.5L20 9.5l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1z"/></svg>
+                  {%- when 'truck' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1z"/><path d="M15 8h4l3 4v4h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                {%- endcase -%}
+              </span>
+              {%- if block.settings.text != blank -%}
+                <span class="lp-b2b-quiz__trust-text">{{ block.settings.text | newline_to_br }}</span>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <a class="lp-b2b-quiz__cta" href="{{ section.settings.cta_url | default: '#candida' }}">
+        <span class="lp-b2b-quiz__cta-text">{{ section.settings.cta_label }}</span>
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.helper_text != blank -%}
+      <a class="lp-b2b-quiz__helper" href="{{ section.settings.helper_url | default: section.settings.cta_url | default: '#candida' }}">
+        <span>{{ section.settings.helper_text }}</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.reassure_text != blank -%}
+      <div class="lp-b2b-quiz__reassure">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
+        <span>{{ section.settings.reassure_text }}</span>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+
+.lp-b2b-quiz {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  --b2b-silver-1:    #FFFFFF;
+  --b2b-silver-2:    #B5B5B5;
+  background: #000;
+  color: #fff;
+  padding: 0 0 32px;
+}
+
+/* ── Visual top ── */
+.lp-b2b-quiz__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 14;
+  min-height: 380px;
+  overflow: hidden;
+  background: #000;
+}
+
+.lp-b2b-quiz__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+.lp-b2b-quiz__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.55) 82%, #000 100%);
+}
+
+.lp-b2b-quiz__badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  width: 110px;
+  height: auto;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.lp-b2b-quiz__badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Content ── */
+.lp-b2b-quiz__content {
+  position: relative;
+  z-index: 3;
+  padding: 0 14px;
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Headline ── */
+.lp-b2b-quiz__heading {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.95rem;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.lp-b2b-quiz__heading-line { display: block; }
+
+.lp-b2b-quiz__heading-line--silver {
+  background: linear-gradient(180deg,
+    var(--b2b-silver-1) 0%,
+    var(--b2b-silver-2) 50%,
+    var(--b2b-silver-1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.lp-b2b-quiz__heading-line--gold {
+  background: linear-gradient(180deg,
+    var(--b2b-gold-light) 0%,
+    var(--b2b-gold) 50%,
+    var(--b2b-gold-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Trust row (4-up bordered grid) ── */
+.lp-b2b-quiz__trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--b2b-gold-faint);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lp-b2b-quiz__trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-right: 1px solid var(--b2b-gold-faint);
+  min-width: 0;
+}
+.lp-b2b-quiz__trust-item:last-child { border-right: none; }
+
+.lp-b2b-quiz__trust-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-b2b-quiz__trust-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--b2b-gold);
+}
+
+.lp-b2b-quiz__trust-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+
+/* ── CTA ── */
+.lp-b2b-quiz__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 20px;
+  background: linear-gradient(180deg, var(--b2b-gold-light) 0%, var(--b2b-gold) 55%, var(--b2b-gold-dark) 100%);
+  color: #111;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.02rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 235, 145, 0.65),
+    inset 0 -1px 0 rgba(110, 70, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 0 rgba(255, 230, 130, 0.3);
+  transition: filter 0.15s, transform 0.1s;
+  line-height: 1.15;
+}
+.lp-b2b-quiz__cta:hover { filter: brightness(1.05); color: #111; text-decoration: none; }
+.lp-b2b-quiz__cta:active { transform: translateY(1px); }
+
+/* ── Helper link ── */
+.lp-b2b-quiz__helper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: -4px auto 0;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.lp-b2b-quiz__helper:hover { color: #fff; text-decoration: none; }
+.lp-b2b-quiz__helper svg { width: 14px; height: 14px; stroke: currentColor; flex-shrink: 0; }
+
+/* ── Reassure pill ── */
+.lp-b2b-quiz__reassure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--b2b-gold-faint);
+  border-radius: 999px;
+  margin: 4px auto 0;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: rgba(0,0,0,0.4);
+}
+.lp-b2b-quiz__reassure svg { width: 18px; height: 18px; stroke: var(--b2b-gold); flex-shrink: 0; }
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-quiz { padding: 0 0 56px; }
+
+  .lp-b2b-quiz__visual {
+    aspect-ratio: 16 / 9;
+    min-height: 520px;
+  }
+
+  .lp-b2b-quiz__badge {
+    top: 32px;
+    right: 32px;
+    width: 160px;
+  }
+
+  .lp-b2b-quiz__content {
+    padding: 0 48px;
+    max-width: 1100px;
+    margin: -20px auto 0;
+    gap: 24px;
+  }
+
+  .lp-b2b-quiz__heading {
+    font-size: 3.2rem;
+    gap: 6px;
+  }
+
+  .lp-b2b-quiz__trust {
+    border-radius: 10px;
+  }
+  .lp-b2b-quiz__trust-item { padding: 18px 14px; gap: 10px; }
+  .lp-b2b-quiz__trust-icon { width: 36px; height: 36px; }
+  .lp-b2b-quiz__trust-icon svg { width: 36px; height: 36px; }
+  .lp-b2b-quiz__trust-text { font-size: 0.88rem; line-height: 1.3; }
+
+  .lp-b2b-quiz__cta {
+    padding: 22px 28px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .lp-b2b-quiz__helper { font-size: 0.98rem; }
+  .lp-b2b-quiz__helper svg { width: 16px; height: 16px; }
+
+  .lp-b2b-quiz__reassure { font-size: 0.92rem; padding: 12px 20px; }
+  .lp-b2b-quiz__reassure svg { width: 20px; height: 20px; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-quiz { padding: 0 0 88px; }
+
+  .lp-b2b-quiz__visual {
+    aspect-ratio: 21 / 9;
+    min-height: 620px;
+  }
+
+  .lp-b2b-quiz__badge {
+    top: 48px;
+    right: 48px;
+    width: 200px;
+  }
+
+  .lp-b2b-quiz__content {
+    padding: 0 64px;
+    max-width: 1280px;
+    margin: -28px auto 0;
+    gap: 28px;
+  }
+
+  .lp-b2b-quiz__heading {
+    font-size: 4.2rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .lp-b2b-quiz__trust-item { padding: 22px 18px; gap: 12px; }
+  .lp-b2b-quiz__trust-icon { width: 40px; height: 40px; }
+  .lp-b2b-quiz__trust-icon svg { width: 40px; height: 40px; }
+  .lp-b2b-quiz__trust-text { font-size: 0.95rem; }
+
+  .lp-b2b-quiz__cta {
+    padding: 26px 32px;
+    font-size: 1.35rem;
+  }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP B2B — Quiz",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Visual"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Immagine sfondo (fleet manager)"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Badge TOP 10 (PNG, fondo nero verrà mascherato)"
+    },
+    {
+      "type": "header",
+      "content": "Titolo"
+    },
+    {
+      "type": "textarea",
+      "id": "headline_silver",
+      "label": "Riga 1 (effetto argento)",
+      "default": "STIAMO SELEZIONANDO"
+    },
+    {
+      "type": "textarea",
+      "id": "headline_gold",
+      "label": "Riga 2 (effetto oro)",
+      "default": "LE PRIME 10 AZIENDE."
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo bottone",
+      "default": "COMPILA IL QUIZ DI CANDIDATURA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL CTA"
+    },
+    {
+      "type": "text",
+      "id": "helper_text",
+      "label": "Link helper sotto CTA",
+      "default": "Scopri se la tua flotta può entrare"
+    },
+    {
+      "type": "url",
+      "id": "helper_url",
+      "label": "URL helper (default: stesso CTA)"
+    },
+    {
+      "type": "text",
+      "id": "reassure_text",
+      "label": "Pill rassicurazione",
+      "default": "Meno di 3 minuti. Nessun obbligo di acquisto."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "stopwatch",    "label": "Cronometro" },
+            { "value": "shield-check", "label": "Scudo check" },
+            { "value": "lock",         "label": "Lucchetto" },
+            { "value": "gift",         "label": "Regalo" },
+            { "value": "check",        "label": "Check" },
+            { "value": "star",         "label": "Stella" },
+            { "value": "truck",        "label": "Camion" }
+          ],
+          "default": "stopwatch"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testo (multi-riga ammessa)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Quiz",
+      "blocks": [
+        { "type": "trust", "settings": { "icon": "stopwatch",    "text": "Quiz di 3 minuti" }},
+        { "type": "trust", "settings": { "icon": "shield-check", "text": "Nessun impegno d'acquisto" }},
+        { "type": "trust", "settings": { "icon": "lock",         "text": "Accesso riservato alle prime 10 aziende selezionate" }},
+        { "type": "trust", "settings": { "icon": "gift",         "text": "Bonus quiz: 2 strategie pratiche per ridurre sprechi e sostituzioni DPI" }}
+      ]
+    }
+  ]
+}
+{% endschema %}

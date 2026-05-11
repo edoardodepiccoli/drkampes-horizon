@@ -236,6 +236,55 @@
         "subheading": "Un segno distintivo per la tua flotta."
       }
     },
+    "lp_b2b_quiz": {
+      "type": "lp-b2b-quiz",
+      "blocks": {
+        "trust_quiz": {
+          "type": "trust",
+          "settings": {
+            "icon": "stopwatch",
+            "text": "Quiz di 3 minuti"
+          }
+        },
+        "trust_nocommit": {
+          "type": "trust",
+          "settings": {
+            "icon": "shield-check",
+            "text": "Nessun impegno d'acquisto"
+          }
+        },
+        "trust_top10": {
+          "type": "trust",
+          "settings": {
+            "icon": "lock",
+            "text": "Accesso riservato alle prime 10 aziende selezionate"
+          }
+        },
+        "trust_bonus": {
+          "type": "trust",
+          "settings": {
+            "icon": "gift",
+            "text": "Bonus quiz: 2 strategie pratiche per ridurre sprechi e sostituzioni DPI"
+          }
+        }
+      },
+      "block_order": [
+        "trust_quiz",
+        "trust_nocommit",
+        "trust_top10",
+        "trust_bonus"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/proud_fleet_manager_wallpaper.png",
+        "badge_image": "shopify://shop_images/first_10_businesses_badge.png",
+        "headline_silver": "STIAMO SELEZIONANDO",
+        "headline_gold": "LE PRIME 10 AZIENDE.",
+        "cta_label": "COMPILA IL QUIZ DI CANDIDATURA",
+        "cta_url": "#candida",
+        "helper_text": "Scopri se la tua flotta può entrare",
+        "reassure_text": "Meno di 3 minuti. Nessun obbligo di acquisto."
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -405,6 +454,7 @@
     "lp_b2b_customization",
     "lp_b2b_livery",
     "lp_b2b_system",
+    "lp_b2b_quiz",
     "main",
     "section_eGTGaW"
   ]
