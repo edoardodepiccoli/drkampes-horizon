@@ -1,6 +1,48 @@
 {
   "layout": "lp",
   "sections": {
+    "lp_b2b_hero": {
+      "type": "lp-b2b-hero",
+      "blocks": {
+        "trust_quiz": {
+          "type": "trust",
+          "settings": {
+            "icon": "clock",
+            "text": "Quiz di 3 minuti"
+          }
+        },
+        "trust_nocommit": {
+          "type": "trust",
+          "settings": {
+            "icon": "lock",
+            "text": "Nessun obbligo di acquisto"
+          }
+        },
+        "trust_limit": {
+          "type": "trust",
+          "settings": {
+            "icon": "people",
+            "text": "Accesso riservato alle prime 10 aziende selezionate"
+          }
+        }
+      },
+      "block_order": [
+        "trust_quiz",
+        "trust_nocommit",
+        "trust_limit"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/hero_background.png",
+        "eyebrow": "PER AZIENDE DI AUTOTRASPORTO",
+        "headline_white": "FINALMENTE SCARPE ANTINFORTUNISTICHE",
+        "headline_gold": "PERSONALIZZATE COME VUOI TU",
+        "subheading": "<p>Fai indossare ai tuoi autisti le scarpe col logo della tua azienda.</p>",
+        "cta_label": "CANDIDA LA TUA AZIENDA",
+        "cta_url": "#candida",
+        "bonus_title": "Bonus quiz:",
+        "bonus_text": "2 strategie pratiche per risparmiare sulla gestione DPI"
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -166,6 +208,7 @@
     }
   },
   "order": [
+    "lp_b2b_hero",
     "main",
     "section_eGTGaW"
   ]

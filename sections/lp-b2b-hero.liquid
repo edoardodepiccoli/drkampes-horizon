@@ -1,0 +1,617 @@
+{%- assign bg = section.settings.bg_image -%}
+{%- assign bonus_img = section.settings.bonus_image -%}
+
+<section class="lp-b2b-hero">
+
+  <div class="lp-b2b-hero__visual">
+    {%- if bg != blank -%}
+      {{ bg | image_url: width: 1600 | image_tag:
+         class: 'lp-b2b-hero__bg',
+         loading: 'eager',
+         fetchpriority: 'high',
+         widths: '600,800,1100,1400,1800',
+         sizes: '100vw',
+         alt: bg.alt | default: section.settings.headline_white }}
+    {%- endif -%}
+
+    <div class="lp-b2b-hero__overlay">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="lp-b2b-hero__eyebrow">
+          <svg class="lp-b2b-hero__eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M1 4h14v12H1z"/>
+            <path d="M15 8h4l3 4v4h-7z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          <span>{{ section.settings.eyebrow }}</span>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.headline_white != blank or section.settings.headline_gold != blank -%}
+        <h1 class="lp-b2b-hero__h1">
+          {%- if section.settings.headline_white != blank -%}
+            <span class="lp-b2b-hero__h1-line">{{ section.settings.headline_white | newline_to_br }}</span>
+          {%- endif -%}
+          {%- if section.settings.headline_gold != blank -%}
+            <span class="lp-b2b-hero__h1-line lp-b2b-hero__h1-line--gold">{{ section.settings.headline_gold | newline_to_br }}</span>
+          {%- endif -%}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="lp-b2b-hero__sub">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="lp-b2b-hero__content">
+
+    <a href="{{ section.settings.cta_url | default: '#candida' }}" class="lp-b2b-hero__cta">
+      <svg class="lp-b2b-hero__cta-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m9 5 7 7-7 7"/>
+      </svg>
+      <span class="lp-b2b-hero__cta-text">{{ section.settings.cta_label | default: "CANDIDA LA TUA AZIENDA" }}</span>
+    </a>
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lp-b2b-hero__trust">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trust' -%}
+            <li class="lp-b2b-hero__trust-item" {{ block.shopify_attributes }}>
+              <span class="lp-b2b-hero__trust-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'clock' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  {%- when 'lock' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                  {%- when 'people' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M14 19a5 5 0 0 1 7 0"/></svg>
+                  {%- when 'shield' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/></svg>
+                  {%- when 'check' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+                {%- endcase -%}
+              </span>
+              <span class="lp-b2b-hero__trust-text">{{ block.settings.text }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.bonus_title != blank or section.settings.bonus_text != blank -%}
+      <div class="lp-b2b-hero__bonus">
+        <span class="lp-b2b-hero__bonus-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12v9H4v-9"/>
+            <rect x="2" y="7" width="20" height="5"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </span>
+        <div class="lp-b2b-hero__bonus-text">
+          {%- if section.settings.bonus_title != blank -%}
+            <strong>{{ section.settings.bonus_title }}</strong>
+          {%- endif -%}
+          {%- if section.settings.bonus_text != blank -%}
+            <span>{{ section.settings.bonus_text }}</span>
+          {%- endif -%}
+        </div>
+        {%- if bonus_img != blank -%}
+          <div class="lp-b2b-hero__bonus-img">
+            {{ bonus_img | image_url: width: 280 | image_tag:
+               widths: '140,200,280',
+               sizes: '120px',
+               loading: 'lazy',
+               alt: bonus_img.alt | default: '' }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+
+.lp-b2b-hero {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-soft:   rgba(232, 184, 46, 0.55);
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.18);
+  background: #000;
+  color: #fff;
+  padding: 0 0 28px;
+}
+
+/* ── Visual (bg + overlay text) ── */
+.lp-b2b-hero__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  max-height: 900px;
+  min-height: 560px;
+  overflow: hidden;
+  background: #000;
+}
+
+.lp-b2b-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+.lp-b2b-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 22%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.4) 88%, #000 100%);
+}
+
+.lp-b2b-hero__overlay {
+  position: relative;
+  z-index: 2;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Eyebrow pill ── */
+.lp-b2b-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 11px;
+  border: 1.5px solid var(--b2b-gold);
+  border-radius: 999px;
+  align-self: flex-start;
+  color: var(--b2b-gold);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.lp-b2b-hero__eyebrow-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--b2b-gold);
+  flex-shrink: 0;
+}
+
+/* ── Headline ── */
+.lp-b2b-hero__h1 {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2.5rem;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lp-b2b-hero__h1-line { display: block; }
+.lp-b2b-hero__h1-line--gold { color: var(--b2b-gold); }
+
+.lp-b2b-hero__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+  max-width: 32ch;
+  margin: 0;
+}
+.lp-b2b-hero__sub p { margin: 0; }
+
+/* ── Content (CTA + trust + bonus) ── */
+.lp-b2b-hero__content {
+  position: relative;
+  z-index: 3;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: -8px;
+}
+
+/* ── CTA ── */
+.lp-b2b-hero__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 20px;
+  background: linear-gradient(180deg, var(--b2b-gold-light) 0%, var(--b2b-gold) 55%, var(--b2b-gold-dark) 100%);
+  color: #111;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 235, 145, 0.65),
+    inset 0 -1px 0 rgba(110, 70, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 0 rgba(255, 230, 130, 0.3);
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+.lp-b2b-hero__cta:hover { filter: brightness(1.05); color: #111; text-decoration: none; }
+.lp-b2b-hero__cta:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 130, 0.35),
+    inset 0 -1px 0 rgba(110, 70, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.lp-b2b-hero__cta-arrow {
+  width: 22px;
+  height: 22px;
+  stroke: #111;
+  flex-shrink: 0;
+}
+
+.lp-b2b-hero__cta-text {
+  line-height: 1.15;
+}
+
+/* ── Trust row ── */
+.lp-b2b-hero__trust {
+  list-style: none;
+  margin: 0;
+  padding: 4px 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.lp-b2b-hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-right: 8px;
+  border-right: 1px solid var(--b2b-gold-faint);
+}
+.lp-b2b-hero__trust-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.lp-b2b-hero__trust-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp-b2b-hero__trust-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--b2b-gold);
+}
+
+.lp-b2b-hero__trust-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+
+/* ── Bonus card ── */
+.lp-b2b-hero__bonus {
+  display: grid;
+  grid-template-columns: 60px 1fr 90px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  background: rgba(0,0,0,0.55);
+  border: 1.5px solid var(--b2b-gold);
+  border-radius: 10px;
+}
+
+.lp-b2b-hero__bonus-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1.5px solid var(--b2b-gold);
+  background: rgba(232, 184, 46, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-b2b-hero__bonus-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--b2b-gold);
+}
+
+.lp-b2b-hero__bonus-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lp-b2b-hero__bonus-text strong {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--b2b-gold);
+  line-height: 1.2;
+}
+
+.lp-b2b-hero__bonus-text span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.lp-b2b-hero__bonus-img {
+  width: 90px;
+  height: 64px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.lp-b2b-hero__bonus-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-hero { padding: 0 0 56px; }
+
+  .lp-b2b-hero__visual {
+    aspect-ratio: 16 / 10;
+    min-height: 620px;
+  }
+
+  .lp-b2b-hero__overlay {
+    padding: 44px 56px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 22px;
+  }
+
+  .lp-b2b-hero__eyebrow {
+    font-size: 0.9rem;
+    padding: 9px 18px 9px 14px;
+    gap: 10px;
+  }
+  .lp-b2b-hero__eyebrow-icon { width: 22px; height: 22px; }
+
+  .lp-b2b-hero__h1 {
+    font-size: 3.8rem;
+    max-width: 16ch;
+    gap: 6px;
+  }
+
+  .lp-b2b-hero__sub {
+    font-size: 1.15rem;
+    max-width: 40ch;
+  }
+
+  .lp-b2b-hero__content {
+    padding: 0 56px;
+    max-width: 1100px;
+    margin: -20px auto 0;
+    gap: 22px;
+  }
+
+  .lp-b2b-hero__cta {
+    padding: 22px 28px;
+    font-size: 1.25rem;
+    border-radius: 12px;
+    gap: 18px;
+  }
+  .lp-b2b-hero__cta-arrow { width: 28px; height: 28px; }
+
+  .lp-b2b-hero__trust { gap: 18px; padding: 6px 12px; }
+  .lp-b2b-hero__trust-item { gap: 12px; padding-right: 14px; }
+  .lp-b2b-hero__trust-icon { width: 36px; height: 36px; }
+  .lp-b2b-hero__trust-icon svg { width: 30px; height: 30px; }
+  .lp-b2b-hero__trust-text { font-size: 0.92rem; }
+
+  .lp-b2b-hero__bonus {
+    grid-template-columns: 78px 1fr 160px;
+    padding: 18px 22px;
+    gap: 20px;
+    border-radius: 12px;
+  }
+  .lp-b2b-hero__bonus-icon { width: 78px; height: 78px; }
+  .lp-b2b-hero__bonus-icon svg { width: 38px; height: 38px; }
+  .lp-b2b-hero__bonus-text strong { font-size: 1.1rem; }
+  .lp-b2b-hero__bonus-text span { font-size: 1rem; }
+  .lp-b2b-hero__bonus-img { width: 160px; height: 90px; border-radius: 8px; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-hero { padding: 0 0 80px; }
+
+  .lp-b2b-hero__visual {
+    aspect-ratio: 16 / 9;
+    min-height: 720px;
+  }
+
+  .lp-b2b-hero__overlay {
+    padding: 64px 72px;
+    max-width: 1320px;
+    gap: 26px;
+  }
+
+  .lp-b2b-hero__eyebrow { font-size: 0.98rem; }
+  .lp-b2b-hero__h1 { font-size: 4.8rem; }
+  .lp-b2b-hero__sub { font-size: 1.22rem; max-width: 44ch; }
+
+  .lp-b2b-hero__content {
+    padding: 0 72px;
+    max-width: 1320px;
+    margin: -28px auto 0;
+    gap: 26px;
+  }
+
+  .lp-b2b-hero__cta {
+    padding: 26px 32px;
+    font-size: 1.4rem;
+    border-radius: 14px;
+  }
+  .lp-b2b-hero__cta-arrow { width: 32px; height: 32px; }
+}
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "LP B2B — Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sfondo"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Immagine di sfondo (camion + scarpa)"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Testo eyebrow (pillola in alto)",
+      "default": "PER AZIENDE DI AUTOTRASPORTO"
+    },
+    {
+      "type": "header",
+      "content": "Titolo"
+    },
+    {
+      "type": "textarea",
+      "id": "headline_white",
+      "label": "Titolo bianco (parte alta H1)",
+      "default": "FINALMENTE SCARPE ANTINFORTUNISTICHE"
+    },
+    {
+      "type": "textarea",
+      "id": "headline_gold",
+      "label": "Titolo oro (parte bassa H1)",
+      "default": "PERSONALIZZATE COME VUOI TU"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Sottotitolo",
+      "default": "<p>Fai indossare ai tuoi autisti le scarpe col logo della tua azienda.</p>"
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo bottone",
+      "default": "CANDIDA LA TUA AZIENDA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL CTA (default: #candida)"
+    },
+    {
+      "type": "header",
+      "content": "Card bonus"
+    },
+    {
+      "type": "text",
+      "id": "bonus_title",
+      "label": "Titolo bonus (oro)",
+      "default": "Bonus quiz:"
+    },
+    {
+      "type": "textarea",
+      "id": "bonus_text",
+      "label": "Testo bonus",
+      "default": "2 strategie pratiche per risparmiare sulla gestione DPI"
+    },
+    {
+      "type": "image_picker",
+      "id": "bonus_image",
+      "label": "Immagine bonus (camion notturno a destra)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "options": [
+            { "value": "clock",  "label": "Orologio" },
+            { "value": "lock",   "label": "Lucchetto" },
+            { "value": "people", "label": "Persone" },
+            { "value": "shield", "label": "Scudo" },
+            { "value": "check",  "label": "Check" }
+          ],
+          "default": "clock"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testo (2 righe ammesse)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Hero",
+      "blocks": [
+        { "type": "trust", "settings": { "icon": "clock",  "text": "Quiz di 3 minuti" }},
+        { "type": "trust", "settings": { "icon": "lock",   "text": "Nessun obbligo di acquisto" }},
+        { "type": "trust", "settings": { "icon": "people", "text": "Accesso riservato alle prime 10 aziende selezionate" }}
+      ]
+    }
+  ]
+}
+{% endschema %}
