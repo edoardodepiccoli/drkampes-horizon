@@ -1,0 +1,1440 @@
+{%- assign webhook_url = section.settings.webhook_url | default: 'https://hook.eu2.make.com/rih8pps134g4thgp8ufk5ad5v1k14yvz' -%}
+
+<div class="lp-b2b-quiz-form" id="lpQuizModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lpQuizTitle" data-webhook="{{ webhook_url }}">
+  <div class="lp-b2b-quiz-form__overlay" data-quiz-close></div>
+
+  <div class="lp-b2b-quiz-form__dialog" role="document">
+
+    <button type="button" class="lp-b2b-quiz-form__close" data-quiz-close aria-label="Chiudi">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="lp-b2b-quiz-form__progress" data-quiz-progress aria-hidden="true">
+      <div class="lp-b2b-quiz-form__progress-track">
+        <div class="lp-b2b-quiz-form__progress-fill" data-quiz-progress-fill></div>
+      </div>
+      <span class="lp-b2b-quiz-form__progress-label" data-quiz-progress-label>Step 1 di 5</span>
+    </div>
+
+    <form class="lp-b2b-quiz-form__form" data-quiz-form novalidate>
+
+      {%- comment -%} ── INTRO ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step is-active" data-quiz-step="intro">
+        <div class="lp-b2b-quiz-form__step-inner lp-b2b-quiz-form__step-inner--centered">
+          <span class="lp-b2b-quiz-form__eyebrow">Candidatura riservata</span>
+          <h2 id="lpQuizTitle" class="lp-b2b-quiz-form__title">{{ section.settings.intro_title | default: 'Candidatura Dr Kampes' }}</h2>
+          <p class="lp-b2b-quiz-form__lead">{{ section.settings.intro_subtitle | default: 'Vuoi essere tra le prime 10 aziende in Italia?' }}</p>
+          <p class="lp-b2b-quiz-form__body">{{ section.settings.intro_body | default: 'Rispondi a poche domande e scopri se la tua azienda può accedere al programma Dr Kampes dedicato alle aziende di autotrasporto. Meno di 3 minuti.' }}</p>
+          <ul class="lp-b2b-quiz-form__perks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M12 2v3"/></svg><span>Meno di 3 minuti</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg><span>Nessun impegno di acquisto</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Riservato a 10 aziende selezionate</span></li>
+          </ul>
+        </div>
+        <div class="lp-b2b-quiz-form__nav">
+          <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--primary" data-quiz-start>
+            INIZIA LA CANDIDATURA
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      {%- comment -%} ── STEP 1 ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="1" data-step-index="1">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 1 · La tua azienda</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Che ruolo hai in azienda?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Ruolo in azienda">
+              {%- assign roles = 'Titolare / socio|Responsabile parco mezzi|Responsabile sicurezza / RSPP|Responsabile acquisti|Amministrazione|Autista|Altro' | split: '|' -%}
+              {%- for role in roles -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="radio" name="ruolo" value="{{ role }}" data-required>
+                  <span class="lp-b2b-quiz-form__option-text">{{ role }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="ruolo">Seleziona un ruolo</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q lp-b2b-quiz-form__q--grid2">
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizAzienda">Nome azienda</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizAzienda" name="azienda" type="text" autocomplete="organization" data-required placeholder="Es. Trasporti Rossi srl">
+              <p class="lp-b2b-quiz-form__error" data-error-for="azienda">Inserisci il nome azienda</p>
+            </div>
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizProvincia">Provincia</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizProvincia" name="provincia" type="text" autocomplete="address-level2" data-required placeholder="Es. TV" maxlength="40">
+              <p class="lp-b2b-quiz-form__error" data-error-for="provincia">Inserisci la provincia</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} ── STEP 2 ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="2" data-step-index="2">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 2 · La tua flotta</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quanti camion gestite?</label>
+            <div class="lp-b2b-quiz-form__chips" role="radiogroup" aria-label="Numero camion">
+              {%- assign sizes = '1-4|5-10|11-20|21-50|Oltre 50' | split: '|' -%}
+              {%- for s in sizes -%}
+                <label class="lp-b2b-quiz-form__chip">
+                  <input type="radio" name="camion" value="{{ s }}" data-required>
+                  <span>{{ s }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="camion">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quanti autisti lavorano stabilmente con voi?</label>
+            <div class="lp-b2b-quiz-form__chips" role="radiogroup" aria-label="Numero autisti">
+              {%- for s in sizes -%}
+                <label class="lp-b2b-quiz-form__chip">
+                  <input type="radio" name="autisti" value="{{ s }}" data-required>
+                  <span>{{ s }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="autisti">Seleziona un'opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} ── STEP 3 ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="3" data-step-index="3">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 3 · Come gestite le scarpe</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Oggi chi fornisce le scarpe antinfortunistiche?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Fornitore scarpe">
+              {%- assign provs = 'Le fornisce l''azienda|Ogni autista compra le proprie|Dipende dai casi|Non abbiamo una gestione precisa' | split: '|' -%}
+              {%- for p in provs -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="radio" name="fornitore" value="{{ p }}" data-required>
+                  <span class="lp-b2b-quiz-form__option-text">{{ p }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="fornitore">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Qual è il problema principale oggi? <span class="lp-b2b-quiz-form__hint">(max 2)</span></label>
+            <div class="lp-b2b-quiz-form__options" data-multi-max="2" aria-label="Problema principale">
+              {%- assign probs = 'Costano troppo nel tempo|Durano poco|Gli autisti le trovano scomode|Gli autisti le usano malvolentieri|Gestire le taglie è complicato|Si perdono o si rovinano facilmente|Sono anonime e poco curate|Nessun problema particolare' | split: '|' -%}
+              {%- for p in probs -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="checkbox" name="problema" value="{{ p }}" data-required-multi>
+                  <span class="lp-b2b-quiz-form__option-text">{{ p }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="problema">Seleziona almeno una opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} ── STEP 4 ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="4" data-step-index="4">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 4 · Cosa ti interessa di Dr Kampes</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Quale vantaggio ti interessa di più? <span class="lp-b2b-quiz-form__hint">(max 2)</span></label>
+            <div class="lp-b2b-quiz-form__options" data-multi-max="2" aria-label="Vantaggio">
+              {%- assign vants = 'Personalizzazione con colori/logo aziendale|Maggiore comfort per gli autisti|Fast Wear per scendere dal camion con più praticità|Risparmio sul costo reale nei 2 anni|Gestione taglie e storico ordini|Supporto diretto per l''azienda' | split: '|' -%}
+              {%- for v in vants -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="checkbox" name="vantaggio" value="{{ v }}" data-required-multi>
+                  <span class="lp-b2b-quiz-form__option-text">{{ v }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="vantaggio">Seleziona almeno una opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Che soluzione vorresti valutare?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Soluzione">
+              {%- assign sols = 'Versione nera|Versione testa di moro|Versione personalizzata|Prima voglio capire quale soluzione è più adatta|Mi interessa soprattutto il test iniziale' | split: '|' -%}
+              {%- for s in sols -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="radio" name="soluzione" value="{{ s }}" data-required>
+                  <span class="lp-b2b-quiz-form__option-text">{{ s }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="soluzione">Seleziona un'opzione</p>
+          </div>
+        </div>
+      </section>
+
+      {%- comment -%} ── STEP 5 ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step" data-quiz-step="5" data-step-index="5">
+        <div class="lp-b2b-quiz-form__step-inner">
+          <span class="lp-b2b-quiz-form__step-eyebrow">Step 5 · Candidatura e contatto</span>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label">Saresti disponibile a partire con un test iniziale da 5 paia?</label>
+            <div class="lp-b2b-quiz-form__options" role="radiogroup" aria-label="Disponibilità test">
+              {%- assign tests = 'Sì, mi interessa|Sì, ma vorrei prima parlare con voi|Forse, dipende dalla proposta|No, vorrei valutare più di 5 paia|Per ora voglio solo informazioni' | split: '|' -%}
+              {%- for t in tests -%}
+                <label class="lp-b2b-quiz-form__option">
+                  <input type="radio" name="test" value="{{ t }}" data-required>
+                  <span class="lp-b2b-quiz-form__option-text">{{ t }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+            <p class="lp-b2b-quiz-form__error" data-error-for="test">Seleziona un'opzione</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label" for="lpQuizNome">Nome e cognome</label>
+            <input class="lp-b2b-quiz-form__input" id="lpQuizNome" name="nome" type="text" autocomplete="name" data-required placeholder="Mario Rossi">
+            <p class="lp-b2b-quiz-form__error" data-error-for="nome">Inserisci nome e cognome</p>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q lp-b2b-quiz-form__q--grid2">
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizWhatsapp">WhatsApp</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizWhatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" data-required data-validate="phone" placeholder="+39 333 1234567">
+              <p class="lp-b2b-quiz-form__error" data-error-for="whatsapp">Numero non valido</p>
+            </div>
+            <div>
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizEmail">Email</label>
+              <input class="lp-b2b-quiz-form__input" id="lpQuizEmail" name="email" type="email" autocomplete="email" data-required data-validate="email" placeholder="nome@azienda.it">
+              <p class="lp-b2b-quiz-form__error" data-error-for="email">Email non valida</p>
+            </div>
+          </div>
+
+          <div class="lp-b2b-quiz-form__q">
+            <label class="lp-b2b-quiz-form__q-label" for="lpQuizMessaggio">Messaggio libero <span class="lp-b2b-quiz-form__hint">(opzionale)</span></label>
+            <textarea class="lp-b2b-quiz-form__input lp-b2b-quiz-form__textarea" id="lpQuizMessaggio" name="messaggio" rows="3" maxlength="600" placeholder="Vuoi aggiungere qualcosa? Scrivilo qui."></textarea>
+          </div>
+
+          <p class="lp-b2b-quiz-form__privacy">
+            Inviando, accetti il trattamento dei dati per essere ricontattato dal team Dr Kampes.
+          </p>
+        </div>
+      </section>
+
+      {%- comment -%} ── SUCCESS ── {%- endcomment -%}
+      <section class="lp-b2b-quiz-form__step lp-b2b-quiz-form__step--final" data-quiz-step="success">
+        <div class="lp-b2b-quiz-form__success">
+          <div class="lp-b2b-quiz-form__success-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="28"/><path d="m20 33 8 8 16-18"/></svg>
+          </div>
+          <h3 class="lp-b2b-quiz-form__success-title">Candidatura ricevuta</h3>
+          <p class="lp-b2b-quiz-form__success-body">Grazie. Abbiamo ricevuto la candidatura della tua azienda per il programma Dr Kampes dedicato alle prime 10 aziende in Italia.</p>
+          <p class="lp-b2b-quiz-form__success-body">Analizzeremo le risposte e, se il profilo è in linea, ti contatteremo per capire insieme la soluzione migliore.</p>
+          <p class="lp-b2b-quiz-form__success-signoff">Dr Kampes non sono semplici scarpe antinfortunistiche. Sono un sistema pensato per migliorare comfort, immagine e gestione delle scarpe dei tuoi autisti.</p>
+          <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--ghost" data-quiz-close>Chiudi</button>
+        </div>
+      </section>
+
+      {%- comment -%} ── NAV (steps 1-5) ── {%- endcomment -%}
+      <div class="lp-b2b-quiz-form__nav lp-b2b-quiz-form__nav--steps" data-quiz-nav>
+        <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--ghost" data-quiz-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+          Indietro
+        </button>
+        <button type="button" class="lp-b2b-quiz-form__btn lp-b2b-quiz-form__btn--primary" data-quiz-next>
+          <span data-quiz-next-label>Avanti</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-quiz-next-arrow><path d="m9 6 6 6-6 6"/></svg>
+          <svg class="lp-b2b-quiz-form__spinner" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" data-quiz-spinner><path d="M12 4a8 8 0 0 1 8 8" stroke="currentColor"/></svg>
+        </button>
+      </div>
+
+      {%- comment -%} ── RETRY / ERROR BANNER ── {%- endcomment -%}
+      <div class="lp-b2b-quiz-form__banner lp-b2b-quiz-form__banner--retry" data-quiz-retry role="status" aria-live="polite" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lp-b2b-quiz-form__banner-spin" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+        <span>Connessione instabile · Nuovo tentativo <strong data-quiz-retry-n>(1/3)</strong> tra <strong data-quiz-retry-s>5</strong>s</span>
+      </div>
+
+      <div class="lp-b2b-quiz-form__banner lp-b2b-quiz-form__banner--error" data-quiz-error role="alert" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/><path d="M10.3 3.9 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <span data-quiz-error-msg>Invio non riuscito. Salviamo le risposte: verranno inviate appena torna la connessione. Puoi anche riprovare ora.</span>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% stylesheet %}
+
+.lp-b2b-quiz-form {
+  --b2b-gold:        #E8B82E;
+  --b2b-gold-light:  #FFD84D;
+  --b2b-gold-dark:   #B8881A;
+  --b2b-gold-faint:  rgba(232, 184, 46, 0.25);
+  --b2b-gold-soft:   rgba(232, 184, 46, 0.10);
+  --b2b-bg:          #0A0A0A;
+  --b2b-surface:     #131313;
+  --b2b-surface-2:   #1A1A1A;
+  --b2b-border:      rgba(255,255,255,0.08);
+  --b2b-text:        #FFFFFF;
+  --b2b-text-soft:   rgba(255,255,255,0.62);
+  --b2b-error:       #FF6B6B;
+  --b2b-success:     #4CAF7A;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lp-b2b-quiz-form.is-open {
+  display: flex;
+  pointer-events: auto;
+}
+
+.lp-b2b-quiz-form__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.lp-b2b-quiz-form.is-open .lp-b2b-quiz-form__overlay { opacity: 1; }
+
+.lp-b2b-quiz-form__dialog {
+  position: relative;
+  background: var(--b2b-bg);
+  color: var(--b2b-text);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.25s ease;
+}
+.lp-b2b-quiz-form.is-open .lp-b2b-quiz-form__dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.lp-b2b-quiz-form__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border: 1px solid var(--b2b-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.lp-b2b-quiz-form__close:hover { background: rgba(255,255,255,0.12); border-color: var(--b2b-gold-faint); }
+.lp-b2b-quiz-form__close svg { width: 18px; height: 18px; stroke: currentColor; }
+
+.lp-b2b-quiz-form__progress {
+  position: relative;
+  z-index: 4;
+  padding: 18px 64px 0 18px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.lp-b2b-quiz-form.is-step-active .lp-b2b-quiz-form__progress { display: flex; }
+
+.lp-b2b-quiz-form__progress-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lp-b2b-quiz-form__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--b2b-gold-dark) 0%, var(--b2b-gold) 50%, var(--b2b-gold-light) 100%);
+  transition: width 0.35s cubic-bezier(.22,.61,.36,1);
+}
+.lp-b2b-quiz-form__progress-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--b2b-text-soft);
+}
+
+.lp-b2b-quiz-form__form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+}
+
+.lp-b2b-quiz-form__step {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 18px 24px;
+  min-height: 0;
+}
+.lp-b2b-quiz-form__step.is-active { display: flex; }
+
+.lp-b2b-quiz-form__step-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.lp-b2b-quiz-form__step-inner--centered {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.lp-b2b-quiz-form__step--final { padding-top: 32px; }
+
+/* ── Intro ── */
+.lp-b2b-quiz-form__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid var(--b2b-gold-faint);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--b2b-gold);
+  background: var(--b2b-gold-soft);
+}
+
+.lp-b2b-quiz-form__title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 2rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #fff;
+}
+
+.lp-b2b-quiz-form__lead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--b2b-gold);
+  margin: 0;
+}
+
+.lp-b2b-quiz-form__body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--b2b-text-soft);
+  margin: 0;
+  max-width: 540px;
+}
+
+.lp-b2b-quiz-form__perks {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+}
+.lp-b2b-quiz-form__perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: var(--b2b-text);
+  padding: 10px 14px;
+  border: 1px solid var(--b2b-border);
+  background: var(--b2b-surface);
+  border-radius: 8px;
+}
+.lp-b2b-quiz-form__perks svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--b2b-gold);
+  flex-shrink: 0;
+}
+
+/* ── Step eyebrow ── */
+.lp-b2b-quiz-form__step-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--b2b-gold);
+}
+
+/* ── Question block ── */
+.lp-b2b-quiz-form__q {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-b2b-quiz-form__q--grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.lp-b2b-quiz-form__q-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.lp-b2b-quiz-form__hint {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--b2b-text-soft);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── Options (radio/checkbox list) ── */
+.lp-b2b-quiz-form__options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lp-b2b-quiz-form__option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--b2b-border);
+  background: var(--b2b-surface);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+.lp-b2b-quiz-form__option:hover { border-color: rgba(232, 184, 46, 0.35); }
+.lp-b2b-quiz-form__option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.lp-b2b-quiz-form__option::before {
+  content: "";
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  background: transparent;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+.lp-b2b-quiz-form__option:has(input[type="checkbox"])::before { border-radius: 5px; }
+
+.lp-b2b-quiz-form__option:has(input:checked) {
+  border-color: var(--b2b-gold);
+  background: var(--b2b-gold-soft);
+}
+.lp-b2b-quiz-form__option:has(input:checked)::before {
+  border-color: var(--b2b-gold);
+  background: var(--b2b-gold);
+}
+.lp-b2b-quiz-form__option:has(input[type="radio"]:checked)::before {
+  box-shadow: inset 0 0 0 4px #111;
+}
+.lp-b2b-quiz-form__option:has(input[type="checkbox"]:checked)::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><path d='m5 12 5 5L20 7'/></svg>");
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.lp-b2b-quiz-form__option:has(input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.lp-b2b-quiz-form__option-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--b2b-text);
+  flex: 1;
+}
+
+/* ── Chips (compact radio horizontal) ── */
+.lp-b2b-quiz-form__chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+  gap: 8px;
+}
+.lp-b2b-quiz-form__chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px;
+  border: 1.5px solid var(--b2b-border);
+  background: var(--b2b-surface);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--b2b-text);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  user-select: none;
+}
+.lp-b2b-quiz-form__chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.lp-b2b-quiz-form__chip:hover { border-color: rgba(232, 184, 46, 0.35); }
+.lp-b2b-quiz-form__chip:has(input:checked) {
+  border-color: var(--b2b-gold);
+  background: var(--b2b-gold);
+  color: #111;
+}
+
+/* ── Inputs ── */
+.lp-b2b-quiz-form__input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 14px;
+  background: var(--b2b-surface);
+  color: #fff;
+  border: 1.5px solid var(--b2b-border);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.lp-b2b-quiz-form__input::placeholder { color: rgba(255,255,255,0.32); }
+.lp-b2b-quiz-form__input:focus {
+  outline: none;
+  border-color: var(--b2b-gold);
+}
+.lp-b2b-quiz-form__input.is-invalid { border-color: var(--b2b-error); }
+
+.lp-b2b-quiz-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Errors ── */
+.lp-b2b-quiz-form__error {
+  display: none;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: var(--b2b-error);
+  font-weight: 500;
+}
+.lp-b2b-quiz-form__q.is-invalid .lp-b2b-quiz-form__error { display: block; }
+
+.lp-b2b-quiz-form__privacy {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: var(--b2b-text-soft);
+  line-height: 1.4;
+}
+
+/* ── Nav ── */
+.lp-b2b-quiz-form__nav {
+  padding: 14px 18px calc(14px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  border-top: 1px solid var(--b2b-border);
+  background: linear-gradient(180deg, rgba(10,10,10,0.7) 0%, var(--b2b-bg) 60%);
+  flex-shrink: 0;
+}
+
+.lp-b2b-quiz-form__nav--steps { display: none; }
+.lp-b2b-quiz-form.is-step-active .lp-b2b-quiz-form__nav--steps { display: flex; }
+.lp-b2b-quiz-form.is-step-active [data-quiz-step="intro"] ~ .lp-b2b-quiz-form__nav:not(.lp-b2b-quiz-form__nav--steps) { display: none; }
+
+.lp-b2b-quiz-form.is-step-1 [data-quiz-back] { display: none; }
+
+.lp-b2b-quiz-form__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  flex: 1;
+  transition: filter 0.15s, transform 0.1s, opacity 0.15s;
+  min-height: 52px;
+  white-space: nowrap;
+}
+.lp-b2b-quiz-form__btn svg { width: 18px; height: 18px; stroke: currentColor; flex-shrink: 0; }
+.lp-b2b-quiz-form__btn:active { transform: translateY(1px); }
+.lp-b2b-quiz-form__btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+.lp-b2b-quiz-form__btn--primary {
+  background: linear-gradient(180deg, var(--b2b-gold-light) 0%, var(--b2b-gold) 55%, var(--b2b-gold-dark) 100%);
+  color: #111;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 235, 145, 0.65),
+    inset 0 -1px 0 rgba(110, 70, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.lp-b2b-quiz-form__btn--primary:hover { filter: brightness(1.05); }
+
+.lp-b2b-quiz-form__btn--ghost {
+  background: transparent;
+  color: var(--b2b-text);
+  border: 1.5px solid var(--b2b-border);
+  flex: 0 0 auto;
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.92rem;
+}
+.lp-b2b-quiz-form__btn--ghost:hover { border-color: var(--b2b-gold-faint); }
+
+.lp-b2b-quiz-form__spinner { display: none; animation: lpQuizSpin 0.9s linear infinite; }
+.lp-b2b-quiz-form.is-submitting [data-quiz-next-arrow] { display: none; }
+.lp-b2b-quiz-form.is-submitting [data-quiz-spinner] { display: inline-block; }
+.lp-b2b-quiz-form.is-submitting [data-quiz-next],
+.lp-b2b-quiz-form.is-submitting [data-quiz-back] { pointer-events: none; opacity: 0.7; }
+
+@keyframes lpQuizSpin { to { transform: rotate(360deg); } }
+
+/* ── Banners ── */
+.lp-b2b-quiz-form__banner {
+  margin: 0 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  flex-shrink: 0;
+}
+.lp-b2b-quiz-form__banner[hidden] { display: none; }
+.lp-b2b-quiz-form__banner svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+.lp-b2b-quiz-form__banner strong { color: #fff; font-weight: 700; }
+
+.lp-b2b-quiz-form__banner--retry {
+  background: var(--b2b-gold-soft);
+  border: 1px solid var(--b2b-gold-faint);
+  color: var(--b2b-text);
+}
+.lp-b2b-quiz-form__banner--retry svg { stroke: var(--b2b-gold); }
+.lp-b2b-quiz-form__banner-spin { animation: lpQuizSpin 1.2s linear infinite; }
+
+.lp-b2b-quiz-form__banner--error {
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: var(--b2b-text);
+}
+.lp-b2b-quiz-form__banner--error svg { stroke: var(--b2b-error); }
+
+/* ── Success ── */
+.lp-b2b-quiz-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  max-width: 540px;
+  margin: auto;
+}
+.lp-b2b-quiz-form__success-icon {
+  width: 72px;
+  height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--b2b-gold-soft);
+  border: 1.5px solid var(--b2b-gold);
+  border-radius: 999px;
+}
+.lp-b2b-quiz-form__success-icon svg { width: 36px; height: 36px; stroke: var(--b2b-gold); }
+.lp-b2b-quiz-form__success-title {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.lp-b2b-quiz-form__success-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--b2b-text-soft);
+  margin: 0;
+}
+.lp-b2b-quiz-form__success-signoff {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--b2b-gold);
+  margin: 8px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--b2b-border);
+  max-width: 460px;
+}
+.lp-b2b-quiz-form__success .lp-b2b-quiz-form__btn { margin-top: 8px; flex: 0 0 auto; padding: 12px 32px; }
+
+/* ── body lock ── */
+body.lp-b2b-quiz-open { overflow: hidden; }
+
+/* ── Tablet ≥ 750px ── */
+@media (min-width: 750px) {
+  .lp-b2b-quiz-form { padding: 24px; }
+
+  .lp-b2b-quiz-form__dialog {
+    max-width: 720px;
+    max-height: min(880px, 92vh);
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid var(--b2b-border);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .lp-b2b-quiz-form__close { top: 18px; right: 18px; width: 44px; height: 44px; }
+  .lp-b2b-quiz-form__close svg { width: 20px; height: 20px; }
+
+  .lp-b2b-quiz-form__progress { padding: 22px 72px 0 22px; }
+
+  .lp-b2b-quiz-form__step { padding: 18px 28px 28px; }
+  .lp-b2b-quiz-form__step-inner { gap: 26px; }
+
+  .lp-b2b-quiz-form__title { font-size: 2.4rem; }
+  .lp-b2b-quiz-form__lead { font-size: 1.15rem; }
+  .lp-b2b-quiz-form__body { font-size: 1rem; }
+
+  .lp-b2b-quiz-form__q--grid2 { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .lp-b2b-quiz-form__nav { padding: 18px 28px; gap: 14px; }
+}
+
+/* ── Desktop ≥ 1100px ── */
+@media (min-width: 1100px) {
+  .lp-b2b-quiz-form__dialog { max-width: 780px; }
+  .lp-b2b-quiz-form__title { font-size: 2.6rem; }
+  .lp-b2b-quiz-form__step { padding: 22px 36px 32px; }
+  .lp-b2b-quiz-form__progress { padding: 26px 84px 0 36px; }
+  .lp-b2b-quiz-form__nav { padding: 20px 36px; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .lp-b2b-quiz-form__overlay,
+  .lp-b2b-quiz-form__dialog,
+  .lp-b2b-quiz-form__progress-fill { transition: none; }
+  .lp-b2b-quiz-form__banner-spin,
+  .lp-b2b-quiz-form__spinner { animation: none; }
+}
+
+{% endstylesheet %}
+
+<script>
+(function () {
+  if (window.__lpB2bQuizFormInit) return;
+  window.__lpB2bQuizFormInit = true;
+
+  const STORAGE_KEY = 'lpB2bQuiz:state';
+  const QUEUE_KEY   = 'lpB2bQuiz:queue';
+  const MAX_RETRIES = 3;
+  const RETRY_DELAYS = [5000, 10000, 20000];
+  const REQUEST_TIMEOUT = 15000;
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_RE = /^[+]?[0-9\s().-]{7,}$/;
+
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+
+  ready(init);
+
+  function init() {
+    const modal = document.getElementById('lpQuizModal');
+    if (!modal) return;
+
+    const webhookUrl = modal.dataset.webhook;
+    const form       = modal.querySelector('[data-quiz-form]');
+    const steps      = Array.from(modal.querySelectorAll('[data-quiz-step]'));
+    const nextBtn    = modal.querySelector('[data-quiz-next]');
+    const nextLabel  = modal.querySelector('[data-quiz-next-label]');
+    const backBtn    = modal.querySelector('[data-quiz-back]');
+    const startBtn   = modal.querySelector('[data-quiz-start]');
+    const progressFill  = modal.querySelector('[data-quiz-progress-fill]');
+    const progressLabel = modal.querySelector('[data-quiz-progress-label]');
+    const retryBanner   = modal.querySelector('[data-quiz-retry]');
+    const retryN        = modal.querySelector('[data-quiz-retry-n]');
+    const retrySec      = modal.querySelector('[data-quiz-retry-s]');
+    const errorBanner   = modal.querySelector('[data-quiz-error]');
+    const errorMsg      = modal.querySelector('[data-quiz-error-msg]');
+
+    const TOTAL_STEPS = 5;
+    let currentStep = 'intro';
+    let lastFocused = null;
+    let retryTimer  = null;
+    let countdownTimer = null;
+    let inFlightAbort = null;
+
+    // ─── Restore saved state ───
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (saved && saved.values) restoreValues(saved.values);
+    } catch (e) { /* ignore */ }
+
+    // ─── Trigger binding (delegated) ───
+    document.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-quiz-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        openModal();
+        return;
+      }
+      if (e.target.closest('[data-quiz-close]') && modal.contains(e.target)) {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
+    // ─── ESC ───
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    // ─── Multi-select max enforcement ───
+    modal.addEventListener('change', function (e) {
+      const t = e.target;
+      if (t.type === 'checkbox') {
+        const group = t.closest('[data-multi-max]');
+        if (group) {
+          const max = parseInt(group.dataset.multiMax, 10) || 99;
+          const checked = group.querySelectorAll('input[type="checkbox"]:checked');
+          if (checked.length >= max) {
+            group.querySelectorAll('input[type="checkbox"]:not(:checked)').forEach(c => c.disabled = true);
+          } else {
+            group.querySelectorAll('input[type="checkbox"]').forEach(c => c.disabled = false);
+          }
+        }
+      }
+      // Clear inline errors on change
+      const q = t.closest('.lp-b2b-quiz-form__q');
+      if (q) q.classList.remove('is-invalid');
+      if (t.classList.contains('lp-b2b-quiz-form__input')) t.classList.remove('is-invalid');
+      saveState();
+    });
+
+    modal.addEventListener('input', function (e) {
+      if (e.target.classList.contains('lp-b2b-quiz-form__input')) {
+        e.target.classList.remove('is-invalid');
+        const q = e.target.closest('.lp-b2b-quiz-form__q');
+        if (q) q.classList.remove('is-invalid');
+        saveState();
+      }
+    });
+
+    // ─── Nav buttons ───
+    if (startBtn) startBtn.addEventListener('click', function () {
+      goToStep(1);
+    });
+
+    nextBtn.addEventListener('click', function () {
+      if (currentStep === 'success') return;
+      if (!validateStep(currentStep)) return;
+      if (currentStep === TOTAL_STEPS) {
+        submitForm();
+      } else {
+        goToStep(currentStep + 1);
+      }
+    });
+
+    backBtn.addEventListener('click', function () {
+      if (typeof currentStep === 'number' && currentStep > 1) goToStep(currentStep - 1);
+      else if (currentStep === 1) goToStep('intro');
+    });
+
+    // ─── Online listener: drain queue ───
+    window.addEventListener('online', drainQueue);
+
+    // attempt drain on init
+    setTimeout(drainQueue, 1500);
+
+    // ─── Functions ───
+    function openModal() {
+      lastFocused = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lp-b2b-quiz-open');
+      // Don't reset step on re-open if user has progress
+      if (currentStep === 'intro' && !hasAnyAnswer()) goToStep('intro');
+      else if (currentStep === 'success') goToStep('intro');
+      trapFocus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lp-b2b-quiz-open');
+      if (inFlightAbort) inFlightAbort.abort();
+      clearRetry();
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        try { lastFocused.focus(); } catch (e) { /* ignore */ }
+      }
+    }
+
+    function goToStep(step) {
+      currentStep = step;
+      steps.forEach(s => s.classList.remove('is-active'));
+      const target = modal.querySelector('[data-quiz-step="' + step + '"]');
+      if (target) target.classList.add('is-active');
+
+      // Class state for CSS
+      modal.classList.toggle('is-step-active', typeof step === 'number');
+      modal.classList.remove('is-step-1','is-step-2','is-step-3','is-step-4','is-step-5');
+      if (typeof step === 'number') modal.classList.add('is-step-' + step);
+
+      // Progress
+      if (typeof step === 'number') {
+        const pct = (step / TOTAL_STEPS) * 100;
+        progressFill.style.width = pct + '%';
+        progressLabel.textContent = 'Step ' + step + ' di ' + TOTAL_STEPS;
+      }
+
+      // CTA label
+      if (typeof step === 'number') {
+        nextLabel.textContent = step === TOTAL_STEPS ? 'INVIA CANDIDATURA' : 'Avanti';
+      }
+
+      // Scroll inner to top
+      if (target) {
+        target.scrollTop = 0;
+        // focus first input/option for a11y
+        setTimeout(function () {
+          const f = target.querySelector('input:not([disabled]), textarea, select, button');
+          if (f && step !== 'intro' && step !== 'success') { try { f.focus({ preventScroll: true }); } catch (e) {} }
+        }, 60);
+      }
+    }
+
+    function validateStep(step) {
+      if (typeof step !== 'number') return true;
+      const stepEl = modal.querySelector('[data-quiz-step="' + step + '"]');
+      if (!stepEl) return true;
+      let valid = true;
+      let firstInvalid = null;
+
+      // Required radios
+      stepEl.querySelectorAll('[data-required]').forEach(function (input) {
+        const name = input.name;
+        const q = input.closest('.lp-b2b-quiz-form__q');
+        if (input.type === 'radio') {
+          const any = stepEl.querySelector('input[name="' + name + '"]:checked');
+          if (!any) { if (q) q.classList.add('is-invalid'); valid = false; if (!firstInvalid) firstInvalid = q; }
+        } else {
+          const v = (input.value || '').trim();
+          if (!v) { input.classList.add('is-invalid'); if (q) q.classList.add('is-invalid'); valid = false; if (!firstInvalid) firstInvalid = input; }
+          else if (input.dataset.validate === 'email' && !EMAIL_RE.test(v)) {
+            input.classList.add('is-invalid'); if (q) q.classList.add('is-invalid'); valid = false; if (!firstInvalid) firstInvalid = input;
+          } else if (input.dataset.validate === 'phone' && !PHONE_RE.test(v)) {
+            input.classList.add('is-invalid'); if (q) q.classList.add('is-invalid'); valid = false; if (!firstInvalid) firstInvalid = input;
+          }
+        }
+      });
+
+      // Required-multi
+      const seenGroups = new Set();
+      stepEl.querySelectorAll('[data-required-multi]').forEach(function (input) {
+        const name = input.name;
+        if (seenGroups.has(name)) return;
+        seenGroups.add(name);
+        const any = stepEl.querySelector('input[name="' + name + '"]:checked');
+        if (!any) {
+          const q = input.closest('.lp-b2b-quiz-form__q');
+          if (q) q.classList.add('is-invalid');
+          valid = false;
+          if (!firstInvalid) firstInvalid = q;
+        }
+      });
+
+      if (firstInvalid && firstInvalid.scrollIntoView) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return valid;
+    }
+
+    function collectValues() {
+      const data = {};
+      const fd = new FormData(form);
+      // Single-value fields
+      ['ruolo','azienda','provincia','camion','autisti','fornitore','soluzione','test','nome','whatsapp','email','messaggio'].forEach(function (k) {
+        const v = fd.get(k);
+        data[k] = v ? String(v).trim() : '';
+      });
+      // Multi
+      data.problema  = fd.getAll('problema');
+      data.vantaggio = fd.getAll('vantaggio');
+      return data;
+    }
+
+    function restoreValues(v) {
+      if (!v) return;
+      Object.keys(v).forEach(function (name) {
+        const value = v[name];
+        if (Array.isArray(value)) {
+          value.forEach(function (val) {
+            const el = form.querySelector('input[name="' + name + '"][value="' + cssEscape(val) + '"]');
+            if (el) el.checked = true;
+          });
+          // re-evaluate multi-max
+          const grp = form.querySelector('input[name="' + name + '"]');
+          if (grp) {
+            const wrap = grp.closest('[data-multi-max]');
+            if (wrap) {
+              const max = parseInt(wrap.dataset.multiMax, 10) || 99;
+              const ch = wrap.querySelectorAll('input[type="checkbox"]:checked');
+              if (ch.length >= max) wrap.querySelectorAll('input[type="checkbox"]:not(:checked)').forEach(c => c.disabled = true);
+            }
+          }
+        } else if (typeof value === 'string') {
+          const radios = form.querySelectorAll('input[name="' + name + '"]');
+          if (radios.length && (radios[0].type === 'radio' || radios[0].type === 'checkbox')) {
+            radios.forEach(function (r) { if (r.value === value) r.checked = true; });
+          } else {
+            const txt = form.querySelector('[name="' + name + '"]');
+            if (txt) txt.value = value;
+          }
+        }
+      });
+    }
+
+    function cssEscape(s) {
+      return String(s).replace(/(["\\])/g, '\\$1');
+    }
+
+    function hasAnyAnswer() {
+      const v = collectValues();
+      return Object.values(v).some(function (val) {
+        if (Array.isArray(val)) return val.length > 0;
+        return !!val;
+      });
+    }
+
+    function saveState() {
+      try {
+        const values = collectValues();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ values: values, ts: Date.now() }));
+      } catch (e) { /* quota or private mode — ignore */ }
+    }
+
+    function clearState() {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    }
+
+    // ─── Submission with retry ───
+    function submitForm() {
+      const payload = buildPayload(collectValues());
+      hideError();
+      doSubmit(payload, 0);
+    }
+
+    function buildPayload(values) {
+      return {
+        ruolo: values.ruolo,
+        azienda: values.azienda,
+        provincia: values.provincia,
+        camion: values.camion,
+        autisti: values.autisti,
+        fornitore: values.fornitore,
+        problema: values.problema,
+        vantaggio: values.vantaggio,
+        soluzione: values.soluzione,
+        test: values.test,
+        nome: values.nome,
+        whatsapp: values.whatsapp,
+        email: values.email,
+        messaggio: values.messaggio,
+        meta: {
+          submittedAt: new Date().toISOString(),
+          pageUrl: location.href,
+          pageTitle: document.title,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer || '',
+          source: 'lp-b2b-quiz'
+        }
+      };
+    }
+
+    function doSubmit(payload, attempt) {
+      modal.classList.add('is-submitting');
+      hideError();
+      if (attempt === 0) hideRetry();
+
+      // offline shortcut: don't fire, queue immediately
+      if (typeof navigator.onLine === 'boolean' && navigator.onLine === false) {
+        queueAndNotify(payload, 'Sei offline. Salviamo le risposte: verranno inviate appena torna la connessione.');
+        return;
+      }
+
+      inFlightAbort = new AbortController();
+      const tId = setTimeout(function () { try { inFlightAbort.abort(); } catch (e) {} }, REQUEST_TIMEOUT);
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: inFlightAbort.signal,
+        keepalive: true,
+        mode: 'cors',
+        credentials: 'omit'
+      })
+        .then(function (res) {
+          clearTimeout(tId);
+          if (!res.ok) throw new Error('http_' + res.status);
+          return res;
+        })
+        .then(function () {
+          modal.classList.remove('is-submitting');
+          clearState();
+          goToStep('success');
+        })
+        .catch(function (err) {
+          clearTimeout(tId);
+          handleFailure(payload, attempt, err);
+        });
+    }
+
+    function handleFailure(payload, attempt, err) {
+      if (attempt < MAX_RETRIES - 1) {
+        const delayMs = RETRY_DELAYS[attempt];
+        showRetry(attempt + 2, Math.round(delayMs / 1000));
+        let remaining = Math.round(delayMs / 1000);
+        countdownTimer = setInterval(function () {
+          remaining -= 1;
+          if (remaining < 0) remaining = 0;
+          retrySec.textContent = String(remaining);
+        }, 1000);
+        retryTimer = setTimeout(function () {
+          clearRetry();
+          doSubmit(payload, attempt + 1);
+        }, delayMs);
+      } else {
+        modal.classList.remove('is-submitting');
+        queueAndNotify(payload, 'Invio non riuscito dopo 3 tentativi. Le risposte sono state salvate localmente: riproveremo automaticamente. Puoi anche ritentare ora.');
+      }
+    }
+
+    function showRetry(n, s) {
+      hideError();
+      retryBanner.hidden = false;
+      retryN.textContent = '(' + n + '/' + MAX_RETRIES + ')';
+      retrySec.textContent = String(s);
+    }
+
+    function hideRetry() {
+      retryBanner.hidden = true;
+    }
+
+    function clearRetry() {
+      if (retryTimer) { clearTimeout(retryTimer); retryTimer = null; }
+      if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+      hideRetry();
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorBanner.hidden = false;
+    }
+    function hideError() { errorBanner.hidden = true; }
+
+    function queueAndNotify(payload, msg) {
+      queuePayload(payload);
+      modal.classList.remove('is-submitting');
+      clearRetry();
+      showError(msg);
+      // Allow manual retry: clicking Avanti again restarts
+      nextLabel.textContent = 'Riprova invio';
+    }
+
+    function queuePayload(payload) {
+      try {
+        const list = JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]');
+        list.push({ payload: payload, ts: Date.now() });
+        localStorage.setItem(QUEUE_KEY, JSON.stringify(list));
+      } catch (e) { /* ignore */ }
+    }
+
+    function drainQueue() {
+      let list;
+      try { list = JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]'); } catch (e) { list = []; }
+      if (!list.length) return;
+      if (typeof navigator.onLine === 'boolean' && navigator.onLine === false) return;
+
+      const next = list[0];
+      const ac = new AbortController();
+      const tId = setTimeout(function () { try { ac.abort(); } catch (e) {} }, REQUEST_TIMEOUT);
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(next.payload),
+        signal: ac.signal,
+        keepalive: true,
+        mode: 'cors',
+        credentials: 'omit'
+      })
+        .then(function (res) {
+          clearTimeout(tId);
+          if (!res.ok) throw new Error('http_' + res.status);
+          // Remove first, persist, attempt next
+          list.shift();
+          try { localStorage.setItem(QUEUE_KEY, JSON.stringify(list)); } catch (e) {}
+          if (list.length) setTimeout(drainQueue, 800);
+        })
+        .catch(function () {
+          clearTimeout(tId);
+          // leave in queue, will retry on next online event or page load
+        });
+    }
+
+    // ─── Focus trap ───
+    function trapFocus() {
+      const focusable = modal.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      modal.addEventListener('keydown', function trapHandler(e) {
+        if (!modal.classList.contains('is-open')) {
+          modal.removeEventListener('keydown', trapHandler);
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      });
+      // Focus first non-close button
+      setTimeout(function () {
+        try {
+          const initial = modal.querySelector('[data-quiz-start]') || modal.querySelector('input, button:not([data-quiz-close])');
+          if (initial) initial.focus();
+        } catch (e) {}
+      }, 50);
+    }
+
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "LP B2B — Quiz Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Webhook"
+    },
+    {
+      "type": "text",
+      "id": "webhook_url",
+      "label": "URL webhook Make.com",
+      "default": "https://hook.eu2.make.com/rih8pps134g4thgp8ufk5ad5v1k14yvz"
+    },
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "intro_title",
+      "label": "Titolo",
+      "default": "Candidatura Dr Kampes"
+    },
+    {
+      "type": "text",
+      "id": "intro_subtitle",
+      "label": "Sottotitolo",
+      "default": "Vuoi essere tra le prime 10 aziende in Italia?"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_body",
+      "label": "Corpo intro",
+      "default": "Rispondi a poche domande e scopri se la tua azienda può accedere al programma Dr Kampes dedicato alle aziende di autotrasporto. Meno di 3 minuti."
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP B2B — Quiz Form"
+    }
+  ]
+}
+{% endschema %}

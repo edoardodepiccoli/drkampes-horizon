@@ -69,13 +69,13 @@
     {%- endif -%}
 
     {%- if section.settings.cta_label != blank -%}
-      <a class="lp-b2b-quiz__cta" href="{{ section.settings.cta_url | default: '#candida' }}">
+      <a class="lp-b2b-quiz__cta" href="{{ section.settings.cta_url | default: '#candida' }}" data-quiz-trigger>
         <span class="lp-b2b-quiz__cta-text">{{ section.settings.cta_label }}</span>
       </a>
     {%- endif -%}
 
     {%- if section.settings.helper_text != blank -%}
-      <a class="lp-b2b-quiz__helper" href="{{ section.settings.helper_url | default: section.settings.cta_url | default: '#candida' }}">
+      <a class="lp-b2b-quiz__helper" href="{{ section.settings.helper_url | default: section.settings.cta_url | default: '#candida' }}" data-quiz-trigger>
         <span>{{ section.settings.helper_text }}</span>
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
       </a>

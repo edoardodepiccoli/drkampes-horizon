@@ -285,6 +285,12 @@
         "reassure_text": "Meno di 3 minuti. Nessun obbligo di acquisto."
       }
     },
+    "lp_b2b_quiz_form": {
+      "type": "lp-b2b-quiz-form",
+      "settings": {
+        "webhook_url": "https://hook.eu2.make.com/rih8pps134g4thgp8ufk5ad5v1k14yvz"
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -455,6 +461,7 @@
     "lp_b2b_livery",
     "lp_b2b_system",
     "lp_b2b_quiz",
+    "lp_b2b_quiz_form",
     "main",
     "section_eGTGaW"
   ]
