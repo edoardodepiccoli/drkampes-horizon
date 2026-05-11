@@ -308,38 +308,75 @@
   }
 }
 
-/* ── Desktop ≥ 1100px ── */
+/* ── Desktop ≥ 1100px (2-col: showcase left, cards right) ── */
 @media (min-width: 1100px) {
-  .lp-b2b-custom { padding: 80px 48px 96px; }
-  .lp-b2b-custom__inner { gap: 32px; }
+  .lp-b2b-custom { padding: 56px 48px 64px; }
 
-  .lp-b2b-custom__showcase { gap: 20px; }
+  .lp-b2b-custom__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: 36px;
+    row-gap: 24px;
+    align-items: start;
+  }
+
+  .lp-b2b-custom__showcase {
+    gap: 14px;
+    align-items: stretch;
+  }
 
   .lp-b2b-custom__main {
-    min-height: 380px;
-    border-radius: 16px;
+    min-height: 300px;
+    border-radius: 14px;
   }
 
   .lp-b2b-custom__swatches {
-    width: 140px;
-    gap: 14px;
+    width: 110px;
+    gap: 10px;
   }
 
   .lp-b2b-custom__features {
-    gap: 22px;
-    margin-top: 16px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 0;
   }
 
   .lp-b2b-custom__card {
-    padding: 36px 26px 30px;
-    gap: 0;
-    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    align-items: center;
+    text-align: left;
+    padding: 12px 18px;
+    gap: 0 16px;
+    border-radius: 12px;
   }
 
-  .lp-b2b-custom__card-icon { width: 72px; height: 72px; margin-bottom: 16px; }
-  .lp-b2b-custom__card-icon svg { width: 36px; height: 36px; }
-  .lp-b2b-custom__card-title { font-size: 1.2rem; letter-spacing: 0.03em; margin: 0 0 4px; }
-  .lp-b2b-custom__card-text { font-size: 1rem; line-height: 1.4; }
+  .lp-b2b-custom__card-icon {
+    width: 52px;
+    height: 52px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+    align-self: center;
+  }
+  .lp-b2b-custom__card-icon svg { width: 26px; height: 26px; }
+
+  .lp-b2b-custom__card-title {
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    margin: 0;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .lp-b2b-custom__card-text {
+    font-size: 0.86rem;
+    line-height: 1.35;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
 }
 
 {% endstylesheet %}
