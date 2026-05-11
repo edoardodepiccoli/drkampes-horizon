@@ -264,13 +264,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 18px 20px;
+  box-sizing: border-box;
+  padding: 16px 14px;
   background: linear-gradient(180deg, var(--b2b-gold-light) 0%, var(--b2b-gold) 55%, var(--b2b-gold-dark) 100%);
   color: #111;
   font-family: 'Archivo Black', 'Inter', sans-serif;
-  font-size: 1.02rem;
-  letter-spacing: 0.03em;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -283,6 +283,12 @@
   text-shadow: 0 1px 0 rgba(255, 230, 130, 0.3);
   transition: filter 0.15s, transform 0.1s;
   line-height: 1.15;
+  word-break: keep-all;
+}
+
+.lp-b2b-quiz__cta-text {
+  display: block;
+  min-width: 0;
 }
 .lp-b2b-quiz__cta:hover { filter: brightness(1.05); color: #111; text-decoration: none; }
 .lp-b2b-quiz__cta:active { transform: translateY(1px); }
