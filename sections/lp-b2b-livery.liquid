@@ -22,7 +22,6 @@
     <div class="lp-b2b-livery__cards">
       {%- for block in section.blocks -%}
         {%- if block.type == 'livery' -%}
-          {%- assign card_link = block.settings.link -%}
           <article class="lp-b2b-livery__card" {{ block.shopify_attributes }}>
 
             <div class="lp-b2b-livery__card-text">
@@ -60,20 +59,6 @@
                    sizes: '(min-width:1100px) 55vw, 100vw',
                    alt: block.settings.image.alt | default: block.settings.title }}
               </div>
-            {%- endif -%}
-
-            {%- if card_link != blank -%}
-              <a class="lp-b2b-livery__arrow" href="{{ card_link }}" aria-label="{{ block.settings.title | default: 'Vedi livrea' }}">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="m9 6 6 6-6 6"/>
-                </svg>
-              </a>
-            {%- else -%}
-              <span class="lp-b2b-livery__arrow lp-b2b-livery__arrow--static" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m9 6 6 6-6 6"/>
-                </svg>
-              </span>
             {%- endif -%}
 
           </article>
@@ -259,37 +244,6 @@
   display: block;
 }
 
-/* ── Arrow button ── */
-.lp-b2b-livery__arrow {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 44px;
-  height: 44px;
-  border: 1.5px solid var(--b2b-gold);
-  border-radius: 50%;
-  background: rgba(0,0,0,0.4);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  flex-shrink: 0;
-  transition: background 0.15s, transform 0.15s;
-}
-.lp-b2b-livery__arrow:hover {
-  background: rgba(232, 184, 46, 0.15);
-  text-decoration: none;
-}
-.lp-b2b-livery__arrow:active {
-  transform: scale(0.96);
-}
-.lp-b2b-livery__arrow svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--b2b-gold);
-}
-.lp-b2b-livery__arrow--static { pointer-events: none; }
-
 /* ── Tablet ≥ 750px ── */
 @media (min-width: 750px) {
   .lp-b2b-livery__hero {
@@ -325,16 +279,6 @@
   .lp-b2b-livery__media {
     aspect-ratio: 16 / 6;
   }
-
-  .lp-b2b-livery__arrow {
-    position: absolute;
-    top: 50%;
-    right: 24px;
-    transform: translateY(-50%);
-    width: 46px;
-    height: 46px;
-  }
-  .lp-b2b-livery__arrow svg { width: 22px; height: 22px; }
 }
 
 /* ── Desktop ≥ 1100px ── */
@@ -356,8 +300,8 @@
   }
 
   .lp-b2b-livery__card {
-    grid-template-columns: minmax(260px, 1fr) 2fr 72px;
-    grid-template-areas: "text media arrow";
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    grid-template-areas: "text media";
     padding: 24px 40px;
     gap: 32px;
     border-radius: 16px;
@@ -372,17 +316,6 @@
   .lp-b2b-livery__media {
     aspect-ratio: 16 / 6;
   }
-
-  .lp-b2b-livery__arrow {
-    position: static;
-    transform: none;
-    grid-area: arrow;
-    justify-self: center;
-    align-self: center;
-    width: 56px;
-    height: 56px;
-  }
-  .lp-b2b-livery__arrow svg { width: 24px; height: 24px; }
 }
 
 {% endstylesheet %}
@@ -457,11 +390,6 @@
           "type": "image_picker",
           "id": "image",
           "label": "Immagine camion + scarpa"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link CTA (freccia)"
         }
       ]
     }
