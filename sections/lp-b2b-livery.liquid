@@ -62,12 +62,19 @@
               </div>
             {%- endif -%}
 
-            {%- if card_link != blank -%}
-              <a class="lp-b2b-livery__arrow" href="{{ card_link }}" aria-label="{{ block.settings.title | default: 'Vedi livrea' }}">
+            {%- if block.settings.image != blank -%}
+              <button
+                type="button"
+                class="lp-b2b-livery__arrow"
+                data-livery-zoom
+                data-zoom-src="{{ block.settings.image | image_url: width: 2400 }}"
+                data-zoom-alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                aria-label="{{ 'Ingrandisci ' | append: block.settings.title | default: 'Ingrandisci livrea' }}"
+              >
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="m9 6 6 6-6 6"/>
                 </svg>
-              </a>
+              </button>
             {%- else -%}
               <span class="lp-b2b-livery__arrow lp-b2b-livery__arrow--static" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -81,6 +88,16 @@
       {%- endfor -%}
     </div>
   {%- endif -%}
+
+  <div class="lp-b2b-livery__zoom" id="lpLiveryZoom" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Dettaglio livrea">
+    <div class="lp-b2b-livery__zoom-overlay" data-zoom-close></div>
+    <div class="lp-b2b-livery__zoom-dialog" role="document">
+      <button type="button" class="lp-b2b-livery__zoom-close" data-zoom-close aria-label="Chiudi">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="lp-b2b-livery__zoom-frame" data-zoom-frame></div>
+    </div>
+  </div>
 
 </section>
 
@@ -385,7 +402,155 @@
   .lp-b2b-livery__arrow svg { width: 24px; height: 24px; }
 }
 
+/* ── Zoom modal (right-half of livery image) ── */
+.lp-b2b-livery__arrow {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.lp-b2b-livery__zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.lp-b2b-livery__zoom.is-open { display: flex; }
+
+.lp-b2b-livery__zoom-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: zoom-out;
+}
+
+.lp-b2b-livery__zoom-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 92vh;
+  background: #0a0a0a;
+  border: 1px solid var(--b2b-gold-faint);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-b2b-livery__zoom-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--b2b-gold);
+  background: rgba(0, 0, 0, 0.55);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+}
+.lp-b2b-livery__zoom-close:hover { background: rgba(232, 184, 46, 0.18); }
+.lp-b2b-livery__zoom-close svg { width: 18px; height: 18px; stroke: var(--b2b-gold); }
+
+.lp-b2b-livery__zoom-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 200% 100%;
+}
+
+@media (min-width: 750px) {
+  .lp-b2b-livery__zoom { padding: 32px; }
+  .lp-b2b-livery__zoom-close { top: 16px; right: 16px; width: 46px; height: 46px; }
+  .lp-b2b-livery__zoom-close svg { width: 20px; height: 20px; }
+  .lp-b2b-livery__zoom-frame { aspect-ratio: 16 / 10; }
+}
+
+@media (min-width: 1100px) {
+  .lp-b2b-livery__zoom-frame { aspect-ratio: 16 / 8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-b2b-livery__zoom { transition: none; }
+}
+
 {% endstylesheet %}
+
+<script>
+(function () {
+  if (window.__lpB2bLiveryZoomInit) return;
+  window.__lpB2bLiveryZoomInit = true;
+
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+
+  ready(function () {
+    const modal = document.getElementById('lpLiveryZoom');
+    if (!modal) return;
+    const frame = modal.querySelector('[data-zoom-frame]');
+    let lastFocused = null;
+
+    function open(src, alt) {
+      if (!src) return;
+      frame.style.backgroundImage = 'url("' + src.replace(/"/g, '\\"') + '")';
+      frame.setAttribute('role', 'img');
+      frame.setAttribute('aria-label', alt || 'Dettaglio livrea');
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lastFocused = document.activeElement;
+      const closeBtn = modal.querySelector('[data-zoom-close].lp-b2b-livery__zoom-close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // Defer image clear so transition (if added later) doesn't flash white
+      setTimeout(function () {
+        if (!modal.classList.contains('is-open')) frame.style.backgroundImage = '';
+      }, 50);
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    document.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-livery-zoom]');
+      if (trigger) {
+        e.preventDefault();
+        open(trigger.getAttribute('data-zoom-src'), trigger.getAttribute('data-zoom-alt'));
+        return;
+      }
+      if (e.target.closest('[data-zoom-close]') && modal.contains(e.target)) {
+        e.preventDefault();
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
