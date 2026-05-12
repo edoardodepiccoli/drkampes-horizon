@@ -52,7 +52,7 @@
               <span class="lp-b2b-custom__card-icon" aria-hidden="true">
                 {%- case block.settings.icon -%}
                   {%- when 'truck' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1z"/><path d="M15 8h4l3 4v4h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    {%- render 'b2b-icon-truck' -%}
                   {%- when 'tag' -%}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2h9v9L11 21z"/><circle cx="16" cy="8" r="1.5"/></svg>
                   {%- when 'pen' -%}
@@ -217,6 +217,7 @@
   width: 24px;
   height: 24px;
   stroke: var(--b2b-gold);
+  color: var(--b2b-gold);
 }
 
 .lp-b2b-custom__card-title {

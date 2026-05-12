@@ -56,7 +56,7 @@
                   {%- when 'star' -%}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.5 5.5L20 9.5l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1z"/></svg>
                   {%- when 'truck' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1z"/><path d="M15 8h4l3 4v4h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    {%- render 'b2b-icon-truck' -%}
                 {%- endcase -%}
               </span>
               {%- if block.settings.text != blank -%}
@@ -254,6 +254,7 @@
   width: 24px;
   height: 24px;
   stroke: var(--b2b-gold);
+  color: var(--b2b-gold);
 }
 
 .lp-b2b-quiz__trust-text {
