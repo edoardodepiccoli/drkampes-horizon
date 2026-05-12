@@ -90,6 +90,14 @@
             "title": "DETTAGLI COORDINATI",
             "text": "Cuciture, inserti e finiture in perfetta sintonia."
           }
+        },
+        "feat_warranty": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "3 ANNI DI GARANZIA",
+            "text": "1.095 giornate coperte. Risuolatura inclusa."
+          }
         }
       },
       "block_order": [
@@ -98,7 +106,8 @@
         "swatch_black",
         "feat_colors",
         "feat_logo",
-        "feat_details"
+        "feat_details",
+        "feat_warranty"
       ],
       "settings": {
         "main_image": "shopify://shop_images/3d_logo_render.jpg"

@@ -63,6 +63,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1 0 2-1 2-2 0-1-1-2-1-3s1-2 2-2h3a4 4 0 0 0 4-4 9 9 0 0 0-10-7z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="11" cy="7" r="1.2"/><circle cx="16" cy="8.5" r="1.2"/></svg>
                   {%- when 'thread' -%}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c4 0 4 4 8 4s4-4 8-4"/><path d="M3 12c4 0 4 4 8 4s4-4 8-4"/><path d="M3 18c4 0 4 2 8 2s4-2 8-2"/></svg>
+                  {%- when 'shield' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="m8.5 12 2.5 2.5L15.5 10"/></svg>
                 {%- endcase -%}
               </span>
               {%- if block.settings.title != blank -%}
@@ -270,7 +272,7 @@
   }
 
   .lp-b2b-custom__features {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
     margin-top: 12px;
   }
@@ -336,7 +338,7 @@
   }
 
   .lp-b2b-custom__features {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-top: 0;
   }
@@ -429,7 +431,8 @@
             { "value": "pen",      "label": "Mirino precisione" },
             { "value": "scissors", "label": "Forbici" },
             { "value": "palette",  "label": "Tavolozza" },
-            { "value": "thread",   "label": "Cuciture" }
+            { "value": "thread",   "label": "Cuciture" },
+            { "value": "shield",   "label": "Scudo (garanzia)" }
           ],
           "default": "truck"
         },
@@ -455,7 +458,8 @@
         { "type": "swatch",  "settings": { "color": "#1A1A1A", "label": "Pelle nera" }},
         { "type": "feature", "settings": { "icon": "truck", "title": "COLORI DI FLOTTA", "text": "Coordiniamo la tua identità su ogni dettaglio." }},
         { "type": "feature", "settings": { "icon": "tag",   "title": "LOGO AZIENDALE",  "text": "Il tuo marchio sempre in primo piano." }},
-        { "type": "feature", "settings": { "icon": "pen",   "title": "DETTAGLI COORDINATI", "text": "Cuciture, inserti e finiture in perfetta sintonia." }}
+        { "type": "feature", "settings": { "icon": "pen",   "title": "DETTAGLI COORDINATI", "text": "Cuciture, inserti e finiture in perfetta sintonia." }},
+        { "type": "feature", "settings": { "icon": "shield","title": "3 ANNI DI GARANZIA", "text": "1.095 giornate coperte. Risuolatura inclusa." }}
       ]
     }
   ]
