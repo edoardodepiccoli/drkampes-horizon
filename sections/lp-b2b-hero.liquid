@@ -22,12 +22,7 @@
   <div class="lp-b2b-hero__overlay">
     {%- if section.settings.eyebrow != blank -%}
       <div class="lp-b2b-hero__eyebrow">
-        <svg class="lp-b2b-hero__eyebrow-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M1 4h14v12H1z"/>
-          <path d="M15 8h4l3 4v4h-7z"/>
-          <circle cx="5.5" cy="18.5" r="2.5"/>
-          <circle cx="18.5" cy="18.5" r="2.5"/>
-        </svg>
+        <span class="lp-b2b-hero__eyebrow-icon" aria-hidden="true">{%- render 'b2b-icon-truck' -%}</span>
         <span>{{ section.settings.eyebrow }}</span>
       </div>
     {%- endif -%}
@@ -205,8 +200,15 @@
 .lp-b2b-hero__eyebrow-icon {
   width: 20px;
   height: 20px;
-  stroke: var(--b2b-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--b2b-gold);
   flex-shrink: 0;
+}
+.lp-b2b-hero__eyebrow-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* ── Headline ── */
