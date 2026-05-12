@@ -1,13 +1,9 @@
 {%- assign webhook_url = section.settings.webhook_url | default: 'https://hook.eu2.make.com/rih8pps134g4thgp8ufk5ad5v1k14yvz' -%}
 
 <div class="lp-b2b-quiz-form" id="lpQuizModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lpQuizTitle" data-webhook="{{ webhook_url }}">
-  <div class="lp-b2b-quiz-form__overlay" data-quiz-close></div>
+  <div class="lp-b2b-quiz-form__overlay"></div>
 
   <div class="lp-b2b-quiz-form__dialog" role="document">
-
-    <button type="button" class="lp-b2b-quiz-form__close" data-quiz-close aria-label="Chiudi">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
 
     <div class="lp-b2b-quiz-form__progress" data-quiz-progress aria-hidden="true">
       <div class="lp-b2b-quiz-form__progress-track">
@@ -293,16 +289,19 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear 0.5s;
 }
 
 .lp-b2b-quiz-form.is-open {
-  display: flex;
   pointer-events: auto;
+  visibility: visible;
+  transition: visibility 0s linear 0s;
 }
 
 .lp-b2b-quiz-form__overlay {
@@ -338,26 +337,6 @@
   transform: translateY(0);
   opacity: 1;
 }
-
-.lp-b2b-quiz-form__close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 5;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.05);
-  color: #fff;
-  border: 1px solid var(--b2b-border);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-}
-.lp-b2b-quiz-form__close:hover { background: rgba(255,255,255,0.12); border-color: var(--b2b-gold-faint); }
-.lp-b2b-quiz-form__close svg { width: 18px; height: 18px; stroke: currentColor; }
 
 .lp-b2b-quiz-form__progress {
   position: relative;
@@ -868,9 +847,6 @@ body.lp-b2b-quiz-open { overflow: hidden; }
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   }
 
-  .lp-b2b-quiz-form__close { top: 18px; right: 18px; width: 44px; height: 44px; }
-  .lp-b2b-quiz-form__close svg { width: 20px; height: 20px; }
-
   .lp-b2b-quiz-form__progress { padding: 22px 72px 0 22px; }
 
   .lp-b2b-quiz-form__step { padding: 18px 28px 28px; }
@@ -1086,11 +1062,6 @@ body.lp-b2b-quiz-open { overflow: hidden; }
         e.preventDefault();
         closeModal();
       }
-    });
-
-    // ─── ESC ───
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 
     // ─── Multi-select max enforcement ───
