@@ -297,7 +297,7 @@
     "lp_b2b_quiz_form": {
       "type": "lp-b2b-quiz-form",
       "settings": {
-        "webhook_url": "https://hook.eu2.make.com/rih8pps134g4thgp8ufk5ad5v1k14yvz"
+        "webhook_url": "https://automations.drkampes.com/webhook/30ee9913-9a98-4d05-8432-9f8a56533175"
       }
     },
     "main": {
