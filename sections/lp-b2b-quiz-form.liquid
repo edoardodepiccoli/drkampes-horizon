@@ -200,8 +200,35 @@
 
           <div class="lp-b2b-quiz-form__q lp-b2b-quiz-form__q--grid2">
             <div>
-              <label class="lp-b2b-quiz-form__q-label" for="lpQuizWhatsapp">WhatsApp</label>
-              <input class="lp-b2b-quiz-form__input" id="lpQuizWhatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" data-required data-validate="phone" placeholder="+39 333 1234567">
+              <label class="lp-b2b-quiz-form__q-label" for="lpQuizWhatsappNumber">WhatsApp</label>
+              <div class="lp-b2b-quiz-form__phone">
+                <select class="lp-b2b-quiz-form__input lp-b2b-quiz-form__phone-prefix" id="lpQuizWhatsappPrefix" aria-label="Prefisso internazionale">
+                  <option value="39" data-flag="🇮🇹" selected>🇮🇹 +39</option>
+                  <option value="41" data-flag="🇨🇭">🇨🇭 +41</option>
+                  <option value="33" data-flag="🇫🇷">🇫🇷 +33</option>
+                  <option value="49" data-flag="🇩🇪">🇩🇪 +49</option>
+                  <option value="34" data-flag="🇪🇸">🇪🇸 +34</option>
+                  <option value="43" data-flag="🇦🇹">🇦🇹 +43</option>
+                  <option value="386" data-flag="🇸🇮">🇸🇮 +386</option>
+                  <option value="385" data-flag="🇭🇷">🇭🇷 +385</option>
+                  <option value="32" data-flag="🇧🇪">🇧🇪 +32</option>
+                  <option value="31" data-flag="🇳🇱">🇳🇱 +31</option>
+                  <option value="351" data-flag="🇵🇹">🇵🇹 +351</option>
+                  <option value="48" data-flag="🇵🇱">🇵🇱 +48</option>
+                  <option value="40" data-flag="🇷🇴">🇷🇴 +40</option>
+                  <option value="36" data-flag="🇭🇺">🇭🇺 +36</option>
+                  <option value="420" data-flag="🇨🇿">🇨🇿 +420</option>
+                  <option value="421" data-flag="🇸🇰">🇸🇰 +421</option>
+                  <option value="44" data-flag="🇬🇧">🇬🇧 +44</option>
+                  <option value="30" data-flag="🇬🇷">🇬🇷 +30</option>
+                  <option value="359" data-flag="🇧🇬">🇧🇬 +359</option>
+                  <option value="378" data-flag="🇸🇲">🇸🇲 +378</option>
+                  <option value="377" data-flag="🇲🇨">🇲🇨 +377</option>
+                  <option value="423" data-flag="🇱🇮">🇱🇮 +423</option>
+                </select>
+                <input class="lp-b2b-quiz-form__input lp-b2b-quiz-form__phone-number" id="lpQuizWhatsappNumber" type="tel" inputmode="numeric" autocomplete="tel-national" data-required data-validate="phone" placeholder="333 1234567" maxlength="20">
+              </div>
+              <input type="hidden" id="lpQuizWhatsapp" name="whatsapp">
               <p class="lp-b2b-quiz-form__error" data-error-for="whatsapp">Numero non valido</p>
             </div>
             <div>
@@ -655,6 +682,26 @@
 }
 .lp-b2b-quiz-form__input.is-invalid { border-color: var(--b2b-error); }
 
+.lp-b2b-quiz-form__phone {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) 1fr;
+  gap: 8px;
+}
+.lp-b2b-quiz-form__phone-prefix {
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+  font-variant-emoji: emoji;
+}
+.lp-b2b-quiz-form__phone-prefix::-ms-expand { display: none; }
+.lp-b2b-quiz-form__phone-prefix option {
+  background: #111;
+  color: #fff;
+}
+
 .lp-b2b-quiz-form__textarea {
   resize: vertical;
   min-height: 80px;
@@ -1009,7 +1056,7 @@ body.lp-b2b-quiz-open { overflow: hidden; }
   const REQUEST_TIMEOUT = 15000;
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const PHONE_RE = /^[+]?[0-9\s().-]{7,}$/;
+  const PHONE_RE = /^[0-9]{6,15}$/;
 
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
@@ -1044,11 +1091,65 @@ body.lp-b2b-quiz-open { overflow: hidden; }
     let countdownTimer = null;
     let inFlightAbort = null;
 
+    // ─── Phone input (prefix dropdown + digits-only national) ───
+    const phonePrefix = modal.querySelector('#lpQuizWhatsappPrefix');
+    const phoneNumber = modal.querySelector('#lpQuizWhatsappNumber');
+    const phoneHidden = modal.querySelector('#lpQuizWhatsapp');
+
+    function sanitizeNational(raw) {
+      let digits = String(raw || '').replace(/\D+/g, '');
+      digits = digits.replace(/^0+/, '');
+      return digits;
+    }
+
+    function syncWhatsapp() {
+      if (!phonePrefix || !phoneNumber || !phoneHidden) return;
+      const dial = phonePrefix.value.replace(/\D+/g, '');
+      const national = sanitizeNational(phoneNumber.value);
+      phoneHidden.value = national ? (dial + national) : '';
+    }
+
+    function applyPhoneRestore(combined) {
+      if (!phonePrefix || !phoneNumber || !phoneHidden) return;
+      const all = String(combined || '').replace(/\D+/g, '').replace(/^0+/, '');
+      if (!all) { phoneNumber.value = ''; phoneHidden.value = ''; return; }
+      const codes = Array.from(phonePrefix.options)
+        .map(function (o) { return o.value; })
+        .sort(function (a, b) { return b.length - a.length; });
+      let matched = '';
+      for (let i = 0; i < codes.length; i++) {
+        if (all.indexOf(codes[i]) === 0) { matched = codes[i]; break; }
+      }
+      if (matched) {
+        phonePrefix.value = matched;
+        phoneNumber.value = all.slice(matched.length);
+      } else {
+        phoneNumber.value = all;
+      }
+      syncWhatsapp();
+    }
+
+    if (phoneNumber) {
+      phoneNumber.addEventListener('input', function () {
+        const cleaned = sanitizeNational(phoneNumber.value);
+        if (phoneNumber.value !== cleaned) phoneNumber.value = cleaned;
+        syncWhatsapp();
+      });
+      phoneNumber.addEventListener('blur', syncWhatsapp);
+    }
+    if (phonePrefix) {
+      phonePrefix.addEventListener('change', function () {
+        syncWhatsapp();
+        saveState();
+      });
+    }
+
     // ─── Restore saved state ───
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
       if (saved && saved.values) restoreValues(saved.values);
     } catch (e) { /* ignore */ }
+    syncWhatsapp();
 
     // ─── Trigger binding (delegated) ───
     document.addEventListener('click', function (e) {
@@ -1258,6 +1359,10 @@ body.lp-b2b-quiz-open { overflow: hidden; }
             }
           }
         } else if (typeof value === 'string') {
+          if (name === 'whatsapp') {
+            applyPhoneRestore(value);
+            return;
+          }
           const radios = form.querySelectorAll('input[name="' + name + '"]');
           if (radios.length && (radios[0].type === 'radio' || radios[0].type === 'checkbox')) {
             radios.forEach(function (r) { if (r.value === value) r.checked = true; });
