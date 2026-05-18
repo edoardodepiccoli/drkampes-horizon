@@ -1095,6 +1095,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product_information",
       "settings": {
         "product": "dr-kampes-s3s-nero-copia",
@@ -1110,7 +1111,6 @@
     },
     "home_product_showcase": {
       "type": "home-buy-section",
-      "disabled": true,
       "name": "Home Buy Section",
       "settings": {
         "product": "dr-kampes-s3s-nero-copia",
