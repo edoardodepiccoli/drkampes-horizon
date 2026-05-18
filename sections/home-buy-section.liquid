@@ -496,18 +496,20 @@
           atcBtn.classList.add('hbs__btn--done');
           atcBtn.textContent = 'AGGIUNTO AL CARRELLO';
 
-          var evt = new CustomEvent('cart:update', { bubbles: true });
-          evt.detail = {
-            resource: data,
-            sourceId: 'hbs-' + sid,
-            data: {
-              source: 'product-form-component',
-              itemCount: data.quantity || 1,
-              productId: data.product_id,
-              variantId: data.variant_id,
-              sections: data.sections || {}
+          var evt = new CustomEvent('cart:update', {
+            bubbles: true,
+            detail: {
+              resource: data,
+              sourceId: 'hbs-' + sid,
+              data: {
+                source: 'product-form-component',
+                itemCount: data.quantity || 1,
+                productId: data.product_id,
+                variantId: data.variant_id,
+                sections: data.sections || {}
+              }
             }
-          };
+          });
           document.dispatchEvent(evt);
 
           requestAnimationFrame(function () {
