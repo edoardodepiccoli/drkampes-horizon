@@ -922,7 +922,7 @@
             "border_opacity": 100,
             "border_radius": 0,
             "padding-block-start": 24,
-            "padding-block-end": 24,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -1105,7 +1105,7 @@
         "gap": 48,
         "color_scheme": "",
         "padding-block-start": 40,
-        "padding-block-end": 24
+        "padding-block-end": 0
       }
     },
     "home_product_showcase": {
@@ -1776,7 +1776,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 40,
+        "padding-block-start": 0,
         "padding-block-end": 100,
         "animate_on_scroll": false,
         "animate_delay": 0

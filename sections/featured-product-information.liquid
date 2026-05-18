@@ -33,6 +33,18 @@
   %}
 </featured-product-information>
 
+{% stylesheet %}
+  @media screen and (min-width: 750px) {
+    featured-product-information .product-information__grid .product-media-container {
+      max-height: 540px;
+    }
+    featured-product-information .product-information__grid .product-media-container .product-media,
+    featured-product-information .product-information__grid .product-media-container .product-media img {
+      max-height: 540px;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.featured_product_information",
