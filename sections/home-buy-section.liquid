@@ -422,37 +422,100 @@
   });
 
   var form = document.getElementById('hbs-form-' + sid);
-  if (form) {
+  var atcBtn = form ? form.querySelector('.hbs__atc') : null;
+  var atcLabel = atcBtn ? atcBtn.textContent : '';
+
+  function setReturnTo(value) {
+    if (!form) return;
+    var rt = form.querySelector('input[name="return_to"]');
+    if (!rt) {
+      rt = document.createElement('input');
+      rt.type = 'hidden';
+      rt.name = 'return_to';
+      form.appendChild(rt);
+    }
+    rt.value = value;
+  }
+
+  function nativeCheckout(btn, fallbackLabel) {
+    if (!form) return;
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.add('hbs__btn--loading');
+      if (fallbackLabel != null) btn.dataset.origLabel = btn.textContent;
+    }
+    setReturnTo('/checkout');
+    form.submit();
+  }
+
+  if (form && atcBtn) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (atcBtn.disabled) return;
+
+      atcBtn.disabled = true;
+      atcBtn.classList.add('hbs__btn--loading');
+      atcBtn.textContent = 'AGGIUNTA...';
+
       var fd = new FormData(form);
-      var cartSectionIds = [];
-      document.querySelectorAll('cart-items-component[data-section-id]').forEach(function (el) {
-        cartSectionIds.push(el.dataset.sectionId);
-      });
-      if (cartSectionIds.length) fd.append('sections', cartSectionIds.join(','));
-      fetch('/cart/add.js', { method: 'POST', body: fd })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data.status) return;
-          document.dispatchEvent(new CustomEvent('cart:update', {
-            bubbles: true,
-            detail: { source: 'hbs', data: { sections: data.sections } }
-          }));
+      fd.delete('return_to');
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body: fd
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+        .then(function (res) {
+          var data = res.body || {};
+          if (!res.ok || data.status) {
+            atcBtn.classList.remove('hbs__btn--loading');
+            atcBtn.classList.add('hbs__btn--error');
+            atcBtn.textContent = (data.description || data.message || 'Errore').toString().slice(0, 40);
+            setTimeout(function () {
+              atcBtn.classList.remove('hbs__btn--error');
+              atcBtn.textContent = atcLabel;
+              atcBtn.disabled = false;
+            }, 2400);
+            return;
+          }
+          atcBtn.classList.remove('hbs__btn--loading');
+          atcBtn.classList.add('hbs__btn--done');
+          atcBtn.textContent = 'AGGIUNTO AL CARRELLO';
+
+          var evt = new CustomEvent('cart:update', { bubbles: true });
+          evt.detail = {
+            resource: data,
+            sourceId: 'hbs-' + sid,
+            data: {
+              source: 'product-form-component',
+              itemCount: data.quantity || 1,
+              productId: data.product_id,
+              variantId: data.variant_id
+            }
+          };
+          document.dispatchEvent(evt);
+
+          setTimeout(function () {
+            atcBtn.classList.remove('hbs__btn--done');
+            atcBtn.textContent = atcLabel;
+            atcBtn.disabled = false;
+          }, 1800);
         })
-        .catch(function () {});
+        .catch(function () {
+          atcBtn.classList.remove('hbs__btn--loading');
+          atcBtn.textContent = atcLabel;
+          atcBtn.disabled = false;
+        });
     });
   }
 
   var bnBtn = document.getElementById('hbs-bn-' + sid);
   if (bnBtn) {
-    bnBtn.addEventListener('click', function () {
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
-      }).then(function () { window.location.href = '/checkout'; })
-        .catch(function () { window.location.href = '/checkout'; });
+    bnBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      bnBtn.textContent = 'ATTENDI...';
+      nativeCheckout(bnBtn, 'ACQUISTA ORA');
     });
   }
 
@@ -510,13 +573,10 @@
   }
 
   if (ctaBnBtn) {
-    ctaBnBtn.addEventListener('click', function () {
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: parseInt(vidInput.value, 10), quantity: parseInt(qtyEl ? qtyEl.value : '1', 10) || 1 })
-      }).then(function () { window.location.href = '/checkout'; })
-        .catch(function () { window.location.href = '/checkout'; });
+    ctaBnBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      ctaBnBtn.textContent = 'ATTENDI...';
+      nativeCheckout(ctaBnBtn, 'ACQUISTA ORA');
     });
   }
 
@@ -873,6 +933,24 @@
   transition: background 0.15s;
 }
 .hbs__bn:active { background: #d9ac00; }
+
+.hbs__atc[disabled], .hbs__bn[disabled] { cursor: wait; opacity: 0.92; }
+.hbs__btn--loading { position: relative; }
+.hbs__btn--loading::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: hbs-spin 0.7s linear infinite;
+  vertical-align: -3px;
+}
+.hbs__atc.hbs__btn--done { background: #1b5e20; }
+.hbs__atc.hbs__btn--error { background: #c4382f; color: #fff; }
+@keyframes hbs-spin { to { transform: rotate(360deg); } }
 
 .hbs__micro {
   font-size: 0.75rem;
