@@ -457,8 +457,20 @@
       atcBtn.classList.add('hbs__btn--loading');
       atcBtn.textContent = 'AGGIUNTA...';
 
+      var sectionIds = [];
+      document.querySelectorAll('cart-items-component[data-section-id]').forEach(function (el) {
+        var id = el.dataset.sectionId;
+        if (id && sectionIds.indexOf(id) === -1) sectionIds.push(id);
+      });
+      document.querySelectorAll('cart-icon[data-section-id]').forEach(function (el) {
+        var id = el.dataset.sectionId;
+        if (id && sectionIds.indexOf(id) === -1) sectionIds.push(id);
+      });
+
       var fd = new FormData(form);
       fd.delete('return_to');
+      if (sectionIds.length) fd.append('sections', sectionIds.join(','));
+      fd.append('sections_url', window.location.pathname);
 
       fetch('/cart/add.js', {
         method: 'POST',
@@ -479,6 +491,7 @@
             }, 2400);
             return;
           }
+
           atcBtn.classList.remove('hbs__btn--loading');
           atcBtn.classList.add('hbs__btn--done');
           atcBtn.textContent = 'AGGIUNTO AL CARRELLO';
@@ -491,10 +504,16 @@
               source: 'product-form-component',
               itemCount: data.quantity || 1,
               productId: data.product_id,
-              variantId: data.variant_id
+              variantId: data.variant_id,
+              sections: data.sections || {}
             }
           };
           document.dispatchEvent(evt);
+
+          requestAnimationFrame(function () {
+            var drawer = document.querySelector('cart-drawer-component');
+            if (drawer && typeof drawer.open === 'function') drawer.open();
+          });
 
           setTimeout(function () {
             atcBtn.classList.remove('hbs__btn--done');
