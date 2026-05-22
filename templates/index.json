@@ -1098,7 +1098,7 @@
       "disabled": true,
       "name": "t:names.featured_product_information",
       "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
+        "product": "dr-kampes-s3s",
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
         "equal_columns": true,
@@ -1113,7 +1113,7 @@
       "type": "home-buy-section",
       "name": "Home Buy Section",
       "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
+        "product": "dr-kampes-s3s",
         "color_scheme": "scheme-1"
       }
     },

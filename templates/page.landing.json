@@ -290,7 +290,7 @@
     "main": {
       "type": "hps-offerta",
       "settings": {
-        "product": "dr-kampes-s3s-nero-copia",
+        "product": "dr-kampes-s3s",
         "tshirt_product": "t-shirt-dr-kampes",
         "discount_code": "SPEDIZIONEGRATIS",
         "bundle_discount_code": "BUNDLETSHIRT",
